@@ -1,0 +1,12 @@
+⚡ Zap - List
+
+   1  🔌 zsh-autosuggestions
+   2  🔌 zsh-syntax-highlighting
+   3  🔌 zsh-history-substring-search
+   4  🔌 supercharge
+   5  🔌 zap-prompt
+   6  🔌 vim
+   7  🔌 fzf
+   8  🔌 zsh-autopair
+   9  🔌 conda-zsh-completion
+  10  🔌 zsh-pyenv

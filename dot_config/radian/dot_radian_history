@@ -1,0 +1,1912 @@
+
+# time: 2024-06-29 20:38:58 UTC
+# mode: r
++:clear
+
+# time: 2024-06-29 20:39:02 UTC
+# mode: shell
++clear
+
+# time: 2024-06-29 20:39:24 UTC
+# mode: r
++getOptions()
+
+# time: 2024-06-29 20:39:30 UTC
+# mode: r
++ZZq()
+
+# time: 2024-06-29 20:39:31 UTC
+# mode: r
++q()
+
+# time: 2024-06-29 20:39:58 UTC
+# mode: r
++colorout::setOutputColors256()
+
+# time: 2024-06-29 20:40:33 UTC
+# mode: r
++q()
+
+# time: 2024-06-29 20:41:09 UTC
+# mode: r
++?colorout:::setOutputColors256
+
+# time: 2024-06-29 20:41:16 UTC
+# mode: r
++?colorout:::setOutputColors
+
+# time: 2024-06-29 20:41:57 UTC
+# mode: r
++?colorout
+
+# time: 2024-06-29 20:42:30 UTC
+# mode: r
++colorout:::setOutputColors()
+
+# time: 2024-06-29 20:42:37 UTC
+# mode: r
++q()
+
+# time: 2024-07-03 21:55:49 UTC
+# mode: r
++ls()
+
+# time: 2024-07-03 21:56:03 UTC
+# mode: r
++q()
+
+# time: 2024-07-04 16:13:07 UTC
+# mode: r
++psource("Scripts/00_workspace.R")
++
++# RigidBody frame data
++rb <- fread(
++  file = here("Data/Raw", "BackHandFrontHand_RigidBodies_framedata_1.csv")
++)
++
++rb <- rb[practicing == 0]
++
++factor_cols <- c(
++  "asset_ID", "participant_id", "block_num", "trial_num", "practicing",
++  "left_right_hand", "palm_back_hand", "target_loc", "distractor_loc"
++)
++
++rb[, (factor_cols) := lapply(.SD, as.factor), .SDcols = factor_cols]
++
++# NOTE: need to see which asset_ids map to which hand
++# For now, as this is exploratory, removing them entirely.
++rb <- rb[participant_id != "21"]
++droplevels(rb, in.place = TRUE)
+
+# time: 2024-07-04 16:13:09 UTC
+# mode: r
++source("Scripts/00_workspace.R")
++
++# RigidBody frame data
++rb <- fread(
++  file = here("Data/Raw", "BackHandFrontHand_RigidBodies_framedata_1.csv")
++)
++
++rb <- rb[practicing == 0]
++
++factor_cols <- c(
++  "asset_ID", "participant_id", "block_num", "trial_num", "practicing",
++  "left_right_hand", "palm_back_hand", "target_loc", "distractor_loc"
++)
++
++rb[, (factor_cols) := lapply(.SD, as.factor), .SDcols = factor_cols]
++
++# NOTE: need to see which asset_ids map to which hand
++# For now, as this is exploratory, removing them entirely.
++rb <- rb[participant_id != "21"]
++droplevels(rb, in.place = TRUE)
+
+# time: 2024-07-04 16:13:19 UTC
+# mode: r
++q()
+
+# time: 2024-07-04 16:13:34 UTC
+# mode: r
++source("Scripts/00_workspace.R")
++
++# RigidBody frame data
++rb <- fread(
++  file = here("Data/Raw", "BackHandFrontHand_RigidBodies_framedata_1.csv")
++)
++
++rb <- rb[practicing == 0]
++
++factor_cols <- c(
++  "asset_ID", "participant_id", "block_num", "trial_num", "practicing",
++  "left_right_hand", "palm_back_hand", "target_loc", "distractor_loc"
++)
++
++rb[, (factor_cols) := lapply(.SD, as.factor), .SDcols = factor_cols]
++
++# NOTE: need to see which asset_ids map to which hand
++# For now, as this is exploratory, removing them entirely.
++rb <- rb[participant_id != "21"]
++droplevels(rb, in.place = TRUE)
+
+# time: 2024-07-04 16:13:54 UTC
+# mode: r
++trial <- rb[
++  participant_id == "23" & block_num == 4 & trial_num == 2 & asset_ID == 1
++]
+
+# time: 2024-07-04 16:13:58 UTC
+# mode: r
++nrow(trial)
+
+# time: 2024-07-04 16:14:09 UTC
+# mode: r
++238/5.3
+
+# time: 2024-07-04 16:14:40 UTC
+# mode: r
++trial[1:15, pos_x]
+
+# time: 2024-07-04 16:14:50 UTC
+# mode: r
++trial[16:30, pos_x]
+
+# time: 2024-07-04 16:15:56 UTC
+# mode: r
++trial2 <- rb[participant_id == "23" & block_num == 4 & trial_num == 3 & asset_ID == 1]
+
+# time: 2024-07-04 16:16:02 UTC
+# mode: r
++trial2[16:30, pos_x]
+
+# time: 2024-07-04 16:16:21 UTC
+# mode: r
++trial2[1:15, pos_x]
+
+# time: 2024-07-04 16:16:37 UTC
+# mode: r
++trial2 <- rb[participant_id == "24" & block_num == 4 & trial_num == 3 & asset_ID == 1]
+
+# time: 2024-07-04 16:16:39 UTC
+# mode: r
++trial2[1:15, pos_x]
+
+# time: 2024-07-04 16:16:48 UTC
+# mode: r
++trial2[16:30, pos_x]
+
+# time: 2024-07-04 16:17:02 UTC
+# mode: r
++trial2 <- rb[participant_id == "25" & block_num == 4 & trial_num == 3 & asset_ID == 1]
+
+# time: 2024-07-04 16:17:05 UTC
+# mode: r
++trial2[16:30, pos_x]
+
+# time: 2024-07-04 16:17:31 UTC
+# mode: r
++trial2[1:15, pos_x]
+
+# time: 2024-07-04 16:17:59 UTC
+# mode: r
++pclid(trial2$pos_z)
+
+# time: 2024-07-04 16:20:07 UTC
+# mode: r
++trial_select <- function(dt, pid, block, trial, asset) {
++    return (dt[participant_id == pid & block_num == block & trial_num == trial & asset_ID == asset])
++}
+
+# time: 2024-07-04 16:20:42 UTC
+# mode: r
++trial <- trial_select(rb, "23", 4, 2, 1)
+
+# time: 2024-07-04 16:24:39 UTC
+# mode: r
++library(magrittr)
+
+# time: 2024-07-04 16:45:53 UTC
+# mode: r
++select_trial <- function(dt, pid, block, trial, asset) {
++  trial <- dt[
++    participant_id == pid &
++    block_num == block &
++    trial_num == trial &
++    asset_ID == asset
++  ]
++
++  trial[, `:=`(pos_x = pos_x * 1000, pos_y = pos_y * 1000, pos_z = pos_z * 1000)]
++
++  return(trial)
++}
++
++trial_avg <- function(dt, pid, block, trial, asset) {
++  trial <- select_trial(dt, pid, block, trial, asset)
++  avg <- trial[,
++    `:=`(
++      pos_x = mean(pos_x),
++      pos_y = mean(pos_y),
++      pos_z = mean(pos_z)
++    )
++  ]
++  return(avg)
++}
+
+# time: 2024-07-04 16:46:35 UTC
+# mode: r
++source("Scripts/00_workspace.R")
++
++# RigidBody frame data
++rb <- fread(
++  file = here("Data/Raw", "BackHandFrontHand_RigidBodies_framedata_1.csv")
++)
++
++rb <- rb[practicing == 0]
++
++factor_cols <- c(
++  "asset_ID", "participant_id", "block_num", "trial_num", "practicing",
++  "left_right_hand", "palm_back_hand", "target_loc", "distractor_loc"
++)
++
++rb[, (factor_cols) := lapply(.SD, as.factor), .SDcols = factor_cols]
++
++# NOTE: need to see which asset_ids map to which hand
++# For now, as this is exploratory, removing them entirely.
++rb <- rb[participant_id != "21"]
++droplevels(rb, in.place = TRUE)
+
+# time: 2024-07-04 16:46:47 UTC
+# mode: r
++select_trial <- function(dt, pid, block, trial, asset) {
++  trial <- dt[
++    participant_id == pid &
++    block_num == block &
++    trial_num == trial &
++    asset_ID == asset
++  ]
++
++  trial[, `:=`(pos_x = pos_x * 1000, pos_y = pos_y * 1000, pos_z = pos_z * 1000)]
++
++  return(trial)
++}
++
++trial_avg <- function(dt, pid, block, trial, asset) {
++  trial <- select_trial(dt, pid, block, trial, asset)
++  avg <- trial[,
++    `:=`(
++      pos_x = mean(pos_x),
++      pos_y = mean(pos_y),
++      pos_z = mean(pos_z)
++    )
++  ]
++  return(avg)
++}
+
+# time: 2024-07-04 16:48:05 UTC
+# mode: r
++select_trial("23", 4, 2, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 16:48:26 UTC
+# mode: r
++select_trial(rb,"23", 4, 2, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 16:48:52 UTC
+# mode: r
++select_trial(rb,"24", 4, 2, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:03:04 UTC
+# mode: r
++select_trial(rb,"25", 4, 2, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:03:07 UTC
+# mode: r
++select_trial(rb,"24", 4, 2, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:03:21 UTC
+# mode: r
++select_trial(rb,"24", 4, 3, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:03:26 UTC
+# mode: r
++select_trial(rb,"24", 4, 4, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:03:34 UTC
+# mode: r
++select_trial(rb,"23", 4, 4, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:03:38 UTC
+# mode: r
++select_trial(rb,"23", 4, 5, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:04:06 UTC
+# mode: r
++levels(rb$participant_id)
+
+# time: 2024-07-04 17:04:12 UTC
+# mode: r
++select_trial(rb,"22", 4, 5, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:04:25 UTC
+# mode: r
++select_trial(rb,"22", 4, 6, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 17:19:39 UTC
+# mode: r
++source("Scripts/00_workspace.R")
++
++# RigidBody frame data
++rb <- fread(
++  file = here("Data/Raw", "BackHandFrontHand_RigidBodies_framedata_1.csv")
++)
++
++rb <- rb[practicing == 0]
++
++factor_cols <- c(
++  "asset_ID", "participant_id", "block_num", "trial_num", "practicing",
++  "left_right_hand", "palm_back_hand", "target_loc", "distractor_loc"
++)
++
++rb[, (factor_cols) := lapply(.SD, as.factor), .SDcols = factor_cols]
++
++# NOTE: need to see which asset_ids map to which hand
++# For now, as this is exploratory, removing them entirely.
++rb <- rb[participant_id != "21"]
++droplevels(rb, in.place = TRUE)
+
+# time: 2024-07-04 17:19:56 UTC
+# mode: r
++select_trial <- function(dt, pid, block, trial, asset) {
++  trial <- dt[
++    participant_id == pid &
++      block_num == block &
++      trial_num == trial &
++      asset_ID == asset
++  ]
++
++  trial[, `:=`(pos_x = pos_x * 1000, pos_y = pos_y * 1000, pos_z = pos_z * 1000)]
++
++  return(trial)
++}
++
++trial_avg <- function(dt, pid, block, trial, asset) {
++  trial <- select_trial(dt, pid, block, trial, asset)
++  avg <- trial[
++    ,
++    `:=`(
++      pos_x = mean(pos_x),
++      pos_y = mean(pos_y),
++      pos_z = mean(pos_z)
++    )
++  ]
++  return(avg)
++}
+
+# time: 2024-07-04 17:20:01 UTC
+# mode: r
++select_trial(rb,"22", 4, 6, 1) %$% pclid(pos_z)
+
+# time: 2024-07-04 19:29:46 UTC
+# mode: shell
++ls
+
+# time: 2024-07-04 19:29:52 UTC
+# mode: shell
++cd FinalAnalysis
+
+# time: 2024-07-04 19:29:53 UTC
+# mode: shell
++ls
+
+# time: 2024-07-04 19:30:02 UTC
+# mode: shell
++open jnd_4way.png
+
+# time: 2024-07-04 19:31:50 UTC
+# mode: shell
++imgcat jnd_4way.png
+
+# time: 2024-07-04 19:32:48 UTC
+# mode: shell
++weztem imgcat jnd_4way.png
+
+# time: 2024-07-04 19:32:55 UTC
+# mode: shell
++wezterm imgcat jnd_4way.png
+
+# time: 2024-07-04 19:33:11 UTC
+# mode: shell
++c;ear
+
+# time: 2024-07-04 19:33:13 UTC
+# mode: shell
++clear
+
+# time: 2024-07-04 19:36:34 UTC
+# mode: r
++source("../../utilities/prefs.r")
+
+# time: 2024-07-04 19:36:41 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 19:36:55 UTC
+# mode: r
++source("../../utilities/prefs.r")
+
+# time: 2024-07-04 19:36:58 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 19:37:35 UTC
+# mode: r
++getwd()
+
+# time: 2024-07-04 19:37:47 UTC
+# mode: r
++library(readr)
++library(dplyr)
++library(purrr)
++library(tidyr)
+
+# time: 2024-07-04 19:37:51 UTC
+# mode: shell
++clear
+
+# time: 2024-07-04 19:38:03 UTC
+# mode: r
++source(here("_Scripts/_functions/contrasts.R"))
++
++options(readr.show_progress = FALSE)
+
+# time: 2024-07-04 19:38:06 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 19:39:11 UTC
+# mode: r
++getwd()
+
+# time: 2024-07-04 19:39:37 UTC
+# mode: r
++coltypes <- cols(
++  .default = col_character(),
++  participant = col_character(),
++  gender = col_character(),
++  age = col_integer(),
++  handedness = col_character(),
++  block_num = col_integer(),
++  trial_num = col_integer(),
++  toj_condition = col_character(),
++  t1_t2_soa = col_double(),
++  toj_rt = col_double(),
++  probe_col = col_character(),
++  response_col = col_character(),
++  angle_err = col_double(),
++  wheel_rt = col_double()
++)
++
++files <- c(
++  list.files(path = here("_Data/OldData"), full.names = TRUE),
++  list.files(path = here("_Data/NewData"), full.names = TRUE)
++)
++
++a <- map_df(files, function(file) {
++  dat <- read_tsv(
++    file, comment = "#", col_types = coltypes, na = c("timeout", "NA")
++  )
++  if (nrow(dat) > 30) { # exclude false starts/testing
++    # Overwrite userhash with participant filename, since those are guaranteed
++    # to be unique (some odd duplicate userhashes)
++    filename <- gsub("_incomplete", "", gsub(".txt", "", basename(file)))
++    dat$participant <- gsub("\\.", "_", filename)
++    dat
++  }
++})
++
++
++# Determine between-subjects TOJ group (mixed vs blocked) for each participant
++
++# Note: Since the experiment was changed from mixed to blocked partway though
++# with some intermediate testing versions in between, and this change was not
++# logged in the database, we recover the version of the experiment here using
++# the hashes for the experiment.py/params.py files for each participant via the
++# projects ExpAssets/.versions folder (which makes a copy of the code files
++# each participant was run with).
++#
++# Mixed TOJ hashes - experiment.py: c795f37f65  params.py: a46965a08d
++# Blocked TOJ hashes - experiment.py: e43b3b9de6  params.py: 8d393a3a8d
++
++version_info <- read.csv(
++  here("_Data/version_info.csv"), sep = "\t", stringsAsFactors = FALSE
++)
++a <- a %>%
++  left_join(version_info[, 1:3], by = c("participant" = "filename")) %>%
++  subset(exp_hash %in% c("c795f37f65", "e43b3b9de6")) %>%
++  mutate(
++    blocked = exp_hash == "e43b3b9de6"
++  ) %>%
++  select(-c(exp_hash, params_hash))
++
++
++# Make participant IDs numeric, flag practice blocks
++
++practice_blocks <- c(1, 2, 4, 6, 7, 9)
++
++a <- a %>%
++  mutate(
++    participant = as.factor(as.numeric(as.factor(participant))),
++    practice = block_num %in% practice_blocks
++  )
++
++
++
++### Infer varaibles and factors needed for TOJ analysis ###
++
++# Calculate order/side-invariant order judgements and SOAs
++
++a <- a %>%
++  mutate(
++    left_right_soa = case_when(
++      (t1_location == "left") ~ t1_t2_soa,
++      TRUE ~ -t1_t2_soa
++    ),
++    left_right_response = case_when(
++      is.na(toj_response) ~ NA,
++      (toj_response == t1_type) ~ t1_location, # if response is t1
++      (t1_location == "left") ~ "right", # if response is t2
++      TRUE ~ "left"
++    ),
++    left_right_perception = case_when(
++      is.na(toj_response) ~ NA,
++      (toj_condition == "first") ~ left_right_response, # if condition is first
++      (left_right_response == "left") ~ "right", # if condition is second
++      TRUE ~ "left"
++    ),
++    block_type = case_when(
++      blocked ~ "pure",
++      TRUE ~ "mixed"
++    ),
++    toj_accuracy = case_when(
++      is.na(toj_response) ~ NA,
++      TRUE ~ (toj_response == t1_type) == (toj_condition == "first")
++    )
++  )
++
++
++# Determine which TOJ type was first for blocked participants
++
++a <- a %>%
++  group_by(participant) %>%
++  mutate(
++    first_toj_type = ifelse(blocked, target_type[1], NA)
++  ) %>%
++  ungroup()
++
++
++# Calculate left/right probe biases for each block
++
++probe_biases <- a %>%
++  group_by(participant, block_num) %>%
++  summarize(
++    right_bias = mean(probe_loc == "right", na.rm = TRUE)
++  ) %>%
++  filter(!is.nan(right_bias)) %>%
++  mutate(
++    block_bias = as.factor(ifelse(right_bias > 0.5, "right", "left"))
++  )
++
++a <- a %>%
++  left_join(
++    select(probe_biases, -right_bias), by = c("participant", "block_num")
++  ) %>%
++  mutate(
++    congruent_bias = ifelse(
++      trial_type == "toj", t1_location == block_bias, probe_loc == block_bias
++    )
++  )
++
++
++
++### Perform initial filtering ###
++
++# Get initial N before exclusions
++
++initial_n <- length(unique(a$participant))
++a_orig <- a  # make backup before we start dropping trials
++
++
++# Toss a couple trials with negative RTs
++
++a <- subset(a, is.na(wheel_rt) | wheel_rt > 0) # excludes one
++a <- subset(a, is.na(toj_rt) | toj_rt > 0) # excludes two
++
++
++# Remove participants who didn't complete all blocks & drop practice trials
++
++incomplete_ids <- a %>%
++  group_by(participant) %>%
++  summarize(
++    incomplete = max(block_num) < ifelse(blocked[1], 10, 5),
++    count = n()
++  ) %>%
++  filter(incomplete)
++
++a <- a %>%
++  filter(!(participant %in% incomplete_ids$participant)) %>%
++  filter(!practice)
+
+# time: 2024-07-04 19:39:41 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 19:39:46 UTC
+# mode: r
++str(a)
+
+# time: 2024-07-04 19:41:09 UTC
+# mode: r
++toj_curves_pre <- ggplot(a, aes(
++  x = left_right_soa,
++  y = as.numeric(left_right_perception == "left"),
++  color = participant
++)) +
++  geom_smooth(
++    method = "glm", method.args = list(family = "binomial"),
++    se = FALSE, size = 0.5
++  ) +
++  geom_point(
++    stat = "summary", aes(group = left_right_soa), fill = "white",
++    shape = 21, size = 1.5, stroke = 1.5
++  ) +
++  facet_wrap(blocked ~ target_type) +
++  ylab("Probability of Left Judgement") +
++  xlab("(Left Target Onset - Right Target Onset)") +
++  theme(legend.position = "none")
+
+# time: 2024-07-04 19:41:13 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 19:41:20 UTC
+# mode: shell
++gg
+
+# time: 2024-07-04 19:41:39 UTC
+# mode: shell
++ls
+
+# time: 2024-07-04 19:41:58 UTC
+# mode: shell
++wezterm imgcat scratch.png
+
+# time: 2024-07-04 19:42:08 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 19:42:42 UTC
+# mode: shell
++clear
+
+# time: 2024-07-04 19:43:13 UTC
+# mode: r
++toj_acc_dat <- a %>%
++  subset(trial_type == "toj") %>%
++  group_by(participant, target_type) %>%
++  summarize(
++    toj_cond = toj_condition[1],
++    blocked = blocked[1],
++    acc = mean(toj_accuracy, na.rm = TRUE)
++  ) %>%
++  rename(id = participant)
++
++toj_acc_pre <- ggplot(
++  toj_acc_dat, aes(x = target_type, y = acc, group = id, color = id)
++) +
++  geom_hline(yintercept = 0.5) + geom_point() + geom_line() +
++  geom_text(
++    aes(label = ifelse(target_type != "motion", id, "")),
++    size = 2.5, nudge_x = 0.07
++  ) +
++  geom_text(
++    aes(label = ifelse(target_type == "motion", id, "")),
++    size = 2.5, nudge_x = -0.07
++  ) +
++  facet_wrap(~ toj_cond) +
++  theme(legend.position = "none") +
++  xlab("TOJ Target Type") +
++  ylab("TOJ Accuracy")
+
+# time: 2024-07-04 19:43:15 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 19:43:22 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 19:44:54 UTC
+# mode: r
++toj_slopes <- a %>%
++  subset(trial_type == "toj") %>%
++  group_by(participant, target_type) %>%
++  mutate(
++    responded_left = as.numeric(left_right_perception == "left")
++  ) %>%
++  subset(!is.na(responded_left)) %>%
++  summarize(
++    value = coef(glm(
++      responded_left ~ left_right_soa, family = binomial
++    ))[2],
++    p = summary(glm(
++      responded_left ~ left_right_soa, family = binomial
++    ))$coefficients[2, 4]
++  ) %>%
++  mutate(
++    no_slope = p > 0.05,
++    inverted_slope = value < 0,
++  ) %>%
++  group_by(participant) %>%
++  mutate(
++    inconsistent = length(unique(inverted_slope)) > 1
++  ) %>%
++  ungroup()
+
+# time: 2024-07-04 19:45:02 UTC
+# mode: r
++toj_slopes
+
+# time: 2024-07-04 19:45:21 UTC
+# mode: r
++skimr::skim(toj_slopes)
+
+# time: 2024-07-04 19:45:51 UTC
+# mode: r
++no_slope_ids <- unique(subset(toj_slopes, no_slope)$participant)
++inconsistent_slope_ids <- unique(
++  subset(toj_slopes, !no_slope & inconsistent)$participant
++)
++inverted_ids <- unique(
++  subset(toj_slopes, !no_slope & !inconsistent & inverted_slope)$participant
++)
+
+# time: 2024-07-04 19:45:56 UTC
+# mode: r
++no_slope_ids
+
+# time: 2024-07-04 20:28:47 UTC
+# mode: r
++a <- a %>%
++  subset(!(participant %in% no_slope_ids)) %>%
++  subset(!(participant %in% inconsistent_slope_ids))
++
++
++# Swap IDs with inverted slopes to be in opposite TOJ order condition (1st/2nd)
++
++a <- a %>%
++  mutate(
++    toj_condition = case_when(
++      !(participant %in% inverted_ids) ~ toj_condition,
++      TRUE ~ ifelse(toj_condition == "first", "second", "first")
++    ),
++    left_right_perception = case_when(
++      !(participant %in% inverted_ids) ~ left_right_perception,
++      TRUE ~ ifelse(left_right_perception == "left", "right", "left")
++    ),
++    toj_accuracy = case_when(
++      !(participant %in% inverted_ids) ~ toj_accuracy,
++      TRUE ~ !toj_accuracy
++    )
++  )
+
+# time: 2024-07-04 20:28:53 UTC
+# mode: r
++a
+
+# time: 2024-07-04 20:29:20 UTC
+# mode: r
++toj_curves_fixed <- ggplot(
++  subset(a, trial_type == "toj"),
++  aes(
++    x = left_right_soa,
++    y = as.numeric(left_right_perception == "left"),
++    color = participant
++  )) +
++  geom_smooth(
++    method = "glm", method.args = list(family = "binomial"),
++    se = FALSE, size = 0.5
++  ) +
++  geom_point(
++    stat = "summary", aes(group = left_right_soa), fill = "white",
++    shape = 21, size = 1.5, stroke = 1.5
++  ) +
++  facet_wrap(blocked ~ target_type) +
++  ylab("Probability of Left Judgement") +
++  xlab("(Left Target Onset - Right Target Onset)") +
++  theme(legend.position = "none")
+
+# time: 2024-07-04 20:29:22 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:29:25 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:32:32 UTC
+# mode: r
++gg <- function(w = 9, h = 6, f = "scratch.png") {
++  ggplot2::ggsave(
++    filename = f,
++    width = w, height = h,
++    units = "in", dpi = "retina"
++  )
++}
+
+# time: 2024-07-04 20:32:35 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:32:38 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:33:42 UTC
+# mode: r
++      colorout::setOutputColors256(
++        normal=229,
++        number=151,
++        negnum=138,
++        string=224,
++        const= 12,
++        stderror= 12,
++        #warn=c(9, 0, 16),
++        verbose=TRUE
++        )
+
+# time: 2024-07-04 20:48:09 UTC
+# mode: r
++toj_acc_dat2 <- a %>%
++  subset(trial_type == "toj") %>%
++  group_by(participant, target_type) %>%
++  summarize(
++    toj_cond = toj_condition[1],
++    blocked = blocked[1],
++    acc = mean(toj_accuracy, na.rm = TRUE)
++  ) %>%
++  rename(id = participant)
++
++toj_acc_fixed <- ggplot(
++  toj_acc_dat2, aes(x = target_type, y = acc, group = id, color = id)
++) +
++  geom_hline(yintercept = 0.5) + geom_point() + geom_line() +
++  geom_text(
++    aes(label = ifelse(target_type != "motion", id, "")),
++    size = 2.5, nudge_x = 0.07
++  ) +
++  geom_text(
++    aes(label = ifelse(target_type == "motion", id, "")),
++    size = 2.5, nudge_x = -0.07
++  ) +
++  facet_wrap(~ toj_cond) +
++  theme(legend.position = "none") +
++  xlab("TOJ Target Type") +
++  ylab("TOJ Accuracy")
+
+# time: 2024-07-04 20:48:12 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:48:22 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:48:43 UTC
+# mode: shell
++toj_sat_plot <- a %>%
++  subset(!is.na(toj_accuracy)) %>%
++  subset(toj_rt > 0 & toj_rt < 2000) %>%
++  #subset(toj_rt < quantile(toj_rt, .9)) %>%
++  ggplot(aes(x = toj_rt, y = as.numeric(toj_accuracy))) +
++  geom_smooth()
++
+
+# time: 2024-07-04 20:48:52 UTC
+# mode: r
++toj_sat_plot <- a %>%
++  subset(!is.na(toj_accuracy)) %>%
++  subset(toj_rt > 0 & toj_rt < 2000) %>%
++  #subset(toj_rt < quantile(toj_rt, .9)) %>%
++  ggplot(aes(x = toj_rt, y = as.numeric(toj_accuracy))) +
++  geom_smooth()
+
+# time: 2024-07-04 20:48:55 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:48:59 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:50:02 UTC
+# mode: r
++probe_sat_gam <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9)) %>%
++  ggplot(aes(x = wheel_rt, y = abs(angle_err))) +
++  geom_smooth()
+
+# time: 2024-07-04 20:50:04 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:50:20 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:50:22 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:50:53 UTC
+# mode: r
++probe_sat_points <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9)) %>%
++  ggplot(aes(x = wheel_rt, y = abs(angle_err))) +
++  geom_point(alpha = .1)
+
+# time: 2024-07-04 20:50:57 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:50:59 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:51:46 UTC
+# mode: r
++probe_sat_points <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9)) %>%
++  ggplot(aes(x = wheel_rt, y = abs(angle_err))) +
++  geom_polygon()
+
+# time: 2024-07-04 20:51:48 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:51:51 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:52:15 UTC
+# mode: r
++probe_sat_points <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9))
+
+# time: 2024-07-04 20:52:20 UTC
+# mode: r
++probe_sat_points
+
+# time: 2024-07-04 20:52:34 UTC
+# mode: r
++probe_sat_points <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9)) %>%
++  ggplot(aes(x = wheel_rt, y = abs(angle_err))) +
++  geom_polygon()
+
+# time: 2024-07-04 20:52:58 UTC
+# mode: r
++probe_sat_points <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9)) %>%
++  ungroup() %>%
++  ggplot(aes(x = wheel_rt, y = abs(angle_err))) +
++  geom_polygon()
+
+# time: 2024-07-04 20:53:01 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:53:04 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:53:21 UTC
+# mode: r
++probe_sat_points <- a %>%
++  filter(!is.na(wheel_rt)) %>%
++  filter(wheel_rt < quantile(wheel_rt, .9)) %>%
++  ggplot(aes(x = wheel_rt, y = abs(angle_err))) +
++  geom_point(alpha = .1)
+
+# time: 2024-07-04 20:53:33 UTC
+# mode: r
++toj_omission_plot <- a %>%
++  filter(trial_type == "toj") %>%
++  group_by(target_type, participant) %>%
++  summarise(
++    value = mean(is.na(toj_response))
++  ) %>%
++  ggplot(aes(x = value)) +
++  facet_wrap(~ target_type) +
++  geom_histogram()
+
+# time: 2024-07-04 20:53:44 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:53:46 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:54:14 UTC
+# mode: r
++toj_omission_plot <- a %>%
++  filter(trial_type == "toj") %>%
++  group_by(target_type, participant) %>%
++  summarise(
++    value = mean(is.na(toj_response))
++  ) %>%
++  ggplot(aes(x = value)) +
++  facet_wrap(~ target_type) +
++  geom_freqpoly()
+
+# time: 2024-07-04 20:54:16 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:54:18 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:54:45 UTC
+# mode: r
++toj_omission_plot <- a %>%
++  filter(trial_type == "toj") %>%
++  group_by(target_type, participant) %>%
++  summarise(
++    value = mean(is.na(toj_response))
++  ) %>%
++  ggplot(aes(x = value)) +
++  facet_wrap(~ target_type) +
++  geom_density()
+
+# time: 2024-07-04 20:54:48 UTC
+# mode: r
++gg()
+
+# time: 2024-07-04 20:54:50 UTC
+# mode: shell
++open scratch.png
+
+# time: 2024-07-04 20:55:13 UTC
+# mode: r
++toj_omission_plot <- a %>%
++  filter(trial_type == "toj") %>%
++  group_by(target_type, participant) %>%
++  summarise(
++    value = mean(is.na(toj_response))
++  ) %>%
++  ggplot(aes(x = value)) +
++  facet_wrap(~ target_type) +
++  geom_histogram()
+
+# time: 2024-07-04 20:55:37 UTC
+# mode: r
++a <- a %>%
++  mutate(
++    participant = as.numeric(factor(participant))
++  ) %>%
++  arrange(participant)
++
++btw_unique <- a %>%
++  group_by(toj_condition, block_type) %>%
++  summarize() %>%
++  ungroup() %>%
++  mutate(index = seq_along(toj_condition))
+
+# time: 2024-07-04 20:55:39 UTC
+# mode: r
++a
+
+# time: 2024-07-04 20:55:44 UTC
+# mode: r
++btw_unique
+
+# time: 2024-07-04 20:55:54 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 20:57:14 UTC
+# mode: r
++group_matrix <- get_contrast_matrix(
++  btw_unique,
++  contrast_kind = halfsum_contrasts,
++  formula = ~ toj_condition * block_type
++)
+
+# time: 2024-07-04 20:57:24 UTC
+# mode: r
++group_matrix
+
+# time: 2024-07-04 20:57:59 UTC
+# mode: r
++group_map_alt <- a %>%
++  group_by(participant) %>%
++  summarize(
++    toj_condition = toj_condition[1],
++    block_type = block_type[1]
++  ) %>%
++  left_join(btw_unique, by = c("toj_condition", "block_type")) %>%
++  arrange(toj_condition, block_type) %>%
++  mutate(id = seq_along(participant))
+
+# time: 2024-07-04 20:58:09 UTC
+# mode: r
++group_mat_alt
+
+# time: 2024-07-04 20:58:20 UTC
+# mode: r
++group_map_alt <- a %>%
++  group_by(participant) %>%
++  summarize(
++    toj_condition = toj_condition[1],
++    block_type = block_type[1]
++  ) %>%
++  left_join(btw_unique, by = c("toj_condition", "block_type")) %>%
++  arrange(toj_condition, block_type) %>%
++  mutate(id = seq_along(participant))
+
+# time: 2024-07-04 20:58:24 UTC
+# mode: r
++group_mat_alt
+
+# time: 2024-07-04 20:58:26 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 20:58:39 UTC
+# mode: r
++group_mat_alt
+
+# time: 2024-07-04 21:01:29 UTC
+# mode: r
++ls.str()
+
+# time: 2024-07-04 21:02:10 UTC
+# mode: r
++pak::pak("sessioninfo")
+
+# time: 2024-07-04 21:02:29 UTC
+# mode: r
++sessioninfo::session_info()
+
+# time: 2024-07-04 21:03:09 UTC
+# mode: r
++lsos <- function(pos = 1, pattern = NULL, order.by = "Size", decreasing = TRUE, head = FALSE, n = 5) {
++  napply <- function(names, fn) sapply(names, function(x) fn(get(x, pos = pos)))
++  names <- ls(pos = pos, pattern = pattern)
++  obj.class <- napply(names, function(x) as.character(class(x))[1])
++  obj.mode <- napply(names, mode)
++  obj.type <- ifelse(is.na(obj.class), obj.mode, obj.class)
++  obj.prettysize <- napply(names, function(x) {
++    capture.output(print(object.size(x), units = "auto"))
++  })
++  obj.size <- napply(names, object.size)
++  obj.dim <- t(napply(names, function(x)
++    as.numeric(dim(x))[1:2]))
++  vec <- is.na(obj.dim)[, 1] & (obj.type != "function")
++  obj.dim[vec, 1] <- napply(names, length)[vec]
++  
++  out <- data.frame(
++    Type = obj.type,
++    Size = obj.size,
++    PrettySize = obj.prettysize,
++    Rows = obj.dim[, 1],
++    Columns = obj.dim[, 2]
++  )
++  
++  if (!missing(order.by))
++    out <- out[order(out[[order.by]], decreasing = decreasing), ]
++  if (head)
++    out <- head(out, n)
++  out
++}
++
++# Use the custom lsos function
++lsos()
+
+# time: 2024-07-04 21:03:28 UTC
+# mode: r
++pak::pak("lobstr")
+
+# time: 2024-07-04 21:03:48 UTC
+# mode: r
++lobstr::str(group_map_alt)
+
+# time: 2024-07-04 21:04:07 UTC
+# mode: r
++?lobstr
+
+# time: 2024-07-04 21:04:14 UTC
+# mode: r
++library(lobstr)
+
+# time: 2024-07-04 21:04:17 UTC
+# mode: r
++?lobstr
+
+# time: 2024-07-04 21:04:30 UTC
+# mode: r
++help(lobstr)
+
+# time: 2024-07-04 21:04:33 UTC
+# mode: r
++??lobstr
+
+# time: 2024-07-04 21:04:47 UTC
+# mode: r
++lobstr::tree()
+
+# time: 2024-07-04 21:04:54 UTC
+# mode: r
++?tree()
+
+# time: 2024-07-04 21:05:23 UTC
+# mode: r
++lobstr::tree(group_map_alt)
+
+# time: 2024-07-04 21:06:02 UTC
+# mode: r
++?lobstr::cst()
+
+# time: 2024-07-04 21:06:28 UTC
+# mode: r
++?lobstr::ast
+
+# time: 2024-07-04 21:06:47 UTC
+# mode: r
++lobstr::ast(group_map_alt)
+
+# time: 2024-07-04 21:07:29 UTC
+# mode: r
++sessioninfo::session_info()
+
+# time: 2024-07-04 21:07:58 UTC
+# mode: r
++for (obj in ls()) {
++  cat("\nObject:", obj, "\n")
++  str(get(obj))
++}
+
+# time: 2024-07-04 21:09:27 UTC
+# mode: r
++# Define a custom function to list objects excluding ggplot objects
++list_objects_excluding_ggplot <- function() {
++  # Get the list of all objects in the environment
++  object_names <- ls()
++  
++  # Initialize an empty list to store non-ggplot objects
++  non_ggplot_objects <- list()
++  
++  # Iterate over all objects and filter out ggplot objects
++  for (obj_name in object_names) {
++    obj <- get(obj_name)
++    if (!("gg" %in% class(obj))) {
++      non_ggplot_objects[[obj_name]] <- obj
++    }
++  }
++  
++  # Return the names and details of non-ggplot objects
++  return(non_ggplot_objects)
++}
++
++# Call the function and print the results
++non_ggplot_objects <- list_objects_excluding_ggplot()
++
++# Print the names of the non-ggplot objects
++cat("Non-ggplot objects in memory:\n")
++print(names(non_ggplot_objects))
+
+# time: 2024-07-04 21:09:32 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 21:09:41 UTC
+# mode: r
++list_objects_excluding_ggplot()
+
+# time: 2024-07-04 21:11:00 UTC
+# mode: r
++list_objects_excluding_ggplot <- function() {
++  # Get the list of all objects in the environment
++  object_names <- ls(envir = .GlobalEnv)
++  
++  # Initialize an empty list to store non-ggplot objects
++  non_ggplot_objects <- list()
++  
++  # Iterate over all objects and filter out ggplot objects
++  for (obj_name in object_names) {
++    obj <- get(obj_name, envir = .GlobalEnv)
++    if (!("gg" %in% class(obj))) {
++      non_ggplot_objects[[obj_name]] <- obj
++    }
++  }
++  
++  # Return the names and details of non-ggplot objects
++  return(non_ggplot_objects)
++}
++
++# Call the function and print the results
++non_ggplot_objects <- list_objects_excluding_ggplot()
++
++# Print the names of the non-ggplot objects
++cat("Non-ggplot objects in memory:\n")
++print(names(non_ggplot_objects))
+
+# time: 2024-07-04 21:12:42 UTC
+# mode: r
++?ls.str()
+
+# time: 2024-07-04 21:13:23 UTC
+# mode: r
++ls.str(mode=list())
+
+# time: 2024-07-04 21:13:35 UTC
+# mode: r
++ls.str(mode='list')
+
+# time: 2024-07-04 21:13:42 UTC
+# mode: r
++?ls.str()
+
+# time: 2024-07-04 21:14:53 UTC
+# mode: r
++lsf.str(mode='list', max.level=0)
+
+# time: 2024-07-04 21:15:07 UTC
+# mode: r
++ls.str(mode='list')
+
+# time: 2024-07-04 21:15:33 UTC
+# mode: r
++lobstr::tree(a)
+
+# time: 2024-07-04 21:15:42 UTC
+# mode: r
++str(a)
+
+# time: 2024-07-04 21:16:24 UTC
+# mode: r
++toj <- a %>%
++  subset(trial_type == "toj" & !is.na(left_right_perception)) %>%
++  select(c(
++    participant, toj_condition, block_type, block_bias, target_type,
++    left_right_perception, left_right_soa, toj_accuracy
++  ))
++
++toj_summ <- toj %>%
++  filter(!is.na(toj_accuracy)) %>%
++  group_by(participant, target_type, block_bias, left_right_soa) %>%
++  summarize(
++    toj_num_trials_acc = sum(left_right_perception == "left"),
++    toj_num_trials_tot = n()
++  ) %>%
++  ungroup() %>%
++  mutate(
++    soa = left_right_soa / max(left_right_soa)
++  ) %>%
++  arrange(participant, target_type, block_bias, soa)
+
+# time: 2024-07-04 21:16:32 UTC
+# mode: r
++str(toj_summ)
+
+# time: 2024-07-04 21:16:38 UTC
+# mode: r
++toj_summ
+
+# time: 2024-07-04 21:16:59 UTC
+# mode: r
++toj_contrasts_w_full <- get_contrast_matrix(
++  data = toj,
++  contrast_kind = halfsum_contrasts,
++  formula = ~ target_type * block_bias
++)
+
+# time: 2024-07-04 21:17:07 UTC
+# mode: r
++toj_contrasts_w_full
+
+# time: 2024-07-04 21:18:58 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full)
+
+# time: 2024-07-04 21:19:24 UTC
+# mode: r
++str(toj_contrasts_w_full)
+
+# time: 2024-07-04 21:19:54 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full)
+
+# time: 2024-07-04 21:20:30 UTC
+# mode: r
++toj_w_unique_idx <- as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx)))
++
+
+# time: 2024-07-04 21:20:50 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx)))
++
+
+# time: 2024-07-04 21:21:51 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n()))
+
+# time: 2024-07-04 21:22:02 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full)
+
+# time: 2024-07-04 21:22:14 UTC
+# mode: r
++toj_contrasts_w_full
+
+# time: 2024-07-04 21:22:24 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n()))
+
+# time: 2024-07-04 21:22:30 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx)))
++
+
+# time: 2024-07-04 21:23:14 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx))) %>%
++  summarize(
++    idx = row_idx[1]
++  )
+
+# time: 2024-07-04 22:31:24 UTC
+# mode: r
++ls()
+
+# time: 2024-07-04 22:33:00 UTC
+# mode: r
++toj_w_unique_idx <- as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx))) %>%
++  summarize(
++    idx = row_idx[1]
++  ) %>%
++  arrange(idx) %>%
++  pull(idx)
+
+# time: 2024-07-04 22:33:10 UTC
+# mode: r
++toj_w_unique_idx
+
+# time: 2024-07-04 22:34:08 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx))) %>%
++  summarize(
++    idx = row_idx[1]
++  ) %>%
++  arrange(idx)
+
+# time: 2024-07-04 22:34:27 UTC
+# mode: r
++toj_contrasts_w_full
+
+# time: 2024-07-04 22:38:16 UTC
+# mode: r
++toj_contrasts_w <- toj_contrasts_w_full[toj_w_unique_idx, ]
+
+# time: 2024-07-04 22:38:25 UTC
+# mode: r
++toj_contrasts_w
+
+# time: 2024-07-04 22:39:12 UTC
+# mode: r
++attr(toj_contrasts_w)
+
+# time: 2024-07-04 22:39:29 UTC
+# mode: r
++attributes(toj_contrasts_w)
+
+# time: 2024-07-04 22:39:43 UTC
+# mode: r
++attributes(toj_contrasts_w_full)
+
+# time: 2024-07-04 22:40:17 UTC
+# mode: r
++attr(toj_contrasts_w, "formula") <- attr(toj_contrasts_w_full, "formula")
++attr(toj_contrasts_w, "data") <- attr(toj_contrasts_w_full, "data")
+
+# time: 2024-07-04 22:40:30 UTC
+# mode: r
++attributes(toj_contrasts_w)
+
+# time: 2024-07-04 22:41:50 UTC
+# mode: r
++toj_contrasts_w_idx <- as_tibble(toj_contrasts_w_full) %>%
++  left_join(
++    mutate(as_tibble(toj_contrasts_w), idx = 1:n())
++  ) %>%
++  mutate(
++    participant = toj$participant,
++    idx_for_id = idx + (participant - 1) * nrow(toj_contrasts_w)
++  ) %>%
++  pull(idx_for_id)
+
+# time: 2024-07-04 22:42:05 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  left_join(
++    mutate(as_tibble(toj_contrasts_w), idx = 1:n())
++  ) %>%
++  mutate(
++    participant = toj$participant,
++    idx_for_id = idx + (participant - 1) * nrow(toj_contrasts_w)
++  ) %>%
++  pull(idx_for_id)
+
+# time: 2024-07-04 22:42:18 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  left_join(
++    mutate(as_tibble(toj_contrasts_w), idx = 1:n())
++  ) %>%
++  mutate(
++    participant = toj$participant,
++    idx_for_id = idx + (participant - 1) * nrow(toj_contrasts_w)
++  )
+
+# time: 2024-07-04 22:43:46 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  left_join(
++    mutate(as_tibble(toj_contrasts_w), idx = 1:n())
++  ) %>%
++  mutate(
++    participant = toj$participant,
++    idx_for_id = idx + (participant - 1) * nrow(toj_contrasts_w)
++  ) %>% .[200:220,]
+
+# time: 2024-07-04 22:43:59 UTC
+# mode: r
++as_tibble(toj_contrasts_w_full) %>%
++  left_join(
++    mutate(as_tibble(toj_contrasts_w), idx = 1:n())
++  ) %>%
++  mutate(
++    participant = toj$participant,
++    idx_for_id = idx + (participant - 1) * nrow(toj_contrasts_w)
++  ) %>% tail()
+
+# time: 2024-07-04 22:44:29 UTC
+# mode: r
++toj_between_factors <- toj %>%
++  group_by(participant, toj_condition, block_type) %>%
++  summarize()
+
+# time: 2024-07-04 22:44:36 UTC
+# mode: r
++toj_between_factors
+
+# time: 2024-07-04 22:44:48 UTC
+# mode: r
++tail(toj_between_factors)
+
+# time: 2024-07-04 22:45:05 UTC
+# mode: r
++tail(toj_between_factors, n = 20)
+
+# time: 2024-07-04 22:45:34 UTC
+# mode: r
++toj_contrasts_b <- get_contrast_matrix(
++  data = toj_between_factors,
++  contrast_kind = halfsum_contrasts,
++  formula = ~ toj_condition * block_type
++)
+
+# time: 2024-07-04 22:45:39 UTC
+# mode: r
++toj_contrasts_b
+
+# time: 2024-07-04 22:47:30 UTC
+# mode: r
++col <- a %>%
++  subset(trial_type == "probe" & !is.na(angle_err)) %>%
++  mutate(
++    probe_cong = ifelse(probe_loc == block_bias, "valid", "invalid")
++  ) %>%
++  select(c(
++    participant, toj_condition, block_type, block_bias, target_type,
++    angle_err, probe_cong
++  ))
++
++col_contrasts_w_full <- get_contrast_matrix(
++  data = col,
++  contrast_kind = halfsum_contrasts,
++  formula = ~ target_type * probe_cong
++)
++
++col_w_unique_idx <- as_tibble(col_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++  group_by(across(c(-row_idx))) %>%
++  summarize(
++    idx = row_idx[1]
++  ) %>%
++  arrange(idx) %>%
++  pull(idx)
++
++col_contrasts_w <- col_contrasts_w_full[col_w_unique_idx, ]
++
++
++# Add useful attributes back to the simplified within-subjects contrast matrix
++
++attr(col_contrasts_w, "formula") <- attr(col_contrasts_w_full, "formula")
++attr(col_contrasts_w, "data") <- attr(col_contrasts_w_full, "data")
++
++
++# Get within-subject contrast matrix indices for each row of colour wheel data
++
++# NOTE: Contrast matrix indices are numbered 1 to 4 (corresponding to the rows
++#       of col_contrasts_w), but because of a quirk in how the Stan model is
++#       written, the indices need to be made unique for each participant.
++
++col_contrasts_w_idx <- as_tibble(col_contrasts_w_full) %>%
++  left_join(
++    mutate(as_tibble(col_contrasts_w), idx = 1:n())
++  ) %>%
++  mutate(
++    participant = col$participant,
++    idx_for_id = idx + (participant - 1) * nrow(col_contrasts_w)
++  ) %>%
++  pull(idx_for_id)
++
++
++# Get contrast matrix for between-subjects colour wheel factors
++
++col_between_factors <- col %>%
++  group_by(participant, toj_condition, block_type) %>%
++  summarize()
++
++col_contrasts_b <- get_contrast_matrix(
++  data = col_between_factors,
++  contrast_kind = halfsum_contrasts,
++  formula = ~ toj_condition * block_type
++)
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col <- a %>%
++  subset(trial_type == "probe" & !is.na(angle_err)) %>%
++    mutate()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    probe_cong = ifelse(probe_loc == block_bias, "valid", "invalid")
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  ) %>%
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  select(c())
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    participant, toj_condition, block_type, block_bias, target_type,
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    angle_err, probe_cong
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  ))
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col_contrasts_w_full <- get_contrast_matrix()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  data = col,
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  contrast_kind = halfsum_contrasts,
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  formula = ~ target_type * probe_cong
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++)
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col_w_unique_idx <- as_tibble(col_contrasts_w_full) %>%
++  mutate(row_idx = seq_len(n())) %>%
++    group_by(across(c(-row_idx))) %>%
++      summarize()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    idx = row_idx[1]
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  ) %>%
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  arrange(idx) %>%
++    pull(idx)
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col_contrasts_w <- col_contrasts_w_full[col_w_unique_idx, ]
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++# Add useful attributes back to the simplified within-subjects contrast matrix
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++attr(col_contrasts_w, "formula") <- attr(col_contrasts_w_full, "formula")
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++attr(col_contrasts_w, "data") <- attr(col_contrasts_w_full, "data")
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++# Get within-subject contrast matrix indices for each row of colour wheel data
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++# NOTE: Contrast matrix indices are numbered 1 to 4 (corresponding to the rows)
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++#       of col_contrasts_w), but because of a quirk in how the Stan model is
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++#       written, the indices need to be made unique for each participant.
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col_contrasts_w_idx <- as_tibble(col_contrasts_w_full) %>%
++  left_join()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    mutate(as_tibble(col_contrasts_w), idx = 1:n())
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  ) %>%
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  mutate()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    participant = col$participant,
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++    idx_for_id = idx + (participant - 1) * nrow(col_contrasts_w)
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  ) %>%
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  pull(idx_for_id)
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++# Get contrast matrix for between-subjects colour wheel factors
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col_between_factors <- col %>%
++  group_by(participant, toj_condition, block_type) %>%
++    summarize()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++col_contrasts_b <- get_contrast_matrix()
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  data = col_between_factors,
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  contrast_kind = halfsum_contrasts,
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++  formula = ~ toj_condition * block_type
+
+# time: 2024-07-04 22:47:31 UTC
+# mode: r
++)
+
+# time: 2024-07-04 22:47:42 UTC
+# mode: r
++col <- a %>%
++  subset(trial_type == "probe" & !is.na(angle_err)) %>%
++  mutate(
++    probe_cong = ifelse(probe_loc == block_bias, "valid", "invalid")
++  ) %>%
++  select(c(
++    participant, toj_condition, block_type, block_bias, target_type,
++    angle_err, probe_cong
++  ))
+
+# time: 2024-07-04 22:47:59 UTC
+# mode: r
++col_contrasts_w_full <- get_contrast_matrix(
++  data = col,
++  contrast_kind = halfsum_contrasts,
++  formula = ~ target_type * probe_cong
++)
+
+# time: 2024-07-06 18:06:28 UTC
+# mode: r
++pak::pak("devOpifex/r.nvim")
+
+# time: 2024-07-06 18:07:09 UTC
+# mode: r
++?pak::pak
+
+# time: 2024-07-06 18:07:45 UTC
+# mode: r
++?pak::install_pkg
+
+# time: 2024-07-06 18:07:53 UTC
+# mode: r
++?pak::pkg_install
+
+# time: 2024-07-06 18:08:29 UTC
+# mode: r
++pak::pak("https://gadenbuie.r-universe.dev")
+
+# time: 2024-07-06 18:08:51 UTC
+# mode: r
++pak::pak("gadenbui/grkstyle")
+
+# time: 2024-07-06 18:09:04 UTC
+# mode: r
++pak::pak("gadenbuie/grkstyle")
+
+# time: 2024-07-06 18:09:10 UTC
+# mode: r
++q()
