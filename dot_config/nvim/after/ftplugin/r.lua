@@ -8,11 +8,9 @@ vim.keymap.set("i", "<C-M-m>", " %>% ", { buffer = 0 })
 vim.keymap.set("i", "<C-M-f>", " %$% ", { buffer = 0 })
 
 -- Indentation
--- Don't align indentation of function args on new line with opening `(`
-vim.g.r_indent_align_args = 0
+vim.g.r_indent_align_args = 0 -- else, args on newline, aligned w/ (
 
--- R convention of 2 space per tab
-vim.bo.shiftwidth = 2
+vim.bo.shiftwidth = 2 -- 2 space convention
 vim.bo.tabstop = 2
 
 -- Disable ESS comments
