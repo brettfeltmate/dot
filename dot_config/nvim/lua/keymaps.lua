@@ -257,8 +257,6 @@ nmap(L("wl"), C("vertical resize -5"), "shift splitline right")
 
 -- | [T]erminal
 
-local core = require("iron.core")
-
 nmap(L("to"), "IronRepl", "Open")
 nmap(L("th"), "IronHide", "Hide")
 nmap(L("tf"), "IronFocus", "Hide")
