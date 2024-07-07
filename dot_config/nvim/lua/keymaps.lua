@@ -268,7 +268,7 @@ nmap(L("wk"), C("resize +5"), "wider")
 nmap(L("wl"), C("vertical resize -5"), "shorter")
 
 -- | [R]epl
-nmap(L("ro"), C("IronReplHere"), "Open/Create")
+nmap(L("ro"), C("IronRepl"), "Open/Create")
 nmap(L("rr"), C("IronRestart"), "Restart")
 nmap(L("rf"), C("IronFocus"), "Focus")
 nmap(L("rh"), C("IronHide"), "Hide")

@@ -16,7 +16,7 @@ return {
 				},
 				close_window_on_exit = false,
 				repl_open_cmd = view.right(function()
-					return math.floor(vim.o.columns / 3)
+					return math.floor(vim.o.columns * 0.4)
 				end),
 			},
 		})
