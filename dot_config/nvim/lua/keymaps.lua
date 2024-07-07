@@ -268,11 +268,13 @@ nmap(L("wk"), C("resize +5"), "wider")
 nmap(L("wl"), C("vertical resize -5"), "shorter")
 
 -- | [R]epl
+nmap(L("ro"), C("IronReplHere"), "Open/Create")
+nmap(L("rr"), C("IronRestart"), "Restart")
+nmap(L("rf"), C("IronFocus"), "Focus")
+nmap(L("rh"), C("IronHide"), "Hide")
+
 local iron = require("iron.core")
-nmap(L("ro"), iron.repl_here, "Open/Create")
-nmap(L("rr"), iron.repl_restart, "Restart")
-nmap(L("rf"), iron.focus_on, "Focus")
-nmap(L("rh"), iron.close_repl, "Hide")
+
 nmap(L("r%"), iron.send_paragraph, "Send: para")
 nmap(L("r:"), iron.send_until_cursor, "Send: cursor")
 nmap(L("r;"), iron.send_file, "Send: file")
