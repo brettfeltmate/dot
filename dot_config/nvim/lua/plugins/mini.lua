@@ -96,7 +96,8 @@ return {
 					-- { mode = "n", keys = "<leader>a", desc = "AI (copilot)" },
 					-- TODO: implement project.nvim (leader-p, obvs)
 					{ mode = "n", keys = "<leader>S", desc = "Session" },
-					{ mode = "n", keys = "<leader>t", desc = "Terminal" },
+					{ mode = "n", keys = "<leader>r", desc = "Repl" },
+					{ mode = "v", keys = "<leader>r", desc = "Repl" },
 					{ mode = "n", keys = "<leader>u", desc = "UI" },
 					{ mode = "n", keys = "<leader>w", desc = "Window" },
 
@@ -162,8 +163,8 @@ return {
 				},
 				symbols = {
 					encode = map.gen_encode_symbols.dot("4x2"),
-					scroll_line = "<|>",
-					scroll_view = "┋",
+					scroll_line = " |┋|>",
+					scroll_view = "  ┋  ",
 				},
 			})
 
