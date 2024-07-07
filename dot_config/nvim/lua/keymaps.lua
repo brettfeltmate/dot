@@ -11,6 +11,7 @@ end
 local nmap = function(...)
 	map("n", ...)
 end
+
 local vmap = function(...)
 	map("v", ...)
 end
@@ -255,26 +256,16 @@ nmap(L("wk"), C("resize +5"), "Shift splitline up")
 nmap(L("wl"), C("vertical resize -5"), "shift splitline right")
 
 -- | [T]erminal
-local iron = require("iron.core")
+
+local core = require("iron.core")
+
 nmap(L("to"), "IronRepl", "Open")
 nmap(L("th"), "IronHide", "Hide")
 nmap(L("tf"), "IronFocus", "Hide")
 nmap(L("tx"), "IronExit", "Exit")
-nmap(L("ti"), iron.interrupt, "Interrupt")
-nmap(L("<cr>"), iron.send_line, "Line")
-nmap(L("tp"), iron.send_paragraph, "Pragraph")
-nmap(L("tc"), iron.send_until_cursor, "Cursor")
-nmap(L("tC"), iron.clear, "Clear")
-vmap(L("<cr>"), iron.visual_send, "Visual")
--- #TODO: replace with IRON?
-nmap(L("tt"), C("ToggleTerm direction='float' float_opts.border='single'"), "ToggleTerm")
-local trim_spaces = true
-map({ "n", "v" }, L("tl"), function()
-	require("toggleterm").send_lines_to_terminal("single_line", trim_spaces, { args = vim.v.count })
-end, "Send single line")
-map({ "n", "v" }, L("tv"), function()
-	require("toggleterm").send_lines_to_terminal("visual_lines", trim_spaces, { args = vim.v.count })
-end, "Send visual lines")
-map({ "n", "v" }, L("ts"), function()
-	require("toggleterm").send_lines_to_terminal("visual_selection", trim_spaces, { args = vim.v.count })
-end, "Send selected text")
+nmap(L("ti"), "lua require('iron.core').interrupt", "Interrupt")
+nmap(L("tl"), "lua require('iron.core').send_line", "Line")
+nmap(L("tp"), "lua require('iron.core').send_paragraph", "Pragraph")
+nmap(L("tc"), "lua require('iron.core').send_until_cursor", "Cursor")
+nmap(L("tv"), "lua require('iron.core').visual_send", "Visual")
+vmap(L("tC"), "lua require('iron.core').clear", "Clear")
