@@ -61,6 +61,8 @@ require("lazy").setup({
 	require("plugins.colorizing"),
 
 	require("plugins.ufo"),
+
+	require("plugins.iron"),
 })
 
 -- vim: ts=2 sts=2 sw=2 et
