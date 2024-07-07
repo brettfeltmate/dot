@@ -11,6 +11,9 @@ end
 local nmap = function(...)
 	map("n", ...)
 end
+local vmap = function(...)
+	map("v", ...)
+end
 
 local tmap = function(...)
 	map("t", ...)
@@ -252,6 +255,17 @@ nmap(L("wk"), C("resize +5"), "Shift splitline up")
 nmap(L("wl"), C("vertical resize -5"), "shift splitline right")
 
 -- | [T]erminal
+local iron = require("iron.core")
+nmap(L("to"), "IronRepl", "Open")
+nmap(L("th"), "IronHide", "Hide")
+nmap(L("tf"), "IronFocus", "Hide")
+nmap(L("tx"), "IronExit", "Exit")
+nmap(L("ti"), iron.interrupt, "Interrupt")
+nmap(L("<cr>"), iron.send_line, "Line")
+nmap(L("tp"), iron.send_paragraph, "Pragraph")
+nmap(L("tc"), iron.send_until_cursor, "Cursor")
+nmap(L("tC"), iron.clear, "Clear")
+vmap(L("<cr>"), iron.visual_send, "Visual")
 -- #TODO: replace with IRON?
 nmap(L("tt"), C("ToggleTerm direction='float' float_opts.border='single'"), "ToggleTerm")
 local trim_spaces = true
