@@ -8,6 +8,7 @@
 ## Install Instructions
 
  > Install requires Neovim 0.9+. Always review the code before installing a configuration.
+
  > NOTE: I have no clue if/what tweaks would be needed to make this Windows compliant.
 
 Clone the repository and install the plugins:
@@ -24,13 +25,20 @@ NVIM_APPNAME=brettfeltmate/dot/dot_config/nvim nvim
 ## Recommended Font
 + [Maple Mono NF](https://github.com/subframe7536/Maple-font)
 
- > Setting medium (or semibold) as default weight helps if your resolution is subpar, IMO.
+Clean & casual like Recursive Mono, with a MonoLisa-like classiness; I use it for everything.
 
- > Installation
-    > macOS: ```brew install --cask font-maple```
-    > Arch: ```paru -S ttf-maple```
-    > Manual: Download via [releases](https://github.com/subframe7536/Maple-font/releases)
-        > Recommended as the font is under active development; I've yet to have issues with "beta" builds.
+Italics could be more consistently italic, but I'm splitting hairs there.
+
+ > |> makes an actual triangle, super fun for stylizing bars & stuff.
+
+ > Setting medium (or semibold) as default weight works great on displays w/ subpar resolutions.
+
+Installation
+  + macOS: ```brew install --cask font-maple```
+  + Arch: ```paru -S ttf-maple```
+  + Manual: Download via [releases](https://github.com/subframe7536/Maple-font/releases)
+
+ > Active release cycle, so manual installation is recommended. I've yet to have any issues with the so-called "beta" releases.
 
 ## Plugins
 
