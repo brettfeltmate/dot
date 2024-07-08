@@ -86,6 +86,7 @@ nmap(L("bt"), C("Inspect"), "node (TS)")
 nmap(L("bT"), C("InspectTree"), "tree (TS)")
 nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
 nmap(L("b/"), C("Pick buf_lines scope='current'"), "Grep (buffer)")
+nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
 -- | [C]opilot
 -- nmap(L("co"), C("lua require('CopilotChat').open()"), "Open chat (float)")
