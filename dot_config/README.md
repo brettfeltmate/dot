@@ -1,4 +1,4 @@
-# dot/dot_config/nvim
+# The Bretter Neovim Config
 
 <a href="https://dotfyle.com/brettfeltmate/dot-dotconfig-nvim"><img src="https://dotfyle.com/brettfeltmate/dot-dotconfig-nvim/badges/plugins?style=flat" /></a>
 <a href="https://dotfyle.com/brettfeltmate/dot-dotconfig-nvim"><img src="https://dotfyle.com/brettfeltmate/dot-dotconfig-nvim/badges/leaderkey?style=flat" /></a>
