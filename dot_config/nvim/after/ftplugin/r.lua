@@ -1,6 +1,3 @@
--- Show line after desired maximum text width
-vim.cmd("setlocal colorcolumn=81")
-
 -- Keybindings
 vim.keymap.set("i", "<C-M-i>", " <- ", { buffer = 0 })
 vim.keymap.set("i", "<C-M-p>", " |> ", { buffer = 0 })

@@ -12,6 +12,7 @@ return {
 			require("mini.colors").setup()
 			require("mini.comment").setup()
 			-- require("mini.cursorword").setup()
+			-- require("mini.diff").setup()
 			require("mini.extra").setup()
 			--require("mini.hues").setup()
 			require("mini.icons").setup()
@@ -20,7 +21,7 @@ return {
 			require("mini.move").setup()
 			require("mini.notify").setup()
 			require("mini.operators").setup()
-			require("mini.sessions").setup()
+			-- require("mini.sessions").setup()
 			-- require("mini.surround").setup()
 			require("mini.trailspace").setup()
 			require("mini.visits").setup()
@@ -110,8 +111,6 @@ return {
 				},
 			})
 
-			require("mini.diff").setup()
-
 			require("mini.files").setup({
 				windows = {
 					max_number = 2,
@@ -124,29 +123,6 @@ return {
 					use_as_default_explorer = true,
 				},
 			})
-
-			-- local show_dotfiles = true
-			-- local filter_show = function(fs_entry)
-			-- 	return true
-			-- end
-			--
-			-- local filter_hide = function(fs_entry)
-			-- 	return not vim.startswith(fs_entry.name, ".")
-			-- end
-			--
-			-- local toggle_dotfiles = function()
-			-- 	show_dotfiles = not show_dotfiles
-			-- 	local new_filter = show_dotfiles and filter_show or filter_hide
-			-- 	MiniFiles.refresh({ content = { filter = new_filter } })
-			-- end
-			--
-			-- vim.api.nvim_create_augroup("User", {
-			-- 	pattern = "MiniFilesBufferCreate",
-			-- 	callback = function(args)
-			-- 		local buf_id = args.data.buf_id
-			-- 		vim.keymap.set("n", "g.", toggle_dotfiles, { buffer = buf_id })
-			-- 	end,
-			-- })
 
 			local map = require("mini.map")
 
@@ -173,7 +149,7 @@ return {
 					config = {
 						border = "rounded",
 						height = math.floor(0.30 * vim.o.lines),
-						width = math.floor(0.25 * vim.o.columns),
+						width = math.floor(0.35 * vim.o.columns),
 					},
 				},
 			})

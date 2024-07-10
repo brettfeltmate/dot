@@ -29,11 +29,9 @@ end
 
 -- Non-leader mappings ===========================================================
 imap("jk", "<esc>", "Exit insert mode", { silent = true })
+tmap("jk", "<C-\\><C-n>", "Exit terminal mode", { silent = true })
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
-nmap("<S-k>", C("Lspsaga hover_doc"), "Hover")
 
--- nmap("j", "jzz", "", { remap = true, silent = true })
--- nmap("k", "kzz", "", { remap = true, silent = true })
 -- Navigating in/across buffeers
 nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
 nmap("L", C("lua MiniBracketed.buffer('forward')"), "Next buffer")
@@ -76,6 +74,22 @@ nmap("zR", require("ufo").openAllFolds, "open all folds (ufo)")
 nmap("zM", require("ufo").closeAllFolds, "close all folds (ufo)")
 
 -- yanky.nvim
+vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
+vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
+vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
+vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
+vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
+vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
+vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
+vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
+
+vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
+vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
+vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
+vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
+
+vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
+vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
 
 -- Leader mappings ==========================================================
 
@@ -177,18 +191,13 @@ end
 nmap(L("sc"), pick_colorscheme, "colorscheme")
 nmap(L("sd"), C("Pick help"), "doc")
 nmap(L("sf"), C("Pick files"), "file")
-nmap(L("sk"), C("Pick keymaps"), "keymap")
-nmap(L("sh"), C("Pick history"), "cmd history")
 nmap(L("sn"), C("Pick grep pattern='(TODO|FIXME|HACK|NOTE):'"), "note")
-nmap(L("so"), C("Pick options"), "option")
 nmap(L("sr"), C("Pick visit_paths"), "recent files (proj)")
-nmap(L("sR"), C("Pick oldfiles"), "recent files (all)")
 nmap(L("ss"), C("Pick lsp scope='document_symbol'"), "Document symbols")
 nmap(L("sS"), C("Pick lsp scope='workspace_symbol'"), "Workspace symbols")
-nmap(L("st"), C("Pick treesitter"), "treesitter node")
+nmap(L("sy"), C("YankRingHistory"), "yanks")
 nmap(L("s/"), C("Pick grep_live"), "grep (cwd)")
 nmap(L('s"'), C("Pick registers"), "register")
-nmap(L("s."), C("Pick resume"), "resume")
 
 -- | [S]ession management
 nmap(L("Sd"), C("lua MiniSessions.delete()"), "delete")
@@ -284,13 +293,11 @@ nmap(L("wk"), C("resize +5"), "wider")
 nmap(L("wl"), C("vertical resize -5"), "shorter")
 
 -- | [R]epl
+local iron = require("iron.core")
 nmap(L("ro"), C("IronRepl"), "Open/Create")
 nmap(L("rr"), C("IronRestart"), "Restart")
 nmap(L("rf"), C("IronFocus"), "Focus")
 nmap(L("rh"), C("IronHide"), "Hide")
-
-local iron = require("iron.core")
-
 nmap(L("r%"), iron.send_paragraph, "Send: para")
 nmap(L("r:"), iron.send_until_cursor, "Send: cursor")
 nmap(L("r;"), iron.send_file, "Send: file")

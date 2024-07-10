@@ -15,9 +15,12 @@ return {
 					zsh = fts.zsh.zsh,
 				},
 				close_window_on_exit = false,
-				repl_open_cmd = view.right(function()
-					return math.floor(vim.o.columns * 0.4)
-				end),
+				repl_open_cmd = view.offset({
+					width = math.floor(vim.o.columns * 0.35),
+					height = math.floor(vim.o.lines * 0.95),
+					w_offset = view.helpers.proportion(1),
+					h_offset = view.helpers.proportion(0.1),
+				}),
 			},
 		})
 	end,

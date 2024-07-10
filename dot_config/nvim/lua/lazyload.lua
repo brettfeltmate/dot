@@ -22,8 +22,6 @@ require("lazy").setup({
 
 	require("plugins.lint"),
 
-	require("plugins.todo-comments"),
-
 	require("plugins.mini"),
 
 	-- require 'lua.plugins.debug',
@@ -66,9 +64,11 @@ require("lazy").setup({
 
 	require("plugins.fterm"),
 
-	{
-		dir = "plugins.pastelbones",
-	},
+	require("plugins.yanky"),
+
+	-- {
+	-- 	dir = "plugins.pastelbones",
+	-- },
 })
 
 -- vim: ts=2 sts=2 sw=2 et
