@@ -75,6 +75,8 @@ end, "Toggle Flash Search")
 nmap("zR", require("ufo").openAllFolds, "open all folds (ufo)")
 nmap("zM", require("ufo").closeAllFolds, "close all folds (ufo)")
 
+-- yanky.nvim
+
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
@@ -256,6 +258,17 @@ local RotateBuffersCW = function()
 	end
 end
 
+function ScrollBind()
+	for i = 1, vim.fn.winnr("$") do
+		vim.cmd(i .. "windo set scrollbind")
+	end
+end
+
+function ScrollUnbind()
+	for i = 1, vim.fn.winnr("$") do
+		vim.cmd(i .. "windo set scrollbind!")
+	end
+end
 nmap(L("wf"), FlipSplit, "flip split")
 nmap(L("wx"), "<C-W>c", "X window", { remap = true })
 nmap(L("wr"), RotateBuffersCW, "rotate buffers (CW)", { remap = true })
@@ -263,6 +276,8 @@ nmap(L("w-"), "<C-W>s", "split up/down", { remap = true })
 nmap(L("w|"), "<C-W>v", "split left/right", { remap = true })
 nmap(L("wd"), C("windo diffsplit browse"), "diff split on")
 nmap(L("wD"), C("windo diffoff"), "diff split off")
+nmap(L("ws"), ScrollBind, "scrollbind on")
+nmap(L("wS"), ScrollUnbind, "scrollbind off")
 nmap(L("wh"), C("vertical resize +5"), "taller")
 nmap(L("wj"), C("resize -5"), "thinner")
 nmap(L("wk"), C("resize +5"), "wider")

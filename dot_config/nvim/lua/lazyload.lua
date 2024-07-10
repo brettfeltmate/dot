@@ -65,6 +65,10 @@ require("lazy").setup({
 	require("plugins.iron"),
 
 	require("plugins.fterm"),
+
+	{
+		dir = "plugins.pastelbones",
+	},
 })
 
 -- vim: ts=2 sts=2 sw=2 et

@@ -712,7 +712,7 @@ hi(0, "NvimTreeRootFolder", { link = "NvimTreeGitRenamed" })
 hi(0, "NvimTreeSpecialFile", { bold = true, fg = "#d297a8", underline = true })
 hi(0, "NvimTreeSymlink", { bold = true, fg = "#a6b8b2" })
 hi(0, "NvimTreeWindowPicker", { bg = "#1f1f21", bold = true, fg = "#d3c6af" })
-hi(0, "Operator", { fg = "#d3c6af" })
+hi(0, "Operator", { fg = "#754b66", bold = true })
 hi(0, "OutlineDetail", { fg = "#5d545e" })
 hi(0, "OutlineFoldPrefix", { fg = "#e6b8e3" })
 hi(0, "OutlineIndentEvn", { fg = "#695e6b" })
@@ -750,7 +750,7 @@ hi(0, "SneakLabel", { bg = "#808b9e", bold = true, fg = "#39313b" })
 hi(0, "SneakScope", { bg = "#c6beac", fg = "#39313b" })
 hi(0, "Special", { ctermfg = 8, fg = "#94c5b0" })
 hi(0, "SpecialChar", { fg = "#a6b8b2" })
-hi(0, "SpecialComment", { fg = "#94c5b0" })
+hi(0, "SpecialComment", { fg = "#bd94bc" })
 hi(0, "SpecialKey", { ctermfg = 81, fg = "#5d545e" })
 hi(0, "SpellBad", { ctermbg = 9, sp = "#b8aad9", undercurl = true })
 hi(0, "SpellCap", { ctermbg = 12, sp = "#b58385", undercurl = true })
@@ -1172,6 +1172,9 @@ hi(0, "lualine_x_diff_removed_normal", { bg = "#2c2c2d", fg = "#e6b8e3" })
 hi(0, "lualine_x_diff_removed_replace", { bg = "#2c2c2d", fg = "#e6b8e3" })
 hi(0, "lualine_x_diff_removed_terminal", { bg = "#2c2c2d", fg = "#e6b8e3" })
 hi(0, "lualine_x_diff_removed_visual", { bg = "#2c2c2d", fg = "#e6b8e3" })
+
+-- | R language highlights
+hi(0, "variable.member.r", { fg = "#5c8473" })
 
 -- Terminal colors
 local g = vim.g
