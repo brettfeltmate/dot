@@ -117,9 +117,9 @@ wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_wid
 end)
 
 return {
-	dpi = 72,
+	enable_kitty_graphics = true,
 	color_scheme = "Kanagawa (Gogh)",
-	font = wezterm.font("Maple Mono NF Semibold"),
+	font = wezterm.font("Maple Mono NF"),
 	font_size = 16,
 	line_height = 1,
 	window_decorations = "RESIZE",

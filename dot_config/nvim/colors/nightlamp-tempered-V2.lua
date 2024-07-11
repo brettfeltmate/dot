@@ -365,7 +365,7 @@ hi(0, "HydraTeal", { fg = "#8ec0ab" })
 hi(0, "IblIndent", { fg = "#5d545e" })
 hi(0, "IblScope", { bg = "#1f1f21", ctermfg = 11, fg = "#5d545e" })
 hi(0, "IblWhitespace", { fg = "#5d545e" })
-hi(0, "Identifier", { ctermfg = 14, fg = "#e6b8e3" })
+hi(0, "Identifier", { ctermfg = 14, fg = "#ad9cb6" })
 hi(0, "Ignore", { ctermfg = 0, fg = "#94c5b0" })
 hi(0, "IlluminatedWordRead", { underline = true })
 hi(0, "IlluminatedWordText", { underline = true })
@@ -661,7 +661,7 @@ hi(0, "NoiceSplit", { bg = "#1f1f21", fg = "#d3c6af" })
 hi(0, "NoiceSplitBorder", { bg = "#282829", fg = "#4e444e" })
 hi(0, "NoiceVirtualText", { ctermfg = 4, fg = "#94c5b0" })
 hi(0, "NonText", { ctermfg = 12, fg = "#5d545e" })
-hi(0, "Normal", { bg = "#161619", fg = "#d3c6af" })
+hi(0, "Normal", { bg = "#232326", fg = "#d3c6af" })
 hi(0, "NormalFloat", { bg = "#1f1f21", fg = "#d3c6af" })
 hi(0, "NormalNC", { bg = "#161619", fg = "#d3c6af" })
 hi(0, "NotifyDEBUGBorder", { fg = "#5d545e" })
@@ -712,7 +712,7 @@ hi(0, "NvimTreeRootFolder", { link = "NvimTreeGitRenamed" })
 hi(0, "NvimTreeSpecialFile", { bold = true, fg = "#d297a8", underline = true })
 hi(0, "NvimTreeSymlink", { bold = true, fg = "#a6b8b2" })
 hi(0, "NvimTreeWindowPicker", { bg = "#1f1f21", bold = true, fg = "#d3c6af" })
-hi(0, "Operator", { fg = "#754b66", bold = true })
+hi(0, "Operator", { fg = "#83436a", bold = true })
 hi(0, "OutlineDetail", { fg = "#5d545e" })
 hi(0, "OutlineFoldPrefix", { fg = "#e6b8e3" })
 hi(0, "OutlineIndentEvn", { fg = "#695e6b" })
@@ -760,7 +760,7 @@ hi(0, "Statement", { ctermfg = 11, fg = "#e6b8e3" })
 hi(0, "StatusLine", { bg = "#282829", fg = "#695e6b" })
 hi(0, "StatusLineNC", { bg = "#1f1f21", fg = "#5d545e" })
 hi(0, "StorageClass", { fg = "#e4cfac" })
-hi(0, "String", { fg = "#bdb8e8", italic = true })
+hi(0, "String", { fg = "#a7c5af", italic = true })
 hi(0, "Structure", { fg = "#9db6d0" })
 hi(0, "Substitute", { bg = "#b4a48e", fg = "#423a45" })
 hi(0, "TabLine", { bg = "#1f1f21", ctermbg = 242, ctermfg = 15, fg = "#5d545e" })
@@ -1180,8 +1180,8 @@ hi(0, "variable.member.r", { fg = "#5c8473" })
 local g = vim.g
 
 g.terminal_color_0 = "#18191f"
-g.terminal_color_1 = "#b8aad9"
-g.terminal_color_2 = "#8aa387"
+g.terminal_color_1 = "#c8aad9"
+g.terminal_color_2 = "#aad7a4"
 g.terminal_color_3 = "#ccb89c"
 g.terminal_color_4 = "#c99297"
 g.terminal_color_5 = "#8e9cb4"
@@ -1189,9 +1189,9 @@ g.terminal_color_6 = "#7aacaa"
 g.terminal_color_7 = "#b8af9e"
 g.terminal_color_8 = "#3c3d43"
 g.terminal_color_9 = "#7aacaa"
-g.terminal_color_10 = "#8aa387"
-g.terminal_color_11 = "#ccb89c"
+g.terminal_color_10 = "#aad7a4"
+g.terminal_color_11 = "#edb882"
 g.terminal_color_12 = "#c99297"
 g.terminal_color_13 = "#8e9cb4"
-g.terminal_color_14 = "#b8aad9"
+g.terminal_color_14 = "#c8aad9"
 g.terminal_color_15 = "#e0d6bd"

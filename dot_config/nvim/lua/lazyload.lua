@@ -30,27 +30,21 @@ require("lazy").setup({
 
 	require("plugins.flash"),
 
-	-- require("plugins.lazygit"),
-
 	require("plugins.modes"),
 
 	require("plugins.smart-splits"),
 
 	require("plugins.stay-centered"),
 
-	require("plugins.toggleterm"),
+	require("plugins.todo-comments"),
 
 	require("plugins.yazi"),
-
-	-- require("plugins.project"),
 
 	require("plugins.harpoon"),
 
 	require("plugins.grug-far"),
 
 	require("plugins.rainbow-delimiters"),
-
-	-- require("plugins.colorizer"),
 
 	require("plugins.ccc"),
 
@@ -65,6 +59,10 @@ require("lazy").setup({
 	require("plugins.fterm"),
 
 	require("plugins.yanky"),
+
+	-- require("plugins.luarocks"),
+
+	require("plugins.image-nvim"),
 
 	-- {
 	-- 	dir = "plugins.pastelbones",

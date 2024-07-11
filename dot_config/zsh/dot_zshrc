@@ -23,3 +23,5 @@ plug "$HOME/.config/zsh/exports.zsh"
 eval "$(oh-my-posh init zsh --config ~/.config/zsh/omp-themes/.mytheme.omp.json)"
 eval "$(thefuck --alias)"
 export LS_COLORS="$(vivid generate jellybeans)"
+
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"

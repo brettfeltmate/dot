@@ -16,7 +16,7 @@ return {
 				},
 				close_window_on_exit = false,
 				repl_open_cmd = view.offset({
-					width = math.floor(vim.o.columns * 0.35),
+					width = math.floor(vim.o.columns * 0.45),
 					height = math.floor(vim.o.lines * 0.95),
 					w_offset = view.helpers.proportion(1),
 					h_offset = view.helpers.proportion(0.1),
