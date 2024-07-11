@@ -12,39 +12,41 @@ require("lazy").setup({
 
 	require("plugins.treesitter"),
 
+  require("plugins.rainbow-delimiters"),
+
 	require("plugins.lsp"),
 
 	require("plugins.conform"),
 
 	require("plugins.cmp"),
 
-	require("plugins.copilot"),
-
 	require("plugins.lint"),
 
 	require("plugins.mini"),
 
-	-- require 'lua.plugins.debug',
-
-	require("plugins.autopairs"),
-
 	require("plugins.flash"),
-
-	require("plugins.modes"),
-
-	require("plugins.smart-splits"),
-
-	require("plugins.stay-centered"),
 
 	require("plugins.todo-comments"),
 
-	require("plugins.yazi"),
+	require("plugins.smart-splits"),
 
 	require("plugins.harpoon"),
 
+	require("plugins.iron"),
+
+	require("plugins.fterm"),
+
+	require("plugins.copilot"),
+
+	require("plugins.modes"),
+
+	require("plugins.stay-centered"),
+
+	require("plugins.yazi"),
+
 	require("plugins.grug-far"),
 
-	require("plugins.rainbow-delimiters"),
+	require("plugins.ufo"),
 
 	require("plugins.ccc"),
 
@@ -52,21 +54,9 @@ require("lazy").setup({
 
 	require("plugins.colorizing"),
 
-	require("plugins.ufo"),
-
-	require("plugins.iron"),
-
-	require("plugins.fterm"),
-
 	require("plugins.yanky"),
 
-	-- require("plugins.luarocks"),
-
 	require("plugins.image-nvim"),
-
-	-- {
-	-- 	dir = "plugins.pastelbones",
-	-- },
 })
 
 -- vim: ts=2 sts=2 sw=2 et

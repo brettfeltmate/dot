@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("kanagawa-paper")
+vim.cmd.colorscheme("nightlamp-tempered-V2")
 
 vim.g.have_nerd_font = true
 vim.g.autoformat = true

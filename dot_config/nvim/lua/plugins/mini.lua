@@ -1,28 +1,19 @@
 return {
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
-		-- dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = function()
 			require("mini.align").setup()
 			require("mini.animate").setup()
 			require("mini.basics").setup()
-			--require("mini.base16").setup()
 			require("mini.bracketed").setup()
 			require("mini.bufremove").setup()
-			require("mini.colors").setup()
 			require("mini.comment").setup()
-			-- require("mini.cursorword").setup()
-			-- require("mini.diff").setup()
 			require("mini.extra").setup()
-			--require("mini.hues").setup()
 			require("mini.icons").setup()
 			require("mini.indentscope").setup()
 			require("mini.misc").setup()
 			require("mini.move").setup()
 			require("mini.notify").setup()
-			require("mini.operators").setup()
-			-- require("mini.sessions").setup()
-			-- require("mini.surround").setup()
 			require("mini.trailspace").setup()
 			require("mini.visits").setup()
 
@@ -99,6 +90,9 @@ return {
 					{ mode = "n", keys = "<leader>S", desc = "Session" },
 					{ mode = "n", keys = "<leader>r", desc = "Repl" },
 					{ mode = "v", keys = "<leader>r", desc = "Repl" },
+					-- # TODO: use wezterm cli for repl
+					-- { mode = "n", keys = "<leader>e", desc = "Exec" },
+					-- { mode = "v", keys = "<leader>e", desc = "Exec" },
 					{ mode = "n", keys = "<leader>u", desc = "UI" },
 					{ mode = "n", keys = "<leader>w", desc = "Window" },
 
@@ -139,8 +133,8 @@ return {
 				},
 				symbols = {
 					encode = map.gen_encode_symbols.dot("4x2"),
-					scroll_line = " |┋|>",
-					scroll_view = "  ┋  ",
+					scroll_line = "|┋|>",
+					scroll_view = " ┋  ",
 				},
 			})
 
