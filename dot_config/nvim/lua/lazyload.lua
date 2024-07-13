@@ -12,8 +12,6 @@ require("lazy").setup({
 
 	require("plugins.treesitter"),
 
-  require("plugins.rainbow-delimiters"),
-
 	require("plugins.lsp"),
 
 	require("plugins.conform"),
@@ -24,37 +22,19 @@ require("lazy").setup({
 
 	require("plugins.mini"),
 
-	require("plugins.flash"),
+	require("plugins.in-and-out"),
 
 	require("plugins.todo-comments"),
 
-	require("plugins.smart-splits"),
-
-	require("plugins.harpoon"),
-
-	require("plugins.iron"),
-
-	require("plugins.fterm"),
+	require("plugins.terminal"),
 
 	require("plugins.copilot"),
 
-	require("plugins.modes"),
-
-	require("plugins.stay-centered"),
-
-	require("plugins.yazi"),
-
-	require("plugins.grug-far"),
+	require("plugins.edit"),
 
 	require("plugins.ufo"),
 
-	require("plugins.ccc"),
-
-	require("plugins.nvim-highlight-colors"),
-
-	require("plugins.colorizing"),
-
-	require("plugins.yanky"),
+	require("plugins.colouring"),
 
 	require("plugins.image-nvim"),
 })

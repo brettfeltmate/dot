@@ -19,7 +19,7 @@ cfg() {
 dir_in_path() {
     local target_dir="$1"
     local found = 1
-    
+
     IFS=':' read -ra dirs <<< "$PATH"
     for dir in "${dirs[@]}"; do
         if [[ "$dir" == "$target_dir" ]]; then
@@ -39,4 +39,13 @@ on_path() {
     fi
 }
 
+xlsx_to_csv() {
+    fd '.xlsx' | xargs -I {} bash -c 'in={}; base=$(basename "$in" .xlsx); ssconvert -S --export-type=Gnumeric_stf:stf_csv "$in" "${base}_%s.csv"'
+}
 
+batch_xlsx_to_csv() {
+    fd '.xlsx' | while read -r file; do
+        base=$(basename "$file" .xlsx)
+        ssconvert -S --export-type=Gnumeric_stf:stf_csv "$file" "$base" "_" "%s.csv"
+    done
+}

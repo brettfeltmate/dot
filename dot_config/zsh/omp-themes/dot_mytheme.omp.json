@@ -103,7 +103,7 @@
           "type": "path",
           "style": "diamond",
           "foreground": "#B6D6F2",
-          "leading_diamond": "<#BFA8BF>~</>",
+          "leading_diamond": "<#77a18a>~</>",
           "template": " \ue5ff {{ .Path }}",
           "properties": {
             "folder_icon": "/",
@@ -115,11 +115,11 @@
         {
           "type": "status",
           "style": "plain",
-          "foreground": "#BFA8BF",
+          "foreground": "#BBC4B9",
           "foreground_templates": [
-            "{{ if gt .Code 0 }}#fff{{ end }}"
+            "{{ if gt .Code 0 }}#77a18a{{ end }}"
           ],
-          "template": " ~ ",
+          "template": " |>... ",
           "properties": {
             "always_enabled": true
           }

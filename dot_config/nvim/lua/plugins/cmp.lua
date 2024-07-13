@@ -88,7 +88,6 @@ return {
 					{ name = "path" },
 					{ name = "cmdline" },
 				},
-				formatting = { format = require("nvim-highlight-colors").format },
 			})
 		end,
 	},

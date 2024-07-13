@@ -14,6 +14,7 @@ return {
 			require("mini.misc").setup()
 			require("mini.move").setup()
 			require("mini.notify").setup()
+			require("mini.pairs").setup()
 			require("mini.trailspace").setup()
 			require("mini.visits").setup()
 
@@ -109,7 +110,7 @@ return {
 				windows = {
 					max_number = 2,
 					preview = true,
-					width_focus = 20,
+					width_focus = 25,
 					width_preview = 50,
 				},
 				options = {
@@ -133,8 +134,8 @@ return {
 				},
 				symbols = {
 					encode = map.gen_encode_symbols.dot("4x2"),
-					scroll_line = "|┋|>",
-					scroll_view = " ┋  ",
+					scroll_line = "|┋",
+					scroll_view = " ┋",
 				},
 			})
 
@@ -145,6 +146,15 @@ return {
 						height = math.floor(0.30 * vim.o.lines),
 						width = math.floor(0.35 * vim.o.columns),
 					},
+					prompt_prefix = "|>...",
+				},
+				mappings = {
+					scroll_up = "<S-Up>",
+					scroll_down = "<S-Down>",
+					scroll_left = "<S-Left>",
+					scroll_right = "<S-Right>",
+					toggle_info = "<S-tab>",
+					toggle_preview = "<tab>",
 				},
 			})
 
@@ -165,7 +175,7 @@ return {
 			require("mini.starter").setup({
 
 				items = {
-					starter.sections.sessions(5, true),
+					-- starter.sections.sessions(5, true),
 					starter.sections.recent_files(5, false, false),
 					{
 						{ name = "File explorer", action = "lua MiniFiles.open()", section = "Builtin actions" },

@@ -1,6 +1,7 @@
 -- LSP Configuration & Plugins
 return {
 	{
+		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -113,6 +114,7 @@ return {
 	},
 	{ -- better ui/ux for LSP interactions provided by the above
 		"nvimdev/lspsaga.nvim",
+		event = "BufReadPre",
 		after = "nvim-lspconfig",
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		config = function()
