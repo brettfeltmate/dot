@@ -1,0 +1,2 @@
+
+CXX17FLAGS += -O3 -mtune=native -arch arm64 -ftemplate-depth-256

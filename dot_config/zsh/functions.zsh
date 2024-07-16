@@ -49,3 +49,16 @@ batch_xlsx_to_csv() {
         ssconvert -S --export-type=Gnumeric_stf:stf_csv "$file" "$base" "_" "%s.csv"
     done
 }
+
+
+toggle_sbar() {
+    if sketchybar --query bar | grep -q '"hidden": "on"'; then
+        sketchybar --bar hidden=off;
+    else
+        sketchybar --bar hidden=on;
+    fi
+}
+
+x86() {
+    $HOME/.config/zsh/shell-x86_64.sh
+}

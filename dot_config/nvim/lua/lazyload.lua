@@ -32,11 +32,7 @@ require("lazy").setup({
 
 	require("plugins.edit"),
 
-	require("plugins.ufo"),
-
 	require("plugins.colouring"),
-
-	require("plugins.image-nvim"),
 })
 
 -- vim: ts=2 sts=2 sw=2 et

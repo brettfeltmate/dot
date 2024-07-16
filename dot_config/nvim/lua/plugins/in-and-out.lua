@@ -1,7 +1,7 @@
 return {
 	{
 		"declancm/cinnamon.nvim",
-		event = "BufEnter",
+		event = "BufReadPost",
 		config = function()
 			require("cinnamon").setup({
 				keymaps = { basic = true, extra = true },
@@ -11,7 +11,7 @@ return {
 	},
 	{
 		"arnamak/stay-centered.nvim",
-		event = "BufEnter",
+		event = "BufReadPost",
 		config = function()
 			require("stay-centered").setup({
 				enabled = false,
@@ -20,7 +20,7 @@ return {
 	},
 	{
 		"folke/flash.nvim",
-		event = "VeryLazy",
+		event = "BufReadPost",
 		config = function()
 			require("flash").setup({
 				label = {

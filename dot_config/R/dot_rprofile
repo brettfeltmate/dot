@@ -17,6 +17,8 @@ options(width = 80)
 
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
+Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
+
 if(interactive()){
 
     if (require("plotcli")) {

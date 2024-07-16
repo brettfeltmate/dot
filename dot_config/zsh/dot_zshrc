@@ -1,9 +1,12 @@
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
+# Autojump
+[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
+
 
 plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
@@ -25,3 +28,14 @@ eval "$(thefuck --alias)"
 export LS_COLORS="$(vivid generate jellybeans)"
 
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
+
+if [[ $(arch) == i386 ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+    export PYENV_ROOT="$HOME/.pyenv-i386"
+else
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PYENV_ROOT="$HOME/.pyenv"
+fi
+
+test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
+

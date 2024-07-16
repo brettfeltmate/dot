@@ -9,3 +9,6 @@ export ZDOTDIR=$HOME/.config/zsh
 export EDITOR="nvim"
 export TERMINAL="Wezterm.app"
 
+if [[ $(arch) == "i386"  ]]; then
+    export PYENV_ROOT=~/.pyenv-i386
+fi

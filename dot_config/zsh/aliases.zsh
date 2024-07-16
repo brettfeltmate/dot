@@ -12,3 +12,5 @@ alias editmoi="chezmoi edit"
 alias addmoi="chezmoi add"
 alias applymoi="chezmoi apply"
 alias cdmoi="chezmoi cd"
+alias brew86="arch --x86_64 /usr/local/bin/brew"
+alias ib='PATH=/usr/local/bin'

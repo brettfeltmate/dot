@@ -69,10 +69,6 @@ map("c", "<C-s>", function()
 	require("flash").toggle()
 end, "Toggle Flash Search")
 
--- nvim-ufo (for folds)
-nmap("zR", require("ufo").openAllFolds, "open all folds (ufo)")
-nmap("zM", require("ufo").closeAllFolds, "close all folds (ufo)")
-
 -- yanky.nvim
 vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
