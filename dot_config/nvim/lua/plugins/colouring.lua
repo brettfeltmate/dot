@@ -18,10 +18,6 @@ return {
 		end,
 	},
 	{
-		"rktjmp/lush.nvim",
-		lazy = true,
-	},
-	{
 		"junegunn/seoul256.vim",
 		lazy = true,
 	},
@@ -58,15 +54,7 @@ return {
 		lazy = true,
 	},
 	{
-		"sonjiku/yawnc.nvim",
-		lazy = true,
-	},
-	{
 		"mellow-theme/mellow.nvim",
-		lazy = true,
-	},
-	{
-		"frenzyexists/aquarium-vim",
 		lazy = true,
 	},
 	{

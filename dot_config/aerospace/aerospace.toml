@@ -39,7 +39,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 40
+accordion-padding = 28
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -53,6 +53,7 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 key-mapping.preset = 'qwerty'
 
+
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
 # - Constant:     gaps.outer.top = 8
@@ -65,7 +66,7 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 8
 outer.bottom = 8
-outer.top = 32
+outer.top = 30
 outer.right = 8
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
@@ -118,18 +119,19 @@ alt-shift-right = 'move right'
 # mapping makes sense if you see my keyboard
 alt-esc = 'exec-and-forget sketchybar --bar hidden=toggle'
 alt-shift-esc = 'exec-and-forget sketchybar --reload'
-# for apps that refused to play nice
-alt-backspace = 'layout floating'
-# default keybinds, very convienient
-alt-slash = 'layout tiles horizontal vertical'
-alt-comma = 'layout accordion horizontal vertical'
-alt-tab = 'workspace-back-and-forth'
+# for apps that don't respect window managers
+alt-shift-period = 'layout tiling floating'
+# could be handy
+alt-shift-comma = 'layout accordion tiles'
+# applies to both tiles/tiling and accordion
+alt-shift-backspace = 'layout horizontal vertical'
 
+# togle which display focus is on
+alt-tab = 'workspace-back-and-forth'
 # toggle which display workspace is on
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-
-# shift focus to workspace...
+# shift focus to...
 alt-a = 'workspace A'
 alt-b = 'workspace B'
 alt-c = 'workspace C'
@@ -200,11 +202,6 @@ right = ['join-with right', 'mode main']
 
 ### window detection & management rules
 
-# [D]efault workspace
-[[on-window-detected]]
-check-further-callbacks = true
-run = ['move-node-to-workspace D']
-
 # [B]rowser
 [[on-window-detected]]
 if.window-title-regex-substring = 'firefox'
@@ -236,7 +233,7 @@ run = ['move-node-to-workspace S']
 
 # [T]erminal
 [[on-window-detected]]
-if.window-title-regex-substring = 'Wez'
+if.app-name-regex-substring = 'WezTerm'
 run = ['move-node-to-workspace T']
 
 # [V]SCode
@@ -244,37 +241,34 @@ run = ['move-node-to-workspace T']
 if.window-title-regex-substring = 'Code'
 run = ['move-node-to-workspace V']
 
-# [F]ile manager(s)
+# [F]ile manager(s) and friends
 [[on-window-detected]]
 if.window-title-regex-substring = 'Finder'
-run = ['layout floating', 'move-node-to-workspace F']
+run = ['move-node-to-workspace F']
 
-[[on-window-detected]]
-if.window-title-regex-substring = 'ForkLift'
-run = ['layout floating', 'move-node-to-workspace F']
-
-# Preview is essentially finder IMO
 [[on-window-detected]]
 if.window-title-regex-substring = 'Preview'
-run = ['layout floating', 'move-node-to-workspace F']
-
-### Apps known to be contankerous
-[[on-window-detected]]
-if.window-title-regex-substring = 'Proton'
-run = ['layout floating']
+run = ['move-node-to-workspace F']
 
 [[on-window-detected]]
-if.window-title-regex-substring = 'Clean'
-run = ['layout floating']
+if.app-name-regex-substring = 'fman'
+run = ['move-node-to-workspace F']
+
+# [O]ffice-like apps
+[[on-window-detected]]
+if.app-name-regex-substring = 'iWork'
+run = ['move-node-to-workspace O']
 
 [[on-window-detected]]
-if.window-title-regex-substring = 'Transmission'
+if.app-name-regex-substring = 'LibreOffice'
+run = ['move-node-to-workspace O']
+
+# [P]roton pass; keep in curr view as presumably something is asking for a password
+[[on-window-detected]]
+if.app-name-regex-substring = 'Proton'
 run = ['layout floating']
 
+# # [D]efault workspace, assumes apps to be contankerous towards window managers
 [[on-window-detected]]
-if.window-title-regex-substring = 'TextEdit'
-run = ['layout floating']
-
-[[on-window-detected]]
-if.window-title-regex-substring = 'Reminders'
-run = ['layout floating']
+check-further-callbacks = true
+run = ['layout floating', 'move-node-to-workspace D']

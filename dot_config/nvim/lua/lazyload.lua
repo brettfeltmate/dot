@@ -8,8 +8,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-
 	require("plugins.treesitter"),
 
 	require("plugins.lsp"),
@@ -27,8 +25,6 @@ require("lazy").setup({
 	require("plugins.todo-comments"),
 
 	require("plugins.terminal"),
-
-	require("plugins.copilot"),
 
 	require("plugins.edit"),
 

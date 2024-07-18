@@ -5,10 +5,6 @@ return {
 		build = ":TSUpdate",
 		opts = {
 			ensure_installed = {
-				"bash",
-				"c",
-				"diff",
-				"html",
 				"lua",
 				"luadoc",
 				"markdown",

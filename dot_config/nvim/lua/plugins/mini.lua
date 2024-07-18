@@ -3,7 +3,7 @@ return {
 		"echasnovski/mini.nvim",
 		config = function()
 			require("mini.align").setup()
-			require("mini.animate").setup()
+			-- require("mini.animate").setup()
 			require("mini.basics").setup()
 			require("mini.bracketed").setup()
 			require("mini.bufremove").setup()
@@ -84,16 +84,9 @@ return {
 					-- Enhance this by adding descriptions for <Leader> mapping groups
 					{ mode = "n", keys = "<leader>b", desc = "Buffer" },
 					{ mode = "n", keys = "<leader>s", desc = "Search" },
-					{ mode = "n", keys = "<leader>h", desc = "Harpoon" },
 					{ mode = "n", keys = "<leader>l", desc = "Lsp" },
-					-- { mode = "n", keys = "<leader>a", desc = "AI (copilot)" },
-					-- TODO: implement project.nvim (leader-p, obvs)
-					{ mode = "n", keys = "<leader>S", desc = "Session" },
 					{ mode = "n", keys = "<leader>r", desc = "Repl" },
 					{ mode = "v", keys = "<leader>r", desc = "Repl" },
-					-- # TODO: use wezterm cli for repl
-					-- { mode = "n", keys = "<leader>e", desc = "Exec" },
-					-- { mode = "v", keys = "<leader>e", desc = "Exec" },
 					{ mode = "n", keys = "<leader>u", desc = "UI" },
 					{ mode = "n", keys = "<leader>w", desc = "Window" },
 
@@ -116,26 +109,6 @@ return {
 				options = {
 					permanent_delete = false,
 					use_as_default_explorer = true,
-				},
-			})
-
-			local map = require("mini.map")
-
-			require("mini.map").setup({
-				integrations = {
-					map.gen_integration.builtin_search(),
-					map.gen_integration.diff(),
-					map.gen_integration.diagnostic({
-						error = "DiagnosticFloatingError",
-						warn = "DiagnosticFloatingWarn",
-						info = "DiagnosticFloatingInfo",
-						hint = "DiagnosticFloatingHint",
-					}),
-				},
-				symbols = {
-					encode = map.gen_encode_symbols.dot("4x2"),
-					scroll_line = "|┋",
-					scroll_view = " ┋",
 				},
 			})
 
@@ -170,34 +143,6 @@ return {
 					},
 				})
 			end
-
-			local starter = require("mini.starter")
-			require("mini.starter").setup({
-
-				items = {
-					-- starter.sections.sessions(5, true),
-					starter.sections.recent_files(5, false, false),
-					{
-						{ name = "File explorer", action = "lua MiniFiles.open()", section = "Builtin actions" },
-						{ name = "Visited files", action = "Pick visit_paths", section = "Builtin actions" },
-						{ name = "Edit new buffer", action = "enew", section = "Builtin actions" },
-						{ name = "Quit Neovim", action = "qall", section = "Builtin actions" },
-					},
-				},
-
-				-- 				header = [[
-				--
-				--       ████ ██████           █████      ██
-				--      ███████████             █████ 
-				--      █████████ ███████████████████ ███   ███████████
-				--     █████████  ███    █████████████ █████ ██████████████
-				--    █████████ ██████████ █████████ █████ █████ ████ █████
-				--  ███████████ ███    ███ █████████ █████ █████ ████ █████
-				-- ██████  █████████████████████ ████ █████ █████ ████ ██████
-				--
-				--   ]],
-			})
-
 			local statusline = require("mini.statusline")
 			-- set use_icons to true if you have a Nerd Font
 			statusline.setup({ use_icons = vim.g.have_nerd_font })

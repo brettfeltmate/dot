@@ -99,56 +99,6 @@ nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
 nmap(L("b/"), C("Pick buf_lines scope='current'"), "Grep (buffer)")
 nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
--- | [C]opilot
--- nmap(L("co"), C("lua require('CopilotChat').open()"), "Open chat (float)")
--- nmap(L("cc"), C("lua require('CopilotChat').close()"), "Close chat")
--- nmap(L("cv"), C("lua require('CopilotChat').toggle()"), "Toggle chat")
---
--- nmap(L("ce"), C("lua require('CopilotChat').toggle()"), "Toggle chat")
--- nmap(L("cd"), C("lua require('CopilotChat').toggle()"), "Toggle chat")
--- nmap(L("ce"), C("lua require('CopilotChat').toggle()"), "Toggle chat")
--- nmap(L("ci"), C())
--- nmap(L("ct"), C("lua require('CopilotChat').toggle()"), "Toggle chat")
--- nmap(L("cr"), C("lua require('CopilotChat').toggle()"), "Toggle chat")
-
--- | [G]it
--- nmap(L("go"), C("LazyGit"), "open (cwd)")
--- nmap(L("gO"), C("LazyGitCurrentFile"), "open (root)")
--- nmap(L("gc"), C("LazyGitFilter"), "commits (root)")
--- nmap(L("gC"), C("LazyGitFilterCurrentFile"), "commits (buffer)")
-
--- | [H]arpoon
-local harpoon = require("harpoon")
-harpoon:setup()
-
-nmap(L("ha"), function()
-	harpoon:list():add()
-end, "Add mark")
-
-nmap(L("hl"), function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
-end, "List marks")
-
-nmap(L("hf"), function()
-	harpoon:list():next()
-end, "Next mark")
-
-nmap(L("hs"), function()
-	harpoon:list():prev()
-end, "Previous mark")
-
-nmap(L("hc"), function()
-	harpoon:list():select(1)
-end, "1st mark")
-
-nmap(L("hd"), function()
-	harpoon:list():select(2)
-end, "2nd mark")
-
-nmap(L("he"), function()
-	harpoon:list():select(3)
-end, "3rd mark")
-
 -- | [L]SP
 nmap(L("la"), C("Lspsaga code_action"), "Actions")
 nmap(L("lk"), C("lua require('tiny-inline-diagnostic').get_diagnostic_under_cursor(bufnr)"), "Dignostics (cursor)")
@@ -194,32 +144,21 @@ nmap(L("sy"), C("YankyRingHistory"), "yanks")
 nmap(L("s/"), C("Pick grep_live"), "grep (cwd)")
 nmap(L('s"'), C("Pick registers"), "register")
 
--- | [S]ession management
-nmap(L("Sd"), C("lua MiniSessions.delete()"), "delete")
-nmap(L("Sl"), C("lua MiniSessions.select()"), "load")
-nmap(L("Sm"), C("mksession"), "make")
-nmap(L("Ss"), C("lua MiniSessions.save()"), "save")
-
 -- | [U]I
 nmap(L("ub"), C("quitall!"), "bail")
-nmap(L("uc"), C("lua require('stay-centered').toggle()"), "centre cursor")
 nmap(L("ud"), C("confirm xall"), "dip")
 nmap(L("uf"), C("lua MiniFiles.open()"), "files (cwd)")
 nmap(L("ul"), C("Lazy"), "lazy")
-nmap(L("um"), C("lua MiniMap.toggle()"), "map")
 map({ "i", "x", "n", "s" }, L("us"), "<cmd>w<cr><esc>", "save buffer")
 map({ "i", "x", "n", "s" }, L("uS"), "<cmd>wa<cr><esc>", "save all")
-nmap(L("up"), C("CccPick"), "pick color")
 nmap(L("u,"), C("lua require('FTerm').toggle()"), "toggle term")
 tmap(L("u,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle term")
 nmap(L(",,"), C("lua require('FTerm').toggle()"), "toggle term")
 tmap(L(",,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle term")
 nmap(L(",b"), C("quitall!"), "bail")
-nmap(L(",c"), C("lua require('stay-centered').toggle()"), "centre cursor")
 nmap(L(",d"), C("confirm xall"), "dip")
 nmap(L(",f"), C("lua MiniFiles.open()"), "files (cwd)")
 nmap(L(",l"), C("Lazy"), "lazy")
-nmap(L(",m"), C("lua MiniMap.toggle()"), "map")
 map({ "i", "x", "n", "s" }, L(",s"), "<cmd>w<cr><esc>", "save buffer")
 map({ "i", "x", "n", "s" }, L(",S"), "<cmd>wa<cr><esc>", "save all")
 
@@ -287,10 +226,13 @@ nmap(L("wl"), C("vertical resize -5"), "shorter")
 
 -- | [R]epl
 local iron = require("iron.core")
-nmap(L("ro"), C("IronRepl"), "Open/Create")
+nmap(L("ro"), C("IronRepl"), "Open")
 nmap(L("rr"), C("IronRestart"), "Restart")
 nmap(L("rf"), C("IronFocus"), "Focus")
+nmap(L("rg"), C("IronSend gg()"), "gg()")
+nmap(L("ri"), C("IronSend <C-c>"), "Interrupt")
 nmap(L("rh"), C("IronHide"), "Hide")
+nmap(L("rx"), iron.close_repl, "Close")
 nmap(L("r%"), iron.send_paragraph, "Send: para")
 nmap(L("r:"), iron.send_until_cursor, "Send: cursor")
 nmap(L("r;"), iron.send_file, "Send: file")
