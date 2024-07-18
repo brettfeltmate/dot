@@ -20,13 +20,21 @@ require("lazy").setup({
 
 	require("plugins.mini"),
 
-	require("plugins.in-and-out"),
+	require("plugins.flash"),
+
+	require("plugins.fterm"),
+
+	require("plugins.grug-far"),
+
+	require("plugins.iron"),
+
+	require("plugins.rainbow-delimiters"),
+
+	require("plugins.smart-splits"),
+
+	require("plugins.yanky"),
 
 	require("plugins.todo-comments"),
-
-	require("plugins.terminal"),
-
-	require("plugins.edit"),
 
 	require("plugins.colouring"),
 })
