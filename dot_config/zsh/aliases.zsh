@@ -14,3 +14,15 @@ alias applymoi="chezmoi apply"
 alias cdmoi="chezmoi cd"
 alias brew86="arch --x86_64 /usr/local/bin/brew"
 alias ib='PATH=/usr/local/bin'
+
+# Function to determine system architecture
+get_architecture() {
+  uname -m
+}
+
+# Set appropriate Neovim binary based on architecture
+architecture=$(get_architecture)
+
+if [ "$architecture" = "x86_64" ]; then
+    alias nvim='NVIM_APPNAME="nvim-x86_64"'
+fi

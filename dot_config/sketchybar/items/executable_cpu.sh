@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cpu_top=(
-  label.font="$FONT:Bold:10"
+  label.font="$FONT:Medium:11"
   label=CPU
   icon.drawing=off
   width=0
@@ -10,7 +10,7 @@ cpu_top=(
 )
 
 cpu_percent=(
-  label.font="$FONT:Medium:12"
+  label.font="$FONT:Medium:13"
   label=CPU
   y_offset=-8
   padding_right=15
@@ -21,12 +21,12 @@ cpu_percent=(
 )
 
 cpu_sys=(
-  width=0
+  width=20
   graph.color=$BLUE
   graph.fill_color=$BLACK
   label.drawing=off
   icon.drawing=off
-  background.height=30
+  background.height=0
   background.drawing=on
   background.color=$TRANSPARENT
 )
@@ -35,7 +35,7 @@ cpu_user=(
   graph.color=$MAGENTA
   label.drawing=off
   icon.drawing=off
-  background.height=30
+  background.height=0
   background.drawing=on
   background.color=$TRANSPARENT
 )
