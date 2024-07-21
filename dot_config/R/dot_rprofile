@@ -13,8 +13,6 @@ options(menu.graphics=FALSE)
 options(prompt="|> ")
 options(continue="|>... ")
 
-options(width = 80)
-
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
@@ -23,7 +21,6 @@ if(interactive()){
 
     if (require("plotcli")) {
         library(plotcli)
-        plotcli_options(braille = TRUE)
     }
 
 
@@ -35,8 +32,8 @@ if(interactive()){
         string=224,
         const= 12,
         stderror= 12,
-        #warn=c(9, 0, 16),
-        verbose=TRUE
+        warn=c(9, 0, 16),
+        verbose=FALSE
         )
     }
 }

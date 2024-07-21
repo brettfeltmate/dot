@@ -1,6 +1,6 @@
 return {
 	"folke/flash.nvim",
-	event = "BufReadPost",
+	event = "BufWinEnter",
 	config = function()
 		require("flash").setup({
 			label = {

@@ -1,8 +1,15 @@
-alias ls="lsd"
-alias la="ls -a"
-alias ll="ls -l"
-alias lla="ls -la"
-alias lt="ls -tree"
+# alias ls="lsd"
+# alias la="ls -a"
+# alias ll="ls -l"
+# alias lla="ls -la"
+# alias lt="ls -tree"
+alias eza="eza --icons=always"
+alias ld="eza -lD"
+alias lf="eza -lf --color=always | grep -v /"
+alias lh="eza -dl .* --group-directories-first"
+alias ll="eza -al --group-directories-first"
+alias ls="eza -alf --color=always --sort=size | grep -v /"
+alias lt="eza -al --sort=modified"
 alias ..="cd .."
 alias r="radian"
 alias lg="lazygit"
@@ -15,14 +22,3 @@ alias cdmoi="chezmoi cd"
 alias brew86="arch --x86_64 /usr/local/bin/brew"
 alias ib='PATH=/usr/local/bin'
 
-# Function to determine system architecture
-get_architecture() {
-  uname -m
-}
-
-# Set appropriate Neovim binary based on architecture
-architecture=$(get_architecture)
-
-if [ "$architecture" = "x86_64" ]; then
-    alias nvim='NVIM_APPNAME="nvim-x86_64"'
-fi

@@ -8,11 +8,18 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
+
+	require("plugins.smart-splits"),
+
 	require("plugins.treesitter"),
+
+	require("plugins.rainbow-delimiters"),
 
 	require("plugins.lsp"),
 
 	require("plugins.conform"),
+
+	require("plugins.copilot"),
 
 	require("plugins.cmp"),
 
@@ -20,27 +27,32 @@ require("lazy").setup({
 
 	require("plugins.mini"),
 
-	require("plugins.flash"),
+	require("plugins.fzf-lua"),
 
-	require("plugins.fterm"),
+	require("plugins.nvim-possession"),
+
+	require("plugins.flash"),
 
 	require("plugins.grug-far"),
 
 	require("plugins.iron"),
 
-	require("plugins.rainbow-delimiters"),
-
-	require("plugins.smart-splits"),
-
 	require("plugins.yanky"),
 
 	require("plugins.todo-comments"),
 
+	require("plugins.marks"),
+
+	-- require("plugins.image-nvim"),
+
+	-- require("plugins.molten"),
+
+	require("plugins.fterm"),
+
+	require("plugins.chezmoi"),
+
 	require("plugins.colouring"),
 
-	require("plugins.fzf-lua"),
-
-	require("plugins.nvim-possession"),
+	require("plugins.autosave"),
 })
-
 -- vim: ts=2 sts=2 sw=2 et

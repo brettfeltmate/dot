@@ -31,10 +31,10 @@ end
 imap("jk", "<esc>", "Exit insert mode", { silent = true })
 tmap("jk", "<C-\\><C-n>", "Exit terminal mode", { silent = true })
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
-
 -- Navigating in/across buffeers
 nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
 nmap("L", C("lua MiniBracketed.buffer('forward')"), "Next buffer")
+
 nmap("gD", C("Pick lsp scope='declaration'"), "Declaration")
 nmap("gd", C("Pick lsp scope='definition'"), "Definition")
 nmap("gi", C("Pick lsp scope='implementation'"), "Implementation")
@@ -133,6 +133,15 @@ local pick_colorscheme = function()
 	end
 end
 
+-- [M]olten
+nmap(L("mi"), C("MoltenInit"), "Init")
+nmap(L("m "), C("MoltenEvaluateLine"), "Eval: line")
+nmap(L("mc"), C("MoltenReevaluateCell"), "Eval: cell")
+vmap(L("m "), C("MoltenEvaluateVisual"), "Eval: visual")
+nmap(L("md"), C("MoltenDelete"), "Del: cell")
+nmap(L("mh"), C("MoltenHideOutput"), "Output: hide")
+nmap(L("ms"), C("noautocmd MoltenEnterOutput"), "Output: show")
+
 nmap(L("sc"), pick_colorscheme, "colorscheme")
 nmap(L("sd"), C("Pick help"), "doc")
 nmap(L("sf"), C("Pick files"), "file")
@@ -157,6 +166,9 @@ nmap(L(",b"), C("quitall!"), "bail")
 nmap(L("ud"), C("confirm xall"), "dip")
 nmap(L(",d"), C("confirm xall"), "dip")
 nmap(L("ul"), C("Lazy"), "lazy")
+nmap(L("ue"), C("ChezFzf"), "Edit confs")
+nmap(L("ua"), C("lua require('autosave.actions').buf_toggle()"), "Autosave: toggle buf")
+nmap(L("uA"), C("lua require('autosave.actions').global_toggle()"), "Autosave: toggle all")
 map({ "i", "x", "n", "s" }, L(",s"), "<cmd>w<cr><esc>", "save buffer")
 map({ "i", "x", "n", "s" }, L(",S"), "<cmd>wa<cr><esc>", "save all")
 map({ "i", "x", "n", "s" }, L("us"), "<cmd>w<cr><esc>", "save buffer")

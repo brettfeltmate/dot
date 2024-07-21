@@ -1,6 +1,6 @@
 return {
 	"numToStr/FTerm.nvim",
-	event = "BufReadPost",
+	event = "BufWinEnter",
 	config = function()
 		require("FTerm").setup({
 			border = "rounded",

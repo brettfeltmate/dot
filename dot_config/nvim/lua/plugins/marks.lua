@@ -1,7 +1,7 @@
 return {
-	"ibhagwan/fzf-lua",
+	"chentoast/marks.nvim",
 	event = "BufWinEnter",
 	config = function()
-		require("fzf-lua").setup({})
+		require("marks").setup({})
 	end,
 }

@@ -3,7 +3,7 @@ return {
 		"echasnovski/mini.nvim",
 		config = function()
 			require("mini.align").setup()
-			-- require("mini.animate").setup()
+			require("mini.animate").setup()
 			require("mini.basics").setup()
 			require("mini.bracketed").setup()
 			require("mini.bufremove").setup()
@@ -15,6 +15,8 @@ return {
 			require("mini.move").setup()
 			require("mini.notify").setup()
 			require("mini.pairs").setup()
+			require("mini.statusline").setup()
+			require("mini.tabline").setup()
 			require("mini.trailspace").setup()
 			require("mini.visits").setup()
 
@@ -86,6 +88,8 @@ return {
 					{ mode = "n", keys = "<leader>s", desc = "Search" },
 					{ mode = "n", keys = "<leader>p", desc = "Possession" },
 					{ mode = "n", keys = "<leader>l", desc = "Lsp" },
+					{ mode = "n", keys = "<leader>m", desc = "Molten" },
+					{ mode = "v", keys = "<leader>m", desc = "Molten" },
 					{ mode = "n", keys = "<leader>r", desc = "Repl" },
 					{ mode = "v", keys = "<leader>r", desc = "Repl" },
 					{ mode = "n", keys = "<leader>u", desc = "UI" },
@@ -143,13 +147,6 @@ return {
 						end,
 					},
 				})
-			end
-			local statusline = require("mini.statusline")
-			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
-			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
 			end
 		end,
 	},

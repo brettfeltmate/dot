@@ -115,6 +115,9 @@ alt-shift-down = 'move down'
 alt-shift-up = 'move up'
 alt-shift-right = 'move right'
 
+alt-shift-minus = 'resize smart -50'
+alt-shift-equal = 'resize smart +50'
+
 ### convienence mappings
 # mapping makes sense if you see my keyboard
 alt-esc = 'exec-and-forget sketchybar --bar hidden=toggle'
