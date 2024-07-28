@@ -29,8 +29,6 @@ require("lazy").setup({
 
 	require("plugins.fzf-lua"),
 
-	require("plugins.nvim-possession"),
-
 	require("plugins.flash"),
 
 	require("plugins.grug-far"),
@@ -53,6 +51,12 @@ require("lazy").setup({
 
 	require("plugins.colouring"),
 
-	require("plugins.autosave"),
+	-- require("plugins.autosave"),
+
+	-- require("plugins.ufo"),
+
+	require("plugins.jot"),
+
+	require("plugins.cmdpalette"),
 })
 -- vim: ts=2 sts=2 sw=2 et

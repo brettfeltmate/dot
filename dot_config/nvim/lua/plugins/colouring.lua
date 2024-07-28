@@ -26,11 +26,4 @@ return {
 		"sho-87/kanagawa-paper.nvim",
 		lazy = false,
 	},
-	{
-		"cdmill/neomodern.nvim",
-		lazy = false,
-		config = function()
-			require("neomodern").setup({})
-		end,
-	},
 }

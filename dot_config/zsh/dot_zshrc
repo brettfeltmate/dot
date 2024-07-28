@@ -26,7 +26,6 @@ eval "$(thefuck --alias)"
 eval "$(starship init zsh)"
 # export LS_COLORS="$(vivid generate jellybeans)"
 
-export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
 if [[ $(arch) == i386 ]]; then
     eval "$(/usr/local/bin/brew shellenv)"
@@ -35,6 +34,8 @@ else
     eval "$(/opt/homebrew/bin/brew shellenv)"
     export PYENV_ROOT="$HOME/.pyenv"
 fi
+
+source <(fzf --zsh)
 
 test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 

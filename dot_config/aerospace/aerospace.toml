@@ -66,7 +66,7 @@ inner.horizontal = 8
 inner.vertical = 8
 outer.left = 8
 outer.bottom = 4
-outer.top = 30
+outer.top = 35
 outer.right = 8
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
@@ -257,6 +257,10 @@ run = ['move-node-to-workspace F']
 if.app-name-regex-substring = 'fman'
 run = ['move-node-to-workspace F']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'marta'
+run = ['move-node-to-workspace F']
+
 # [O]ffice-like apps
 [[on-window-detected]]
 if.app-name-regex-substring = 'iWork'
@@ -269,6 +273,14 @@ run = ['move-node-to-workspace O']
 # [P]roton pass; keep in curr view as presumably something is asking for a password
 [[on-window-detected]]
 if.app-name-regex-substring = 'Proton'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Raycast'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = "System Settings"
 run = ['layout floating']
 
 # # [D]efault workspace, assumes apps to be contankerous towards window managers

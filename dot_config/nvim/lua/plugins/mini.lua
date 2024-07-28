@@ -3,7 +3,6 @@ return {
 		"echasnovski/mini.nvim",
 		config = function()
 			require("mini.align").setup()
-			require("mini.animate").setup()
 			require("mini.basics").setup()
 			require("mini.bracketed").setup()
 			require("mini.bufremove").setup()
@@ -16,9 +15,7 @@ return {
 			require("mini.notify").setup()
 			require("mini.pairs").setup()
 			require("mini.statusline").setup()
-			require("mini.tabline").setup()
 			require("mini.trailspace").setup()
-			require("mini.visits").setup()
 
 			local extras = require("mini.extra")
 
@@ -88,11 +85,11 @@ return {
 					{ mode = "n", keys = "<leader>s", desc = "Search" },
 					{ mode = "n", keys = "<leader>p", desc = "Possession" },
 					{ mode = "n", keys = "<leader>l", desc = "Lsp" },
-					{ mode = "n", keys = "<leader>m", desc = "Molten" },
-					{ mode = "v", keys = "<leader>m", desc = "Molten" },
+					-- { mode = "n", keys = "<leader>m", desc = "Molten" },
+					-- { mode = "v", keys = "<leader>m", desc = "Molten" },
 					{ mode = "n", keys = "<leader>r", desc = "Repl" },
 					{ mode = "v", keys = "<leader>r", desc = "Repl" },
-					{ mode = "n", keys = "<leader>u", desc = "UI" },
+					{ mode = "n", keys = "<leader>,", desc = "UI" },
 					{ mode = "n", keys = "<leader>w", desc = "Window" },
 
 					clue.gen_clues.builtin_completion(),

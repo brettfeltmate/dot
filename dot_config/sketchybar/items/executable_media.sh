@@ -1,9 +1,9 @@
 media=(
   icon.background.drawing=on
   icon.background.image=media.artwork
-  icon.background.image.corner_radius=9
+  icon.background.image.corner_radius=12
   script="$PLUGIN_DIR/media.sh"
-  label.max_chars=15
+  label.max_chars=20
   scroll_texts=on
   updates=on
 )

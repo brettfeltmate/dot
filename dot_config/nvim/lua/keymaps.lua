@@ -28,6 +28,9 @@ local C = function(cmd)
 end
 
 -- Non-leader mappings ===========================================================
+
+nmap(":", "<Plug>(cmdpalette)")
+
 imap("jk", "<esc>", "Exit insert mode", { silent = true })
 tmap("jk", "<C-\\><C-n>", "Exit terminal mode", { silent = true })
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
@@ -35,6 +38,7 @@ tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
 nmap("L", C("lua MiniBracketed.buffer('forward')"), "Next buffer")
 
+-- goto maps
 nmap("gD", C("Pick lsp scope='declaration'"), "Declaration")
 nmap("gd", C("Pick lsp scope='definition'"), "Definition")
 nmap("gi", C("Pick lsp scope='implementation'"), "Implementation")
@@ -46,62 +50,35 @@ nmap("<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
 nmap("<C-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
 nmap("<C-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
 nmap("<C-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
-
+-- terminal mode analogs
 tmap("<C-Left>", "<C-\\><C-N><C-Left>", "Left")
 tmap("<C-Up>", "<C-\\><C-N><C-Up>", "Up")
 tmap("<C-Down>", "<C-\\><C-N><C-Down>", "Down")
 tmap("<C-Right>", "<C-\\><C-N><C-Right>", "Right")
 
 -- Flash.nvim
-map({ "n", "x", "o" }, "s", function()
-	require("flash").jump()
-end, "Flash")
-map({ "n", "x", "o" }, "S", function()
-	require("flash").treesitter()
-end, "Flash TS")
-map("o", "r", function()
-	require("flash").remote()
-end, "Remote Flash")
-map({ "o", "x" }, "R", function()
-	require("flash").treesitter_search()
-end, "TS search")
-map("c", "<C-s>", function()
-	require("flash").toggle()
-end, "Toggle Flash Search")
+map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
 
--- yanky.nvim
+vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
-vim.keymap.set("n", "]p", "<Plug>(YankyPutIndentAfterLinewise)")
-vim.keymap.set("n", "[p", "<Plug>(YankyPutIndentBeforeLinewise)")
-vim.keymap.set("n", "]P", "<Plug>(YankyPutIndentAfterLinewise)")
-vim.keymap.set("n", "[P", "<Plug>(YankyPutIndentBeforeLinewise)")
-
-vim.keymap.set("n", ">p", "<Plug>(YankyPutIndentAfterShiftRight)")
-vim.keymap.set("n", "<p", "<Plug>(YankyPutIndentAfterShiftLeft)")
-vim.keymap.set("n", ">P", "<Plug>(YankyPutIndentBeforeShiftRight)")
-vim.keymap.set("n", "<P", "<Plug>(YankyPutIndentBeforeShiftLeft)")
-
-vim.keymap.set("n", "=p", "<Plug>(YankyPutAfterFilter)")
-vim.keymap.set("n", "=P", "<Plug>(YankyPutBeforeFilter)")
+vim.keymap.set("n", "<C-p>", "<Plug>(YankyPreviousEntry)")
+vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
 
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
 nmap(L("bd"), C("lua MiniBufremove.delete()"), "Delete")
 nmap(L("bg"), C("GrugFar"), "Search & Replace")
-nmap(L("bf"), C("lua vim.lsp.buf.formatting()"), "Format")
 nmap(L("bs"), C("Pick buffers"), "Switch")
-nmap(L("bt"), C("lua MiniTrailspace.trim()"), "Trim trailing")
 nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
 nmap(L("b/"), C("Pick buf_lines scope='current'"), "Grep (buffer)")
 nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
 -- | [L]SP
 nmap(L("la"), C("Lspsaga code_action"), "Actions")
-nmap(L("lk"), C("lua require('tiny-inline-diagnostic').get_diagnostic_under_cursor(bufnr)"), "Dignostics (cursor)")
 nmap(L("ld"), C("lua require('tiny-inline-diagnostic').toggle()"), "Toggle inline diagnostics")
 nmap(L("lD"), C("Lspsaga show_workspace_diagnostics ++float"), "Diagnostics (buffer)")
 nmap(L("lh"), C("Lspsaga hover_doc"), "Hover")
@@ -134,55 +111,35 @@ local pick_colorscheme = function()
 end
 
 -- [M]olten
-nmap(L("mi"), C("MoltenInit"), "Init")
-nmap(L("m "), C("MoltenEvaluateLine"), "Eval: line")
-nmap(L("mc"), C("MoltenReevaluateCell"), "Eval: cell")
-vmap(L("m "), C("MoltenEvaluateVisual"), "Eval: visual")
-nmap(L("md"), C("MoltenDelete"), "Del: cell")
-nmap(L("mh"), C("MoltenHideOutput"), "Output: hide")
-nmap(L("ms"), C("noautocmd MoltenEnterOutput"), "Output: show")
+-- nmap(L("mi"), C("MoltenInit"), "Init")
+-- nmap(L("m "), C("MoltenEvaluateLine"), "Eval: line")
+-- nmap(L("mc"), C("MoltenReevaluateCell"), "Eval: cell")
+-- vmap(L("m "), C("MoltenEvaluateVisual"), "Eval: visual")
+-- nmap(L("md"), C("MoltenDelete"), "Del: cell")
+-- nmap(L("mh"), C("MoltenHideOutput"), "Output: hide")
+-- nmap(L("ms"), C("noautocmd MoltenEnterOutput"), "Output: show")
 
 nmap(L("sc"), pick_colorscheme, "colorscheme")
-nmap(L("sd"), C("Pick help"), "doc")
-nmap(L("sf"), C("Pick files"), "file")
-nmap(L("sn"), C("Pick grep pattern='(TODO|FIXME|HACK|NOTE):'"), "note")
-nmap(L("sr"), C("Pick visit_paths"), "recent files (proj)")
 nmap(L("ss"), C("Pick lsp scope='document_symbol'"), "Document symbols")
 nmap(L("sS"), C("Pick lsp scope='workspace_symbol'"), "Workspace symbols")
 nmap(L("sy"), C("YankyRingHistory"), "yanks")
 nmap(L("s/"), C("Pick grep_live"), "grep (cwd)")
-nmap(L('s"'), C("Pick registers"), "register")
 
--- [p]ossession
-local possession = require("nvim-possession")
-nmap(L("pl"), possession.list, "List")
-nmap(L("pn"), possession.new, "New")
-nmap(L("pu"), possession.update, "Update")
-nmap(L("pd"), possession.delete, "Delete")
-
--- | [U]I
-nmap(L("ub"), C("quitall!"), "bail")
-nmap(L(",b"), C("quitall!"), "bail")
-nmap(L("ud"), C("confirm xall"), "dip")
-nmap(L(",d"), C("confirm xall"), "dip")
-nmap(L("ul"), C("Lazy"), "lazy")
-nmap(L("ue"), C("ChezFzf"), "Edit confs")
-nmap(L("ua"), C("lua require('autosave.actions').buf_toggle()"), "Autosave: toggle buf")
-nmap(L("uA"), C("lua require('autosave.actions').global_toggle()"), "Autosave: toggle all")
-map({ "i", "x", "n", "s" }, L(",s"), "<cmd>w<cr><esc>", "save buffer")
+-- [,] convience mappings
+nmap(L(",b"), C("quitall!"), "bail out")
+nmap(L(",d"), C("confirm xall"), "dip out")
+nmap(L(",l"), C("Lazy"), "lazy ui")
+nmap(L(",e"), C("ChezFzf"), "edit config")
+map({ "i", "x", "n", "s" }, L(",s"), "<cmd>w<cr><esc>", "save this")
 map({ "i", "x", "n", "s" }, L(",S"), "<cmd>wa<cr><esc>", "save all")
-map({ "i", "x", "n", "s" }, L("us"), "<cmd>w<cr><esc>", "save buffer")
-map({ "i", "x", "n", "s" }, L("uS"), "<cmd>wa<cr><esc>", "save all")
-nmap(L("uf"), MiniFiles.open, "files (cwd)")
-nmap(L(",f"), MiniFiles.open, "files (cwd)")
-local fterm = require("FTerm")
-nmap(L("u,"), fterm.toggle, "toggle term")
-nmap(L(",,"), fterm.toggle, "toggle term")
-tmap(L("u,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle term")
-tmap(L(",,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle term")
+nmap(L(",f"), C("lua MiniFiles.open()"), "browse files")
+nmap(L(",,"), C("lua require('FTerm').toggle()"), "toggle terminal")
+nmap(L(",n"), C("lua require('jot').toggle()"), "jot notes")
+nmap(L(",t"), C("lua MiniTrailspace.trim()"), "trim whitespace")
+tmap(L(",,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle terminal")
 
 -- | [W]indows
--- TODO: refactor as plugin
+-- TODO: refactor functions as script and require
 local FlipSplit = function()
 	local initial = vim.fn.winnr()
 
@@ -243,18 +200,18 @@ nmap(L("wj"), C("resize -5"), "thinner")
 nmap(L("wk"), C("resize +5"), "wider")
 nmap(L("wl"), C("vertical resize -5"), "shorter")
 
--- | [R]epl
-local iron = require("iron.core")
+-- | [R]epl (iron.nvim)
 nmap(L("ro"), C("IronRepl"), "Open")
 nmap(L("rr"), C("IronRestart"), "Restart")
 nmap(L("rf"), C("IronFocus"), "Focus")
 nmap(L("rg"), C("IronSend gg()"), "Send: gg()")
 nmap(L("ri"), C("IronSend <C-c>"), "Send: interrupt")
 nmap(L("rc"), C("IronSend <C-l>"), "Send: clear")
+nmap(L("re"), C("IronSend <cr>"), "Send: enter")
 nmap(L("rh"), C("IronHide"), "Hide")
-nmap(L("rx"), iron.close_repl, "Close")
-nmap(L("r%"), iron.send_paragraph, "Send: para")
-nmap(L("r:"), iron.send_until_cursor, "Send: cursor")
-nmap(L("r;"), iron.send_file, "Send: file")
-nmap(L("r "), iron.send_line, "Send: line")
-vmap(L("r "), iron.visual_send, "Send: select")
+nmap(L("rx"), C("lua require('iron.core').close_repl()"), "Close")
+nmap(L("r%"), C("lua require('iron.core').send_paragraph()"), "Send: para")
+nmap(L("r:"), C("lua require('iron.core').send_until_cursor()"), "Send: cursor")
+nmap(L("r;"), C("lua require('iron.core').send_file()"), "Send: file")
+nmap(L("r "), C("lua require('iron.core').send_line()"), "Send: line")
+vmap(L("r "), C("lua require('iron.core').visual_send()"), "Send: select")

@@ -3,14 +3,14 @@ return {
 	event = "BufWinEnter",
 	config = function()
 		require("FTerm").setup({
-			border = "rounded",
+			border = "single",
 			auto_close = false,
-			blend = 0,
+			blend = 5,
 			dimensions = {
-				height = 0.4,
-				width = 0.5,
+				height = 0.5,
+				width = 0.6,
 				x = 0,
-				y = 0.9,
+				y = 1,
 			},
 		})
 	end,
