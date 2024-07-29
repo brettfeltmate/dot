@@ -58,5 +58,7 @@ require("lazy").setup({
 	require("plugins.jot"),
 
 	require("plugins.cmdpalette"),
+
+	require("plugins.writing"),
 })
 -- vim: ts=2 sts=2 sw=2 et

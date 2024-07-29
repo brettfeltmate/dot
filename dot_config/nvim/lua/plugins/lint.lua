@@ -11,6 +11,8 @@ return {
 			lint.linters_by_ft["inko"] = nil
 			lint.linters_by_ft["janet"] = nil
 			lint.linters_by_ft["rst"] = nil
+			lint.linters_by_ft["text"] = nil
+			lint.linters_by_ft["md"] = { "markdownlint" }
 
 			lint.linters_by_ft["python"] = { "ruff" }
 

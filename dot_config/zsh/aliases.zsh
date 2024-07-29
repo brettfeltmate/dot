@@ -24,6 +24,9 @@ alias addmoi="chezmoi add"
 alias applymoi="chezmoi apply"
 alias cdmoi="chezmoi cd"
 
+alias ovi='NVIM_APPNAME="ovi" nvim'
+alias msvim='NVIM_APPNAME="msvim" nvim'
+
 # qol aliases when switching between archs
 alias arch86="/usr/bin/arch -x86_64 /usr/bin/env /bin/zsh --login; arch"
 alias arch64="/usr/bin/arch -arm64 /usr/bin/env /bin/zsh --login; arch"

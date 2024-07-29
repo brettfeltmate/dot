@@ -8,3 +8,13 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		vim.cmd("wincmd L")
 	end,
 })
+
+require("junegunn/limelight")
+require("junegunn/goyo")
+require("tpope/vim-abolish")
+require("preservim/vim-pencil")
+require("preservim/vim-textobj-quote")
+require("preservim/vim-textobj-sentence")
+require("preservim/vim-wordy")
+require("preservim/vim-lexical")
+require("preservim/vim-litecorrect")
