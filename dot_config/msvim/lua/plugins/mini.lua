@@ -1,5 +1,17 @@
 return {
 	{
+		"echasnovski/mini.ai",
+		config = function()
+			require("mini.ai").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.basics",
+		config = function()
+			require("mini.basics").setup()
+		end,
+	},
+	{
 		"echasnovski/mini.bracketed",
 		config = function()
 			require("mini.bracketed").setup()
@@ -64,6 +76,8 @@ return {
 				},
 
 				clues = {
+					{ mode = "n", keys = "<leader>t", desc = "Toggle" },
+					{ mode = "n", keys = "<leader>m", desc = "Markdown" },
 					-- { mode = "n", keys = "<leader>l", desc = "Limelight" },
 					-- { mode = "n", keys = "<leader>s", desc = "Search" },
 					-- { mode = "n", keys = "<leader>,", desc = "UI" },
@@ -162,6 +176,12 @@ return {
 		"echasnovski/mini.statusline",
 		config = function()
 			require("mini.statusline").setup()
+		end,
+	},
+	{
+		"echasnovski/mini.surround",
+		config = function()
+			require("mini.surround").setup()
 		end,
 	},
 }

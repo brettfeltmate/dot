@@ -7,15 +7,29 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	require("plugins.cmdline"),
+	require("plugins.treesitter"),
 	require("plugins.cmp"),
+	require("plugins.lspconfig"),
+	require("plugins.conform"),
+	require("plugins.lint"),
+
+	require("plugins.smart-splits"),
+
+	require("plugins.bullets"),
+	require("plugins.cmdline"),
 	require("plugins.colouring"),
 	require("plugins.flash"),
-	require("plugins.junegunn"),
+	-- require("plugins.headlines"),
+	require("plugins.image"),
+	require("plugins.img-clip"),
+	require("plugins.markdown-preview"),
 	require("plugins.marks"),
+	require("plugins.markview"),
 	require("plugins.mini"),
+	require("plugins.modes"),
 	require("plugins.preservim"),
 	require("plugins.tpope"),
-	require("plugins.treesitter"),
+	require("plugins.typewriter"),
 	require("plugins.yanky"),
+	require("plugins.zen-mode"),
 })

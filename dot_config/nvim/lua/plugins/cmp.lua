@@ -24,11 +24,11 @@ return {
 				completion = { completeopt = "menu,menuone,noinsert" },
 
 				mapping = cmp.mapping.preset.insert({
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<S-Down>"] = cmp.mapping.select_next_item(),
+					["<S-Up>"] = cmp.mapping.select_prev_item(),
+					["<S-Left>"] = cmp.mapping.scroll_docs(-4),
+					["<S-Right>"] = cmp.mapping.scroll_docs(4),
+					["<S-Enter>"] = cmp.mapping.confirm({ select = true }),
 
 					-- Manually trigger a completion from nvim-cmp.
 					-- Generally unnecessary
@@ -36,11 +36,11 @@ return {
 				}),
 				sources = {
 					{ name = "copilot" },
-					{ name = "buffer" },
 					{ name = "nvim_lsp" },
-					{ name = "cmp_r" },
+					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "cmdline" },
+					{ name = "cmp_r" },
 				},
 			})
 		end,

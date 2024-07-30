@@ -62,12 +62,12 @@ key-mapping.preset = 'qwerty'
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 8
-inner.vertical = 8
-outer.left = 8
+inner.horizontal = 4
+inner.vertical = 4
+outer.left = 4
 outer.bottom = 4
 outer.top = 35
-outer.right = 8
+outer.right = 4
 
 # See https://nikitabobko.github.io/AeroSpace/guide#exec-env-vars
 [exec] # Again, you don't need to copy all config sections to your config.
@@ -269,6 +269,10 @@ run = ['move-node-to-workspace O']
 [[on-window-detected]]
 if.app-name-regex-substring = 'LibreOffice'
 run = ['move-node-to-workspace O']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Skim'
+run = ['move-node-to-workspace P']
 
 # [P]roton pass; keep in curr view as presumably something is asking for a password
 [[on-window-detected]]

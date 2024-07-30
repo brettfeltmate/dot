@@ -3,6 +3,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
+			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
 		},
@@ -13,11 +14,11 @@ return {
 				completion = { completeopt = "menu,menuone,noinsert" },
 
 				mapping = cmp.mapping.preset.insert({
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-y>"] = cmp.mapping.confirm({ select = true }),
+					["<S-Down>"] = cmp.mapping.select_next_item(),
+					["<S-Up>"] = cmp.mapping.select_prev_item(),
+					["<S-Left>"] = cmp.mapping.scroll_docs(-4),
+					["<S-Right>"] = cmp.mapping.scroll_docs(4),
+					["<S-Enter>"] = cmp.mapping.confirm({ select = true }),
 
 					["<C-Space>"] = cmp.mapping.complete({}),
 				}),
@@ -25,6 +26,7 @@ return {
 					{ name = "buffer" },
 					{ name = "path" },
 					{ name = "cmdline" },
+					{ name = "nvim_lsp" },
 				},
 			})
 		end,
