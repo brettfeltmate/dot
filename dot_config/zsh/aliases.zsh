@@ -37,3 +37,6 @@ alias rig64="rig switch 4.4-arm64"
 
 alias act="source venv/bin/activate"
 alias dact="deactivate"
+
+alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"
+alias moshmini="brosh cogmotorlab@tbd51.wpa.dal.ca"

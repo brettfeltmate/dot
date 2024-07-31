@@ -59,6 +59,6 @@ require("lazy").setup({
 
 	require("plugins.cmdpalette"),
 
-	require("plugins.writing"),
+	require("plugins.hardtime"),
 })
 -- vim: ts=2 sts=2 sw=2 et

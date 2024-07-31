@@ -5,7 +5,10 @@ path+=('/Applications/')
 path+=("$HOME/.cargo/bin/")
 # py venv
 path+=("$HOME/.pyenv/shims/")
-
+# mosh
+path+=("/opt/homebrew/bin/mosh")
+path+=("/opt/homebrew/bin/mosh-server")
+path+=("/opt/homebrew/bin/mosh-client")
 export PATH
 export BAT_THEME="base16-256"
 # don't remember what this is for; something nvimmy

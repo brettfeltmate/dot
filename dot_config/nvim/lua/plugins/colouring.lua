@@ -13,7 +13,7 @@ return {
 			require("ccc").setup({
 				auto_enable = true,
 				lsp = true,
-				highlight_mode = "bg",
+				highlight_mode = "virtual",
 			})
 		end,
 	},

@@ -62,3 +62,7 @@ toggle_sbar() {
 x86() {
     $HOME/.config/zsh/shell-x86_64.sh
 }
+
+batman() {
+    man "$@" | col -b | bat -1 man -p
+}
