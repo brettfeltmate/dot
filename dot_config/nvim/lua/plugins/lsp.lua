@@ -112,23 +112,6 @@ return {
 	{ -- NOTE: disabled for not playing nice with plugins below
 		vim.diagnostic.config({ virtual_text = false }),
 	},
-	{ -- better ui/ux for LSP interactions provided by the above
-		"nvimdev/lspsaga.nvim",
-		event = "BufReadPre",
-		after = "nvim-lspconfig",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("lspsaga").setup({
-				breadcrumbs = { separator = "|>" },
-				code_action = { show_server_name = true },
-				-- diagnostic = { diagnostic_only_current = true },
-				finder = { default = "def+ref+imp" },
-				hover = { max_width = 0.6, max_height = 0.4, open_cmd = "!firefox" },
-				implement = { enable = false },
-				lightbulb = { enable = false },
-			})
-		end,
-	},
 	{ -- minimal & pleasent in-line rendering of LSP supplied diagnostic info
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",

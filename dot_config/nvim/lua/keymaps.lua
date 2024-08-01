@@ -38,13 +38,6 @@ tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
 nmap("L", C("lua MiniBracketed.buffer('forward')"), "Next buffer")
 
--- goto maps
-nmap("gD", C("Pick lsp scope='declaration'"), "Declaration")
-nmap("gd", C("Pick lsp scope='definition'"), "Definition")
-nmap("gi", C("Pick lsp scope='implementation'"), "Implementation")
-nmap("gr", C("Pick lsp scope='references'"), "References")
-nmap("gt", C("Pick lsp scope='type_definition'"), "Type definition")
-
 -- Navigating between neovim/wezterm splits
 nmap("<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
 nmap("<C-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
@@ -72,43 +65,31 @@ vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
 -- | [B]uffer
 nmap(L("bd"), C("lua MiniBufremove.delete()"), "Delete")
 nmap(L("bg"), C("GrugFar"), "Search & Replace")
-nmap(L("bs"), C("Pick buffers"), "Switch")
+nmap(L("bs"), C("lua require('fzf-lua').blines()"), "Lines (open)")
+nmap(L("bS"), C("lua require('fzf-lua').lines()"), "Lines (curr)")
+nmap(L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
+nmap(L("b/"), C("lua require('fzf-lua').lgrep_curbuf"), "Grep")
 nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
-nmap(L("b/"), C("Pick buf_lines scope='current'"), "Grep (buffer)")
 nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
 -- | [L]SP
-nmap(L("la"), C("Lspsaga code_action"), "Actions")
-nmap(L("ld"), C("lua require('tiny-inline-diagnostic').toggle()"), "Toggle inline diagnostics")
-nmap(L("lD"), C("Lspsaga show_workspace_diagnostics ++float"), "Diagnostics (buffer)")
-nmap(L("lh"), C("Lspsaga hover_doc"), "Hover")
-nmap(L("lH"), C("Lspsaga hover_doc ++keep"), "Hover (sticky)")
-nmap(L("lo"), C("Lspsaga outline"), "Outline")
-nmap(L("lf"), C("Lspsaga finder"), "find def's, ref's, & impl's")
-nmap(L("lr"), C("Lspsaga rename"), "Rename (buffer)")
-nmap(L("lR"), C("Lspsaga rename ++project"), "Rename (project)")
-
--- | [s]earch
-
-local set_colorscheme = function(name)
-	pcall(vim.cmd, "colorscheme " .. name)
-end
-
-local pick_colorscheme = function()
-	local init_scheme = vim.g.colors_name
-	local new_scheme = require("mini.pick").start({
-		source = {
-			items = vim.fn.getcompletion("", "color"),
-			preview = function(_, item)
-				set_colorscheme(item)
-			end,
-			choose = set_colorscheme,
-		},
-	})
-	if new_scheme == nil then
-		set_colorscheme(init_scheme)
-	end
-end
+nmap(
+	L("la"),
+	C(
+		"lua require('fzf-lua').lsp_code_actions({ winopts = { relative='cursor', row=1.01, col=0, height=0.3, width=0.6} })"
+	),
+	"Actions"
+)
+nmap(L("ld"), C("lua require('fzf-lua').lsp_document_diagnostics()"), "Diagnostics (doc)")
+nmap(L("lD"), C("lua require('fzf-lua').lsp_workspace_diagnostics()"), "Diagnostics (proj)")
+nmap(L("lf"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
+nmap(L("lF"), C("lua require('fzf-lua').lsp_finder()"), "Finder")
+nmap(L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
+nmap(L("lu"), C("lua require('fzf-lua').lsp_implementations()"), "Implementations")
+nmap(L("ls"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
+nmap(L("lS"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
+nmap(L("li"), C("lua require('fzf-lua').lsp_incoming_calls()"), "Incoming calls")
+nmap(L("lo"), C("lua require('fzf-lua').lsp_outgoing_calls()"), "Outgoing calls")
 
 -- [M]olten
 -- nmap(L("mi"), C("MoltenInit"), "Init")
@@ -119,25 +100,48 @@ end
 -- nmap(L("mh"), C("MoltenHideOutput"), "Output: hide")
 -- nmap(L("ms"), C("noautocmd MoltenEnterOutput"), "Output: show")
 
-nmap(L("sc"), pick_colorscheme, "colorscheme")
-nmap(L("ss"), C("Pick lsp scope='document_symbol'"), "Document symbols")
-nmap(L("sS"), C("Pick lsp scope='workspace_symbol'"), "Workspace symbols")
+-- | [s]earch
+nmap(L("ss"), C("lua require('fzf-lua').colorschemes()"), "Schemes")
+nmap(L("sS"), C("lua require('fzf-lua').awesome_colorschemes()"), "Awesome schemes")
 nmap(L("sy"), C("YankyRingHistory"), "yanks")
-nmap(L("s/"), C("Pick grep_live"), "grep (cwd)")
+nmap(L("s/"), C("lua require('fzf-lua').live_grep()"), "Live Grep")
+nmap(L("sh"), C("lua require('fzf-lua').helptags()"), "Help tags")
+nmap(L("sf"), C("lua require('fzf-lua').files()"), "Files")
+nmap(L("sm"), C("lua require('fzf-lua').manpages()"), "Manpages")
+nmap(L("s."), C("lua require('fzf-lua').resume()"), "Resume")
+nmap(L("so"), C("lua require('fzf-lua').oldfiles()"), "Old files")
+nmap(L("sj"), C("lua require('fzf-lua').jumps()"), "Jumps")
+nmap(L("sr"), C("lua require('fzf-lua').registers()"), "Registers")
+nmap(L("sc"), C("lua require('fzf-lua').changes()"), "Changes")
+nmap(L("sq"), C("lua require('fzf-lua').quickfix()"), "Quickfix")
+nmap(L("sw"), C("lua require('fzf-lua').grep_cword()"), "Word")
+nmap(L("sW"), C("lua require('fzf-lua').grep_cWORD()"), "WORD")
+
+nmap(L("gf"), C("lua require('fzf-lua').git_files()"), "Files")
+nmap(L("gs"), C("lua require('fzf-lua').git_status()"), "Status")
+nmap(L("gp"), C("lua require('fzf-lua').git_commits()"), "Commits (proj)")
+nmap(L("gb"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
 
 -- [,] convience mappings
 nmap(L(",b"), C("quitall!"), "bail out")
 nmap(L(",d"), C("confirm xall"), "dip out")
 nmap(L(",l"), C("Lazy"), "lazy ui")
+nmap(
+	L(",c"),
+	C("lua require('fzf-lua').spell_suggest({ winopts = { relative='cursor', row=0.01, col=0, height=0.2, width=0.2}})"),
+	"Spell Check"
+)
+nmap(L(",d"), C("lua require('tiny-inline-diagnostic').toggle()"), "Toggle inline diagnostics")
 nmap(L(",e"), C("ChezFzf"), "edit config")
 nmap(L(",p"), C("SoftPencil"), "soft wrap")
 nmap(L(",g"), C("Goyo"), "goyo")
 nmap(L(",L"), C("Limelight!!"), "limelight")
+nmap(L(",o"), C("AerialToggle"), "Outline")
+nmap(L(",n"), C("AerialNavToggle"), "Nav toggle")
 map({ "i", "x", "n", "s" }, L(",s"), "<cmd>w<cr><esc>", "save this")
 map({ "i", "x", "n", "s" }, L(",S"), "<cmd>wa<cr><esc>", "save all")
-nmap(L(",f"), C("lua MiniFiles.open()"), "browse files")
+nmap(L(",f"), C("lua require('oil').toggle_float()"), "browse files")
 nmap(L(",,"), C("lua require('FTerm').toggle()"), "toggle terminal")
-nmap(L(",n"), C("lua require('jot').toggle()"), "jot notes")
 nmap(L(",t"), C("lua MiniTrailspace.trim()"), "trim whitespace")
 tmap(L(",,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle terminal")
 
@@ -198,10 +202,10 @@ nmap(L("wd"), C("windo diffsplit browse"), "diff split on")
 nmap(L("wD"), C("windo diffoff"), "diff split off")
 nmap(L("ws"), ScrollBind, "scrollbind on")
 nmap(L("wS"), ScrollUnbind, "scrollbind off")
-nmap(L("wh"), C("vertical resize +5"), "taller")
-nmap(L("wj"), C("resize -5"), "thinner")
-nmap(L("wk"), C("resize +5"), "wider")
-nmap(L("wl"), C("vertical resize -5"), "shorter")
+nmap(L("wl"), C("vertical resize +5"), "taller")
+nmap(L("wk"), C("resize -5"), "thinner")
+nmap(L("wj"), C("resize +5"), "wider")
+nmap(L("wh"), C("vertical resize -5"), "shorter")
 
 -- | [R]epl (iron.nvim)
 nmap(L("ro"), C("IronRepl"), "Open")
@@ -210,7 +214,6 @@ nmap(L("rf"), C("IronFocus"), "Focus")
 nmap(L("rg"), C("IronSend gg()"), "Send: gg()")
 nmap(L("ri"), C("IronSend <C-c>"), "Send: interrupt")
 nmap(L("rc"), C("IronSend <C-l>"), "Send: clear")
-nmap(L("re"), C("IronSend <cr>"), "Send: enter")
 nmap(L("rh"), C("IronHide"), "Hide")
 nmap(L("rx"), C("lua require('iron.core').close_repl()"), "Close")
 nmap(L("r%"), C("lua require('iron.core').send_paragraph()"), "Send: para")

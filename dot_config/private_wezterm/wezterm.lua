@@ -68,6 +68,16 @@ local config = {
 	unix_domains = {
 		{ name = "unix" },
 	},
+	launch_menu = {
+		{
+			label = "CaMP MacMini",
+			args = {
+				"/opt/homebrew/bin/mosh",
+				"--server=/opt/homebrew/bin/mosh-server",
+				"cogmotorlab@tbd51.wpa.dal.ca",
+			},
+		},
+	},
 	enable_kitty_graphics = true,
 	color_scheme_dirs = { "~/.config/wezterm/color_schemes" },
 	color_scheme = "Ashes (base16)",
@@ -134,9 +144,15 @@ local config = {
 
 		-- Show list of workspaces
 		{
-			key = "s",
+			key = "w",
 			mods = "LEADER",
 			action = act.ShowLauncherArgs({ flags = "WORKSPACES" }),
+		},
+		-- Show launch_menu
+		{
+			key = "l",
+			mods = "LEADER",
+			action = act.ShowLauncherArgs({ flags = "LAUNCH_MENU_ITEMS" }),
 		},
 		{
 			key = "$",

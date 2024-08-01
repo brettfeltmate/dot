@@ -25,6 +25,8 @@ require("lazy").setup({
 
 	require("plugins.lint"),
 
+	require("plugins.oil"),
+
 	require("plugins.mini"),
 
 	require("plugins.fzf-lua"),
@@ -51,14 +53,14 @@ require("lazy").setup({
 
 	require("plugins.colouring"),
 
-	-- require("plugins.autosave"),
-
-	-- require("plugins.ufo"),
-
-	require("plugins.jot"),
+	require("plugins.markview"),
 
 	require("plugins.cmdpalette"),
 
 	require("plugins.hardtime"),
+
+	require("plugins.writing"),
+
+	require("plugins.aerial"),
 })
 -- vim: ts=2 sts=2 sw=2 et

@@ -85,6 +85,7 @@ return {
 					{ mode = "n", keys = "<leader>s", desc = "Search" },
 					{ mode = "n", keys = "<leader>p", desc = "Possession" },
 					{ mode = "n", keys = "<leader>l", desc = "Lsp" },
+					{ mode = "n", keys = "<leader>g", desc = "Git" },
 					-- { mode = "n", keys = "<leader>m", desc = "Molten" },
 					-- { mode = "v", keys = "<leader>m", desc = "Molten" },
 					{ mode = "n", keys = "<leader>r", desc = "Repl" },
@@ -101,50 +102,37 @@ return {
 				},
 			})
 
-			require("mini.files").setup({
-				windows = {
-					max_number = 2,
-					preview = true,
-					width_focus = 25,
-					width_preview = 50,
-				},
-				options = {
-					permanent_delete = false,
-					use_as_default_explorer = true,
-				},
-			})
+			-- require("mini.pick").setup({
+			-- 	window = {
+			-- 		config = {
+			-- 			border = "rounded",
+			-- 			height = math.floor(0.30 * vim.o.lines),
+			-- 			width = math.floor(0.35 * vim.o.columns),
+			-- 		},
+			-- 		prompt_prefix = "|>...",
+			-- 	},
+			-- 	mappings = {
+			-- 		scroll_up = "<S-Up>",
+			-- 		scroll_down = "<S-Down>",
+			-- 		scroll_left = "<S-Left>",
+			-- 		scroll_right = "<S-Right>",
+			-- 		toggle_info = "<S-tab>",
+			-- 		toggle_preview = "<tab>",
+			-- 	},
+			-- })
 
-			require("mini.pick").setup({
-				window = {
-					config = {
-						border = "rounded",
-						height = math.floor(0.30 * vim.o.lines),
-						width = math.floor(0.35 * vim.o.columns),
-					},
-					prompt_prefix = "|>...",
-				},
-				mappings = {
-					scroll_up = "<S-Up>",
-					scroll_down = "<S-Down>",
-					scroll_left = "<S-Left>",
-					scroll_right = "<S-Right>",
-					toggle_info = "<S-tab>",
-					toggle_preview = "<tab>",
-				},
-			})
-
-			vim.ui.select = MiniPick.ui_select
-			MiniPick.registry.colorschemes = function()
-				local colorschemes = vim.fn.getcompletion("", "color")
-				return MiniPick.start({
-					source = {
-						items = colorschemes,
-						choose = function(item)
-							vim.cmd("colorscheme " .. item)
-						end,
-					},
-				})
-			end
+			-- vim.ui.select = MiniPick.ui_select
+			-- MiniPick.registry.colorschemes = function()
+			-- 	local colorschemes = vim.fn.getcompletion("", "color")
+			-- 	return MiniPick.start({
+			-- 		source = {
+			-- 			items = colorschemes,
+			-- 			choose = function(item)
+			-- 				vim.cmd("colorscheme " .. item)
+			-- 			end,
+			-- 		},
+			-- 	})
+			-- end
 		end,
 	},
 }
