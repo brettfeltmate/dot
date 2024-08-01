@@ -100,20 +100,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.files",
-		config = function()
-			require("mini.files").setup({
-				windows = {
-					max_number = 2,
-					preview = true,
-					width_focus = 20,
-					width_preview = 40,
-				},
-				options = { use_as_default_explorer = true },
-			})
-		end,
-	},
-	{
 		"echasnovski/mini.icons",
 		config = function()
 			require("mini.icons").setup()
@@ -135,41 +121,6 @@ return {
 		"echasnovski/mini.pairs",
 		config = function()
 			require("mini.pairs").setup()
-		end,
-	},
-	{
-		"echasnovski/mini.pick",
-		config = function()
-			require("mini.pick").setup({
-				window = {
-					config = {
-						border = "rounded",
-						height = math.floor(0.30 * vim.o.lines),
-						width = math.floor(0.35 * vim.o.columns),
-					},
-					prompt_prefix = "|>...",
-				},
-				mappings = {
-					scroll_up = "<S-Up>",
-					scroll_down = "<S-Down>",
-					scroll_left = "<S-Left>",
-					scroll_right = "<S-Right>",
-					toggle_info = "<S-tab>",
-					toggle_preview = "<tab>",
-				},
-			})
-			vim.ui.select = MiniPick.ui_select
-			MiniPick.registry.colorschemes = function()
-				local colorschemes = vim.fn.getcompletion("", "color")
-				return MiniPick.start({
-					source = {
-						items = colorschemes,
-						choose = function(item)
-							vim.cmd("colorscheme " .. item)
-						end,
-					},
-				})
-			end
 		end,
 	},
 	{

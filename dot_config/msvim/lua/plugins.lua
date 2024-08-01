@@ -14,6 +14,8 @@ require("lazy").setup({
 	require("plugins.lint"),
 
 	require("plugins.smart-splits"),
+	require("plugins.oil"),
+	require("plugins.fzf-lua"),
 
 	require("plugins.bullets"),
 	require("plugins.cmdline"),
@@ -29,7 +31,6 @@ require("lazy").setup({
 	require("plugins.modes"),
 	require("plugins.preservim"),
 	require("plugins.tpope"),
-	require("plugins.typewriter"),
 	require("plugins.yanky"),
 	require("plugins.zen-mode"),
 })
