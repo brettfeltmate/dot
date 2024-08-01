@@ -64,5 +64,5 @@ x86() {
 }
 
 batman() {
-    man "$@" | col -b | bat -1 man -p
+    man "$@" | col -b | bat -l man -p
 }

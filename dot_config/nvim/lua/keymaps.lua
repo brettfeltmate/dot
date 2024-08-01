@@ -112,8 +112,8 @@ nmap(L("s."), C("lua require('fzf-lua').resume()"), "Resume")
 nmap(L("so"), C("lua require('fzf-lua').oldfiles()"), "Old files")
 nmap(L("sj"), C("lua require('fzf-lua').jumps()"), "Jumps")
 nmap(L("sr"), C("lua require('fzf-lua').registers()"), "Registers")
-nmap(L("sc"), C("lua require('fzf-lua').changes()"), "Changes")
 nmap(L("sq"), C("lua require('fzf-lua').quickfix()"), "Quickfix")
+nmap(L("sc"), C("lua require('fzf-lua').changes()"), "Changes")
 nmap(L("sw"), C("lua require('fzf-lua').grep_cword()"), "Word")
 nmap(L("sW"), C("lua require('fzf-lua').grep_cWORD()"), "WORD")
 
@@ -121,6 +121,7 @@ nmap(L("gf"), C("lua require('fzf-lua').git_files()"), "Files")
 nmap(L("gs"), C("lua require('fzf-lua').git_status()"), "Status")
 nmap(L("gp"), C("lua require('fzf-lua').git_commits()"), "Commits (proj)")
 nmap(L("gb"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
+nmap(L("gl"), C("LazyGit"), "LazyGit")
 
 -- [,] convience mappings
 nmap(L(",b"), C("quitall!"), "bail out")

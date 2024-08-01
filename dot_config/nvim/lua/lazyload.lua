@@ -62,5 +62,9 @@ require("lazy").setup({
 	require("plugins.writing"),
 
 	require("plugins.aerial"),
+
+	require("plugins.barbecue"),
+
+	require("plugins.lazygit"),
 })
 -- vim: ts=2 sts=2 sw=2 et
