@@ -4,7 +4,8 @@ return {
 	-- Optional dependencies
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
-		"echasnovski/mini.icons",
+		"nvim_tree/nvim-web-devicons",
+		-- "echasnovski/mini.icons",
 	},
 	config = function()
 		require("aerial").setup({})

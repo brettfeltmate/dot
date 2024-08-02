@@ -14,6 +14,7 @@ return {
 				"regex",
 				"rust",
 				"stan",
+				"tmux",
 				"vim",
 				"vimdoc",
 			},

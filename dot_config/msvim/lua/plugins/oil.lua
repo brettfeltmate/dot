@@ -7,6 +7,7 @@ return {
 			keymaps = {
 				["<bs>"] = "actions.parent",
 				["?"] = "actions.show_help",
+				["q"] = "actions.close",
 				["<C-v>"] = {
 					"actions.select",
 					opts = { vertical = true },

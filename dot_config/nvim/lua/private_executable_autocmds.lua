@@ -24,6 +24,10 @@ local autocmds = {
 		{ "TermOpen", "*", 'if &buftype == "terminal" | :startinsert | endif' },
 		{ "BufLeave", "*", "if &buftype == 'terminal' | :stopinsert  | endif" },
 	},
+	gopass = {
+		{ "BufNewFile", "/dev/shm/gopass*", "setlocal noswapfile nobackup noundofile shada=''" },
+		{ "BufRead", "/dev/shm/gopass*", "setlocal noswapfile nobackup noundofile shada=''" },
+	},
 }
 
 nvim_create_augroups(autocmds)

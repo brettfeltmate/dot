@@ -66,5 +66,9 @@ require("lazy").setup({
 	require("plugins.barbecue"),
 
 	require("plugins.lazygit"),
+
+	require("plugins.zen-mode"),
+
+	require("plugins.btw"),
 })
 -- vim: ts=2 sts=2 sw=2 et

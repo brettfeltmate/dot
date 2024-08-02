@@ -35,7 +35,7 @@ alias ib='PATH=/usr/local/bin' # has yet to be needed
 alias rig86="rig switch 4.4-x86_64"  # toggling global R version
 alias rig64="rig switch 4.4-arm64"
 
-alias act="source venv/bin/activate"
+alias act="source .venv/bin/activate"
 alias dact="deactivate"
 
 alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"

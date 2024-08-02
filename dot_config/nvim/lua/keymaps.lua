@@ -68,7 +68,7 @@ nmap(L("bg"), C("GrugFar"), "Search & Replace")
 nmap(L("bs"), C("lua require('fzf-lua').blines()"), "Lines (open)")
 nmap(L("bS"), C("lua require('fzf-lua').lines()"), "Lines (curr)")
 nmap(L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
-nmap(L("b/"), C("lua require('fzf-lua').lgrep_curbuf"), "Grep")
+nmap(L("b/"), C("lua require('fzf-lua').lgrep_curbuf()"), "Grep")
 nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
 nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
@@ -80,16 +80,17 @@ nmap(
 	),
 	"Actions"
 )
-nmap(L("ld"), C("lua require('fzf-lua').lsp_document_diagnostics()"), "Diagnostics (doc)")
-nmap(L("lD"), C("lua require('fzf-lua').lsp_workspace_diagnostics()"), "Diagnostics (proj)")
-nmap(L("lf"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
-nmap(L("lF"), C("lua require('fzf-lua').lsp_finder()"), "Finder")
-nmap(L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
-nmap(L("lu"), C("lua require('fzf-lua').lsp_implementations()"), "Implementations")
-nmap(L("ls"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
-nmap(L("lS"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
+nmap(L("lx"), C("lua require('fzf-lua').lsp_document_diagnostics()"), "Diagnostics (doc)")
+nmap(L("lX"), C("lua require('fzf-lua').lsp_workspace_diagnostics()"), "Diagnostics (proj)")
+nmap(L("lf"), C("lua require('fzf-lua').lsp_finder()"), "Ref's, Def's, & Impl's")
+-- nmap(L("lf"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
+-- nmap(L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
+-- nmap(L("lu"), C("lua require('fzf-lua').lsp_implementations()"), "Implementations")
+nmap(L("ld"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
+nmap(L("lw"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
 nmap(L("li"), C("lua require('fzf-lua').lsp_incoming_calls()"), "Incoming calls")
 nmap(L("lo"), C("lua require('fzf-lua').lsp_outgoing_calls()"), "Outgoing calls")
+nmap(L("lr"), C("lua vim.lsp.buf.rename()"), "Rename Symbol")
 
 -- [M]olten
 -- nmap(L("mi"), C("MoltenInit"), "Init")
@@ -145,6 +146,7 @@ nmap(L(",f"), C("lua require('oil').toggle_float()"), "browse files")
 nmap(L(",,"), C("lua require('FTerm').toggle()"), "toggle terminal")
 nmap(L(",t"), C("lua MiniTrailspace.trim()"), "trim whitespace")
 tmap(L(",,"), "<C-\\><C-n><cmd>lua require('FTerm').toggle()<cr>", "toggle terminal")
+nmap(L(",z"), C("ZenMode"), "zenmode")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
