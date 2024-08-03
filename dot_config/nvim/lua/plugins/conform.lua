@@ -1,7 +1,7 @@
 return {
 	{ -- Autoformat
 		"stevearc/conform.nvim",
-		event = "BufEnter",
+		event = "InsertEnter",
 		opts = {
 			notify_on_error = true,
 			format_on_save = function(bufnr)
@@ -10,14 +10,23 @@ return {
 				-- languages here or re-enable it for the disabled ones.
 				local disable_filetypes = { c = true, cpp = true, r = true }
 				return {
-					timeout_ms = 5000,
+					timeout_ms = 3000,
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],
 				}
 			end,
+			formatters = {
+				rprettify = {
+					inherit = false,
+					stdin = false,
+					command = "/Users/brettfeltmate/.config/R/rprettify",
+					args = { "$FILENAME" },
+				},
+			},
 			formatters_by_ft = {
 				lua = { "stylua" },
 				python = { "blue" },
-				r = { "styler" },
+				r = { "rprettify" },
+				rmd = { "rprettify" },
 			},
 		},
 	},

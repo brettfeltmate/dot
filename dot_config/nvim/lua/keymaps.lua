@@ -50,7 +50,7 @@ tmap("<C-Down>", "<C-\\><C-N><C-Down>", "Down")
 tmap("<C-Right>", "<C-\\><C-N><C-Right>", "Right")
 
 -- Flash.nvim
-map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
+map({ "n", "x", "o" }, ",", C("lua require('flash').jump()"))
 
 vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
@@ -71,6 +71,32 @@ nmap(L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
 nmap(L("b/"), C("lua require('fzf-lua').lgrep_curbuf()"), "Grep")
 nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
 nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
+
+-- | [C]hat
+nmap(L("cn"), C("PrtChatNew"), "New")
+imap(L("cn"), C("PrtChatNew"), "New")
+nmap(L("c "), C("PrtChatToggle"), "Toggle")
+imap(L("c "), C("PrtChatToggle"), "Toggle")
+vmap(L("c "), C("PrtChatToggle"), "Toggle")
+nmap(L("cf"), C("PrtChatFinder"), "Find")
+nmap(L("cr"), C("PrtRewrite"), "Rewrite")
+imap(L("cr"), C("PrtRewrite"), "Rewrite")
+vmap(L("cr"), C("'<,'>PrtRewrite"), "Rewrite")
+nmap(L("ca"), C("PrtAppend"), "Append")
+imap(L("ca"), C("PrtAppend"), "Append")
+vmap(L("ca"), C("'<,'>PrtAppend"), "Append")
+nmap(L("cp"), C("PrtPrepend"), "Prepend")
+imap(L("cp"), C("PrtPrepend"), "Prepend")
+vmap(L("cp"), C("'<,'>PrtPrepend"), "Prepend")
+nmap(L("cs"), C("PrtStop"), "Stop")
+imap(L("cs"), C("PrtStop"), "Stop")
+vmap(L("cs"), C("PrtStop"), "Stop")
+nmap(L("cc"), C("PrtComplete"), "Complete")
+imap(L("cc"), C("PrtComplete"), "Complete")
+vmap(L("cc"), C("'<,'>PrtComplete"), "Complete")
+nmap(L("cx"), C("PrtContext"), "Context")
+nmap(L("ck"), C("PrtAsk"), "Ask")
+nmap(L("cA"), C("PrtAgent"), "Agent")
 
 -- | [L]SP
 nmap(

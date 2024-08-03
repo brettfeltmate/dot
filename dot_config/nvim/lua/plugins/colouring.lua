@@ -8,13 +8,20 @@ return {
 	},
 	{
 		"uga-rosa/ccc.nvim",
-		event = "BufRead",
+		lazy = false,
 		config = function()
 			require("ccc").setup({
 				auto_enable = true,
 				lsp = true,
 				highlight_mode = "virtual",
 			})
+		end,
+	},
+	{
+		"brenoprata10/nvim-highlight-colors",
+		lazy = false,
+		config = function()
+			require("nvim-highlight-colors").setup()
 		end,
 	},
 	{

@@ -42,3 +42,4 @@ test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2
 # completion sources
 source "$HOME/.config/zsh/cmp-sources/cmp-glow.zsh"
 source "$HOME/.config/zsh/cmp-sources/fzf.zsh"
+source "$HOME/.config/zsh/keys.zsh"

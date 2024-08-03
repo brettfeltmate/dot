@@ -86,6 +86,8 @@ return {
 					{ mode = "n", keys = "<leader>p", desc = "Possession" },
 					{ mode = "n", keys = "<leader>l", desc = "Lsp" },
 					{ mode = "n", keys = "<leader>g", desc = "Git" },
+					{ mode = "n", keys = "<leader>c", desc = "Chat" },
+					{ mode = "v", keys = "<leader>c", desc = "Chat" },
 					-- { mode = "n", keys = "<leader>m", desc = "Molten" },
 					-- { mode = "v", keys = "<leader>m", desc = "Molten" },
 					{ mode = "n", keys = "<leader>r", desc = "Repl" },

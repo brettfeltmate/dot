@@ -68,16 +68,6 @@ local config = {
 	unix_domains = {
 		{ name = "unix" },
 	},
-	launch_menu = {
-		{
-			label = "CaMP MacMini",
-			args = {
-				"/opt/homebrew/bin/mosh",
-				"--server=/opt/homebrew/bin/mosh-server",
-				"cogmotorlab@tbd51.wpa.dal.ca",
-			},
-		},
-	},
 	enable_kitty_graphics = true,
 	color_scheme_dirs = { "~/.config/wezterm/color_schemes" },
 	color_scheme = "Ashes (base16)",

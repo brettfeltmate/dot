@@ -70,5 +70,9 @@ require("lazy").setup({
 	require("plugins.zen-mode"),
 
 	require("plugins.btw"),
+
+	require("plugins.surround"),
+
+	require("plugins.parrot"),
 })
 -- vim: ts=2 sts=2 sw=2 et

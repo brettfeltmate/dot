@@ -19,12 +19,11 @@ Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
 if(interactive()){
 
-    if (require("plotcli")) {
-        library(plotcli)
+    if (require("plotcli", quietly = TRUE)
+        library(plotcli, quietly = TRUE)
     }
 
-
-    if (require("colorout")) {
+    if (require("colorout", quietly = TRUE)) {
       colorout::setOutputColors256(
         normal=229,
         number=151,

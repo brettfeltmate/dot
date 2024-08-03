@@ -1,6 +1,6 @@
 return {
 	"vigemus/iron.nvim",
-	event = "BufWinEnter",
+	event = "VeryLazy",
 	config = function()
 		local fts = require("iron.fts")
 		local iron = require("iron.core")
