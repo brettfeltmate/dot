@@ -1,8 +1,8 @@
 return {
 	"xvzc/chezmoi.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "ibhagwan/fzf-lua" },
-	event = "BufWinEnter",
-	-- lazy = true,
+	dependencies = { "nvim-lua/plenary.nvim" },
+	lazy = true,
+	cmd = "ChezFzf",
 	config = function()
 		require("chezmoi").setup({})
 		Fzf_Chezmoi = function()

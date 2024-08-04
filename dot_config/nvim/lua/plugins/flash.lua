@@ -1,6 +1,6 @@
 return {
 	"folke/flash.nvim",
-	event = "BufWinEnter",
+	lazy = true,
 	config = function()
 		require("flash").setup({
 			label = {

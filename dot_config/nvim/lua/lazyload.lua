@@ -19,21 +19,15 @@ require("lazy").setup({
 
 	require("plugins.conform"),
 
-	require("plugins.copilot"),
-
 	require("plugins.cmp"),
 
-	require("plugins.lint"),
+	-- require("plugins.lint"),
 
 	require("plugins.oil"),
-
-	require("plugins.mini"),
 
 	require("plugins.fzf-lua"),
 
 	require("plugins.flash"),
-
-	require("plugins.grug-far"),
 
 	require("plugins.iron"),
 
@@ -43,11 +37,11 @@ require("lazy").setup({
 
 	require("plugins.marks"),
 
-	-- require("plugins.image-nvim"),
+	require("plugins.image-nvim"),
+
+  require("plugins.mini"),
 
 	-- require("plugins.molten"),
-
-	require("plugins.fterm"),
 
 	require("plugins.chezmoi"),
 
@@ -59,20 +53,15 @@ require("lazy").setup({
 
 	require("plugins.hardtime"),
 
-	require("plugins.writing"),
-
 	require("plugins.aerial"),
 
-	require("plugins.barbecue"),
-
 	require("plugins.lazygit"),
-
-	require("plugins.zen-mode"),
 
 	require("plugins.btw"),
 
 	require("plugins.surround"),
 
 	require("plugins.parrot"),
+
 })
 -- vim: ts=2 sts=2 sw=2 et

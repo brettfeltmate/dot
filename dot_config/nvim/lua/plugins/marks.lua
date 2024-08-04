@@ -1,6 +1,6 @@
 return {
 	"chentoast/marks.nvim",
-	event = "BufWinEnter",
+	event = "InsertEnter",
 	config = function()
 		require("marks").setup({})
 	end,

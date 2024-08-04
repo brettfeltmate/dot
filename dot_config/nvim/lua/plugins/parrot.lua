@@ -1,5 +1,5 @@
 return {
-	event = "VeryLazy",
+	event = "InsertEnter",
 	"frankroeder/parrot.nvim",
 	tag = "v0.3.9",
 	dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
@@ -8,7 +8,7 @@ return {
 			providers = {
 				openai = { api_key = os.getenv("OPENAI_API_KEY") },
 			},
-			toggle_target = "popup",
+			toggle_target = "vsplit",
 			hooks = {
 				Complete = function(prt, params)
 					local template = [[

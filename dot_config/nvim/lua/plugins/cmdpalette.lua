@@ -1,6 +1,6 @@
 return {
 	"hachy/cmdpalette.nvim",
-	lazy = false,
+	event = "VeryLazy",
 	config = function()
 		require("cmdpalette").setup({
 			win = {

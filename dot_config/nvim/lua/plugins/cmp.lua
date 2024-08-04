@@ -1,16 +1,28 @@
 return {
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
+	  event = "InsertEnter",
 		dependencies = {
 			-- additional deps for completion sources
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
-			{ "R-nvim/cmp-r", dependences = "R-nvim/R.nvim" },
+			{
+				"R-nvim/cmp-r",
+				dependences = "R-nvim/R.nvim",
+			},
+			{
+				"zbirenbaum/copilot.lua",
+				cmd = "Copilot",
+				config = function()
+					require("copilot").setup({
+						suggestion = { enabled = false },
+						panel = { enabled = false },
+					})
+				end,
+			},
 			{
 				"zbirenbaum/copilot-cmp",
-				dependencies = "copilot.lua",
 				config = function()
 					require("copilot_cmp").setup()
 				end,

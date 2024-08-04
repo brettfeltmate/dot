@@ -1,7 +1,7 @@
 return {
 	"gbprod/yanky.nvim",
 	recommended = true,
-	event = "BufWinEnter",
+	event = "InsertEnter",
 	config = function()
 		require("yanky").setup({
 			picker = {

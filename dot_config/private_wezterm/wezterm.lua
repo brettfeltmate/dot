@@ -117,6 +117,7 @@ local config = {
 		{ key = "Y", mods = "CTRL|SHIFT", action = act.CopyTo("Clipboard") },
 		{ key = "P", mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
 		{ key = ",", mods = "LEADER", action = act.ActivateCommandPalette },
+		{ key = "Enter", mods = "LEADER", action = act.SendString("\n") },
 		-- Attach to muxer
 		{
 			key = "a",

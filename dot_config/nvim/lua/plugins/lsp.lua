@@ -1,7 +1,7 @@
 -- LSP Configuration & Plugins
 return {
 	{
-		event = "BufReadPre",
+		event = "InsertEnter",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -11,10 +11,11 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
-			{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
+			-- { "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 
 			{ -- completion, annotations and signatures of Neovim apis
 				"folke/neodev.nvim",
+				lazy = true,
 				opts = {
 					library = {
 						plugins = false,
@@ -89,6 +90,8 @@ return {
 				"clangd",
 				"basedpyright",
 				"blue",
+				"markdownlint",
+				"markdownlint-cli2",
 				"marksman",
 				"matlab_ls",
 				"prettier",
@@ -109,18 +112,8 @@ return {
 			})
 		end,
 	},
-	{ -- NOTE: disabled for not playing nice with plugins below
+	{ -- Annoying as fuck
 		vim.diagnostic.config({ virtual_text = false }),
-	},
-	{ -- minimal & pleasent in-line rendering of LSP supplied diagnostic info
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("tiny-inline-diagnostic").setup({
-				hi = { error = "DiagnosticsWarn" },
-				break_line = { enable = true, after = 50 },
-			})
-		end,
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et
