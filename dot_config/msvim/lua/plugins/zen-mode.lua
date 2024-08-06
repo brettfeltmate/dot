@@ -4,10 +4,12 @@ return {
 	config = function()
 		require("zen-mode").setup({
 			window = {
-				width = 0.7,
-				signcolum = "no",
-				number = false,
-				relativenumber = false,
+				width = 120,
+				options = {
+					signcolumn = "no",
+					number = false,
+					relativenumber = false,
+				},
 			},
 			plugins = {
 				twilight = { enabled = false },

@@ -1,12 +1,28 @@
+if [[ $(arch) == i386 ]]; then
+    path+=('/usr/local/bin/brew')
+    path+=("$HOME/.pyenv-i386/shims")
+    eval "$(/usr/local/bin/brew shellenv)"
+    export PYENV_ROOT="$HOME/.pyenv-i386"
+else
+    path=('/opt/homebrew/bin' $path)
+    path+=("$HOME/.pyenv/shims/")
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PYENV_ROOT="$HOME/.pyenv"
+fi
+export PATH
+export BAT_THEME="base16-256"
+# something to do with imagemagick + brew + nvim
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
+
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
-
 
 # plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
@@ -18,22 +34,9 @@ plug "zsh-users/zsh-history-substring-search"
 # Load modules
 plug "$HOME/.config/zsh/aliases.zsh"
 plug "$HOME/.config/zsh/functions.zsh"
-plug "$HOME/.config/zsh/exports.zsh"
 
-# eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/uew.omp.json)"
-# eval "$(oh-my-posh init zsh --config ~/.config/zsh/omp-themes/.mytheme.omp.json)"
 eval "$(thefuck --alias)"
 eval "$(starship init zsh)"
-# export LS_COLORS="$(vivid generate jellybeans)"
-
-
-if [[ $(arch) == i386 ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-    export PYENV_ROOT="$HOME/.pyenv-i386"
-else
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    export PYENV_ROOT="$HOME/.pyenv"
-fi
 
 source <(fzf --zsh)
 

@@ -28,6 +28,9 @@ local autocmds = {
 		{ "BufNewFile", "/dev/shm/gopass*", "setlocal noswapfile nobackup noundofile shada=''" },
 		{ "BufRead", "/dev/shm/gopass*", "setlocal noswapfile nobackup noundofile shada=''" },
 	},
+	winsplits = {
+		{ "BufWinEnter", "*", 'if &buftype == "help" | :wincmd L | endif' },
+	},
 }
 
 nvim_create_augroups(autocmds)

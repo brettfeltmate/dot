@@ -126,7 +126,7 @@ nmap(L("sy"), C("YankyRingHistory"), "yanks")
 nmap(L("s/"), C("lua require('fzf-lua').live_grep()"), "Live Grep")
 nmap(L("sh"), C("lua require('fzf-lua').helptags()"), "Help tags")
 nmap(L("sf"), C("lua require('fzf-lua').files()"), "Files (.)")
-nmap(L("sf"), C("lua require('fzf-lua').files({ cwd = '~/'})"), "Files (~)")
+nmap(L("sF"), C("lua require('fzf-lua').files({ cwd = '~/'})"), "Files (~)")
 nmap(L("sC"), C("lua require('fzf-lua').files({ cwd = '~/.config/'})"), "Files (cfg)")
 nmap(L("sm"), C("lua require('fzf-lua').manpages()"), "Manpages")
 nmap(L("s."), C("lua require('fzf-lua').resume()"), "Resume")
@@ -154,7 +154,8 @@ nmap(L(",s"), C("w"), "Save")
 nmap(L(",a"), C("wa!"), "Save (all)")
 nmap(L(",f"), C("lua require('oil').toggle_float()"), "Files")
 nmap(L(",t"), C("lua MiniTrailspace.trim()"), "Trim whitespace")
-nmap(L(",;"), C("term"), "Terminal")
+nmap(L(", "), C("term"), "Terminal")
+nmap(L(" "), C("lua require('snipe').open_buffer_menu()"), "Buffers")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require

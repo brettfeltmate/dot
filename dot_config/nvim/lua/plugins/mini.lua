@@ -1,34 +1,34 @@
 return {
 	{ -- Collection of various small independent plugins/modules
 		"echasnovski/mini.nvim",
-		-- event = "UIEnter",
+		event = "UIEnter",
 		config = function()
 			require("mini.align").setup()
 			require("mini.basics").setup()
-			require("mini.bracketed").setup()
+			-- require("mini.bracketed").setup()
 			require("mini.bufremove").setup()
 			require("mini.comment").setup()
-			require("mini.extra").setup()
+			-- require("mini.extra").setup()
 			require("mini.icons").setup()
 			require("mini.indentscope").setup()
-			require("mini.misc").setup()
+			-- require("mini.misc").setup()
 			require("mini.move").setup()
-			require("mini.notify").setup()
+			-- require("mini.notify").setup()
 			require("mini.pairs").setup()
 			require("mini.statusline").setup()
 			require("mini.trailspace").setup()
 
-			local extras = require("mini.extra")
+			-- local extras = require("mini.extra")
 
 			require("mini.ai").setup({
-				n_lines = 500,
-				custom_textobjects = {
-					B = extras.gen_ai_spec.buffer(),
-					D = extras.gen_ai_spec.diagnostic(),
-					I = extras.gen_ai_spec.indent(),
-					L = extras.gen_ai_spec.line(),
-					N = extras.gen_ai_spec.number(),
-				},
+				-- n_lines = 500,
+				-- custom_textobjects = {
+				-- 	B = extras.gen_ai_spec.buffer(),
+				-- 	D = extras.gen_ai_spec.diagnostic(),
+				-- 	I = extras.gen_ai_spec.indent(),
+				-- 	L = extras.gen_ai_spec.line(),
+				-- 	N = extras.gen_ai_spec.number(),
+				-- },
 			})
 
 			local clue = require("mini.clue")
@@ -84,7 +84,6 @@ return {
 					-- Enhance this by adding descriptions for <Leader> mapping groups
 					{ mode = "n", keys = "<leader>b", desc = "Buffer" },
 					{ mode = "n", keys = "<leader>s", desc = "Search" },
-					{ mode = "n", keys = "<leader>p", desc = "Possession" },
 					{ mode = "n", keys = "<leader>l", desc = "Lsp" },
 					{ mode = "n", keys = "<leader>g", desc = "Git" },
 					-- { mode = "n", keys = "<leader>m", desc = "Molten" },

@@ -19,7 +19,7 @@ Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
 if(interactive()){
 
-    if (require("plotcli", quietly = TRUE)
+    if (require("plotcli", quietly = TRUE)) {
         library(plotcli, quietly = TRUE)
     }
 

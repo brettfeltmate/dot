@@ -5,6 +5,7 @@ return {
 		require("flash").setup({
 			label = {
 				rainbow = { enabled = false },
+				style = "inline",
 			},
 			highlight = { backdrop = true },
 		})

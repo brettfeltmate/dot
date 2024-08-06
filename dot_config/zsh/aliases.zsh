@@ -40,3 +40,26 @@ alias dact="deactivate"
 
 alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"
 alias moshmini="brosh cogmotorlab@tbd51.wpa.dal.ca"
+
+# pipe setout to nvim
+alias -g W='| nvim -c "setlocal buftype=nofile bufhidden=wipe" -c "nnoremap <buffer> q :q!<CR>" -'
+# open last eedited file
+alias L='nvim -c "normal '\''0"'
+# fuzzy find file with preview
+alias pf="fzf --bind ctrl-y:preview-up,ctrl-e:preview-down \
+              --bind ctrl-b:preview-page-up,ctrl-f:preview-page-down \
+              --bind ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down \
+              --bind ctrl-k:up,ctrl-j:down \
+              --preview='(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null'"
+# open file with fzf
+alias viz="for file in \`pf\`; do cmd=\"vim \$file\" && print -rs -- \$cmd && eval \$cmd; done"
+
+# FZF
+# alias czf="fzf --color='bg:#4B4B4B,bg+:#3F3F3F,info:#BDBB72,border:#6B6B6B,spinner:#98BC99' \
+#     ╎          --color='hl:#719872,fg:#D9D9D9,header:#719872,fg+:#D9D9D9' \
+#     ╎          --color='pointer:#E12672,marker:#E17899,prompt:#98BEDE,hl+:#98BC99'"
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+# export FZF_DEFAULT_OPTS="--preview --layout=reverse --border --prompt='🔍 '"
+# export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"
+# Using highlight (http://www.andre-simon.de/doku/highlight/en/highlight.html)
+export FZF_CTRL_T_OPTS="--preview '(highlight -O ansi -l {} 2> /dev/null || cat {} || tree -C {}) 2> /dev/null | head -200'"

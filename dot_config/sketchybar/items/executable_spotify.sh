@@ -61,16 +61,16 @@ spotify_album=(
 spotify_state=(
   icon.drawing=on
   icon.font="$FONT:Thin:10.0"
-  icon.width=35
+  icon.width=30
   icon="00:00"
   label.drawing=on
   label.font="$FONT:Thin:10.0"
-  label.width=35
+  label.width=30
   label="00:00"
   padding_left=0
   padding_right=0
   y_offset=-12
-  width=50
+  width=30
   slider.background.height=6
   slider.background.corner_radius=1
   slider.background.color=$GREY
@@ -147,6 +147,7 @@ spotify_controls=(
   background.corner_radius=11
   background.drawing=on
   y_offset=-45
+  x_offset=-100
 )
 
 sketchybar --add event spotify_change $SPOTIFY_EVENT             \

@@ -4,8 +4,10 @@ return {
 	config = function()
 		require("flash").setup({
 			label = {
-				rainbow = { enabled = true, shade = 5 },
+				rainbow = { enabled = false },
+				style = "inline",
 			},
+			highlight = { backdrop = true },
 		})
 	end,
 }

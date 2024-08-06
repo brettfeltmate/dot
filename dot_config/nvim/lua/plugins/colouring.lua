@@ -1,7 +1,7 @@
 return {
 	{
 		"mvllow/modes.nvim",
-		event = "InsertEnter",
+		event = "UIEnter",
 		config = function()
 			require("modes").setup()
 		end,
@@ -20,5 +20,9 @@ return {
 		config = function()
 			require("nvim-highlight-colors").setup()
 		end,
+	},
+	{
+		"rktjmp/lush.nvim",
+		lazy = true,
 	},
 }

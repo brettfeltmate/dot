@@ -8,60 +8,77 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
+	},
 
-	require("plugins.smart-splits"),
-
-	require("plugins.treesitter"),
-
-	require("plugins.rainbow-delimiters"),
-
-	require("plugins.lsp"),
-
-	require("plugins.conform"),
-
-	require("plugins.cmp"),
-
-	-- require("plugins.lint"),
-
-	require("plugins.oil"),
-
-	require("plugins.fzf-lua"),
-
-	require("plugins.flash"),
-
-	require("plugins.iron"),
-
-	require("plugins.yanky"),
-
-	require("plugins.todo-comments"),
-
-	require("plugins.marks"),
-
-	require("plugins.image-nvim"),
-
-  require("plugins.mini"),
-
-	-- require("plugins.molten"),
-
-	require("plugins.chezmoi"),
-
-	require("plugins.colouring"),
-
-	require("plugins.markview"),
-
-	require("plugins.cmdpalette"),
-
-	require("plugins.hardtime"),
-
-	require("plugins.aerial"),
-
-	require("plugins.lazygit"),
-
-	require("plugins.btw"),
-
-	require("plugins.surround"),
-
-	require("plugins.parrot"),
-
+	spec = { { import = "plugins" } },
+	--
+	-- require("plugins.smart-splits"),
+	--
+	-- require("plugins.treesitter"),
+	--
+	-- require("plugins.rainbow-delimiters"),
+	--
+	-- require("plugins.lsp"),
+	--
+	-- require("plugins.conform"),
+	--
+	-- require("plugins.cmp"),
+	--
+	-- -- require("plugins.lint"),
+	--
+	-- require("plugins.oil"),
+	--
+	-- require("plugins.fzf-lua"),
+	--
+	-- require("plugins.flash"),
+	--
+	-- require("plugins.iron"),
+	--
+	-- require("plugins.yanky"),
+	--
+	-- require("plugins.todo-comments"),
+	--
+	-- require("plugins.marks"),
+	--
+	-- require("plugins.image-nvim"),
+	--
+	-- require("plugins.mini"),
+	--
+	-- -- require("plugins.molten"),
+	--
+	-- require("plugins.chezmoi"),
+	--
+	-- require("plugins.colouring"),
+	--
+	-- require("plugins.markview"),
+	--
+	-- require("plugins.cmdpalette"),
+	--
+	-- require("plugins.hardtime"),
+	--
+	-- require("plugins.aerial"),
+	--
+	-- require("plugins.lazygit"),
+	--
+	-- require("plugins.btw"),
+	--
+	-- require("plugins.surround"),
+	--
+	-- require("plugins.parrot"),
+	--
+	-- require("plugins.snipe"),
 })
 -- vim: ts=2 sts=2 sw=2 et
