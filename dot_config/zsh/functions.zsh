@@ -16,33 +16,6 @@ cfg() {
     fi
 }
 
-dir_in_path() {
-    local target_dir="$1"
-    local found = 1
-
-    IFS=':' read -ra dirs <<< "$PATH"
-    for dir in "${dirs[@]}"; do
-        if [[ "$dir" == "$target_dir" ]]; then
-            found=0
-            break
-        fi
-    done
-    return $found
-}
-
-on_path() {
-    local target_dir="$1"
-    if dir_in_path "$target_dir"; then
-        echo "$target_dir is in PATH"
-    else
-        echo "$target_dir not in PATH"
-    fi
-}
-
-xlsx_to_csv() {
-    fd '.xlsx' | xargs -I {} bash -c 'in={}; base=$(basename "$in" .xlsx); ssconvert -S --export-type=Gnumeric_stf:stf_csv "$in" "${base}_%s.csv"'
-}
-
 batch_xlsx_to_csv() {
     fd '.xlsx' | while read -r file; do
         base=$(basename "$file" .xlsx)
@@ -50,19 +23,10 @@ batch_xlsx_to_csv() {
     done
 }
 
-
 toggle_sbar() {
     if sketchybar --query bar | grep -q '"hidden": "on"'; then
         sketchybar --bar hidden=off;
     else
         sketchybar --bar hidden=on;
     fi
-}
-
-x86() {
-    $HOME/.config/zsh/shell-x86_64.sh
-}
-
-batman() {
-    man "$@" | col -b | bat -l man -p
 }

@@ -1,21 +1,5 @@
-if [[ $(arch) == i386 ]]; then
-    path+=('/usr/local/bin/brew')
-    path+=("$HOME/.pyenv-i386/shims")
-    eval "$(/usr/local/bin/brew shellenv)"
-    export PYENV_ROOT="$HOME/.pyenv-i386"
-else
-    path=('/opt/homebrew/bin' $path)
-    path+=("$HOME/.pyenv/shims/")
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    export PYENV_ROOT="$HOME/.pyenv"
-fi
-export PATH
-export BAT_THEME="base16-256"
-# something to do with imagemagick + brew + nvim
-export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
-
 # Created by Zap installer
-[ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
+[ -f "${XDG_DATA_HOME:-${ZDOTDIR}/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 # Autojump
 [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
@@ -24,25 +8,35 @@ export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 autoload -Uz compinit
 compinit
 
-# plug "zap-zsh/vim"
+# plugins
 plug "zap-zsh/fzf"
 plug "aloxaf/fzf-tab"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
 
-# Load modules
-plug "$HOME/.config/zsh/aliases.zsh"
-plug "$HOME/.config/zsh/functions.zsh"
+# ensure available
+path+=("$HOME/.cargo/bin/")
+path+=("/opt/homebrew/bin/mosh")
+path+=("/opt/homebrew/bin/mosh-server")
+path+=("/opt/homebrew/bin/mosh-client")
+export PATH
 
-eval "$(thefuck --alias)"
-eval "$(starship init zsh)"
+export BAT_THEME="base16-256"
+export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
-source <(fzf --zsh)
+# Don't think these are needed anymore...
+# export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
+# export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
 
 test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 
-# completion sources
-source "$HOME/.config/zsh/cmp-sources/cmp-glow.zsh"
-source "$HOME/.config/zsh/cmp-sources/fzf.zsh"
-source "$HOME/.config/zsh/keys.zsh"
+source <(fzf --zsh)
+
+source "${ZDOTDIR}/aliases.zsh"
+source "${ZDOTDIR}/functions.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
+source "${ZDOTDIR}/cmp-sources/fzf.zsh"
+source "${ZDOTDIR}/keys.zsh"
+
+eval "$(starship init zsh)"

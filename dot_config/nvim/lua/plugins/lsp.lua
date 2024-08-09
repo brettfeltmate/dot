@@ -115,5 +115,12 @@ return {
 	{ -- Annoying as fuck
 		vim.diagnostic.config({ virtual_text = false }),
 	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("tiny-inline-diagnostic").setup()
+		end,
+	},
 }
 -- vim: ts=2 sts=2 sw=2 et

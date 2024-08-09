@@ -50,21 +50,22 @@ local function split_nav(resize_or_move, key)
 end
 
 local colours = {
-	teal = "#44AA99",
+	teal = "#2e3c36",
 	lilac = "#67587f",
-	yellow = "#a19154",
+	yellow = "#a09e7d",
 	red = "#882255",
 	rose = "#7c516b",
 	grey = "#202020",
-	blue = "#2b2042",
-	green = "#5f6964",
+	blue = "#2a3f57",
+	green = "#2d3934",
 	purple = "#875EF0",
 	plack = "#433847",
 }
 
 local config = {
+	hide_tab_bar_if_only_one_tab = false,
 	use_fancy_tab_bar = false,
-	tab_bar_at_bottom = true,
+	tab_bar_at_bottom = false,
 	unix_domains = {
 		{ name = "unix" },
 	},
@@ -72,15 +73,21 @@ local config = {
 	color_scheme_dirs = { "~/.config/wezterm/color_schemes" },
 	-- color_scheme = "vimbones",
 	color_scheme = "Ashes (base16)",
+	colors = {
+		tab_bar = {
+			background = colours.plack,
+			active_tab = { bg_color = colours.plack },
+			inactive_tab = { bg_color = colours.plack },
+		},
+	},
 	font = wezterm.font("Maple Mono NF Semibold"),
 	font_size = 16,
 	line_height = 1.2,
 	window_decorations = "RESIZE",
 	window_padding = { left = 5, right = 0, top = 0, bottom = 0 },
-	window_background_opacity = 0.8,
-	text_background_opacity = 0.8,
+	window_background_opacity = 0.95,
+	text_background_opacity = 0.9,
 	adjust_window_size_when_changing_font_size = false,
-	hide_tab_bar_if_only_one_tab = true,
 	use_dead_keys = false,
 	scrollback_lines = 50000,
 	leader = { key = " ", mods = "CTRL", timeout_milliseconds = 2000 },
@@ -179,8 +186,10 @@ local config = {
 
 local bar = wezterm.plugin.require("https://github.com/adriankarlen/bar.wezterm")
 bar.apply_to_config(config, {
-	left_separator = "|>",
-	right_separator = "||",
+	position = "top",
+	left_separator = "|",
+	right_separator = "|",
+	ansi_colors = { active_tab = 8, inactive_tab = 1 },
 })
 
 return config

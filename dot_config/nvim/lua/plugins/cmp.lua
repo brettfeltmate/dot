@@ -1,7 +1,7 @@
 return {
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
-	  event = "InsertEnter",
+		event = "InsertEnter",
 		dependencies = {
 			-- additional deps for completion sources
 			"hrsh7th/cmp-nvim-lsp",
@@ -24,7 +24,7 @@ return {
 			{
 				"zbirenbaum/copilot-cmp",
 				config = function()
-					require("copilot_cmp").setup()
+					require("copilot_cmp").setup({ fix_pairs = false })
 				end,
 			},
 		},

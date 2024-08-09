@@ -6,6 +6,7 @@ vim.g.lazygit_config = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 vim.opt.swapfile = false
+vim.opt.cmdheight = 0
 vim.opt.backup = false
 vim.opt.number = true
 vim.opt.relativenumber = true

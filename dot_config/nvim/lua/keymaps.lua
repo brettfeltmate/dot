@@ -151,6 +151,7 @@ nmap(L(",e"), C("ChezFzf"), "EditMoi")
 nmap(L(",o"), C("AerialToggle"), "Aerial")
 nmap(L(",n"), C("AerialNavToggle"), "AerialNav")
 nmap(L(",s"), C("w"), "Save")
+nmap(L(",a"), C("ASToggle"), "Autosave")
 nmap(L(",a"), C("wa!"), "Save (all)")
 nmap(L(",f"), C("lua require('oil').toggle_float()"), "Files")
 nmap(L(",t"), C("lua MiniTrailspace.trim()"), "Trim whitespace")
@@ -223,7 +224,11 @@ nmap(L("wh"), C("vertical resize -5"), "shorter")
 nmap(L("ro"), C("IronRepl"), "Open")
 nmap(L("rr"), C("IronRestart"), "Restart")
 nmap(L("rf"), C("IronFocus"), "Focus")
-nmap(L("rg"), C("IronSend gg()"), "Send: gg()")
+nmap(
+	L("rg"),
+	C("IronSend ggplot2::ggsave( file = '~/.last_plot.png', width = 6, height = 6, units = 'in', dpi = 'retina')"),
+	"Save plot"
+)
 nmap(L("ri"), C("IronSend <C-c>"), "Send: interrupt")
 nmap(L("rc"), C("IronSend <C-l>"), "Send: clear")
 nmap(L("rh"), C("IronHide"), "Hide")
