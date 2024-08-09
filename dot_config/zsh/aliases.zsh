@@ -35,5 +35,5 @@ alias moshmini="brosh cogmotorlab@tbd51.wpa.dal.ca"
 
 
 # tmux
-alias con="sesh connect $(sesh list | fzf)"
-alias ses="sesh-sessions"
+# alias con="sesh connect $(sesh list | fzf)"
+# alias ses="sesh-sessions"
