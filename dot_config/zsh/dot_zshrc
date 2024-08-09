@@ -1,3 +1,7 @@
+# if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#   exec tmux
+# fi
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-${ZDOTDIR}/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -20,6 +24,14 @@ path+=("$HOME/.cargo/bin/")
 path+=("/opt/homebrew/bin/mosh")
 path+=("/opt/homebrew/bin/mosh-server")
 path+=("/opt/homebrew/bin/mosh-client")
+
+if [[ $(arch) == arm64 ]]; then
+    path+=("$HOME/.pyenv/shims")
+    export PYENV_ROOT="$HOME/.pyenv-i386"
+else
+    path+=("$HOME/.pyenv-i386/shims")
+    export PYENV_ROOT="$HOME/.pyenv"
+fi
 export PATH
 
 export BAT_THEME="base16-256"
@@ -40,3 +52,4 @@ source "${ZDOTDIR}/cmp-sources/fzf.zsh"
 source "${ZDOTDIR}/keys.zsh"
 
 eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"

@@ -63,7 +63,7 @@ local colours = {
 }
 
 local config = {
-	hide_tab_bar_if_only_one_tab = false,
+	hide_tab_bar_if_only_one_tab = true,
 	use_fancy_tab_bar = false,
 	tab_bar_at_bottom = false,
 	unix_domains = {
@@ -82,20 +82,20 @@ local config = {
 	},
 	font = wezterm.font("Maple Mono NF Semibold"),
 	font_size = 16,
-	line_height = 1.2,
+	line_height = 1.1,
 	window_decorations = "RESIZE",
 	window_padding = { left = 5, right = 0, top = 0, bottom = 0 },
-	window_background_opacity = 0.95,
-	text_background_opacity = 0.9,
+	window_background_opacity = 0.9,
+	text_background_opacity = 0.5,
 	adjust_window_size_when_changing_font_size = false,
 	use_dead_keys = false,
 	scrollback_lines = 50000,
-	leader = { key = " ", mods = "CTRL", timeout_milliseconds = 2000 },
+	leader = { key = ";", mods = "CTRL", timeout_milliseconds = 2000 },
 	keys = {
-		split_nav("move", "LeftArrow"),
-		split_nav("move", "RightArrow"),
-		split_nav("move", "UpArrow"),
-		split_nav("move", "DownArrow"),
+		-- split_nav("move", "LeftArrow"),
+		-- split_nav("move", "RightArrow"),
+		-- split_nav("move", "UpArrow"),
+		-- split_nav("move", "DownArrow"),
 		{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "|", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = false }) },
