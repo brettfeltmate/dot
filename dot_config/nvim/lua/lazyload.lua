@@ -8,6 +8,13 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
+	stats = {
+		real_cputime = true,
+	},
+	profiling = {
+		loader = true,
+		require = true,
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {

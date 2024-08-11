@@ -1,7 +1,7 @@
 return {
 	{
 		"mvllow/modes.nvim",
-		event = "UIEnter",
+        event = "InsertEnter",
 		config = function()
 			require("modes").setup()
 		end,

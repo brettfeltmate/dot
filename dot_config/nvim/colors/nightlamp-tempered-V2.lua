@@ -668,7 +668,7 @@ hi(0, "NoiceSplit", { bg = "#1f1f21", fg = "#d3c6af" })
 hi(0, "NoiceSplitBorder", { bg = "#282829", fg = "#4e444e" })
 hi(0, "NoiceVirtualText", { ctermfg = 4, fg = "#94c5b0" })
 hi(0, "NonText", { ctermfg = 12, fg = "#5d545e" })
-hi(0, "Normal", { bg = "#232326", fg = "#d3c6af" })
+hi(0, "Normal", { bg = "#262428", fg = "#cfc5b3" })
 hi(0, "NormalFloat", { bg = "#1f1f21", fg = "#d3c6af" })
 hi(0, "NormalNC", { bg = "#161619", fg = "#d3c6af" })
 hi(0, "NotifyDEBUGBorder", { fg = "#5d545e" })
@@ -767,7 +767,7 @@ hi(0, "Statement", { ctermfg = 11, fg = "#e6b8e3" })
 hi(0, "StatusLine", { bg = "#282829", fg = "#695e6b" })
 hi(0, "StatusLineNC", { bg = "#1f1f21", fg = "#5d545e" })
 hi(0, "StorageClass", { fg = "#e4cfac" })
-hi(0, "String", { fg = "#a7c5af", italic = true })
+hi(0, "String", { fg = "#aac7b2", italic = true })
 hi(0, "Structure", { fg = "#9db6d0" })
 hi(0, "Substitute", { bg = "#b4a48e", fg = "#423a45" })
 hi(0, "TabLine", { bg = "#1f1f21", ctermbg = 242, ctermfg = 15, fg = "#5d545e" })
@@ -1194,7 +1194,7 @@ g.terminal_color_4 = "#c99297"
 g.terminal_color_5 = "#8e9cb4"
 g.terminal_color_6 = "#7aacaa"
 g.terminal_color_7 = "#b8af9e"
-g.terminal_color_8 = "#3c3d43"
+g.terminal_color_8 = "#2b2c30"
 g.terminal_color_9 = "#7aacaa"
 g.terminal_color_10 = "#aad7a4"
 g.terminal_color_11 = "#edb882"

@@ -11,7 +11,7 @@ return {
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 
-			-- { "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
+			{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 
 			{ -- completion, annotations and signatures of Neovim apis
 				"folke/neodev.nvim",
@@ -58,7 +58,7 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 			local servers = {
 				clangd = {},
-				basedpyright = {},
+				pyright = {},
 				marksman = {},
 				matlab_ls = {},
 				r_language_server = {},
@@ -88,7 +88,7 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"clangd",
-				"basedpyright",
+				"pyright",
 				"blue",
 				"markdownlint",
 				"markdownlint-cli2",
@@ -97,6 +97,7 @@ return {
 				"prettier",
 				"r_language_server",
 				"rust_analyzer",
+				"lua_ls",
 				"stylua",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })

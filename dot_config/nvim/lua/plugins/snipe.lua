@@ -5,8 +5,8 @@ return {
 		require("snipe").setup({
 			ui = { position = "cursor" },
 			hints = { dictionary = "123456789" },
-			navigate = { under_cursor = "<BS>" },
-			sort = "last",
+			navigate = { under_cursor = "<Space>" },
+			sort = "default",
 		})
 	end,
 }

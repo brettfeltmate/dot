@@ -1,6 +1,5 @@
 return {
 	"hachy/cmdpalette.nvim",
-	event = "UIEnter",
 	config = function()
 		require("cmdpalette").setup({
 			win = {
@@ -11,5 +10,6 @@ return {
 				title_pos = "left",
 			},
 		})
+        vim.opt.cmdheight = 0
 	end,
 }
