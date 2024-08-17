@@ -11,7 +11,7 @@ return {
 				"html",
 				"lua",
 				"luadoc",
-				"mardown",
+				"markdown",
 				"markdown_inline",
 				"python",
 				"r",

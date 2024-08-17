@@ -1,40 +1,29 @@
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-${ZDOTDIR}/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-# Autojump
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-
 # Load and initialise completion system
 autoload -Uz compinit
 compinit
 
 # plugins
-plug "zap-zsh/fzf"
 plug "aloxaf/fzf-tab"
+plug "freed-wu/fzf-tab-source"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
-
-# ensure available
-path+=("$HOME/.cargo/bin/")
-path+=("/opt/homebrew/bin/mosh")
-path+=("/opt/homebrew/bin/mosh-server")
-path+=("/opt/homebrew/bin/mosh-client")
-path+=("/usr/local/bin/viu")
-path+=("/usr/local/bin/ueberzug")
-path+=("/usr/local/bin/chafa")
+plug "ael-code/zsh-colored-man-pages"
 
 # for the odd project with compatibility issues
 if [[ $(arch) == arm64 ]]; then
-    path+=("$HOME/.pyenv/shims")
+    export PATH="/$HOME/.pyenv/shims:$PATH"
     export PYENV_ROOT="$HOME/.pyenv"
 else
-    path+=("$HOME/.pyenv-i386/shims")
+    export PATH="/$HOME/.pyenv-i386/shims:$PATH"
     export PYENV_ROOT="$HOME/.pyenv-i386"
 fi
-export PATH
 
-export BAT_THEME="base16-256"
+
+export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 
 # Don't think these are needed anymore...
@@ -53,3 +42,17 @@ source "${ZDOTDIR}/keys.zsh"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# Directory history
+setopt extended_glob
+zstyle ':completion:*:directory-stack' list-colors '=(#b) #([0-9]#)*( *)==95=38;5;12'
+zstyle ':fzf-tab:*' fzf-command fzf
+zstyle ':completion:*:git-checkout:*' sort false
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:*' switch-group '<' '>'
+zstyle ':fzf-tab:*' popup-min-size 80 12
+
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+export LESSOPEN='|~/.config/shell/lessfilter.sh %s'

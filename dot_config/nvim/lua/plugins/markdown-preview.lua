@@ -2,15 +2,17 @@ local function OpenMarkdownPreview(url)
 	vim.fn.execute("silent ! open -a Firefox -n --args --new-window " .. url)
 end
 
+vim.g.mkdp_browserfunc = "OpenMarkdownPreview"
+
 return {
 	"iamcco/markdown-preview.nvim",
 	cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
 	ft = { "markdown" },
-	-- NOTE: Ensure yarn is installed
-	build = "cd app && yarn install",
+	build = function()
+		vim.fn["mkdp#util#install"]()
+	end,
 	init = function()
 		local g = vim.g
-		g.mkdp_browserfunc = "OpenMarkdownPreview"
 		g.mkdp_auto_start = 0
 		g.mkdp_auto_close = 1
 		g.mkdp_refresh_slow = 0

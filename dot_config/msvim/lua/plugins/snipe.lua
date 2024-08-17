@@ -4,9 +4,9 @@ return {
 	config = function()
 		require("snipe").setup({
 			ui = { position = "cursor" },
-			hints = { dictionary = "123456789" },
-			navigate = { under_cursor = "<cr>" },
-			sort = "default",
+			hints = { dictionary = "asdfweghiolcmp" },
+			navigate = { under_cursor = "<BS>" },
+			sort = "last",
 		})
 	end,
 }

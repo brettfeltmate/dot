@@ -8,7 +8,7 @@ return {
 			providers = {
 				openai = { api_key = os.getenv("OPENAI_API_KEY") },
 			},
-			toggle_target = "popup",
+			toggle_target = "vsplit",
 			hooks = {
 				Complete = function(prt, params)
 					local template = [[

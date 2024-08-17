@@ -1,7 +1,7 @@
 -- LSP Configuration & Plugins
 return {
 	{
-		event = "InsertEnter",
+		event = "UIEnter",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ -- Automatically install LSPs and related tools to stdpath for Neovim

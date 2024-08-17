@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("forestbones")
+vim.cmd.colorscheme("kanagawa-paper")
 
 -- Indentation
 vim.opt.smartindent = true
@@ -20,17 +20,16 @@ vim.opt.hlsearch = false
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.inccommand = "split"
 -- Appearance
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
-vim.opt.cmdheight = 1
 vim.opt.scrolloff = 10
 
 -- Behaviour
 vim.opt.mouse = "a"
-vim.opt.pumheight = 6  -- max completions shown at once
+vim.opt.pumheight = 6 -- max completions shown at once
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
 vim.opt.swapfile = false

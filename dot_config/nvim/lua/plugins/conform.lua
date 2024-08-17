@@ -1,7 +1,6 @@
 return {
 	{ -- Autoformat
 		"stevearc/conform.nvim",
-		event = "UIEnter",
 		opts = {
 			notify_on_error = true,
 			format_on_save = function(bufnr)

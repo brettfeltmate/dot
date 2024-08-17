@@ -78,10 +78,6 @@ return {
 				clues = {
 					{ mode = "n", keys = "<leader>t", desc = "Toggle" },
 					{ mode = "n", keys = "<leader>m", desc = "Markdown" },
-					-- { mode = "n", keys = "<leader>l", desc = "Limelight" },
-					-- { mode = "n", keys = "<leader>s", desc = "Search" },
-					-- { mode = "n", keys = "<leader>,", desc = "UI" },
-					-- { mode = "n", keys = "<leader>w", desc = "Window" },
 
 					clue.gen_clues.builtin_completion(),
 					clue.gen_clues.g(),
@@ -115,6 +111,7 @@ return {
 		"echasnovski/mini.notify",
 		config = function()
 			require("mini.notify").setup()
+			vim.notify = MiniNotify.make_notify()
 		end,
 	},
 	{

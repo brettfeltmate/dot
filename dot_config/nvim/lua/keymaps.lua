@@ -12,6 +12,10 @@ local nmap = function(...)
 	map("n", ...)
 end
 
+local xmap = function(...)
+	map("x", ...)
+end
+
 local vmap = function(...)
 	map("v", ...)
 end
@@ -51,6 +55,8 @@ tmap("<C-Right>", "<C-\\><C-N><C-Right>", "Right")
 
 -- Flash.nvim
 map({ "n", "x", "o" }, ",", C("lua require('flash').jump()"))
+-- Snipe buffers
+nmap("%", C("lua require('snipe').open_buffer_menu()"), "Snipe")
 
 vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
@@ -62,14 +68,17 @@ vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
 
 -- Leader mappings ==========================================================
 
+nmap(L(";"), "<Plug>SlimeParagraphSend", "Slime: send")
+xmap(L(";"), "<Plug>SlimeRegionSend", "Slime: send")
+
 -- | [B]uffer
-nmap(L("bd"), C("lua MiniBufremove.delete()"), "Delete")
+nmap(L("bd"), C("lua require('mini.bufremove').delete()"), "Delete")
 nmap(L("bs"), C("lua require('fzf-lua').blines()"), "Lines (open)")
 nmap(L("bS"), C("lua require('fzf-lua').lines()"), "Lines (curr)")
 nmap(L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
 nmap(L("b/"), C("lua require('fzf-lua').lgrep_curbuf()"), "Grep")
-nmap(L("bw"), C("lua MiniBufremove.wipeout()"), "Wipeout")
-nmap(L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
+nmap(L("bw"), C("lua require('mini.bufremove.wipeout()')"), "Wipeout")
+nmap(L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 
 -- | [C]hat
 map({ "n", "i", "v" }, L("ct"), C("PrtChatToggle"), "Toggle")
@@ -101,9 +110,6 @@ nmap(
 nmap(L("lx"), C("lua require('fzf-lua').lsp_document_diagnostics()"), "Diagnostics (doc)")
 nmap(L("lX"), C("lua require('fzf-lua').lsp_workspace_diagnostics()"), "Diagnostics (proj)")
 nmap(L("lf"), C("lua require('fzf-lua').lsp_finder()"), "Ref's, Def's, & Impl's")
--- nmap(L("lf"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
--- nmap(L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
--- nmap(L("lu"), C("lua require('fzf-lua').lsp_implementations()"), "Implementations")
 nmap(L("ld"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
 nmap(L("lw"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
 nmap(L("li"), C("lua require('fzf-lua').lsp_incoming_calls()"), "Incoming calls")
@@ -154,10 +160,11 @@ nmap(L(",s"), C("w"), "Save")
 nmap(L(",a"), C("ASToggle"), "Autosave")
 nmap(L(",a"), C("wa!"), "Save (all)")
 nmap(L(",f"), C("lua require('oil').toggle_float()"), "Files")
-nmap(L(",t"), C("lua MiniTrailspace.trim()"), "Trim whitespace")
+nmap(L(",t"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
 nmap(L(", "), C("term"), "Terminal")
-nmap(L(" "), C("lua require('snipe').open_buffer_menu()"), "Buffers")
-
+nmap(L(",m"), C("MarkdownPreviewToggle"), "Toggle Preview")
+nmap(L(",p"), C("PasteImage"), "Insert Image")
+nmap(L(",v"), "<Plug>SlimeConfig", "Slime: config")
 -- | [W]indows
 -- TODO: refactor functions as script and require
 local FlipSplit = function()
@@ -226,7 +233,7 @@ nmap(L("rr"), C("IronRestart"), "Restart")
 nmap(L("rf"), C("IronFocus"), "Focus")
 nmap(
 	L("rg"),
-	C("IronSend ggplot2::ggsave( file = '~/.last_plot.png', width = 6, height = 6, units = 'in', dpi = 'retina')"),
+	C("IronSend ggplot2::ggsave(file = '~/.last_plot.png', width = 6, height = 6, units = 'in', dpi = 200)"),
 	"Save plot"
 )
 nmap(L("ri"), C("IronSend <C-c>"), "Send: interrupt")

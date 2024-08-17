@@ -1180,9 +1180,6 @@ hi(0, "lualine_x_diff_removed_replace", { bg = "#2c2c2d", fg = "#e6b8e3" })
 hi(0, "lualine_x_diff_removed_terminal", { bg = "#2c2c2d", fg = "#e6b8e3" })
 hi(0, "lualine_x_diff_removed_visual", { bg = "#2c2c2d", fg = "#e6b8e3" })
 
--- | R language highlights
-hi(0, "variable.member.r", { fg = "#5c8473" })
-
 -- Terminal colors
 local g = vim.g
 

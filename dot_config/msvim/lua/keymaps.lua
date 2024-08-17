@@ -11,6 +11,7 @@ map("n", "H", "<cmd>lua MiniBracketed.buffer('backward')<cr>")
 map("n", "L", "<cmd>lua MiniBracketed.buffer('forward')<cr>")
 
 map({ "n", "x", "o" }, ",", "<cmd> lua require('flash').jump()<cr>")
+map("n", "%", "<cmd>lua require('snipe').open_buffer_menu()<cr>", {desc = "Snipe"})
 
 map("n", ":", "<Plug>(cmdpalette)")
 

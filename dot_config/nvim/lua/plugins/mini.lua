@@ -1,25 +1,23 @@
 return {
-    "echasnovski/mini.nvim",
-    lazy = false,
-    config = function()
+	"echasnovski/mini.nvim",
+	lazy = false,
+	config = function()
 		require("mini.align").setup()
+		require("mini.ai").setup()
+		require("mini.basics").setup()
+		require("mini.bracketed").setup()
+		require("mini.bufremove").setup()
 		require("mini.comment").setup()
 		require("mini.extra").setup()
 		require("mini.indentscope").setup()
 		require("mini.misc").setup()
+		require("mini.move").setup()
 		require("mini.pairs").setup()
 		require("mini.statusline").setup()
 		require("mini.trailspace").setup()
 
-		require("mini.ai").setup()
-		require("mini.bracketed").setup()
-		require("mini.bufremove").setup()
-		require("mini.move").setup()
-
-        require('mini.notify').setup()
-        vim.notify = MiniNotify.make_notify()
-
-        require("mini.basics").setup()
+		require("mini.notify").setup()
+		vim.notify = MiniNotify.make_notify()
 
 		local clue = require("mini.clue")
 		require("mini.clue").setup({
@@ -30,6 +28,7 @@ return {
 			triggers = {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },
+				{ mode = "v", keys = "<Leader>" },
 				{ mode = "x", keys = "<Leader>" },
 
 				-- Built-in completion
@@ -73,13 +72,11 @@ return {
 			clues = {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
+				{ mode = "n", keys = "<leader>c", desc = "Chat" },
+				{ mode = "v", keys = "<leader>c", desc = "Chat" },
 				{ mode = "n", keys = "<leader>s", desc = "Search" },
 				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
 				{ mode = "n", keys = "<leader>g", desc = "Git" },
-				-- { mode = "n", keys = "<leader>m", desc = "Molten" },
-				-- { mode = "v", keys = "<leader>m", desc = "Molten" },
-				{ mode = "n", keys = "<leader>r", desc = "Repl" },
-				{ mode = "v", keys = "<leader>r", desc = "Repl" },
 				{ mode = "n", keys = "<leader>,", desc = "UI" },
 				{ mode = "n", keys = "<leader>w", desc = "Window" },
 
@@ -91,5 +88,5 @@ return {
 				clue.gen_clues.z(),
 			},
 		})
-    end
+	end,
 }

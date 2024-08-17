@@ -2,6 +2,7 @@ return {
 	"hachy/cmdpalette.nvim",
 	lazy = false,
 	config = function()
+		vim.opt.cmdheight = 0
 		require("cmdpalette").setup({
 			win = {
 				height = 0.1,
