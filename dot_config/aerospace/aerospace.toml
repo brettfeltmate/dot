@@ -1,10 +1,10 @@
+# Start AeroSpace at login
+start-at-login = false
+
 after-startup-command = [
     'exec-and-forget sketchybar',
     'exec-and-forget borders',
 ]
-# Start AeroSpace at login
-start-at-login = false
-
 
 key-mapping.preset = 'qwerty'
 
@@ -12,7 +12,7 @@ key-mapping.preset = 'qwerty'
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Prefer tiles over stacking or floating (see window rules at bottom)
+# Stack windows by default
 default-root-container-layout = 'accordion'
 # Sets pref for hor/vert split based on monitor dims
 default-root-container-orientation = 'auto'
@@ -20,12 +20,12 @@ default-root-container-orientation = 'auto'
 accordion-padding = 20
 
 [gaps]
-inner.horizontal = 4
-inner.vertical = 4
-outer.left = 4
-outer.bottom = 4
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
 outer.top = 35
-outer.right = 4
+outer.right = 8
 
 # All I know is that this is important
 [exec]
@@ -96,30 +96,39 @@ alt-shift-semicolon = 'mode service'
 # tldr: cmds below specific to mode entered via cmd above
 [mode.service.binding]
 
-# NOTE: these  revert to 'main' after executing
-r = ['reload-config', 'mode main']
-f = ['flatten-workspace-tree', 'mode main']
+# escape from service mode
+esc = ['mode main']
 
-# NOTE: Remaining remain in "service" mode until exited explicitly
+# NOTE: Reverts to main after use
+r = ['reload-config', 'mode main']
+
+# NOTE: Following cmds preserve service mode
+
+# Unnest containers
+f = ['flatten-workspace-tree', 'mode service']
 
 # Rezise container
 minus = ['resize smart -50', 'mode service']
 equal = ['resize smart +50', 'mode service']
 
-# Change container win pos
-left = ['move left', 'mode service']
-down = ['move down', 'mode service']
-up = ['move up', 'mode service']
-right = ['move right', 'mode service']
+# Select container
+left = ['focus left', 'mode service']
+down = ['focus down', 'mode service']
+up = ['focus up', 'mode service']
+right = ['focus right', 'mode service']
 
-# Nest container within another
-alt-left = ['join-with left', 'mode service']
-alt-down = ['join-with down', 'mode service']
-alt-up = ['join-with up', 'mode service']
-alt-right = ['join-with right', 'mode service']
+# Move container
+alt-left = ['move left', 'mode service']
+alt-down = ['move down', 'mode service']
+alt-up = ['move up', 'mode service']
+alt-right = ['move right', 'mode service']
 
-# escape from service mode
-esc = ['mode main']
+# Nest container into another
+alt-shift-left = ['join-with left', 'mode service']
+alt-shift-down = ['join-with down', 'mode service']
+alt-shift-up = ['join-with up', 'mode service']
+alt-shift-right = ['join-with right', 'mode service']
+
 
 
 ###
@@ -128,13 +137,17 @@ esc = ['mode main']
 
 # 0: Terminal
 [[on-window-detected]]
-if.app-name-regex-substring = 'Term'
+if.app-name-regex-substring = 'iTerm2'
+run = ['layout tiling', 'move-node-to-workspace 0']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'wezterm'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
 # 1: Browser
 [[on-window-detected]]
 if.window-title-regex-substring = 'firefox'
-run = 'move-node-to-workspace 1'
+run = ['layout tiling', 'move-node-to-workspace 1']
 
 # 2: Messaging
 [[on-window-detected]]
@@ -174,6 +187,10 @@ run = ['move-node-to-workspace 7']
 [[on-window-detected]]
 if.app-name-regex-substring = 'Skim'
 run = ['move-node-to-workspace 7']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Calendar'
+run = ['move-node-to-workspace 8']
 
 # 9: Spotify
 [[on-window-detected]]

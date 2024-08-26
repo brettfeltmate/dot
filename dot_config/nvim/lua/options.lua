@@ -5,6 +5,7 @@ vim.g.autoformat = true
 vim.g.lazygit_config = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
+vim.opt.cmdheight = 0
 vim.opt.background = "dark"
 vim.opt.swapfile = false
 vim.opt.backup = false
@@ -21,7 +22,7 @@ vim.opt.smartcase = true
 vim.opt.smartindent = true -- Insert indents automatically
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.breakindent = true
-vim.opt.hlsearch = false
+vim.opt.hlsearch = true
 vim.opt.signcolumn = "yes"
 vim.opt.pumheight = 6
 vim.opt.updatetime = 50
@@ -34,7 +35,7 @@ vim.opt.listchars = { trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
-vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.completeopt = "menu,menuone,preview,noselect"
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.termguicolors = true -- True color support
 vim.opt.shiftwidth = 4 -- Size of an indent

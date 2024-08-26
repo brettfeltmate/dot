@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
--- vim.opt.runtimepath:append("~/.config/nvim/lua")
 
 require("autocmds")
 

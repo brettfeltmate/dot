@@ -8,10 +8,13 @@ return {
 				["<bs>"] = "actions.parent",
 				["?"] = "actions.show_help",
 				["q"] = "actions.close",
-				["<C-s>"] = "<cmd>oil.save()<cr>",
-				["gd"] = function()
-					require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-				end,
+				["gy"] = "actions.yank_entry",
+				["gd"] = {
+					function()
+						require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+					end,
+					desc = "Show file details",
+				},
 			},
 			default_file_explorer = true,
 			delete_to_trash = true,

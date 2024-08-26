@@ -12,12 +12,12 @@ local nmap = function(...)
 	map("n", ...)
 end
 
-local xmap = function(...)
-	map("x", ...)
-end
-
 local vmap = function(...)
 	map("v", ...)
+end
+
+local xmap = function(...)
+	map("x", ...)
 end
 
 local tmap = function(...)
@@ -33,8 +33,8 @@ end
 
 -- Non-leader mappings ===========================================================
 
-nmap(":", "<Plug>(cmdpalette)")
-
+-- nmap(":", "<Plug>(cmdpalette)")
+nmap("<Esc>", "<cmd>nohlsearch<CR>")
 imap("jk", "<esc>", "Exit insert mode", { silent = true })
 tmap("jk", "<C-\\><C-n>", "Exit terminal mode", { silent = true })
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
@@ -42,16 +42,17 @@ tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
 nmap("L", C("lua MiniBracketed.buffer('forward')"), "Next buffer")
 
--- Navigating between neovim/wezterm splits
+-- Navigating between neovim/tmux splits
 nmap("<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
 nmap("<C-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
 nmap("<C-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
 nmap("<C-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
--- terminal mode analogs
-tmap("<C-Left>", "<C-\\><C-N><C-Left>", "Left")
-tmap("<C-Up>", "<C-\\><C-N><C-Up>", "Up")
-tmap("<C-Down>", "<C-\\><C-N><C-Down>", "Down")
-tmap("<C-Right>", "<C-\\><C-N><C-Right>", "Right")
+
+-- Can't move to right nvim split if tmux is at right edge, dunno why; fallbacks
+nmap("<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Left")
+nmap("<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Down")
+nmap("<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Up")
+nmap("<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Right")
 
 -- Flash.nvim
 map({ "n", "x", "o" }, ",", C("lua require('flash').jump()"))
@@ -66,10 +67,44 @@ vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set("n", "<C-p>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
 
--- Leader mappings ==========================================================
+-- wtf.nvim
+nmap("gw", C("lua require('wtf').ai()"), "wtf is this")
+xmap("gw", C("lua require('wtf').ai()"), "wtf is this")
 
-nmap(L(";"), "<Plug>SlimeParagraphSend", "Slime: send")
-xmap(L(";"), "<Plug>SlimeRegionSend", "Slime: send")
+-- barbar
+-- Move to previous/next
+local op = function(desc)
+	return { silent = true, noremap = true, desc = desc }
+end
+
+vim.keymap.set("n", "-,", "<Cmd>BufferPrevious<CR>", op("Previous buffer"))
+vim.keymap.set("n", "-.", "<Cmd>BufferNext<CR>", op("Next buffer"))
+-- Goto buffer in position...
+vim.keymap.set("n", "-1", "<Cmd>BufferGoto 1<CR>", op("Goto 1"))
+vim.keymap.set("n", "-2", "<Cmd>BufferGoto 2<CR>", op("Goto 2"))
+vim.keymap.set("n", "-3", "<Cmd>BufferGoto 3<CR>", op("Goto 3"))
+vim.keymap.set("n", "-4", "<Cmd>BufferGoto 4<CR>", op("Goto 4"))
+vim.keymap.set("n", "-5", "<Cmd>BufferGoto 5<CR>", op("Goto 5"))
+vim.keymap.set("n", "-6", "<Cmd>BufferGoto 6<CR>", op("Goto 6"))
+vim.keymap.set("n", "-7", "<Cmd>BufferGoto 7<CR>", op("Goto 7"))
+vim.keymap.set("n", "-8", "<Cmd>BufferGoto 8<CR>", op("Goto 8"))
+vim.keymap.set("n", "-9", "<Cmd>BufferGoto 9<CR>", op("Goto 9"))
+-- Pin/unpin buffer
+vim.keymap.set("n", "--", "<Cmd>BufferPin<CR>", op("Pin buffer"))
+-- Close buffer
+vim.keymap.set("n", "-%", "<Cmd>BufferClose<CR>", op("Close buffer"))
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+vim.keymap.set("n", "-0", "<Cmd>BufferPick<CR>", op("Pick buffer"))
+
+-- Leader mappings ==========================================================
 
 -- | [B]uffer
 nmap(L("bd"), C("lua require('mini.bufremove').delete()"), "Delete")
@@ -79,6 +114,9 @@ nmap(L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
 nmap(L("b/"), C("lua require('fzf-lua').lgrep_curbuf()"), "Grep")
 nmap(L("bw"), C("lua require('mini.bufremove.wipeout()')"), "Wipeout")
 nmap(L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
+nmap(L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
+nmap(L("bm"), C("MarkdownPreviewToggle"), "Toggle Preview")
+nmap(L("bp"), C("PasteImage"), "Insert Image")
 
 -- | [C]hat
 map({ "n", "i", "v" }, L("ct"), C("PrtChatToggle"), "Toggle")
@@ -112,37 +150,19 @@ nmap(L("lX"), C("lua require('fzf-lua').lsp_workspace_diagnostics()"), "Diagnost
 nmap(L("lf"), C("lua require('fzf-lua').lsp_finder()"), "Ref's, Def's, & Impl's")
 nmap(L("ld"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
 nmap(L("lw"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
-nmap(L("li"), C("lua require('fzf-lua').lsp_incoming_calls()"), "Incoming calls")
-nmap(L("lo"), C("lua require('fzf-lua').lsp_outgoing_calls()"), "Outgoing calls")
 nmap(L("lr"), C("lua vim.lsp.buf.rename()"), "Rename Symbol")
-
--- [M]olten
--- nmap(L("mi"), C("MoltenInit"), "Init")
--- nmap(L("m "), C("MoltenEvaluateLine"), "Eval: line")
--- nmap(L("mc"), C("MoltenReevaluateCell"), "Eval: cell")
--- vmap(L("m "), C("MoltenEvaluateVisual"), "Eval: visual")
--- nmap(L("md"), C("MoltenDelete"), "Del: cell")
--- nmap(L("mh"), C("MoltenHideOutput"), "Output: hide")
--- nmap(L("ms"), C("noautocmd MoltenEnterOutput"), "Output: show")
+nmap(L("lo"), C("AerialToggle"), "Aerial")
 
 -- | [s]earch
-nmap(L("ss"), C("lua require('fzf-lua').colorschemes()"), "Schemes")
-nmap(L("sS"), C("lua require('fzf-lua').awesome_colorschemes()"), "Awesome schemes")
-nmap(L("sy"), C("YankyRingHistory"), "yanks")
+nmap(L("sy"), C("YankyRingHistory"), "Yanks")
+nmap(L("sc"), C("ChezFzf"), "Config")
 nmap(L("s/"), C("lua require('fzf-lua').live_grep()"), "Live Grep")
 nmap(L("sh"), C("lua require('fzf-lua').helptags()"), "Help tags")
 nmap(L("sf"), C("lua require('fzf-lua').files()"), "Files (.)")
 nmap(L("sF"), C("lua require('fzf-lua').files({ cwd = '~/'})"), "Files (~)")
-nmap(L("sC"), C("lua require('fzf-lua').files({ cwd = '~/.config/'})"), "Files (cfg)")
-nmap(L("sm"), C("lua require('fzf-lua').manpages()"), "Manpages")
 nmap(L("s."), C("lua require('fzf-lua').resume()"), "Resume")
 nmap(L("so"), C("lua require('fzf-lua').oldfiles()"), "Old files")
-nmap(L("sj"), C("lua require('fzf-lua').jumps()"), "Jumps")
-nmap(L("sr"), C("lua require('fzf-lua').registers()"), "Registers")
 nmap(L("sq"), C("lua require('fzf-lua').quickfix()"), "Quickfix")
-nmap(L("sc"), C("lua require('fzf-lua').changes()"), "Changes")
-nmap(L("sw"), C("lua require('fzf-lua').grep_cword()"), "Word")
-nmap(L("sW"), C("lua require('fzf-lua').grep_cWORD()"), "WORD")
 
 nmap(L("gf"), C("lua require('fzf-lua').git_files()"), "Files")
 nmap(L("gs"), C("lua require('fzf-lua').git_status()"), "Status")
@@ -151,20 +171,13 @@ nmap(L("gb"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
 nmap(L("gl"), C("LazyGit"), "LazyGit")
 
 -- [,] convience mappings
-nmap(L(",b"), C("qa!"), "bail")
 nmap(L(",l"), C("Lazy"), "Lazy")
-nmap(L(",e"), C("ChezFzf"), "EditMoi")
-nmap(L(",o"), C("AerialToggle"), "Aerial")
-nmap(L(",n"), C("AerialNavToggle"), "AerialNav")
-nmap(L(",s"), C("w"), "Save")
-nmap(L(",a"), C("ASToggle"), "Autosave")
-nmap(L(",a"), C("wa!"), "Save (all)")
-nmap(L(",f"), C("lua require('oil').toggle_float()"), "Files")
-nmap(L(",t"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
-nmap(L(", "), C("term"), "Terminal")
-nmap(L(",m"), C("MarkdownPreviewToggle"), "Toggle Preview")
-nmap(L(",p"), C("PasteImage"), "Insert Image")
-nmap(L(",v"), "<Plug>SlimeConfig", "Slime: config")
+nmap(L(",f"), C("lua require('oil').toggle_float()"), "Oil")
+nmap(L(",n"), C("Neotree"), "Neotree")
+nmap(L(",t"), C("term"), "Terminal")
+nmap(L(",c"), C("lua require('fzf-lua').awesome_colorschemes()"), "Colour schemes")
+nmap(L(",s"), C("lua require('persistence').load()"), "Load session")
+
 -- | [W]indows
 -- TODO: refactor functions as script and require
 local FlipSplit = function()
@@ -222,26 +235,3 @@ nmap(L("wd"), C("windo diffsplit browse"), "diff split on")
 nmap(L("wD"), C("windo diffoff"), "diff split off")
 nmap(L("ws"), ScrollBind, "scrollbind on")
 nmap(L("wS"), ScrollUnbind, "scrollbind off")
-nmap(L("wl"), C("vertical resize +5"), "taller")
-nmap(L("wk"), C("resize -5"), "thinner")
-nmap(L("wj"), C("resize +5"), "wider")
-nmap(L("wh"), C("vertical resize -5"), "shorter")
-
--- | [R]epl (iron.nvim)
-nmap(L("ro"), C("IronRepl"), "Open")
-nmap(L("rr"), C("IronRestart"), "Restart")
-nmap(L("rf"), C("IronFocus"), "Focus")
-nmap(
-	L("rg"),
-	C("IronSend ggplot2::ggsave(file = '~/.last_plot.png', width = 6, height = 6, units = 'in', dpi = 200)"),
-	"Save plot"
-)
-nmap(L("ri"), C("IronSend <C-c>"), "Send: interrupt")
-nmap(L("rc"), C("IronSend <C-l>"), "Send: clear")
-nmap(L("rh"), C("IronHide"), "Hide")
-nmap(L("rx"), C("lua require('iron.core').close_repl()"), "Close")
-nmap(L("r%"), C("lua require('iron.core').send_paragraph()"), "Send: para")
-nmap(L("r:"), C("lua require('iron.core').send_until_cursor()"), "Send: cursor")
-nmap(L("r;"), C("lua require('iron.core').send_file()"), "Send: file")
-nmap(L("r "), C("lua require('iron.core').send_line()"), "Send: line")
-vmap(L("r "), C("lua require('iron.core').visual_send()"), "Send: select")

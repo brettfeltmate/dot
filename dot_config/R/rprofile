@@ -1,0 +1,39 @@
+options(stringsAsFactors=FALSE)
+
+options(max.print=100)
+
+options(scipen=10)
+
+options(editor="vim")
+
+options(show.signif.stars=FALSE)
+
+options(menu.graphics=FALSE)
+
+options(prompt="|> ")
+options(continue="|>... ")
+
+options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
+
+Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
+
+if(interactive()){
+
+    if (require("plotcli", quietly = TRUE)) {
+        library(plotcli, quietly = TRUE)
+    }
+
+    if (require("colorout", quietly = TRUE)) {
+      colorout::setOutputColors256(
+        normal=229,
+        number=151,
+        negnum=138,
+        string=224,
+        const= 12,
+        stderror= 12,
+        warn=c(9, 0, 16),
+        verbose=FALSE
+        )
+    }
+}
+

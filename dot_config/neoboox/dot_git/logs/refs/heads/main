@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 d6bfacb55ddcf0cc603c2f1e0a07d82d2fceb65f brettfeltmate <thebretteremail@gmail.com> 1722796610 -0300	commit (initial): First commit
+d6bfacb55ddcf0cc603c2f1e0a07d82d2fceb65f d6bfacb55ddcf0cc603c2f1e0a07d82d2fceb65f brettfeltmate <thebretteremail@gmail.com> 1722796641 -0300	Branch: renamed refs/heads/master to refs/heads/main
+d6bfacb55ddcf0cc603c2f1e0a07d82d2fceb65f edc25db34403da204523d5ae478c3d796e263e64 brettfeltmate <thebretteremail@gmail.com> 1722804517 -0300	commit: path typo
+edc25db34403da204523d5ae478c3d796e263e64 4170e9530680c5ef6edeb405ebba987ff1de9e07 brettfeltmate <thebretteremail@gmail.com> 1722804593 -0300	commit: oil not lazy
+4170e9530680c5ef6edeb405ebba987ff1de9e07 1808e97ad2dc880595f29615475a882cd6a24dab brettfeltmate <thebretteremail@gmail.com> 1722805652 -0300	commit: forgot todo todo
+1808e97ad2dc880595f29615475a882cd6a24dab 58dbcc43b6f9ebf490d6cc5e4bdb83af581abbc4 brettfeltmate <thebretteremail@gmail.com> 1722883288 -0300	pull: Fast-forward
+58dbcc43b6f9ebf490d6cc5e4bdb83af581abbc4 c81296020037e13be3680967887741e6819b6907 brettfeltmate <thebretteremail@gmail.com> 1722893080 -0300	commit: snipe at cursor
+c81296020037e13be3680967887741e6819b6907 f99f0e6468a030bb54b30aa998cb464dd20dfa9a Brett Feltmate <brettfeltmate@MacBook-Air.local> 1724252769 -0300	commit: Plugin config & keymap tweaks
+f99f0e6468a030bb54b30aa998cb464dd20dfa9a be5cfeeecb16f74a44cb11cf4c6a304c98406c45 Brett Feltmate <brettfeltmate@MacBook-Air.local> 1724516434 -0300	commit: mardown.nvim
+be5cfeeecb16f74a44cb11cf4c6a304c98406c45 8801b623f22a7fe8615048d41567471ff3fb0a6e Brett Feltmate <brettfeltmate@MacBook-Air.local> 1724516734 -0300	commit: FzfLua colorscheme opens as small float

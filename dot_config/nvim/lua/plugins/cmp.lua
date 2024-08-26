@@ -24,7 +24,7 @@ return {
 			{
 				"zbirenbaum/copilot-cmp",
 				config = function()
-					require("copilot_cmp").setup({ fix_pairs = false })
+					require("copilot_cmp").setup({ fix_pairs = false, auto_trigger = false })
 				end,
 			},
 		},

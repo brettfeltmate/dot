@@ -1,7 +1,7 @@
 -- LSP Configuration & Plugins
 return {
 	{
-		event = "UIEnter",
+		event = "VeryLazy",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -10,8 +10,6 @@ return {
 			},
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
-
-			{ "j-hui/fidget.nvim", opts = {} }, -- Useful status updates for LSP.
 
 			{ -- completion, annotations and signatures of Neovim apis
 				"folke/neodev.nvim",
@@ -115,13 +113,6 @@ return {
 	},
 	{ -- Annoying as fuck
 		vim.diagnostic.config({ virtual_text = false }),
-	},
-	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("tiny-inline-diagnostic").setup()
-		end,
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

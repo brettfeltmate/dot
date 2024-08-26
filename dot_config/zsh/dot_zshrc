@@ -1,7 +1,11 @@
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-${ZDOTDIR}/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
-# Load and initialise completion system
+# Load and initialise brew-provided completions
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
 autoload -Uz compinit
 compinit
 
@@ -22,6 +26,8 @@ else
     export PYENV_ROOT="$HOME/.pyenv-i386"
 fi
 
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
@@ -36,9 +42,11 @@ source <(fzf --zsh)
 
 source "${ZDOTDIR}/aliases.zsh"
 source "${ZDOTDIR}/functions.zsh"
-source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
-source "${ZDOTDIR}/cmp-sources/fzf.zsh"
 source "${ZDOTDIR}/keys.zsh"
+
+source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
@@ -52,7 +60,26 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' popup-min-size 80 12
+# zstyle ':fzf-tab:*' popup-min-size 80 40
 
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
 export LESSOPEN='|~/.config/shell/lessfilter.sh %s'
+export MOZ_DISABLE_SAFE_MODE_KEY=1
+export STARSHIP_LOG=error
+export CLIPBOARD_THEME=ansi
+
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
+    [[ -z "$session" ]] && return
+    sesh connect $session
+  }
+}
+
+zle     -N             sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions

@@ -1,3 +1,7 @@
+if true then
+	return {}
+end
+
 return {
 	"hachy/cmdpalette.nvim",
 	config = function()
@@ -10,6 +14,6 @@ return {
 				title_pos = "left",
 			},
 		})
-        vim.opt.cmdheight = 0
+		vim.opt.cmdheight = 0
 	end,
 }

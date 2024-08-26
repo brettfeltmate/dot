@@ -7,6 +7,17 @@ cfg_exists() {
     return $found
 }
 
+xlsx2csv() {
+    base=$(basename "$1" .xlsx)
+    ssconvert -S --export-type=Gnumeric_stf:stf_csv "$1" "${base}_%s.csv"
+}
+
+batch_xlsx2csv() {
+    fd --extension xlsx | while read -r file; do
+        xlsx2csv "$file"
+    done
+}
+
 cfg() {
     local target_dir="$1"
     if cfg_exists "$target_dir"; then

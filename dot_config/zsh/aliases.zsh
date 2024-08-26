@@ -38,7 +38,7 @@ alias rig64="rig switch 4.4-arm64"
 alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"
 alias moshmini="brosh cogmotorlab@tbd51.wpa.dal.ca"
 
-alias mux="tmux new-session -A -s main"
+alias mux="tmux new-session -A -s default"
 alias tms="create_tmux_session"
 alias fab="fabular"
 
@@ -49,8 +49,5 @@ alias fab="fabular"
 
 # taskwarrior
 alias tcal="task calendar"
-alias tsum="task summary"
-alias thist="task history"
-alias tlog="task log"
-alias tnext="task next"
-alias tt="taskwarrior-tui"
+alias next="task next"
+alias ttui="taskwarrior-tui"
