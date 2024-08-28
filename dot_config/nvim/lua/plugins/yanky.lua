@@ -1,7 +1,7 @@
 return {
 	"gbprod/yanky.nvim",
 	recommended = true,
-	event = "VeryLazy",
+	event = "BufReadPre",
 	config = function()
 		require("yanky").setup({
 			picker = {

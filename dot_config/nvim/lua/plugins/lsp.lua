@@ -1,7 +1,7 @@
 -- LSP Configuration & Plugins
 return {
 	{
-		event = "VeryLazy",
+		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ -- Automatically install LSPs and related tools to stdpath for Neovim
@@ -56,7 +56,8 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 			local servers = {
 				clangd = {},
-				pyright = {},
+				based_pyright = {},
+				jedi_language_server = {},
 				marksman = {},
 				matlab_ls = {},
 				r_language_server = {},
@@ -86,8 +87,9 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"clangd",
-				"pyright",
+				"based_pyright",
 				"blue",
+				"jedi_language_server",
 				"markdownlint",
 				"markdownlint-cli2",
 				"marksman",

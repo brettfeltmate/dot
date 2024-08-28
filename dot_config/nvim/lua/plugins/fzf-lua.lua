@@ -5,10 +5,8 @@ return {
 		require("fzf-lua").setup({
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
-				height = 1.0,
-				width = 0.8,
 				backdrop = 20,
-				fullscreen = false,
+				fullscreen = true,
 				preview = {
 					title_pos = "left",
 					horizontal = "right:70%",

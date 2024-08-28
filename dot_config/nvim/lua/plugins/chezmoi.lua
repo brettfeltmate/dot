@@ -11,10 +11,6 @@ return {
 				winopts = {
 					title = "Chezmoi",
 					title_pos = "left",
-					height = 1.0,
-					width = 0.8,
-					backdrop = 20,
-					fullscreen = false,
 					preview = {
 						title_pos = "left",
 						horizontal = "right:70%",

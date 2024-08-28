@@ -1,6 +1,6 @@
 return {
 	"piersolenski/wtf.nvim",
-	event = "UIEnter",
+	event = "BufReadPre",
 	dependencies = { "muniftanjim/nui.nvim" },
 	config = function()
 		require("wtf").setup({
