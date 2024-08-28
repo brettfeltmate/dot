@@ -35,8 +35,6 @@ end
 
 -- nmap(":", "<Plug>(cmdpalette)")
 nmap("<Esc>", "<cmd>nohlsearch<CR>")
-imap("jk", "<esc>", "Exit insert mode", { silent = true })
-tmap("jk", "<C-\\><C-n>", "Exit terminal mode", { silent = true })
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 -- Navigating in/across buffeers
 nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
@@ -141,7 +139,7 @@ nmap(L("cA"), C("PrtAgent"), "Agent")
 nmap(
 	L("la"),
 	C(
-		"lua require('fzf-lua').lsp_code_actions({ winopts = { relative='cursor', row=1.01, col=0, height=0.3, width=0.6} })"
+		"lua require('fzf-lua').lsp_code_actions({ winopts = {fullscreen=false, relative='cursor', row=1.01, col=0, height=0.3, width=0.6} })"
 	),
 	"Actions"
 )
@@ -172,10 +170,23 @@ nmap(L("gl"), C("LazyGit"), "LazyGit")
 
 -- [,] convience mappings
 nmap(L(",l"), C("Lazy"), "Lazy")
-nmap(L(",f"), C("lua require('oil').toggle_float()"), "Oil")
+nmap(L(",f"), C("lua require('oil').open()"), "Oil")
 nmap(L(",n"), C("Neotree"), "Neotree")
 nmap(L(",t"), C("term"), "Terminal")
-nmap(L(",c"), C("lua require('fzf-lua').awesome_colorschemes()"), "Colour schemes")
+nmap(
+	L(",c"),
+	C(
+		"lua require('fzf-lua').colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
+	),
+	"Colour schemes"
+)
+nmap(
+	L(",C"),
+	C(
+		"lua require('fzf-lua').awesome_colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
+	),
+	"Colour schemes"
+)
 nmap(L(",s"), C("lua require('persistence').load()"), "Load session")
 
 -- | [W]indows
