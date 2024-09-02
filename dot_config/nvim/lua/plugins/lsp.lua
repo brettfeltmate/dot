@@ -56,7 +56,7 @@ return {
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 			local servers = {
 				clangd = {},
-				based_pyright = {},
+				basedpyright = {},
 				jedi_language_server = {},
 				marksman = {},
 				matlab_ls = {},
@@ -87,7 +87,7 @@ return {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"clangd",
-				"based_pyright",
+				"basedpyright",
 				"blue",
 				"jedi_language_server",
 				"markdownlint",

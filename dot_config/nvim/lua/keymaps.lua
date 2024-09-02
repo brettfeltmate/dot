@@ -46,7 +46,6 @@ nmap("<C-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
 nmap("<C-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
 nmap("<C-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
 
--- Can't move to right nvim split if tmux is at right edge, dunno why; fallbacks
 nmap("<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Left")
 nmap("<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Down")
 nmap("<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Up")
@@ -64,6 +63,10 @@ vim.keymap.set({ "n", "x" }, "gp", "<Plug>(YankyGPutAfter)")
 vim.keymap.set({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 vim.keymap.set("n", "<C-p>", "<Plug>(YankyPreviousEntry)")
 vim.keymap.set("n", "<C-n>", "<Plug>(YankyNextEntry)")
+
+-- remap increment/decrement to not conflict with tmux
+nmap("+", "<C-a>", "Increment", { noremap = true })
+nmap("-", "<C-x>", "Decrement", { noremap = true })
 
 -- wtf.nvim
 nmap("gw", C("lua require('wtf').ai()"), "wtf is this")
@@ -139,7 +142,7 @@ nmap(L("cA"), C("PrtAgent"), "Agent")
 nmap(
 	L("la"),
 	C(
-		"lua require('fzf-lua').lsp_code_actions({ winopts = {fullscreen=false, relative='cursor', row=1.01, col=0, height=0.3, width=0.6} })"
+		"lua require('fzf-lua').lsp_code_actions({ winopts = {fullscreen=false, relative='editor', row=0.5, col=0, height=0.5, width=1} })"
 	),
 	"Actions"
 )
@@ -169,25 +172,17 @@ nmap(L("gb"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
 nmap(L("gl"), C("LazyGit"), "LazyGit")
 
 -- [,] convience mappings
-nmap(L(",l"), C("Lazy"), "Lazy")
 nmap(L(",f"), C("lua require('oil').open()"), "Oil")
 nmap(L(",n"), C("Neotree"), "Neotree")
 nmap(L(",t"), C("term"), "Terminal")
+nmap(L(",s"), C("lua require('persistence').load()"), "Load session")
 nmap(
-	L(",c"),
+	"<\\-c>",
 	C(
 		"lua require('fzf-lua').colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
 	),
-	"Colour schemes"
+	"Toggle Colorscheme"
 )
-nmap(
-	L(",C"),
-	C(
-		"lua require('fzf-lua').awesome_colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
-	),
-	"Colour schemes"
-)
-nmap(L(",s"), C("lua require('persistence').load()"), "Load session")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require

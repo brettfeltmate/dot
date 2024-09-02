@@ -1,8 +1,7 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
-	lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-	-- event = "UIEnter",
+	event = "UIEnter",
 	config = function(_)
 		require("nvim-treesitter.install").prefer_git = true
 		---@diagnostic disable-next-line: missing-fields
@@ -13,9 +12,11 @@ return {
 				"luadoc",
 				"markdown",
 				"markdown_inline",
+				"ninja",
 				"python",
 				"r",
 				"regex",
+				"rst",
 				"tmux",
 				"toml",
 				"vim",

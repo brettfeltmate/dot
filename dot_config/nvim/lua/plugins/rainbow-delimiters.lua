@@ -1,3 +1,7 @@
+if true then
+	return {}
+end
+
 return {
 	"hiphish/rainbow-delimiters.nvim",
 	event = "BufRead",

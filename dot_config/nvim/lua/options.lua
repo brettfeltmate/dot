@@ -1,4 +1,4 @@
-vim.cmd.colorscheme("nightlamp-tempered-V2")
+vim.cmd.colorscheme("desklight")
 
 vim.g.have_nerd_font = true
 vim.g.autoformat = true
