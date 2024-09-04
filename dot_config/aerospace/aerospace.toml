@@ -1,4 +1,3 @@
-# Start AeroSpace at login
 start-at-login = false
 
 after-startup-command = [
@@ -182,10 +181,6 @@ run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Office'
-run = ['move-node-to-workspace 7']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Skim'
 run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
