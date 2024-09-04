@@ -152,7 +152,7 @@ nmap(L("lf"), C("lua require('fzf-lua').lsp_finder()"), "Ref's, Def's, & Impl's"
 nmap(L("ld"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
 nmap(L("lw"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
 nmap(L("lr"), C("lua vim.lsp.buf.rename()"), "Rename Symbol")
-nmap(L("lo"), C("AerialToggle"), "Aerial")
+nmap(L("lo"), C("Outline!"), "Toggle Outline")
 
 -- | [s]earch
 nmap(L("sy"), C("YankyRingHistory"), "Yanks")
@@ -175,13 +175,20 @@ nmap(L("gl"), C("LazyGit"), "LazyGit")
 nmap(L(",f"), C("lua require('oil').open()"), "Oil")
 nmap(L(",n"), C("Neotree"), "Neotree")
 nmap(L(",t"), C("term"), "Terminal")
-nmap(L(",s"), C("lua require('persistence').load()"), "Load session")
+nmap(L(",s"), C("lua require('persistence').load()"), "Session")
 nmap(
-	"<\\-c>",
+	"<,c>",
 	C(
 		"lua require('fzf-lua').colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
 	),
-	"Toggle Colorscheme"
+	"Colorschemes"
+)
+nmap(
+	"<,C>",
+	C(
+		"lua require('fzf-lua').awesome_colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
+	),
+	"Awesome Colorschemes"
 )
 
 -- | [W]indows

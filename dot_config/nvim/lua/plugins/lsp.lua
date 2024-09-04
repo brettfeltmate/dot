@@ -1,5 +1,22 @@
 -- LSP Configuration & Plugins
 return {
+	{ -- Annoying as fuck
+		vim.diagnostic.config({ virtual_text = false }),
+	},
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "BufReadPre",
+		config = function()
+			require("tiny-inline-diagnostic").setup({ show_source = true, softwrap = 30 })
+		end,
+	},
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufReadPre",
+		config = function()
+			require("lsp_signature").setup()
+		end,
+	},
 	{
 		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
@@ -8,8 +25,9 @@ return {
 				"williamboman/mason.nvim",
 				config = true, -- NOTE: Must be loaded before dependents
 			},
-			"williamboman/mason-lspconfig.nvim",
-			"WhoIsSethDaniel/mason-tool-installer.nvim",
+			{ "williamboman/mason-lspconfig.nvim" },
+			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
+			{ "ray-x/lsp_signature.nvim" },
 
 			{ -- completion, annotations and signatures of Neovim apis
 				"folke/neodev.nvim",
@@ -112,9 +130,6 @@ return {
 				},
 			})
 		end,
-	},
-	{ -- Annoying as fuck
-		vim.diagnostic.config({ virtual_text = false }),
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

@@ -6,7 +6,7 @@ return {
 			ui = { position = "cursor" },
 			hints = { dictionary = "123456789" },
 			navigate = { under_cursor = "<space>" },
-			sort = "default",
+			sort = "last",
 		})
 	end,
 }
