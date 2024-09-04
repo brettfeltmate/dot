@@ -17,6 +17,16 @@ options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
+setHook(
+    packageEvent("languageserver", "onLoad"),
+    function(...) {
+        options(languageserver.default_linters = lintr::with_defaults(
+            line_length_linter = lintr::line_length_linter(100),
+            object_usage_linter = NULL
+        ))
+    }
+)
+
 if(interactive()){
 
     if (require("plotcli", quietly = TRUE)) {
