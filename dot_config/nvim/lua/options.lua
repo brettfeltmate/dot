@@ -1,3 +1,4 @@
+# TODO: rename as nightlight
 vim.cmd.colorscheme("desklight")
 
 vim.g.have_nerd_font = true
@@ -11,7 +12,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.number = false
 vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"
+vim.opt.signcolumn = "no"
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
@@ -41,6 +42,4 @@ vim.opt.termguicolors = true -- True color support
 vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.tabstop = 4
 vim.opt.virtualedit = "block"
-if vim.fn.has("nvim-0.10") == 1 then
-	vim.opt.smoothscroll = true
-end
+vim.opt.smoothscroll = true
