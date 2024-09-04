@@ -2,7 +2,7 @@
 # see https://pygments.org/styles
 # for a list of supported color schemes, default scheme is "native"
 # good options: parisio-light, zenburn, coffee, nord-darker
-options(radian.color_scheme = "zenburn")
+options(radian.color_scheme = "rose-pine")
 
 # either  `"emacs"` (default) or `"vi"`.
 options(radian.editing_mode = "vi")
