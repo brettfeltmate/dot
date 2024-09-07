@@ -1,6 +1,6 @@
 return {
 	"stevearc/quicker.nvim",
-    event = "UIEnter",
+	event = "BufReadPre",
 	config = function()
 		require("quicker").setup({})
 	end,

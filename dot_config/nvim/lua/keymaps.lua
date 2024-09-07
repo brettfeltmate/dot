@@ -36,9 +36,6 @@ end
 -- nmap(":", "<Plug>(cmdpalette)")
 nmap("<Esc>", "<cmd>nohlsearch<CR>")
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
--- Navigating in/across buffeers
-nmap("H", C("lua MiniBracketed.buffer('backward')"), "Prev buffer")
-nmap("L", C("lua MiniBracketed.buffer('forward')"), "Next buffer")
 
 -- Navigating between neovim/tmux splits
 nmap("<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
@@ -51,11 +48,22 @@ nmap("<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Down")
 nmap("<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Up")
 nmap("<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Right")
 
+-- Multiple cursors
+map({ "n", "x" }, "<C-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
+map({ "n", "x" }, "<C-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
+map({ "i" }, "<M-Up>", C("MultipleCursorsAddUp"), "Add cursor, move up")
+map({ "i" }, "<M-Down>", C("MultipleCursorsAddDown"), "Add cursor, move down")
+map({ "n", "i" }, "<C-LeftMouse>", C("MultipleCursorsMouseAddDelete"), "Add or remove cursor")
+map({ "n", "x" }, L("ma"), C("MultipleCursorsAddMatches"), "Add to cword")
+map({ "n", "x" }, L("mA"), C("MultipleCursorsAddMatchesV"), "Add to cword, previous area")
+map({ "n", "x" }, L("md"), C("MultipleCursorsAddJumpNextMatch"), "Add, jump to cword")
+map({ "n", "x" }, L("mD"), C("MultipleCursorsJumpNextMatch"), "Jump to cword")
+map({ "n", "x" }, L("ml"), C("MultipleCursorsLock"), "Lock")
+
 -- Flash.nvim
 map({ "n", "x", "o" }, ",", C("lua require('flash').jump()"))
--- Snipe buffers
-nmap("%", C("lua require('snipe').open_buffer_menu()"), "Snipe")
 
+-- Yanky
 vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 vim.keymap.set({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
 vim.keymap.set({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
@@ -72,14 +80,18 @@ nmap("-", "<C-x>", "Decrement", { noremap = true })
 nmap("gw", C("lua require('wtf').ai()"), "wtf is this")
 xmap("gw", C("lua require('wtf').ai()"), "wtf is this")
 
--- barbar
--- Move to previous/next
+-- Snipe buffers
+nmap("%", C("lua require('snipe').open_buffer_menu()"), "Snipe")
+-- buffer navigation (barbar)
 local op = function(desc)
 	return { silent = true, noremap = true, desc = desc }
 end
 
+-- Move to previous/next
 vim.keymap.set("n", "-,", "<Cmd>BufferPrevious<CR>", op("Previous buffer"))
 vim.keymap.set("n", "-.", "<Cmd>BufferNext<CR>", op("Next buffer"))
+vim.keymap.set("n", "H", "<Cmd>BufferPrevious<CR>", op("Previous buffer"))
+vim.keymap.set("n", "L", "<Cmd>BufferNext<CR>", op("Next buffer"))
 -- Goto buffer in position...
 vim.keymap.set("n", "-1", "<Cmd>BufferGoto 1<CR>", op("Goto 1"))
 vim.keymap.set("n", "-2", "<Cmd>BufferGoto 2<CR>", op("Goto 2"))
@@ -102,8 +114,6 @@ vim.keymap.set("n", "-%", "<Cmd>BufferClose<CR>", op("Close buffer"))
 --                 :BufferCloseAllButCurrentOrPinned
 --                 :BufferCloseBuffersLeft
 --                 :BufferCloseBuffersRight
--- Magic buffer-picking mode
-vim.keymap.set("n", "-0", "<Cmd>BufferPick<CR>", op("Pick buffer"))
 
 -- Leader mappings ==========================================================
 
@@ -120,23 +130,20 @@ nmap(L("bm"), C("MarkdownPreviewToggle"), "Toggle Preview")
 nmap(L("bp"), C("PasteImage"), "Insert Image")
 
 -- | [C]hat
-map({ "n", "i", "v" }, L("ct"), C("PrtChatToggle"), "Toggle")
-nmap(L("cf"), C("PrtChatFinder"), "Find")
+nmap(L("cn"), C("PrtChatNew tabnew"), "New")
+nmap(L("ct"), C("PrtChatToggle"), "Toggle")
 nmap(L("cr"), C("PrtRewrite"), "Rewrite")
 vmap(L("cr"), C("'<,'>PrtRewrite"), "Rewrite")
 nmap(L("ca"), C("PrtAppend"), "Append")
-imap(L("ca"), C("PrtAppend"), "Append")
 vmap(L("ca"), C("'<,'>PrtAppend"), "Append")
 nmap(L("cp"), C("PrtPrepend"), "Prepend")
-imap(L("cp"), C("PrtPrepend"), "Prepend")
 vmap(L("cp"), C("'<,'>PrtPrepend"), "Prepend")
-map({ "n", "i", "v" }, L("cs"), C("PrtStop"), "Stop")
+nmap(L("cs"), C("PrtStop"), "Stop")
+vmap(L("cs"), C("PrtStop"), "Stop")
 nmap(L("cc"), C("PrtComplete"), "Complete")
-imap(L("cc"), C("PrtComplete"), "Complete")
 vmap(L("cc"), C("'<,'>PrtComplete"), "Complete")
 nmap(L("cx"), C("PrtContext"), "Context")
 nmap(L("ck"), C("PrtAsk"), "Ask")
-nmap(L("cA"), C("PrtAgent"), "Agent")
 
 -- | [L]SP
 nmap(
@@ -174,8 +181,10 @@ nmap(L("gl"), C("LazyGit"), "LazyGit")
 -- [,] convience mappings
 nmap(L(",f"), C("lua require('oil').open()"), "Oil")
 nmap(L(",n"), C("Neotree"), "Neotree")
+nmap(L(",b"), C("StandNow"), "Break")
 nmap(L(",t"), C("term"), "Terminal")
 nmap(L(",s"), C("lua require('persistence').load()"), "Session")
+nmap(L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
 nmap(
 	"<,c>",
 	C(

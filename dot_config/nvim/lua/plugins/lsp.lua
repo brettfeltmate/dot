@@ -14,7 +14,15 @@ return {
 		"ray-x/lsp_signature.nvim",
 		event = "BufReadPre",
 		config = function()
-			require("lsp_signature").setup()
+			require("lsp_signature").setup({
+				floating_window = false,
+				floating_window_above_current_line = false,
+				hint_prefix = {
+					above = "↙ ", -- when the hint is on the line above the current line
+					current = "← ", -- when the hint is on the same line
+					below = "↖ ", -- when the hint is on the line below the current line
+				},
+			})
 		end,
 	},
 	{

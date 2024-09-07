@@ -7,6 +7,8 @@ return {
 		"echasnovski/mini.icons",
 	},
 	config = function()
+		local presets = require("markview.presets")
+
 		require("markview").setup({
 			modes = { "n", "i", "no", "c" },
 			hybrid_modes = { "i" },
@@ -16,7 +18,7 @@ return {
 					vim.wo[win].concealcursor = "nc"
 				end,
 			},
-			headings = { style = "icon" },
+			headings = presets.headings.glow_labels,
 		})
 	end,
 }

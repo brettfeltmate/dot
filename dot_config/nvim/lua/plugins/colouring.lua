@@ -1,7 +1,7 @@
 return {
 	{
 		"mvllow/modes.nvim",
-		event = "UIEnter",
+		event = "BufReadPre",
 		config = function()
 			require("modes").setup()
 		end,
@@ -16,7 +16,7 @@ return {
 	},
 	{
 		"brenoprata10/nvim-highlight-colors",
-		event = "UIEnter",
+		event = "BufReadPre",
 		config = function()
 			require("nvim-highlight-colors").setup()
 		end,
