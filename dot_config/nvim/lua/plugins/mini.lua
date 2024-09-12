@@ -13,16 +13,10 @@ return {
 		require("mini.misc").setup()
 		require("mini.move").setup()
 		require("mini.pairs").setup()
-		-- require("mini.statusline").setup()
-		-- require("mini.tabline").setup()
 		require("mini.trailspace").setup()
 
-		-- require("mini.notify").setup()
-		-- vim.notify = MiniNotify.make_notify()
-		--
-
-
 		local clue = require("mini.clue")
+
 		require("mini.clue").setup({
 			window = {
 				delay = 300,

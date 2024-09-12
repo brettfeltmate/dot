@@ -1,3 +1,7 @@
+if true then
+	return {}
+end
+
 return {
 	"leath-dub/snipe.nvim",
 	event = "UIEnter",

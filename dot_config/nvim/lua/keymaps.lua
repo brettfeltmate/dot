@@ -32,7 +32,7 @@ local C = function(cmd)
 end
 
 -- Non-leader mappings ===========================================================
-
+nmap("[c", C("lua require('treesitter-context').go_to_context(vim.v.count1)"), "Previous context", { silent = true })
 -- nmap(":", "<Plug>(cmdpalette)")
 nmap("<Esc>", "<cmd>nohlsearch<CR>")
 tmap("<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
@@ -54,11 +54,6 @@ map({ "n", "x" }, "<C-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 map({ "i" }, "<M-Up>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 map({ "i" }, "<M-Down>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "i" }, "<C-LeftMouse>", C("MultipleCursorsMouseAddDelete"), "Add or remove cursor")
-map({ "n", "x" }, L("ma"), C("MultipleCursorsAddMatches"), "Add to cword")
-map({ "n", "x" }, L("mA"), C("MultipleCursorsAddMatchesV"), "Add to cword, previous area")
-map({ "n", "x" }, L("md"), C("MultipleCursorsAddJumpNextMatch"), "Add, jump to cword")
-map({ "n", "x" }, L("mD"), C("MultipleCursorsJumpNextMatch"), "Jump to cword")
-map({ "n", "x" }, L("ml"), C("MultipleCursorsLock"), "Lock")
 
 -- Flash.nvim
 map({ "n", "x", "o" }, ",", C("lua require('flash').jump()"))
@@ -81,15 +76,13 @@ nmap("gw", C("lua require('wtf').ai()"), "wtf is this")
 xmap("gw", C("lua require('wtf').ai()"), "wtf is this")
 
 -- Snipe buffers
-nmap("%", C("lua require('snipe').open_buffer_menu()"), "Snipe")
+-- nmap("%", C("lua require('snipe').open_buffer_menu()"), "Snipe")
 -- buffer navigation (barbar)
 local op = function(desc)
 	return { silent = true, noremap = true, desc = desc }
 end
 
 -- Move to previous/next
-vim.keymap.set("n", "-,", "<Cmd>BufferPrevious<CR>", op("Previous buffer"))
-vim.keymap.set("n", "-.", "<Cmd>BufferNext<CR>", op("Next buffer"))
 vim.keymap.set("n", "H", "<Cmd>BufferPrevious<CR>", op("Previous buffer"))
 vim.keymap.set("n", "L", "<Cmd>BufferNext<CR>", op("Next buffer"))
 -- Goto buffer in position...
@@ -103,9 +96,12 @@ vim.keymap.set("n", "-7", "<Cmd>BufferGoto 7<CR>", op("Goto 7"))
 vim.keymap.set("n", "-8", "<Cmd>BufferGoto 8<CR>", op("Goto 8"))
 vim.keymap.set("n", "-9", "<Cmd>BufferGoto 9<CR>", op("Goto 9"))
 -- Pin/unpin buffer
-vim.keymap.set("n", "--", "<Cmd>BufferPin<CR>", op("Pin buffer"))
--- Close buffer
-vim.keymap.set("n", "-%", "<Cmd>BufferClose<CR>", op("Close buffer"))
+vim.keymap.set("n", "-+", "<Cmd>BufferPin<CR>", op("Pin buffer"))
+-- Reorder buffers
+vim.keymap.set("n", "-,", "<Cmd>BufferMovePrevious<CR>", op("Shift left"))
+vim.keymap.set("n", "-.", "<Cmd>BufferMoveNext<CR>", op("Shift right"))
+vim.keymap.set("n", "-*", "<cmd>BufferOrderByName<cr>", op("Order buffers (name)"))
+vim.keymap.set("n", "-%", "<cmd>BufferOrderByBufferNumber<cr>", op("Order buffers (num)"))
 -- Wipeout buffer
 --                 :BufferWipeout
 -- Close commands
@@ -130,7 +126,7 @@ nmap(L("bm"), C("MarkdownPreviewToggle"), "Toggle Preview")
 nmap(L("bp"), C("PasteImage"), "Insert Image")
 
 -- | [C]hat
-nmap(L("cn"), C("PrtChatNew tabnew"), "New")
+nmap(L("cn"), C("PrtChatNew vsplit"), "New")
 nmap(L("ct"), C("PrtChatToggle"), "Toggle")
 nmap(L("cr"), C("PrtRewrite"), "Rewrite")
 vmap(L("cr"), C("'<,'>PrtRewrite"), "Rewrite")
@@ -186,14 +182,14 @@ nmap(L(",t"), C("term"), "Terminal")
 nmap(L(",s"), C("lua require('persistence').load()"), "Session")
 nmap(L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
 nmap(
-	"<,c>",
+	L(",c"),
 	C(
 		"lua require('fzf-lua').colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
 	),
 	"Colorschemes"
 )
 nmap(
-	"<,C>",
+	L(",C"),
 	C(
 		"lua require('fzf-lua').awesome_colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.2} })"
 	),

@@ -5,18 +5,24 @@ return {
 	config = function()
 		require("outline").setup({
 			outline_window = {
-				width = 35,
-				relative_width = false,
-				focus_on_open = false,
+				width = 25,
+				relative_width = true,
+				focus_on_open = true,
 				show_relative_numbers = true,
+				show_symbol_details = false,
 			},
 			preview_window = {
 				auto_preview = true,
-				width = 40,
+				width = 50,
 				relative_width = true,
-				height = 35,
+				min_width = 50,
+				height = 20,
 				relative_height = true,
+				min_height = 25,
 				live = true,
+			},
+			icons = {
+				Function = { icon = "󰡱" },
 			},
 		})
 	end,

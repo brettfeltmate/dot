@@ -3,7 +3,15 @@ return {
 		"mvllow/modes.nvim",
 		event = "BufReadPre",
 		config = function()
-			require("modes").setup()
+			require("modes").setup({
+				colors = {
+					bg = "#493c46",
+					copy = "#ccb29c",
+					delete = "#c799a2",
+					insert = "#74b097",
+					visual = "#a7a6e0",
+				},
+			})
 		end,
 	},
 	{

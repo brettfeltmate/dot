@@ -1,7 +1,7 @@
 -- Keybindings
 vim.keymap.set("n", "<cr>", "<Plug>SlimeParagraphSend", { buffer = 0, desc = "Slime: send" })
 vim.keymap.set("x", "<cr>", "<Plug>SlimeRegionSend", { buffer = 0, desc = "Slime: send" })
-vim.keymap.set("n", "<C-g>", "<Plug>SimeSend1 {gg()}", { buffer = 0, desc = "Slime: draw", noremap = true })
+vim.keymap.set("n", "<C-g>", "<cmd>SlimeSend1 gg()<cr>", { buffer = 0, desc = "Slime: draw", noremap = true })
 
 vim.keymap.set("i", "<M-z>", " <- ", { buffer = 0 })
 vim.keymap.set("i", "<M-v>", " |> ", { buffer = 0 })

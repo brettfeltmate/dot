@@ -12,9 +12,11 @@ return {
 		maximum_length = 15,
 		auto_hide = true,
 		maximum_padding = 1,
+		minimum_padding = 0,
 		icons = {
 			buffer_index = true,
 			separator = { left = "|  ", right = "" },
+			separator_at_end = false,
 		},
 		sidebar_filetypes = {
 			["neo-tree"] = { event = "BufWinLeave", text = "Files", align = "left" },

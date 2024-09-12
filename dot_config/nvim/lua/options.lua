@@ -1,4 +1,3 @@
-# TODO: rename as nightlight
 vim.cmd.colorscheme("desklight")
 
 vim.g.have_nerd_font = true
