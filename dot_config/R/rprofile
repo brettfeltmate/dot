@@ -17,6 +17,17 @@ options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
+#setHook(
+#    packageEvent("languageserver", "onLoad"),
+#    function(...) {
+#        options(languageserver.default_linters = lintr::with_defaults(
+#            line_length_linter = lintr::line_length_linter(100),
+#            object_usage_linter = NULL
+#        ))
+#    }
+#)
+
+
 if(interactive()){
 
     if (require("plotcli", quietly = TRUE)) {
@@ -24,16 +35,28 @@ if(interactive()){
     }
 
     if (require("colorout", quietly = TRUE)) {
-      colorout::setOutputColors256(
-        normal=229,
-        number=151,
-        negnum=138,
-        string=224,
-        const= 12,
-        stderror= 12,
-        warn=c(9, 0, 16),
+      colorout::setOutputColors(
+        index=12,
+        normal=11,
+        number=15,
+        true=15,
+        negnum=13,
+        false=13,
+        string=6,
+        const=12,
+        stderror=8,
+        warn=c(0, 9),
+        error=c(9, 0),
         verbose=FALSE
         )
     }
 }
 
+# LanguageServer Setup Start (do not change this chunk)
+# to remove this, run languageserversetup::remove_from_rprofile
+if (requireNamespace('languageserversetup', quietly = TRUE)) {
+  options(langserver_library = '/Users/brettfeltmate/languageserver-library')
+  languageserversetup::languageserver_startup()
+  unloadNamespace('languageserversetup')
+}
+# LanguageServer Setup End
