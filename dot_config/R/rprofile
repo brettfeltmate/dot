@@ -4,7 +4,7 @@ options(max.print=100)
 
 options(scipen=10)
 
-options(editor="vim")
+options(editor="nvim")
 
 options(show.signif.stars=FALSE)
 
@@ -17,36 +17,30 @@ options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
-#setHook(
-#    packageEvent("languageserver", "onLoad"),
-#    function(...) {
-#        options(languageserver.default_linters = lintr::with_defaults(
-#            line_length_linter = lintr::line_length_linter(100),
-#            object_usage_linter = NULL
-#        ))
-#    }
-#)
-
-
 if(interactive()){
 
     if (require("plotcli", quietly = TRUE)) {
         library(plotcli, quietly = TRUE)
+        plotcli_options(
+            plot_width = 45,
+            plot_height = 15,
+            braille = FALSE
+        )
     }
 
     if (require("colorout", quietly = TRUE)) {
       colorout::setOutputColors(
         index=12,
-        normal=11,
-        number=15,
-        true=15,
-        negnum=13,
-        false=13,
-        string=6,
-        const=12,
-        stderror=8,
-        warn=c(0, 9),
-        error=c(9, 0),
+        normal=15,
+        number=14,
+        true=14,
+        negnum=1,
+        false=1,
+        string=12,
+        const=8,
+        stderror=4,
+        warn=c(0, 13),
+        error=c(13, 0),
         verbose=FALSE
         )
     }
