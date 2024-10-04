@@ -45,7 +45,13 @@ fabular() {
         return
     fi
 
-    bat "$file" | rainbowcsv -d "$delim" -t | csvlook -d "$delim" -K "$lineskip" | bat -S
+    if [[ "$delim" == "0" ]]; then
+        bat "$file" | rainbowcsv -d "$delim" -t | bat -S
+
+    else
+        bat "$file" | rainbowcsv -d "$delim" -t | csvlook -d "$delim" -K "$lineskip" | bat -S
+    fi
+
 }
 
 function logg() {
@@ -74,6 +80,14 @@ function create_tmux_session() {
         tmux attach -t "$SESSION_NAME"
     else
         tmux switch-client -t "$SESSION_NAME"
+    fi
+}
+
+function cd() {
+    if [[ "$1" ]]; then
+        z "$1"; ls -a --group-directories-first
+    else
+        z "$HOME"; ls -a --group-directories-first
     fi
 }
 # function sesh-sessions() {
