@@ -1,5 +1,9 @@
+####################
+# Aerospace config #
+####################
 start-at-login = false
 
+# Not important, delete if not have
 after-startup-command = [
     'exec-and-forget sketchybar',
     'exec-and-forget borders',
@@ -7,17 +11,31 @@ after-startup-command = [
 
 key-mapping.preset = 'qwerty'
 
-# Don't know what these do
+# No sweet clue what these are for
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Stack windows by default
+#####################
+# Layout properties #
+#####################
+
+# Default to stacking windows
 default-root-container-layout = 'accordion'
-# Sets pref for hor/vert split based on monitor dims
+
+# Monitor orientation determines axis to split on
 default-root-container-orientation = 'auto'
 
+# Postitional offset applied to overlayed windows
 accordion-padding = 20
 
+# I think this is so aerospace can find itself; woah that's deep
+[exec]
+inherit-env-vars = true
+
+[exec.env-vars]
+PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
+
+# Pixel gap between windows
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
@@ -26,16 +44,12 @@ outer.bottom = 8
 outer.top = 35
 outer.right = 8
 
-# All I know is that this is important
-[exec]
-inherit-env-vars = true
-[exec.env-vars]
-PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
-
-# 'main' binding mode declaration
+######################
+# 'main' keybindings #
+######################
 [mode.main.binding]
 
-# These are dangerous with spoon fingers like mine
+# I have neither the power, nor the responsibility to be trusted with these
 cmd-h = []
 cmd-q = []
 cmd-m = []
@@ -46,25 +60,29 @@ alt-down = 'focus down'
 alt-up = 'focus up'
 alt-right = 'focus right'
 
-# Sometimes sketchybar doesn't keep up space changes.
+# Manually refresh sketchybar
 alt-esc = 'exec-and-forget sketchybar --bar hidden=toggle'
 alt-shift-esc = 'exec-and-forget sketchybar --reload'
 
 # Toggle window management
 alt-shift-period = 'layout tiling floating'
 
-# Toggle nesting style
+# Toggle means of partitioning
 alt-shift-comma = 'layout accordion tiles'
 
-# Toggle nesting orientation
+# Toggle orientation of partitions
 alt-shift-backspace = 'layout horizontal vertical'
 
 # Shift focus across monitors
 alt-tab = 'workspace-back-and-forth'
 
-# Shift container across monitors
+# Pass space between windows
+# NOTE: Will move all apps within that space
+# TODO: Check if this can be done at app level
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+
+# NOTE: To avoid mapping conflicts, only number based spaces used.
 # shift focus to...
 alt-0 = 'workspace 0'
 alt-1 = 'workspace 1'
@@ -89,26 +107,30 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
+#########################
+# Service mode bindings #
+#########################
 
-# 'service' binding mode declaration.
+# Map to enter mode
 alt-shift-semicolon = 'mode service'
-# tldr: cmds below specific to mode entered via cmd above
+
 [mode.service.binding]
 
-# escape from service mode
+# escape to main
 esc = ['mode main']
 
 # NOTE: Reverts to main after use
 r = ['reload-config', 'mode main']
 
 # NOTE: Following cmds preserve service mode
-
-# Unnest containers
-f = ['flatten-workspace-tree', 'mode service']
+# as they tend to be either repeated or used in conjunction.
 
 # Rezise container
 minus = ['resize smart -50', 'mode service']
 equal = ['resize smart +50', 'mode service']
+
+# Unnest containers
+f = ['flatten-workspace-tree', 'mode service']
 
 # Select container
 left = ['focus left', 'mode service']
@@ -116,23 +138,22 @@ down = ['focus down', 'mode service']
 up = ['focus up', 'mode service']
 right = ['focus right', 'mode service']
 
-# Move container
+# Move container about display
 alt-left = ['move left', 'mode service']
 alt-down = ['move down', 'mode service']
 alt-up = ['move up', 'mode service']
 alt-right = ['move right', 'mode service']
 
-# Nest container into another
+# Nest container within spaces/partitions
 alt-shift-left = ['join-with left', 'mode service']
 alt-shift-down = ['join-with down', 'mode service']
 alt-shift-up = ['join-with up', 'mode service']
 alt-shift-right = ['join-with right', 'mode service']
 
 
-
-###
-# |> App-specific window management rules
-###
+########################################
+# App-specific window management rules #
+########################################
 
 # 0: Terminal
 [[on-window-detected]]
@@ -145,54 +166,107 @@ run = ['layout tiling', 'move-node-to-workspace 0']
 
 # 1: Browser
 [[on-window-detected]]
-if.window-title-regex-substring = 'firefox'
+if.app-name-regex-substring = 'firefox'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-# 2: Messaging
 [[on-window-detected]]
-if.window-title-regex-substring = 'spark'
+if.app-name-regex-substring = 'zen'
+run = ['layout tiling', 'move-node-to-workspace 1']
+
+# 2: Email & calendar
+[[on-window-detected]]
+if.app-name-regex-substring = 'spark'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.window-title-regex-substring = 'Texts'
+if.app-name-regex-substring = 'Outlook'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.window-title-regex-substring = 'Messages'
+if.app-name-regex-substring = 'calendar'
 run = ['move-node-to-workspace 2']
 
-# 3: Files & finders
+# 3: File browsers & PDFs
 [[on-window-detected]]
-if.window-title-regex-substring = 'Finder'
+if.app-name-regex-substring = "marta"
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.window-title-regex-substring = 'Preview'
+if.app-name-regex-substring = 'skim'
 run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'marta'
+if.app-name-regex-substring = 'acrobat'
 run = ['move-node-to-workspace 3']
 
-# 7: Office-y apps
+# TODO: Rules for libreoffice suite
+
+# 4: Docs
 [[on-window-detected]]
-if.app-name-regex-substring = 'iWork'
+if.app-name-regex-substring = 'Pages'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Word'
+run = ['move-node-to-workspace 4']
+
+# 5: Presentations
+[[on-window-detected]]
+if.app-name-regex-substring = 'Keynote'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'PowerPoint'
+run = ['move-node-to-workspace 5']
+
+# 6: Spreadsheets
+[[on-window-detected]]
+if.app-name-regex-substring = 'Numbers'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Excel'
+run = ['move-node-to-workspace 6']
+
+# 7: Video calls
+[[on-window-detected]]
+if.app-name-regex-substring = 'Teams'
 run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Office'
+if.app-name-regex-substring = 'Zoom'
 run = ['move-node-to-workspace 7']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Calendar'
+if.app-name-regex-substring = 'FaceTime'
+run = ['move-node-to-workspace 7']
+
+# 8: Messages
+[[on-window-detected]]
+if.app-name-regex-substring = 'Texts'
+run = ['move-node-to-workspace 8']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Messages'
 run = ['move-node-to-workspace 8']
 
 # 9: Spotify
 [[on-window-detected]]
-if.window-title-regex-substring = 'Spotify'
+if.app-name-regex-substring = 'Spotify'
 run = ['move-node-to-workspace 9']
 
-# Otherwise do nothing
 [[on-window-detected]]
-check-further-callbacks = true
+if.app-name-regex-substring = 'System Settings'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Proton Pass'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Finder'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'preview'
 run = ['layout floating']

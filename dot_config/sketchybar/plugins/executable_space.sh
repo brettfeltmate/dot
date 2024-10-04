@@ -2,16 +2,16 @@
 
 update() {
   source "$CONFIG_DIR/colors.sh"
-  COLOR=$BACKGROUND_2
-  if [ "$SELECTED" = "true" ]; then
-    COLOR=$GREY
-  fi
-  sketchybar --set $NAME icon.highlight=$SELECTED \
-                         label.highlight=$SELECTED \
-                         background.border_color=$COLOR
+  COLOR=$BLUE
+  # if [ "$SELECTED" = "true" ]; then
+  #   COLOR=$GREY
+  # fi
+  sketchybar --set $NAME background.border_color=$COLOR
 }
 
 set_space_label() {
+  source "$CONFIG_DIR/icon_map.sh"
+  source "$CONFIG_DIR/icons.sh"
   sketchybar --set $NAME icon="$@"
 }
 
