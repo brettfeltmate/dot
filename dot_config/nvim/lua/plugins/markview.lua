@@ -1,7 +1,7 @@
 return {
 	"OXY2DEV/markview.nvim",
 	lazy = true,
-	ft = { "markdown", "md", "rmd", "rmarkdown" },
+	ft = { "markdown", "md", "rmd", "rmarkdown", "Avante"},
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",
@@ -25,6 +25,7 @@ return {
 					-- vim.cmd.colorscheme("desklight")
 				end,
 			},
+			html = { enable = true },
 		})
 	end,
 }

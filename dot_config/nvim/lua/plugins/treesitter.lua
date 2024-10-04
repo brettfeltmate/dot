@@ -4,11 +4,13 @@ return {
 		build = ":TSUpdate",
 		event = "BufReadPre",
 		config = function(_)
+			-- dofile(vim.g.base46_cache .. "treesitter")
 			require("nvim-treesitter.install").prefer_git = true
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"html",
+					"latex",
 					"lua",
 					"luadoc",
 					"markdown",
@@ -16,6 +18,7 @@ return {
 					"ninja",
 					"python",
 					"r",
+					"rnoweb",
 					"regex",
 					"rst",
 					"tmux",
@@ -28,14 +31,21 @@ return {
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
+
+      vim.treesitter.language.register('markdown', 'rmd')
 		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		event = "BufReadPre",
-		config = function()
-			require("treesitter-context").setup()
-		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		event = "BufReadPre",
+	},
+	{
+		"rrethy/nvim-treesitter-textsubjects",
+		event = "BufReadPre",
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

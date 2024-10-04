@@ -7,6 +7,7 @@ return {
 		require("chezmoi").setup({})
 		Fzf_Chezmoi = function()
 			require("fzf-lua").fzf_exec(require("chezmoi.commands").list(), {
+				file_icons = "mini",
 				fzf_opts = { ["--layout"] = "reverse" },
 				winopts = {
 					title = "Chezmoi",

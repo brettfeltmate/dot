@@ -5,6 +5,7 @@ return {
 	config = function()
 		require("noice").setup({
 			view = "mini",
+			hover = { enabled = false },
 			lsp = {
 				signature = { enabled = false },
 				-- override markdown rendering so that cmp and other plugins use Treesitter
@@ -14,9 +15,37 @@ return {
 					["cmp.entry.get_documentation"] = true,
 				},
 			},
-			cmdline = {
-				view = "cmdline",
+			views = {
+				cmdline_popup = {
+					position = {
+						row = 1,
+						col = "100%",
+					},
+					size = {
+						width = 60,
+						height = "auto",
+					},
+				},
+				popupmenu = {
+					relative = "editor",
+					position = {
+						row = 4,
+						col = "100%",
+					},
+					size = {
+						width = 60,
+						height = 8,
+					},
+					border = {
+						style = "rounded",
+						padding = { 0, 1 },
+					},
+					win_options = {
+						winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+					},
+				},
 			},
+			presets = { bottom_search = false },
 		})
 	end,
 }

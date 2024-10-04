@@ -3,13 +3,15 @@ vim.cmd.colorscheme("desklight")
 vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.lazygit_config = true
+vim.g.lazygit_floating_window_scaling_factor = 1.0
+vim.g.lazygit_floating_window_use_plenary = 1
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 vim.opt.cmdheight = 0
 vim.opt.background = "dark"
 vim.opt.swapfile = false
 vim.opt.backup = false
-vim.opt.number = false
+vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.signcolumn = "no"
 vim.opt.mouse = "a"
@@ -34,7 +36,7 @@ vim.opt.list = false
 vim.opt.listchars = { trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.cursorline = true
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 20
 vim.opt.completeopt = "menu,menuone,preview,noselect"
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.termguicolors = true -- True color support

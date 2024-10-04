@@ -15,11 +15,11 @@
 Desklight = {}
 Desklight.base = {
 	base00 = "#272427",
-	base01 = "#232123",
-	base02 = "#262226",
-	base03 = "#696a73",
-	base04 = "#696a73",
-	base05 = "#cbc6b4",
+	base01 = "#262026",
+	base02 = "#2c2530",
+	base03 = "#59574c",
+	base04 = "#5a5954",
+	base05 = "#c5bfab",
 	base06 = "#d5ccbb",
 	base07 = "#e0d6bd",
 	base08 = "#caa8d0",

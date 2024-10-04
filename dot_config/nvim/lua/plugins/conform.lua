@@ -18,6 +18,7 @@ end, {
 
 return { -- Autoformat
 	"stevearc/conform.nvim",
+	event = "BufReadPre",
 	config = function()
 		require("conform").setup({
 			notify_on_error = true,
@@ -30,17 +31,19 @@ return { -- Autoformat
 				},
 			},
 			formatters_by_ft = {
+				bash = { "beautysh", "shfmt" },
 				lua = { "stylua" },
 				python = { "blue" },
 				r = { "rprettify" },
 				rmd = { "rprettify" },
+				markdown = { "prettier" },
 			},
 			format_on_save = function(bufnr)
 				-- Disable with a global or buffer-local variable
 				if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
 					return
 				end
-				local disable_filetypes = { c = true, cpp = true, r = true }
+				local disable_filetypes = { c = true, cpp = true }
 				return {
 					timeout_ms = 3000,
 					lsp_fallback = not disable_filetypes[vim.bo[bufnr].filetype],

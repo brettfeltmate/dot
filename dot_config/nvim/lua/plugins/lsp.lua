@@ -7,7 +7,12 @@ return {
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "BufReadPre",
 		config = function()
-			require("tiny-inline-diagnostic").setup({ show_source = true, softwrap = 30 })
+			require("tiny-inline-diagnostic").setup({
+				options = {
+					show_source = true,
+					softwrap = 30,
+				},
+			})
 		end,
 	},
 	{
@@ -16,12 +21,13 @@ return {
 		config = function()
 			require("lsp_signature").setup({
 				floating_window = false,
-				floating_window_above_current_line = false,
+				-- floating_window_above_current_line = true,
 				hint_prefix = {
 					above = "↙ ", -- when the hint is on the line above the current line
 					current = "← ", -- when the hint is on the same line
 					below = "↖ ", -- when the hint is on the line below the current line
 				},
+				toggle_key = "<M-x>",
 			})
 		end,
 	},
@@ -35,7 +41,6 @@ return {
 			},
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
-			{ "ray-x/lsp_signature.nvim" },
 
 			{ -- completion, annotations and signatures of Neovim apis
 				"folke/neodev.nvim",
@@ -81,13 +86,11 @@ return {
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
 			local servers = {
+				ast_grep = {},
+				bashls = {},
 				clangd = {},
-				basedpyright = {},
+				html = {},
 				jedi_language_server = {},
-				marksman = {},
-				matlab_ls = {},
-				r_language_server = {},
-				rust_analyzer = {},
 				lua_ls = {
 					settings = {
 						Lua = {
@@ -106,27 +109,52 @@ return {
 						},
 					},
 				},
+				marksman = {
+					filetypes = { "markdown", "rmd" },
+				},
+				markdownlint = {
+					filetypes = { "markdown", "rmd" },
+				},
+				markdownlint_cli2 = {
+					filetypes = { "markdown", "rmd" },
+				},
+				matlab_ls = {},
+				prettier = {
+					filetypes = { "markdown", "rmd" },
+				},
+				r_language_server = {},
+				shellcheck = {},
+				python_lsp_server = {},
+				taplo = {},
 			}
 
 			require("mason").setup()
 
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"clangd",
-				"basedpyright",
+				"ast_grep",
+				"bashls",
+				"beautysh",
 				"blue",
+				"clangd",
+				"html_lsp",
 				"jedi_language_server",
+				"lua_ls",
 				"markdownlint",
 				"markdownlint-cli2",
 				"marksman",
 				"matlab_ls",
 				"prettier",
+				"python_lsp_server",
 				"r_language_server",
-				"rust_analyzer",
-				"lua_ls",
+				"shellcheck",
 				"stylua",
+				"taplo",
 			})
-			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+			require("mason-tool-installer").setup({
+				ensure_installed = ensure_installed,
+				automatic_installation = true,
+			})
 
 			require("mason-lspconfig").setup({
 				handlers = {

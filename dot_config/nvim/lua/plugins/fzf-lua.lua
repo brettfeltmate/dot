@@ -1,17 +1,28 @@
 return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
+	dependencies = { "echasnovski/mini.icons" },
 	config = function()
 		require("fzf-lua").setup({
-			fzf_opts = { ["--layout"] = "reverse" },
+			fzf_bind = "fzf-tmux",
+			fzf_opts = { ["--layout"] = "reverse-list" },
 			winopts = {
-				backdrop = 20,
+				backdrop = 75,
 				fullscreen = true,
 				preview = {
-					title_pos = "left",
+					title_pos = "center",
 					horizontal = "right:70%",
-					vertical = "down:70%",
-					layout = "horizontal",
+					vertical = "up:80%",
+					layout = "vertical",
+				},
+			},
+			files = {
+				file_icons = "mini",
+			},
+			keymap = {
+				builtin = {
+					true,
+					["<C-Esc>"] = "hide",
 				},
 			},
 		})
