@@ -1,5 +1,3 @@
-vim.cmd.colorscheme("desklight")
-
 vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.lazygit_config = true
@@ -30,13 +28,14 @@ vim.opt.pumheight = 6
 vim.opt.updatetime = 50
 vim.opt.timeoutlen = 300
 vim.opt.splitright = true
-vim.opt.shortmess:append({ W = true, I = true, c = true, C = true })
+vim.opt.shortmess:append("WIcC")
 vim.opt.splitbelow = true
 vim.opt.list = false
 vim.opt.listchars = { trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
-vim.opt.cursorline = true
-vim.opt.scrolloff = 20
+vim.opt.cursorline = false
+vim.opt.guicursor = ""
+vim.opt.scrolloff = 30
 vim.opt.completeopt = "menu,menuone,preview,noselect"
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.termguicolors = true -- True color support

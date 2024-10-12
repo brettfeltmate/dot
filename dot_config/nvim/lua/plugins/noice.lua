@@ -5,7 +5,7 @@ return {
 	config = function()
 		require("noice").setup({
 			view = "mini",
-			hover = { enabled = false },
+			hover = { enabled = true },
 			lsp = {
 				signature = { enabled = false },
 				-- override markdown rendering so that cmp and other plugins use Treesitter
@@ -22,7 +22,7 @@ return {
 						col = "100%",
 					},
 					size = {
-						width = 60,
+						width = 80,
 						height = "auto",
 					},
 				},
@@ -33,7 +33,7 @@ return {
 						col = "100%",
 					},
 					size = {
-						width = 60,
+						width = 80,
 						height = 8,
 					},
 					border = {

@@ -6,7 +6,7 @@ return {
 		require("outline").setup({
 			outline_window = {
 				position = "left",
-				width = 10,
+				width = 15,
 				relative_width = true,
 				focus_on_open = true,
 				show_relative_numbers = false,
@@ -17,20 +17,17 @@ return {
 			},
 			preview_window = {
 				auto_preview = true,
-				width = 35,
+				width = 83,
 				relative_width = true,
 				min_width = 50,
-				height = 50,
+				height = 100,
 				relative_height = true,
 				min_height = 15,
 				live = true,
 			},
-			symbols = {
-				icons = {
-					Function = { icon = "󰡱" },
-				},
+			icons = {
+				Key = { icon = " ", hl = "Type" },
 			},
 		})
-		-- vim.api.nvim_set_hl(0, "outline-items-highlighted", { guifg = "#a9c9bf" })
 	end,
 }

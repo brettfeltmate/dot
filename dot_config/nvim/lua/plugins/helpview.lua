@@ -6,6 +6,9 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 	},
 	config = function()
-		require("helpview").setup({})
+		require("helpview").setup({
+			modes = { "n", "i", "no", "c" },
+			hybrid_modes = { "i", "n" },
+		})
 	end,
 }

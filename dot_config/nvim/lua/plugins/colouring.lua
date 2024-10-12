@@ -1,6 +1,7 @@
 return {
 	{
 		"mvllow/modes.nvim",
+		-- lazy = true,
 		event = "BufReadPre",
 		config = function()
 			require("modes").setup({

@@ -7,12 +7,12 @@ return {
 			vim.cmd("Lazy load mini.move")
 			vim.g.minipairs_disable = true
 			require("nvim-autopairs").disable()
-			require("cmp").setup({ enabled = false })
+			-- require("cmp").setup({ enabled = false })
 		end,
 		post_hook = function()
 			vim.g.minipairs_disable = false
 			require("nvim-autopairs").enable()
-			require("cmp").setup({ enabled = true })
+			-- require("cmp").setup({ enabled = true })
 		end,
 		custom_key_maps = {
 			{

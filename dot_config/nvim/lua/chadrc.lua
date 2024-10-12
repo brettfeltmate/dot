@@ -1,28 +1,54 @@
 local M = {
 	base46 = {
 		theme = "nightlamp",
-		transparency = true,
+		transparency = false,
 		changed_themes = {
 			nightlamp = {
 				base_16 = {
-					base00 = "#272427",
-					base01 = "#312931",
-					base02 = "#3e3544",
-					base04 = "#574850",
-					base03 = "#6e646c",
-					base05 = "#c5bfab",
-					base06 = "#d5ccbb",
-					base07 = "#e0d6bd",
-					base08 = "#cebbd1",
-					base09 = "#c18c7e",
-					base0A = "#ccb29c",
-					base0B = "#b5aeb0",
-					base0C = "#a7a6e0",
-					base0D = "#c19fa6",
-					base0E = "#afbdd6",
-					base0F = "#a9c9bf",
+					base00 = "#221f22",
+					base01 = "#221d23",
+					base02 = "#231f23",
+					base03 = "#49504f",
+					base04 = "#837972",
+					base05 = "#c9bdb5",
+					base06 = "#949b9f",
+					base07 = "#afafb6",
+					base08 = "#c8a89d",
+					base09 = "#cda2bf",
+					base0A = "#a7a0c4",
+					base0B = "#bab2aa",
+					base0C = "#e59a9a",
+					base0D = "#96b59b",
+					base0E = "#cdb796",
+					base0F = "#906d93",
+					-- base00 = "#231d23",
+					-- base01 = "#262727",
+					-- base02 = "#2c2631",
+					-- base04 = "#32292e",
+					-- base03 = "#cfe7cd",
+					-- base05 = "#eae3c8",
+					-- base06 = "#eadec6",
+					-- base07 = "#e4decd",
+					-- base08 = "#e5b2c4",
+					-- base09 = "#e5bdb2",
+					-- base0A = "#ecd5c5",
+					-- base0B = "#ebdec9",
+					-- base0C = "#e9e0c7",
+					-- base0D = "#ecc5ce",
+					-- base0E = "#bdc2dc",
+					-- base0F = "#bae8d1",
 				},
 			},
+		},
+		integrations = {
+			"cmp",
+			"devicons",
+			"git",
+			"lsp",
+			"mason",
+			"nvimtree",
+			"todo",
+			"treesitter",
 		},
 	},
 	ui = {
@@ -36,14 +62,13 @@ local M = {
 		tabufline = {
 			enabled = true,
 			lazyload = true,
-			order = { "buffers", "tabs" },
+			order = { "treeOffset", "buffers", "tabs" },
 			modules = nil,
 		},
 		statusline = {
-			theme = "minimal", -- default/vscode/vscode_colored/minimal
-			-- default/round/block/arrow separators work only for default statusline theme
-			-- round and block will work for minimal theme only
+			theme = "minimal",
 			separator_style = "round",
+			-- Default: "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor"
 			order = nil,
 			modules = nil,
 		},
@@ -65,11 +90,24 @@ local M = {
 	lsp = { signature = true },
 
 	cheatsheet = {
-		theme = "grid", -- simple/grid
+		theme = "simple", -- simple/grid
 		excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" }, -- can add group name or with mode
 	},
-	mason = { cmd = true, pkgs = {} },
+	mason = { cmd = false, pkgs = {} },
 	colorify = { enabled = false },
+
+	term = {
+		winopts = { number = false },
+		sizes = { sp = 0.3, vsp = 0.2, ["bo sp"] = 0.3, ["bo vsp"] = 0.2 },
+		float = {
+			relative = "editor",
+			row = 0.3,
+			col = 0.25,
+			width = 0.5,
+			height = 0.4,
+			border = "single",
+		},
+	},
 }
 
 return M
