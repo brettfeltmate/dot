@@ -270,3 +270,8 @@ run = ['layout floating']
 [[on-window-detected]]
 if.app-name-regex-substring = 'preview'
 run = ['layout floating']
+
+[[on-window-detected]]
+if.window-title-regex-substring = 'NULL-APP-ID-BUNDLE'
+if.app-name-regex-substring = 'python'
+run = ['layout floating']

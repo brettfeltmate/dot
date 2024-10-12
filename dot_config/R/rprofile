@@ -1,56 +1,60 @@
-options(stringsAsFactors=FALSE)
+options(stringsAsFactors = FALSE)
 
-options(max.print=100)
+options(max.print = 100)
 
-options(scipen=10)
+options(scipen = 10)
 
-options(editor="nvim")
+options(editor = "nvim")
 
-options(show.signif.stars=FALSE)
+options(show.signif.stars = FALSE)
 
-options(menu.graphics=FALSE)
+options(menu.graphics = FALSE)
 
-options(prompt="|> ")
-options(continue="|>... ")
+options(prompt = "|> ")
+options(continue = "|>... ")
 
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
+options(lintr.commented_code_linter = FALSE)
 
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
-if(interactive()){
+if (interactive()) {
+  if (require("data.table", quietly = TRUE)) {
+    library(data.table, quietly = TRUE)
+  }
 
-    if (require("plotcli", quietly = TRUE)) {
-        library(plotcli, quietly = TRUE)
-        plotcli_options(
-            plot_width = 45,
-            plot_height = 15,
-            braille = FALSE
-        )
-    }
+  if (require("plotcli", quietly = TRUE)) {
+    library(plotcli, quietly = TRUE)
+    plotcli_options(
+      plot_width = 45,
+      plot_height = 15,
+      braille = FALSE
+    )
+  }
 
-    if (require("colorout", quietly = TRUE)) {
-      colorout::setOutputColors(
-        index=12,
-        normal=15,
-        number=14,
-        true=14,
-        negnum=1,
-        false=1,
-        string=12,
-        const=8,
-        stderror=4,
-        warn=c(0, 13),
-        error=c(13, 0),
-        verbose=FALSE
-        )
-    }
+  if (require("colorout", quietly = TRUE)) {
+    colorout::setOutputColors(
+      index = 12,
+      normal = 15,
+      number = 14,
+      true = 14,
+      negnum = 1,
+      false = 1,
+      string = 12,
+      const = 8,
+      stderror = 4,
+      warn = c(0, 13),
+      error = c(13, 0),
+      verbose = FALSE
+    )
+  }
 }
 
 # LanguageServer Setup Start (do not change this chunk)
 # to remove this, run languageserversetup::remove_from_rprofile
-if (requireNamespace('languageserversetup', quietly = TRUE)) {
-  options(langserver_library = '/Users/brettfeltmate/languageserver-library')
+if (requireNamespace("languageserversetup", quietly = TRUE)) {
+  options(langserver_library = "/Users/brettfeltmate/languageserver-library")
   languageserversetup::languageserver_startup()
-  unloadNamespace('languageserversetup')
+  unloadNamespace("languageserversetup")
 }
 # LanguageServer Setup End
