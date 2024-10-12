@@ -43,3 +43,8 @@ vim.g.r_indent_ess_compatible = 0
 
 -- Use specific comment headers
 vim.bo.comments = [[:#',:###,:##,:#]]
+
+vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#cac4b5" })
+vim.api.nvim_set_hl(0, "Operator", { fg = "#a087a2" })
+vim.api.nvim_set_hl(0, "Delimiter", { fg = "#a6c5b2" })
+vim.api.nvim_set_hl(0, "Float", { fg = "#d9d4e6" })

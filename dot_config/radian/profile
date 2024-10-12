@@ -1,4 +1,4 @@
-options(radian.color_scheme = "catppuccin-mocha")
+options(radian.color_scheme = "base16-ashes")
 
 options(radian.editing_mode = "vi")
 options(radian.emacs_bindings_in_vi_insert_mode = FALSE)
