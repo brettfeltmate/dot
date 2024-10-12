@@ -14,6 +14,12 @@ local C = function(cmd)
 end
 
 -- Non-leader mappings ===========================================================
+
+map({ "n" }, "<C-c>", function()
+	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
+	require("menu").open(options, {})
+end, "Menu", { noremap = true, silent = true })
+
 map(
 	{ "n" },
 	"[c",
@@ -84,29 +90,29 @@ for i = 1, 9, 1 do
 	end)
 end
 
--- -- Move to previous/next
--- map({ "n" }, "H", C("BufferPrevious"), "Previous buffer", { silent = true, noremap = true })
--- map({ "n" }, "L", C("BufferNext"), "Next buffer", { silent = true, noremap = true })
--- -- Goto buffer in position...
--- for i = 1, 9 do
--- 	map({ "n" }, "-" .. i, C("BufferGoto" .. i), "Goto" .. i, { silent = true, noremap = true })
--- end
--- -- Pin/unpin buffer
--- map("n", "-+", C("BufferPin"), "Pin buffer", { silent = true, noremap = true })
--- -- Reorder buffers
--- map("n", "-,", C("BufferMovePrevious"), "Shift left", { silent = true, noremap = true })
--- map("n", "-.", C("BufferMoveNext"), "Shift right", { silent = true, noremap = true })
--- map("n", "-*", C("BufferOrderByName"), "Order buffers (name)", { silent = true, noremap = true })
--- map("n", "-%", C("BufferOrderByBufferNumber"), "Order buffers (num)", { silent = true, noremap = true })
--- Wipeout buffer
---                 :BufferWipeout
--- Close commands
---                 :BufferCloseAllButCurrent
---                 :BufferCloseAllButPinned
---                 :BufferCloseAllButCurrentOrPinned
---                 :BufferCloseBuffersLeft
---                 :BufferCloseBuffersRight
-
+map(
+	{ "n" },
+	"_",
+	C(
+		"lua require('fzf-lua').buffers({"
+			.. "    winopts = {"
+			.. "        fullscreen=false,"
+			.. "        relative='cursor',"
+			.. "        row=0,"
+			.. "        col=1,"
+			.. "        height=0.4,"
+			.. "        width=0.5,"
+			.. "        preview = {"
+			.. "            title_pos = 'center',"
+			.. "            horizontal = 'right:70%',"
+			.. "            vertical = 'down:50%',"
+			.. "            layout = 'vertical',"
+			.. "        }"
+			.. "    }"
+			.. "})"
+	),
+	"Buffers"
+)
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
@@ -131,11 +137,12 @@ map(
 	"Actions"
 )
 map({ "n" }, L("lx"), C("lua require('fzf-lua').lsp_document_diagnostics()"), "Diagnostics (doc)")
-map({ "n" }, L("lX"), C("lua require('fzf-lua').lsp_workspace_diagnostics()"), "Diagnostics (proj)")
 map({ "n" }, L("lf"), C("lua require('fzf-lua').lsp_finder()"), "Ref's, Def's, & Impl's")
-map({ "n" }, L("ld"), C("lua require('fzf-lua').lsp_document_symbols()"), "Document symbols")
-map({ "n" }, L("lw"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Workspace symbols")
-map({ "n" }, L("lr"), C("lua require('nvchad.lsp.renamer)()"), "Rename Symbol")
+map({ "n" }, L("li"), C("lua require('fzf-lua').lsp_implemenations()"), "Implementations")
+map({ "n" }, L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
+map({ "n" }, L("ld"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
+map({ "n" }, L("ls"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Symbols")
+map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename Symbol")
 
 -- | [s]earch
 map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
@@ -147,22 +154,32 @@ map({ "n" }, L("sF"), C("lua require('fzf-lua').files({ cwd = '~/projects'})"), 
 map({ "n" }, L("s."), C("lua require('fzf-lua').resume()"), "Resume")
 map({ "n" }, L("sh"), C("lua require('fzf-lua').helptags()"), "Helptags")
 map({ "n" }, L("so"), C("lua require('fzf-lua').oldfiles()"), "Oldfiles")
-map({ "n" }, L("sq"), C("lua require('fzf-lua').quickfix()"), "Quickfix")
+map(
+	{ "n" },
+	L("sC"),
+	C(
+		"lua require('fzf-lua').commands({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.5, width=0.4} })"
+	),
+	"Commands"
+)
 
 map({ "n" }, L("gf"), C("lua require('fzf-lua').git_files()"), "Files")
 map({ "n" }, L("gs"), C("lua require('fzf-lua').git_status()"), "Status")
 map({ "n" }, L("gp"), C("lua require('fzf-lua').git_commits()"), "Commits (proj)")
 map({ "n" }, L("gb"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
 map({ "n" }, L("gl"), C("LazyGit"), "LazyGit")
+map({ "n" }, L("gc"), C("lua require('copilot.panel').open()"), "Copilot")
+map({ "n" }, L("ga"), C("lua require('copilot.autosuggstion').toggle_auto_trigger()"), "Autosuggestions")
 
 -- [,] convience mappings
 map({ "n" }, L(",d"), C("lua require('tiny-inline-diagnostic').toggle()"), "Diagnostics")
 map({ "n" }, L(",f"), C("lua require('oil').open()"), "Oil")
-map({ "n" }, L(",n"), C("Neotree"), "Neotree")
+map({ "n" }, L(",n"), C("NvimTreeToggle"), "NvimTree")
 map({ "n" }, L(",s"), C("Outline!"), "Symbols")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
 map({ "n" }, L(",c"), C("lua require('nvchad.themes').open()"), "Colorschemes")
+map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map(
 	{ "n" },
 	L(",C"),
@@ -172,6 +189,8 @@ map(
 	"Awesome Colorschemes"
 )
 map({ "n" }, L(",x"), C("Noice fzf"), "Noice")
+map({ "n" }, L(",t"), C("lua require('base46').toggle_transparency()"), "Transparency")
+map({ "n" }, L(",a"), C("lua require('base46').load_all_highlights()"), "Apply highlights")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
