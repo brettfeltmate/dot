@@ -7,6 +7,7 @@ return {
 		"echasnovski/mini.icons",
 	},
 	config = function()
+		dofile(vim.g.base46_cache .. "markview")
 		local presets = require("markview.presets")
 
 		require("markview").setup({
@@ -17,7 +18,7 @@ return {
 			horizontal_rules = presets.horizontal_rules.double,
 			html = { enable = true },
 			code_blocks = {
-                icons = "mini",
+				icons = "mini",
 				style = "language",
 				language_direction = "left",
 			},
