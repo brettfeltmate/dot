@@ -26,7 +26,7 @@ default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
 
 # Postitional offset applied to overlayed windows
-accordion-padding = 20
+accordion-padding = 2
 
 # I think this is so aerospace can find itself; woah that's deep
 [exec]
