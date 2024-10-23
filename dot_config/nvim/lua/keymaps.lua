@@ -54,11 +54,12 @@ map({ "i" }, "<M-Up>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 map({ "i" }, "<M-Down>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "x", "o" }, "<C-LeftMouse>", C("MultipleCursorMouseAddDelete"), "Add or remove a cursor")
 
-map({ "n", "x" }, "<M-J>", "}W")
+map({ "n", "x" }, "<M-J>", "}}W")
 map({ "n", "x" }, "<M-K>", "{{W")
 
 -- Flash.nvim
-map({ "n", "x", "o" }, ",", C("lua require('flash').jump()"))
+map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
+-- map({ "n", "x", "o" }, ",", C("lua require('snipe').open_buffer_menu()"))
 
 -- Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
@@ -77,55 +78,52 @@ map({ "n" }, "-", "<C-x>", "Decrement", { noremap = true })
 map({ "n" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
 map({ "x" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
 
-map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
-map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
-
 map({ "n" }, "<A-h>", C("tabprevious"), "Previous tab")
 map({ "n" }, "<A-l>", C("tabnext"), "Next tab")
 map({ "n" }, "<A-x>", C("tabclose"), "Close tab")
 
+map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
+map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
+
 for i = 1, 9, 1 do
-	vim.keymap.set("n", "-" .. i, function()
+	vim.keymap.set("n", "," .. i, function()
 		vim.api.nvim_set_current_buf(vim.t.bufs[i])
 	end)
 end
 
 map(
 	{ "n" },
-	"_",
+	",,",
 	C(
 		"lua require('fzf-lua').buffers({"
+			.. "    fzf_opts = {['--layout']='reverse'},"
 			.. "    winopts = {"
 			.. "        fullscreen=false,"
-			.. "        relative='cursor',"
-			.. "        row=0,"
-			.. "        col=1,"
-			.. "        height=0.4,"
-			.. "        width=0.5,"
+			.. "        relative='editor',"
+			.. "        row=100,"
+			.. "        col=0,"
+			.. "        height=0.2,"
+			.. "        width=0.975,"
 			.. "        preview = {"
 			.. "            title_pos = 'center',"
-			.. "            horizontal = 'right:70%',"
+			.. "            horizontal = 'right:60%',"
 			.. "            vertical = 'down:50%',"
-			.. "            layout = 'vertical',"
+			.. "            layout = 'horizontal',"
 			.. "        }"
 			.. "    }"
 			.. "})"
 	),
 	"Buffers"
 )
+
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
 map({ "n" }, L("bx"), C("lua require('nvchad.tabufline').close_buffer()"), "Close")
-map({ "n" }, L("bs"), C("lua require('fzf-lua').blines()"), "Lines (open)")
-map({ "n" }, L("bS"), C("lua require('fzf-lua').lines()"), "Lines (curr)")
 map({ "n" }, L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
 map({ "n" }, L("bg"), C("lua require('fzf-lua').grep_curbuf()"), "Grep")
-map({ "n" }, L("b/"), C("lua require('fzf-lua').lgrep_curbuf()"), "LiveGrep")
 map({ "n" }, L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
-map({ "n" }, L("bm"), C("MarkdownPreviewToggle"), "Toggle Preview")
-map({ "n" }, L("bp"), C("PasteImage"), "Insert Image")
 
 -- | [L]SP
 map(
@@ -147,8 +145,8 @@ map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename Symbol")
 -- | [s]earch
 map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
-map({ "n" }, L("sg"), C("lua require('fzf-lua').live_grep()"), "Grep locally")
-map({ "n" }, L("sG"), C("lua require('fzf-lua').live_grep_native({ cwd = '~/projects'})"), "Grep projects")
+map({ "n" }, L("sg"), C("lua require('fzf-lua').live_grep()"), "Grep (cwd)")
+map({ "n" }, L("sG"), C("lua require('fzf-lua').live_grep_native({ cwd = '~/projects'})"), "Grep (projs)")
 map({ "n" }, L("sf"), C("lua require('fzf-lua').files()"), "Files (cwd)")
 map({ "n" }, L("sF"), C("lua require('fzf-lua').files({ cwd = '~/projects'})"), "Files (projs)")
 map({ "n" }, L("s."), C("lua require('fzf-lua').resume()"), "Resume")
@@ -174,7 +172,7 @@ map({ "n" }, L("ga"), C("lua require('copilot.autosuggstion').toggle_auto_trigge
 -- [,] convience mappings
 map({ "n" }, L(",d"), C("lua require('tiny-inline-diagnostic').toggle()"), "Diagnostics")
 map({ "n" }, L(",f"), C("lua require('oil').open()"), "Oil")
-map({ "n" }, L(",n"), C("NvimTreeToggle"), "NvimTree")
+map({ "n" }, L(",n"), C("Neotree toggle show buffers left"), "NvimTree")
 map({ "n" }, L(",s"), C("Outline!"), "Symbols")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
