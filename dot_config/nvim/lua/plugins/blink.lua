@@ -7,14 +7,14 @@ return {
 		opts = {
 			keymap = {
 				show = "<C-space>",
-				hide = "<C-e>",
-				accept = "<tab>",
+				hide = "<C-h>",
+				accept = "<C-l>",
 				select_prev = { "<C-k>" },
 				select_next = { "<C-j>" },
 				show_documentation = "<C-s>",
-				hide_documentation = "<C-h>",
-				scroll_documentation_up = "<C-b>",
-				scroll_documentation_down = "<C-f>",
+				hide_documentation = "<C-S>",
+				scroll_documentation_up = "<C-p>",
+				scroll_documentation_down = "<C-n>",
 			},
 			signature_help = {
 				enabled = true,

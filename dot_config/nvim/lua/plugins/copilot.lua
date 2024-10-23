@@ -1,10 +1,14 @@
+if true then
+	return {}
+end
 return {
 	"zbirenbaum/copilot.lua",
-	cmd = "Copilot",
+	lazy = true,
 	event = "InsertEnter",
 	opts = {
 		panel = { layout = { position = "left", ratio = 0.3 } },
 		suggestions = {
+			enable = true,
 			auto_trigger = true,
 			keymap = {
 				accept = "<A-l>",
