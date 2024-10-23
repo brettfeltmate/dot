@@ -85,12 +85,12 @@ return {
 			})
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend(
-				"force",
-				capabilities,
-				-- require("cmp_nvim_lsp").default_capabilities(),
-				require("lsp-file-operations").default_capabilities()
-			)
+			-- capabilities = vim.tbl_deep_extend(
+			-- 	"force",
+			-- 	capabilities,
+			-- 	-- require("cmp_nvim_lsp").default_capabilities(),
+			-- 	require("lsp-file-operations").default_capabilities()
+			-- )
 			local servers = {
 				ast_grep = {},
 				bashls = {},
@@ -121,7 +121,7 @@ return {
 				prettier = {},
 				r_language_server = {},
 				shellcheck = {},
-				python_lsp_server = {},
+				pylsp = {},
 				taplo = {},
 			}
 
