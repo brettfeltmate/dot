@@ -1,3 +1,5 @@
+options(lintr.linter_file = "~/.config/R/lintr")
+
 options(stringsAsFactors = FALSE)
 
 options(max.print = 100)
@@ -14,7 +16,6 @@ options(prompt = "|> ")
 options(continue = "|>... ")
 
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
-options(lintr.commented_code_linter = FALSE)
 
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
