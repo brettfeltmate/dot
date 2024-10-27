@@ -1,4 +1,6 @@
 -- Vim-Slime bindings
+-- TODO:
+-- local function to execute then move cursor to next chunk
 vim.keymap.set("n", "<CR>", "<Plug>SlimeParagraphSend", { buffer = 0, noremap = true, desc = "Send block" })
 vim.keymap.set("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
 vim.keymap.set("n", "<leader>rl", "<Plug>SlimeLineSend", { buffer = 0, noremap = true, desc = "Send line" })

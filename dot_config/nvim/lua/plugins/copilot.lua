@@ -1,20 +1,21 @@
 if true then
 	return {}
 end
+
 return {
 	"zbirenbaum/copilot.lua",
 	lazy = true,
-	event = "InsertEnter",
+	event = "BufReadPre",
 	opts = {
 		panel = { layout = { position = "left", ratio = 0.3 } },
 		suggestions = {
 			enable = true,
 			auto_trigger = true,
 			keymap = {
-				accept = "<A-l>",
-				next = "<A-]>",
-				prev = "<A-[>",
-				dismiss = "<C-e>",
+				accept = "<M-l>",
+				next = "<M-j>",
+				prev = "<M-k>",
+				dismiss = "<M-e>",
 			},
 		},
 		filetypes = { markdown = true },

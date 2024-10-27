@@ -6,15 +6,15 @@ return {
 	config = function()
 		require("fzf-lua").setup({
 			fzf_bind = "fzf-tmux",
-			fzf_opts = { ["--layout"] = "reverse-list" },
+			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
 				backdrop = 75,
 				fullscreen = true,
 				preview = {
 					title_pos = "center",
-					horizontal = "right:70%",
-					vertical = "up:80%",
-					layout = "vertical",
+					horizontal = "right:60%",
+					vertical = "up:70%",
+					layout = "horizontal",
 				},
 			},
 			files = {

@@ -1,6 +1,6 @@
 return {
 	"stevearc/oil.nvim",
-	lazy = false,
+	lazy = true,
 	dependencies = { "echasnovski/mini.icons" },
 	config = function()
 		require("oil").setup({
@@ -16,6 +16,7 @@ return {
 					desc = "Show file details",
 				},
 			},
+			-- columns = { "icon", "permissions", "size", "mtime" },
 			default_file_explorer = true,
 			delete_to_trash = true,
 			skip_confirm_for_simple_edits = true,

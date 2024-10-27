@@ -2,12 +2,12 @@ return {
 	{
 		"saghen/blink.cmp",
 		lazy = true,
-		event = "LspAttach",
+		event = "BufReadPre",
 		version = "v0.2.1",
 		opts = {
 			keymap = {
 				show = "<C-space>",
-				hide = "<C-h>",
+				hide = "<C-e>",
 				accept = "<C-l>",
 				select_prev = { "<C-k>" },
 				select_next = { "<C-j>" },

@@ -6,13 +6,12 @@ return {
 		require("mini.ai").setup()
 		require("mini.basics").setup()
 		require("mini.bracketed").setup()
-		require("mini.bufremove").setup()
+		-- require("mini.bufremove").setup()
 		require("mini.comment").setup()
 		require("mini.extra").setup()
-		require("mini.indentscope").setup()
+		-- require("mini.indentscope").setup()
 		require("mini.misc").setup()
-		require("mini.move").setup()
-		require("mini.pairs").setup()
+		-- require("mini.pairs").setup()
 		require("mini.trailspace").setup()
 
 		local clue = require("mini.clue")
@@ -69,8 +68,8 @@ return {
 			clues = {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
-				{ mode = "n", keys = "<leader>c", desc = "Chat" },
-				{ mode = "v", keys = "<leader>c", desc = "Chat" },
+				{ mode = "n", keys = "<leader>a", desc = "Avante" },
+				{ mode = "v", keys = "<leader>a", desc = "Avante" },
 				{ mode = "n", keys = "<leader>s", desc = "Search" },
 				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
 				{ mode = "n", keys = "<leader>g", desc = "Git" },
@@ -83,6 +82,20 @@ return {
 				clue.gen_clues.registers(),
 				clue.gen_clues.windows({ submode_resize = true }),
 				clue.gen_clues.z(),
+			},
+		})
+		require("mini.move").setup({
+			mappings = {
+				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+				left = "<M-C-h>",
+				right = "<M-C-l>",
+				down = "<M-C-j>",
+				up = "<M-C-k>",
+				-- Move current line in Normal mode
+				line_left = "<M-C-h>",
+				line_right = "<M-C-l>",
+				line_down = "<M-C-j>",
+				line_up = "<M-C-k>",
 			},
 		})
 	end,

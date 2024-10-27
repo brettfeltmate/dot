@@ -5,7 +5,7 @@ return {
 	config = function()
 		require("outline").setup({
 			outline_window = {
-				position = "left",
+				position = "right",
 				width = 15,
 				relative_width = true,
 				focus_on_open = true,
@@ -23,7 +23,7 @@ return {
 				height = 100,
 				relative_height = true,
 				min_height = 15,
-				live = true,
+				live = false,
 			},
 			icons = {
 				Key = { icon = " ", hl = "Type" },

@@ -11,28 +11,6 @@ local function nvim_create_augroups(definitions)
 	end
 end
 
--- local function semshi_highlights()
--- 	vim.cmd("hi semshiLocal           ctermfg=209 guifg=#e1967d")
--- 	vim.cmd("hi semshiGlobal          ctermfg=214 guifg=#edb882")
--- 	vim.cmd("hi semshiImported        ctermfg=214 guifg=#edb882 cterm=bold gui=bold")
--- 	vim.cmd("hi semshiParameter       ctermfg=75  guifg=#9db6d0")
--- 	vim.cmd("hi semshiParameterUnused ctermfg=117 guifg=#9db6d0 cterm=underline gui=underline")
--- 	vim.cmd("hi semshiFree            ctermfg=218 guifg=#f7b7d7")
--- 	vim.cmd("hi semshiBuiltin         ctermfg=207 guifg=#7aacaa")
--- 	vim.cmd("hi semshiAttribute       ctermfg=49  guifg=#aad7a4")
--- 	vim.cmd("hi semshiSelf            ctermfg=249 guifg=#c99297")
--- 	vim.cmd("hi semshiUnresolved      ctermfg=226 guifg=#e9e9a2 cterm=underline gui=underline")
--- 	vim.cmd("hi semshiSelected        ctermfg=231 guifg=#ffffff ctermbg=161 guibg=#d18baa")
--- 	vim.cmd("hi semshiErrorSign       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d18baa")
--- 	vim.cmd("hi semshiErrorChar       ctermfg=231 guifg=#ffffff ctermbg=160 guibg=#d18baa")
--- end
---
--- vim.api.nvim_create_autocmd("FileType", {
--- 	group = vim.api.nvim_create_augroup("python_highlights", { clear = true }),
--- 	pattern = "python",
--- 	callback = semshi_highlights
--- })
-
 local autocmds = {
 	numberlines = {
 		{ "TermOpen", "*", "setlocal nonu nornu signcolumn=no" },

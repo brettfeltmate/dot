@@ -1,36 +1,24 @@
 -- LSP Configuration & Plugins
 return {
-	{ -- Annoying as fuck
-		vim.diagnostic.config({ virtual_text = false }),
-	},
 	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "BufReadPre",
-		config = function()
-			require("tiny-inline-diagnostic").setup({
-				options = {
-					show_source = true,
-					softwrap = 30,
-				},
-			})
-		end,
+		vim.diagnostic.config({ virtual_text = true }),
 	},
-	{
-		"ray-x/lsp_signature.nvim",
-		event = "BufReadPre",
-		config = function()
-			require("lsp_signature").setup({
-				floating_window = false,
-				-- floating_window_above_current_line = true,
-				hint_prefix = {
-					above = "↙ ", -- when the hint is on the line above the current line
-					current = "← ", -- when the hint is on the same line
-					below = "↖ ", -- when the hint is on the line below the current line
-				},
-				toggle_key = "<M-x>",
-			})
-		end,
-	},
+	-- {
+	-- 	"ray-x/lsp_signature.nvim",
+	-- 	event = "BufReadPre",
+	-- 	config = function()
+	-- 		require("lsp_signature").setup({
+	-- 			floating_window = false,
+	-- 			-- floating_window_above_current_line = true,
+	-- 			hint_prefix = {
+	-- 				above = "↙ ", -- when the hint is on the line above the current line
+	-- 				current = "← ", -- when the hint is on the same line
+	-- 				below = "↖ ", -- when the hint is on the line below the current line
+	-- 			},
+	-- 			toggle_key = "<M-x>",
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
@@ -41,6 +29,7 @@ return {
 			},
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "WhoIsSethDaniel/mason-tool-installer.nvim" },
+			{ "antosha417/nvim-lsp-file-operations" },
 
 			{ -- completion, annotations and signatures of Neovim apis
 				"folke/neodev.nvim",
@@ -85,17 +74,23 @@ return {
 			})
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			-- capabilities = vim.tbl_deep_extend(
-			-- 	"force",
-			-- 	capabilities,
-			-- 	-- require("cmp_nvim_lsp").default_capabilities(),
-			-- 	require("lsp-file-operations").default_capabilities()
-			-- )
+
+			-- Get folds from LSP
+			capabilities.textDocument.foldingRange = {
+				dynamicRegistration = false,
+				lineFoldingOnly = true,
+			}
+
+			capabilities = vim.tbl_deep_extend(
+				"force",
+				capabilities,
+				-- 	-- require("cmp_nvim_lsp").default_capabilities(),
+				require("lsp-file-operations").default_capabilities()
+			)
+
 			local servers = {
-				ast_grep = {},
 				bashls = {},
 				clangd = {},
-				html = {},
 				jedi_language_server = {},
 				lua_ls = {
 					settings = {
@@ -121,8 +116,6 @@ return {
 				prettier = {},
 				r_language_server = {},
 				shellcheck = {},
-				pylsp = {},
-				taplo = {},
 			}
 
 			dofile(vim.g.base46_cache .. "mason")
@@ -130,24 +123,17 @@ return {
 
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"ast_grep",
 				"bashls",
-				"beautysh",
 				"blue",
 				"clangd",
-				"html_lsp",
 				"jedi_language_server",
 				"lua_ls",
 				"markdownlint",
-				"markdownlint-cli2",
 				"marksman",
 				"matlab_ls",
 				"prettier",
-				"python_lsp_server",
 				"r_language_server",
-				"shellcheck",
 				"stylua",
-				"taplo",
 			})
 			require("mason-tool-installer").setup({
 				ensure_installed = ensure_installed,

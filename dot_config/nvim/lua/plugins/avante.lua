@@ -1,7 +1,7 @@
 return {
 	"yetone/avante.nvim",
 	lazy = true,
-	event = "BufReadPre",
+	cmd = "AvanteAsk",
 	build = "make",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
@@ -10,10 +10,10 @@ return {
 		"MunifTanjim/nui.nvim",
 		"echasnovski/mini.icons",
 		"oxy2dev/markview.nvim",
-		"zbirenbaum/copilot.lua",
 	},
 	config = function()
 		require("avante").setup({
+			provider = "copilot",
 			behaviour = {
 				auto_suggestions = true,
 			},

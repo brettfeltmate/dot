@@ -5,7 +5,7 @@ local base16 = {
 	base02 = "#302831",
 	base03 = "#49504f",
 	base04 = "#837972",
-	base05 = "#bfb0a7",
+	base05 = "#c5b8b0",
 	base06 = "#949b9f",
 	base07 = "#afafb6",
 	base08 = "#c8a89d",
@@ -20,9 +20,9 @@ local base16 = {
 -- UI
 local base30 = {
 	white = "#c8a89d",
-	black = "#221d23",
-	darker_black = "#1f1d1f",
-	black2 = "#292429",
+	black = "#292429",
+	darker_black = "#1d1d22",
+	black2 = "#241f24",
 	one_bg = "#302831",
 	one_bg2 = "#3e333f",
 	one_bg3 = "#413542",
@@ -30,7 +30,7 @@ local base30 = {
 	grey_fg = "#6c5c6e",
 	grey_fg2 = "#7a687c",
 	light_grey = "#88748a",
-	red = "#d57882",
+	red = "#d1969c",
 	baby_pink = "#bf8f94",
 	pink = "#a4777c",
 	line = "#2a3240",
@@ -49,7 +49,7 @@ local base30 = {
 	statusline_bg = "#352d37",
 	lightbg = "#6c5c6e",
 	pmenu_bg = "#9a6880",
-	folder_bg = "#887a65",
+	folder_bg = "#afb4b7",
 }
 
 local M = {
@@ -63,14 +63,11 @@ local M = {
 			},
 			polish_hl = {
 				defaults = {
-                    -- ${hl, git}
 					Comment = { bg = base30.lightbg, italic = true },
 					Added = { fg = base30.yellow },
 					Removed = { fg = base30.baby_pink },
 					Changed = { fg = base30.purple },
-                    --
 
-                    -- ${hl, splits & windows}
 					WinBar = { bg = "NONE" },
 					WinBarNC = { bg = "NONE" },
 					WinSeparator = { fg = base30.line },
@@ -81,73 +78,63 @@ local M = {
 					FloatBorder = { fg = base30.cyan },
 					FloatTitle = { fg = base30.white, bg = base30.grey },
 					NormalFloat = { bg = base30.darker_black },
-					Title = { fg = base16.base0D, sp = "none", },
-					WildMenu = { fg = base16.base08, bg = base16.base0A, },
-                    --
+					Title = { fg = base16.base0D, sp = "none" },
+					WildMenu = { fg = base16.base08, bg = base16.base0A },
 
-                    -- ${hl, search & replace}
-					QuickFixLine = { bg = base16.base01, sp = "none", },
-					Question = { fg = base16.base0D, },
-					Search = { fg = base16.base01, bg = base16.base0A, },
-					Substitute = { fg = base16.base01, bg = base16.base0A, sp = "none", },
-					IncSearch = { fg = base16.base01, bg = base16.base09, },
-                    MatchWord = { bg = base30.grey_fg, fg = base30.baby_pink, },
+					QuickFixLine = { bg = base16.base01, sp = "none" },
+					Question = { fg = base16.base0D },
+					Search = { fg = base16.base01, bg = base16.base0A },
+					Substitute = { fg = base16.base01, bg = base16.base0A, sp = "none" },
+					IncSearch = { fg = base16.base01, bg = base16.base09 },
+					MatchWord = { bg = base30.grey_fg, fg = base30.baby_pink },
 					MatchParen = { link = "MatchWord" },
-                    --
 
-                    -- ${hl, text}
-					Normal = { fg = base16.base05, bg = base16.base00, },
-					Italic = { italic = true, },
+					Normal = { fg = base16.base05, bg = base16.base00 },
+					Italic = { italic = true },
 					Bold = { bold = true },
-					UnderLined = { underline = true, },
-					Conceal = { bg = "NONE", },
-					NonText = { fg = base16.base03, },
+					UnderLined = { underline = true },
+					Conceal = { bg = "NONE" },
+					NonText = { fg = base16.base03 },
 					DevIconDefault = { fg = base30.red },
-					Directory = { fg = base16.base0D, },
-                    --
+					Directory = { fg = base16.base0D },
 
-                    -- ${hl, modes}
-					ModeMsg = { fg = base16.base0B, },
-					MoreMsg = { fg = base16.base0B, },
-					Visual = { bg = base16.base02, },
-					VisualNOS = { fg = base16.base08, },
-					Macro = { fg = base16.base08, },
-                    --
+					ModeMsg = { fg = base16.base0B },
+					MoreMsg = { fg = base16.base0B },
+					Visual = { bg = base16.base02 },
+					VisualNOS = { fg = base16.base08 },
+					Macro = { fg = base16.base08 },
 
-                    -- ${hl, cursor & column}
-					Cursor = { fg = base16.base00, bg = base16.base05, },
-					CursorColumn = { bg = base16.base01, sp = "none", },
-					CursorLine = { bg = base30.one_bg3, },
+					Cursor = { fg = base16.base00, bg = base16.base05 },
+					CursorColumn = { bg = base16.base01, sp = "none" },
+					CursorLine = { bg = base30.one_bg3 },
 					CursorLineNr = { fg = base30.white },
-					SignColumn = { fg = base16.base03, sp = "NONE", },
-					ColorColumn = { bg = base30.black2, },
+					SignColumn = { fg = base16.base03, sp = "NONE" },
+					ColorColumn = { bg = base30.black2 },
 					LineNr = { fg = base30.grey },
 					FoldColumn = { bg = "none" },
-					Folded = { fg = base30.light_grey, bg = base30.black2, },
-                    --
+					Folded = { fg = base30.light_grey, bg = base30.black2 },
 
-                    -- ${hl, errors & msg's}
-					Error = { fg = base16.base00, bg = base16.base08, },
-					ErrorMsg = { fg = base16.base08, bg = base16.base00, },
-					Exception = { fg = base16.base08, },
-					healthSuccess = { bg = base30.green, fg = base30.black, },
+					Error = { fg = base16.base00, bg = base16.base08 },
+					ErrorMsg = { fg = base16.base08, bg = base16.base00 },
+					Exception = { fg = base16.base08 },
+					healthSuccess = { bg = base30.green, fg = base30.black },
 					Debug = { fg = base16.base08 },
-					WarningMsg = { fg = base16.base08, },
-					SpecialKey = { fg = base16.base03, }, TooLong = { fg = base16.base08, },
+					WarningMsg = { fg = base16.base08 },
+					SpecialKey = { fg = base16.base03 },
+					TooLong = { fg = base16.base08 },
 					NvimInternalError = { fg = base30.red },
-                    --
 
-                    -- ${hl, spell}
-					SpellBad = { undercurl = true, sp = base16.base08, },
-					SpellLocal = { undercurl = true, sp = base16.base0C, },
-					SpellCap = { undercurl = true, sp = base16.base0D, },
-					SpellRare = { undercurl = true, sp = base16.base0E, },
-                    --
+					SpellBad = { undercurl = true, sp = base16.base08 },
+					SpellLocal = { undercurl = true, sp = base16.base0C },
+					SpellCap = { undercurl = true, sp = base16.base0D },
+					SpellRare = { undercurl = true, sp = base16.base0E },
 
-                    -- ${hl, lazy}
-					LazyH1 = { bg = base30.green, fg = base30.black, },
-					LazyButton = { bg = base30.one_bg, fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 10 or -20), },
-					LazyH2 = { fg = base30.red, bold = true, underline = true, },
+					LazyH1 = { bg = base30.green, fg = base30.black },
+					LazyButton = {
+						bg = base30.one_bg,
+						fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 10 or -20),
+					},
+					LazyH2 = { fg = base30.red, bold = true, underline = true },
 					LazyReasonPlugin = { fg = base30.red },
 					LazyValue = { fg = base30.teal },
 					LazyDir = { fg = base16.base05 },
@@ -167,18 +154,15 @@ local M = {
 					LazyReasonSource = { fg = base30.cyan },
 					LazyReasonImport = { fg = base30.white },
 					LazyProgressDone = { fg = base30.green },
-                    --
 				},
-                -- ${hl, barbar}
+
 				barbar = {
 					["@BufferVisibleNumber"] = { fg = base30.cyan },
 					["@BufferVisibleIcon"] = { fg = base30.cyan },
 					["@BufferVisibleSign"] = { fg = base30.cyan },
 					["@BufferVisibleSignRight"] = { fg = base30.cyan },
 				},
-                --
 
-                -- ${hl, markview}
 				markview = {
 					["@markup.heading.1.markdown"] = { fg = base30.red },
 					["@markup.heading.2.markdown"] = { fg = base30.orange },
@@ -187,15 +171,11 @@ local M = {
 					["@markup.heading.5.markdown"] = { fg = base30.blue },
 					["@markup.heading.6.markdown"] = { fg = base30.purple },
 				},
-                --
 
-                -- ${hl, treesitter}
 				treesitter = {
 					["@variable"] = { fg = "#000000" },
 				},
-                --
 
-                -- ${hl, syntax}
 				syntax = {
 					Boolean = { fg = base30.base09 },
 					Character = { fg = base30.base08 },
@@ -225,7 +205,6 @@ local M = {
 					Type = { fg = base30.base0A, sp = "none" },
 					Typedef = { fg = base30.base0A },
 				},
-                --
 			},
 		},
 		integrations = {
@@ -245,8 +224,6 @@ local M = {
 			lspkind_text = true,
 			style = "default",
 		},
-		-- TODO: replace with BarBar.
-		-- Or figure out sorting by name.
 		tabufline = {
 			enabled = true,
 			lazyload = true,
@@ -255,10 +232,17 @@ local M = {
 		statusline = {
 			theme = "minimal",
 			separator_style = "round",
+			order = { "mode", "file", "git", "arrow", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+			modules = {
+				arrow = function()
+					local arrow_statusline = require("arrow.statusline")
+					return arrow_statusline.text_for_statusline_with_icons()
+				end,
+			},
 		},
 	},
 	nvdash = {
-		load_on_startup = false,
+		load_on_startup = true,
 		header = {},
 		buttons = {
 			{ txt = "󱁾 Browse   ", keys = "󱁐 󰸤 󰯺", cmd = "Oil" },

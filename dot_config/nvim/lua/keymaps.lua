@@ -70,10 +70,6 @@ map({ "n", "x" }, "gP", "<Plug>(YankyGPutBefore)")
 map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)")
 map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 
--- remap increment/decrement to not conflict with tmux
-map({ "n" }, "+", "<C-a>", "Increment", { noremap = true })
-map({ "n" }, "-", "<C-x>", "Decrement", { noremap = true })
-
 -- wtf.nvim
 map({ "n" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
 map({ "x" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
@@ -91,36 +87,32 @@ for i = 1, 9, 1 do
 	end)
 end
 
-map(
-	{ "n" },
-	",,",
-	C(
-		"lua require('fzf-lua').buffers({"
-			.. "    fzf_opts = {['--layout']='reverse'},"
-			.. "    winopts = {"
-			.. "        fullscreen=false,"
-			.. "        relative='editor',"
-			.. "        row=100,"
-			.. "        col=0,"
-			.. "        height=0.2,"
-			.. "        width=0.975,"
-			.. "        preview = {"
-			.. "            title_pos = 'center',"
-			.. "            horizontal = 'right:60%',"
-			.. "            vertical = 'down:50%',"
-			.. "            layout = 'horizontal',"
-			.. "        }"
-			.. "    }"
-			.. "})"
-	),
-	"Buffers"
-)
+local function open_fzf_buffers()
+	require("fzf-lua").buffers({
+		fzf_opts = { ["--layout"] = "reverse" },
+		winopts = {
+			fullscreen = false,
+			relative = "editor",
+			row = 0,
+			col = 0,
+			height = 0.7,
+			width = 1,
+			preview = {
+				title_pos = "center",
+				horizontal = "right:60%",
+				vertical = "up:60%",
+				layout = "vertical",
+			},
+		},
+	})
+end
+
+map({ "n" }, ",,", open_fzf_buffers, "Buffers")
 
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
 map({ "n" }, L("bx"), C("lua require('nvchad.tabufline').close_buffer()"), "Close")
-map({ "n" }, L("bb"), C("lua require('fzf-lua').buffers()"), "Buffers")
 map({ "n" }, L("bg"), C("lua require('fzf-lua').grep_curbuf()"), "Grep")
 map({ "n" }, L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
@@ -170,10 +162,11 @@ map({ "n" }, L("gc"), C("lua require('copilot.panel').open()"), "Copilot")
 map({ "n" }, L("ga"), C("lua require('copilot.autosuggstion').toggle_auto_trigger()"), "Autosuggestions")
 
 -- [,] convience mappings
-map({ "n" }, L(",d"), C("lua require('tiny-inline-diagnostic').toggle()"), "Diagnostics")
+-- map({ "n" }, L(",d"), C("lua require('tiny-inline-diagnostic').toggle()"), "Diagnostics")
 map({ "n" }, L(",f"), C("lua require('oil').open()"), "Oil")
-map({ "n" }, L(",n"), C("Neotree toggle show buffers left"), "NvimTree")
-map({ "n" }, L(",s"), C("Outline!"), "Symbols")
+map({ "n" }, L(",n"), C("NvimTreeToggle"), "NvimTree")
+map({ "n" }, L(",o"), C("Outline!"), "Outline")
+map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
 map({ "n" }, L(",c"), C("lua require('nvchad.themes').open()"), "Colorschemes")

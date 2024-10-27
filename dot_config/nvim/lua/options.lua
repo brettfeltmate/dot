@@ -11,7 +11,8 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = "no"
+vim.opt.signcolumn = "number"
+vim.opt.numberwidth = 1
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
@@ -43,3 +44,11 @@ vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.tabstop = 4
 vim.opt.virtualedit = "block"
 vim.opt.smoothscroll = true
+
+vim.opt.fillchars = "eob: ,fold: "
+
+-- nvim-ufo
+vim.opt.foldcolumn = "0"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
