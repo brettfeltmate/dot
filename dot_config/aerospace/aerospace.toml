@@ -1,6 +1,5 @@
-####################
-# Aerospace config #
-####################
+# Aerospace config
+
 start-at-login = false
 
 # Not important, delete if not have
@@ -15,9 +14,7 @@ key-mapping.preset = 'qwerty'
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-#####################
-# Layout properties #
-#####################
+# Layout properties
 
 # Default to stacking windows
 default-root-container-layout = 'accordion'
@@ -37,16 +34,14 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # Pixel gap between windows
 [gaps]
-inner.horizontal = 8
-inner.vertical = 8
-outer.left = 8
-outer.bottom = 8
-outer.top = 35
-outer.right = 8
+inner.horizontal = 6
+inner.vertical = 6
+outer.left = 10
+outer.bottom = 6
+outer.top = 32
+outer.right = 10
 
-######################
-# 'main' keybindings #
-######################
+# 'main' keybindings
 [mode.main.binding]
 
 # I have neither the power, nor the responsibility to be trusted with these
@@ -107,9 +102,7 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
-#########################
-# Service mode bindings #
-#########################
+# Service mode bindings
 
 # Map to enter mode
 alt-shift-semicolon = 'mode service'
@@ -151,9 +144,7 @@ alt-shift-up = ['join-with up', 'mode service']
 alt-shift-right = ['join-with right', 'mode service']
 
 
-########################################
-# App-specific window management rules #
-########################################
+# App-specific window management rules
 
 # 0: Terminal
 [[on-window-detected]]

@@ -1,6 +1,11 @@
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-${ZDOTDIR}/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
+# source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
+# source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
+# source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
+# source "${ZDOTDIR}/cmp-sources/_atuin"
+
 # Load and initialise brew-provided completions
 if type brew &>/dev/null
 then
@@ -45,15 +50,18 @@ source <(fzf --zsh)
 source "${ZDOTDIR}/aliases.zsh"
 source "${ZDOTDIR}/functions.zsh"
 source "${ZDOTDIR}/keys.zsh"
-
-source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
+source "${ZDOTDIR}/cmp-sources/_atuin"
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # Directory history
+setopt AUTO_PUSHD                  # pushes the old directory onto the stack
+setopt PUSHD_MINUS                 # exchange the meanings of '+' and '-'
+setopt CDABLE_VARS                 # expand the expression (allows 'cd -2/tmp')
 setopt extended_glob
 zstyle ':completion:*:directory-stack' list-colors '=(#b) #([0-9]#)*( *)==95=38;5;12'
 zstyle ':fzf-tab:*' fzf-command fzf
@@ -62,7 +70,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 zstyle ':fzf-tab:*' switch-group '<' '>'
-# zstyle ':fzf-tab:*' popup-min-size 80 40
+zstyle ':fzf-tab:*' popup-min-size 80 40
 
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
 export LESSOPEN='|~/.config/shell/lessfilter.sh %s'
@@ -85,3 +93,7 @@ zle     -N             sesh-sessions
 bindkey -M emacs '\es' sesh-sessions
 bindkey -M vicmd '\es' sesh-sessions
 bindkey -M viins '\es' sesh-sessions
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh --disable-up-arrow)"
