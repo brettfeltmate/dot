@@ -30,6 +30,7 @@ map(
 
 map({ "n" }, "<Esc>", "<cmd>nohlsearch<CR>")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
+map({ "n" }, "<leader><leader>", C("FzfLua builtin"), "FzfLua(s)")
 
 -- Navigating between neovim/tmux splits
 map({ "n" }, "<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
@@ -59,7 +60,6 @@ map({ "n", "x" }, "<M-K>", "{{W")
 
 -- Flash.nvim
 map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
--- map({ "n", "x", "o" }, ",", C("lua require('snipe').open_buffer_menu()"))
 
 -- Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
@@ -74,8 +74,9 @@ map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 map({ "n" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
 map({ "x" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
 
-map({ "n" }, "<A-h>", C("tabprevious"), "Previous tab")
-map({ "n" }, "<A-l>", C("tabnext"), "Next tab")
+map({ "n" }, "<A-p>", C("tabprevious"), "Previous tab")
+map({ "n" }, "<A-n>", C("tabnext"), "Next tab")
+map({ "n" }, "<A-c>", C("tabnew"), "New tab")
 map({ "n" }, "<A-x>", C("tabclose"), "Close tab")
 
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
@@ -126,63 +127,52 @@ map(
 	),
 	"Actions"
 )
-map({ "n" }, L("lx"), C("lua require('fzf-lua').lsp_document_diagnostics()"), "Diagnostics (doc)")
-map({ "n" }, L("lf"), C("lua require('fzf-lua').lsp_finder()"), "Ref's, Def's, & Impl's")
-map({ "n" }, L("li"), C("lua require('fzf-lua').lsp_implemenations()"), "Implementations")
+map({ "n" }, L("li"), C("lua require('fzf-lua').lsp_implementions()"), "Implementations")
 map({ "n" }, L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
 map({ "n" }, L("ld"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
-map({ "n" }, L("ls"), C("lua require('fzf-lua').lsp_workspace_symbols()"), "Symbols")
-map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename Symbol")
+map({ "n" }, L("lo"), C("Outline!"), "Outline")
+map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols")
+map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename")
+map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics")
 
 -- | [s]earch
-map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
 map({ "n" }, L("sg"), C("lua require('fzf-lua').live_grep()"), "Grep (cwd)")
 map({ "n" }, L("sG"), C("lua require('fzf-lua').live_grep_native({ cwd = '~/projects'})"), "Grep (projs)")
 map({ "n" }, L("sf"), C("lua require('fzf-lua').files()"), "Files (cwd)")
 map({ "n" }, L("sF"), C("lua require('fzf-lua').files({ cwd = '~/projects'})"), "Files (projs)")
+map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
 map({ "n" }, L("s."), C("lua require('fzf-lua').resume()"), "Resume")
-map({ "n" }, L("sh"), C("lua require('fzf-lua').helptags()"), "Helptags")
-map({ "n" }, L("so"), C("lua require('fzf-lua').oldfiles()"), "Oldfiles")
-map(
-	{ "n" },
-	L("sC"),
-	C(
-		"lua require('fzf-lua').commands({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.5, width=0.4} })"
-	),
-	"Commands"
-)
+map({ "n" }, L("so"), C("lua require('fzf-lua').oldfiles()"), "Old")
 
-map({ "n" }, L("gf"), C("lua require('fzf-lua').git_files()"), "Files")
-map({ "n" }, L("gs"), C("lua require('fzf-lua').git_status()"), "Status")
-map({ "n" }, L("gp"), C("lua require('fzf-lua').git_commits()"), "Commits (proj)")
-map({ "n" }, L("gb"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
+map({ "n" }, L("gC"), C("lua require('fzf-lua').git_commits()"), "Commits (proj)")
+map({ "n" }, L("gc"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
 map({ "n" }, L("gl"), C("LazyGit"), "LazyGit")
-map({ "n" }, L("gc"), C("lua require('copilot.panel').open()"), "Copilot")
-map({ "n" }, L("ga"), C("lua require('copilot.autosuggstion').toggle_auto_trigger()"), "Autosuggestions")
+map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "Preview hunk")
+map({ "n" }, L("gb"), C("Gitsigns blame_line"), "Blame line")
+map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
+map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 
 -- [,] convience mappings
--- map({ "n" }, L(",d"), C("lua require('tiny-inline-diagnostic').toggle()"), "Diagnostics")
 map({ "n" }, L(",f"), C("lua require('oil').open()"), "Oil")
 map({ "n" }, L(",n"), C("NvimTreeToggle"), "NvimTree")
-map({ "n" }, L(",o"), C("Outline!"), "Outline")
-map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
-map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
-map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
-map({ "n" }, L(",c"), C("lua require('nvchad.themes').open()"), "Colorschemes")
-map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map(
 	{ "n" },
-	L(",C"),
+	L(",s"),
 	C(
-		"lua require('fzf-lua').awesome_colorschemes({ winopts = {fullscreen=false, relative='editor', row=0, col=1, height=0.3, width=0.4} })"
-	),
-	"Awesome Colorschemes"
-)
-map({ "n" }, L(",x"), C("Noice fzf"), "Noice")
-map({ "n" }, L(",t"), C("lua require('base46').toggle_transparency()"), "Transparency")
-map({ "n" }, L(",a"), C("lua require('base46').load_all_highlights()"), "Apply highlights")
 
+		"lua require('fzf-lua').spell_suggest({winopts={fullscreen = false, relative='cursor', row=0.1, col=0, height=0.2, width=0.2}})"
+	),
+	"Spell"
+)
+map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
+map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
+map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
+map({ "n" }, L(",x"), C("Noice fzf"), "Noice")
+map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
+map({ "n" }, L(",q"), C("qa!"), "Quit")
+map({ "n" }, L(",d"), C("Nvdash"), "Dashboard")
+map({ "n" }, L(",c"), C("NvCheatsheet"), "Cheatsheet")
 -- | [W]indows
 -- TODO: refactor functions as script and require
 local FlipSplit = function()

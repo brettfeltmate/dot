@@ -3,27 +3,28 @@ return {
 	{
 		vim.diagnostic.config({ virtual_text = true }),
 	},
-	-- {
-	-- 	"ray-x/lsp_signature.nvim",
-	-- 	event = "BufReadPre",
-	-- 	config = function()
-	-- 		require("lsp_signature").setup({
-	-- 			floating_window = false,
-	-- 			-- floating_window_above_current_line = true,
-	-- 			hint_prefix = {
-	-- 				above = "↙ ", -- when the hint is on the line above the current line
-	-- 				current = "← ", -- when the hint is on the same line
-	-- 				below = "↖ ", -- when the hint is on the line below the current line
-	-- 			},
-	-- 			toggle_key = "<M-x>",
-	-- 		})
-	-- 	end,
-	-- },
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "BufReadPre",
+		config = function()
+			require("lsp_signature").setup({
+				floating_window = false,
+				-- floating_window_above_current_line = true,
+				hint_prefix = {
+					above = "↙ ", -- when the hint is on the line above the current line
+					current = "← ", -- when the hint is on the same line
+					below = "↖ ", -- when the hint is on the line below the current line
+				},
+				toggle_key = "<A-s>",
+			})
+		end,
+	},
 	{
 		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ -- Automatically install LSPs and related tools to stdpath for Neovim
+				-- FIXME: Automatic installation only 1/2 working?
 				"williamboman/mason.nvim",
 				config = true, -- NOTE: Must be loaded before dependents
 			},
@@ -75,7 +76,7 @@ return {
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-			-- Get folds from LSP
+			-- (nvim-ufo) Get folds from LSP
 			capabilities.textDocument.foldingRange = {
 				dynamicRegistration = false,
 				lineFoldingOnly = true,
@@ -84,7 +85,7 @@ return {
 			capabilities = vim.tbl_deep_extend(
 				"force",
 				capabilities,
-				-- 	-- require("cmp_nvim_lsp").default_capabilities(),
+				require("cmp_nvim_lsp").default_capabilities(),
 				require("lsp-file-operations").default_capabilities()
 			)
 

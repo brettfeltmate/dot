@@ -1,7 +1,3 @@
-if true then
-	return {}
-end
-
 return {
 	"zbirenbaum/copilot.lua",
 	lazy = true,
@@ -15,7 +11,7 @@ return {
 				accept = "<M-l>",
 				next = "<M-j>",
 				prev = "<M-k>",
-				dismiss = "<M-e>",
+				dismiss = "<M-h>",
 			},
 		},
 		filetypes = { markdown = true },

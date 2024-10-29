@@ -5,6 +5,8 @@ vim.g.lazygit_floating_window_scaling_factor = 1.0
 vim.g.lazygit_floating_window_use_plenary = 1
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
+vim.g.undotree_WindowLayout = 2
+
 vim.opt.cmdheight = 0
 vim.opt.background = "dark"
 vim.opt.swapfile = false

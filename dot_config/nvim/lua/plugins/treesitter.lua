@@ -32,20 +32,8 @@ return {
 				indent = { enable = true },
 			})
 
-      vim.treesitter.language.register('markdown', 'rmd')
+			vim.treesitter.language.register("markdown", "rmd")
 		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufReadPre",
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		event = "BufReadPre",
-	},
-	{
-		"rrethy/nvim-treesitter-textsubjects",
-		event = "BufReadPre",
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

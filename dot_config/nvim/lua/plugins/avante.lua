@@ -1,21 +1,24 @@
 return {
 	"yetone/avante.nvim",
 	lazy = true,
+	event = "BufReadPre",
 	cmd = "AvanteAsk",
 	build = "make",
 	dependencies = {
-		"nvim-treesitter/nvim-treesitter",
-		"stevearc/dressing.nvim",
-		"nvim-lua/plenary.nvim",
-		"MunifTanjim/nui.nvim",
-		"echasnovski/mini.icons",
-		"oxy2dev/markview.nvim",
+		{ "nvim-treesitter/nvim-treesitter", lazy = true },
+		{ "stevearc/dressing.nvim", lazy = true },
+		{ "nvim-lua/plenary.nvim", lazy = true },
+		{ "MunifTanjim/nui.nvim", lazy = true },
+		{ "echasnovski/mini.icons", lazy = true },
+		{ "HakonHarnes/img-clip.nvim", lazy = true },
 	},
 	config = function()
+		require("avante_lib").load()
+
 		require("avante").setup({
-			provider = "copilot",
+			provider = "claude",
 			behaviour = {
-				auto_suggestions = true,
+				auto_suggestions = false,
 			},
 			mappings = {
 				diff = {

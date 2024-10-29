@@ -17,12 +17,6 @@ return {
 			},
 			preview_window = {
 				auto_preview = true,
-				width = 83,
-				relative_width = true,
-				min_width = 50,
-				height = 100,
-				relative_height = true,
-				min_height = 15,
 				live = false,
 			},
 			icons = {

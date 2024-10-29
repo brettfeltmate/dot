@@ -9,7 +9,7 @@ local base16 = {
 	base06 = "#949b9f",
 	base07 = "#afafb6",
 	base08 = "#c8a89d",
-	base09 = "#808ea5",
+	base09 = "#8a909b",
 	base0A = "#bf8f94",
 	base0B = "#bab2aa",
 	base0C = "#bf8080",
@@ -154,6 +154,86 @@ local M = {
 					LazyReasonSource = { fg = base30.cyan },
 					LazyReasonImport = { fg = base30.white },
 					LazyProgressDone = { fg = base30.green },
+					TodoBgFix = {
+						fg = base30.black2,
+						bg = generate_color(base30.red, -30),
+						bold = true,
+					},
+					TodoBgHack = {
+						fg = base30.black2,
+						bg = generate_color(base30.orange, -30),
+						bold = true,
+					},
+					TodoBgNote = {
+						fg = base30.black2,
+						bg = generate_color(base30.white, -30),
+						bold = true,
+					},
+					TodoBgPerf = {
+						fg = base30.black2,
+						bg = generate_color(base30.purple, -30),
+						bold = true,
+					},
+					TodoBgTest = {
+						fg = base30.black2,
+						bg = generate_color(base30.purple, -30),
+						bold = true,
+					},
+					TodoBgTodo = {
+						fg = base30.black2,
+						bg = generate_color(base30.yellow, -30),
+						bold = true,
+					},
+					TodoBgWarn = {
+						fg = generate_color(base30.orange, -30),
+						bold = true,
+					},
+					TodoFgFix = {
+						fg = generate_color(base30.red, -30),
+					},
+					TodoFgHack = {
+						fg = generate_color(base30.orange, -30),
+					},
+					TodoFgNote = {
+						fg = generate_color(base30.white, -30),
+					},
+					TodoFgPerf = {
+						fg = generate_color(base30.purple, -30),
+					},
+					TodoFgTest = {
+						fg = generate_color(base30.purple, -30),
+					},
+					TodoFgTodo = {
+						fg = generate_color(base30.yellow, -30),
+					},
+					TodoFgWarn = {
+						fg = generate_color(base30.orange, -30),
+					},
+					TodoSignFix = {
+						link = "TodoFgFix",
+					},
+					TodoSignHack = {
+						link = "TodoFgHack",
+					},
+					TodoSignNote = {
+						link = "TodoFgNote",
+					},
+					TodoSignPerf = {
+						link = "TodoFgPerf",
+					},
+					TodoSignTest = {
+						link = "TodoFgTest",
+					},
+					TodoSignTodo = {
+						link = "TodoFgTodo",
+					},
+					TodoSignWarn = {
+						link = "TodoFgWarn",
+					},
+				},
+				arrow = {
+					["@ArrowFileIndex"] = { fg = base30.yellow },
+					["@ArrowCurrentFile"] = { fg = base30.yellow },
 				},
 
 				barbar = {
@@ -183,7 +263,7 @@ local M = {
 					Constant = { fg = base30.base08 },
 					Define = { fg = base30.base0E, sp = "none" },
 					Delimiter = { fg = base30.base0F },
-					Float = { fg = base30.base09 },
+					Float = { fg = base30.base06 },
 					Variable = { fg = base30.base05 },
 					Function = { fg = base30.base0D },
 					Identifier = { fg = base30.base08, sp = "none" },
@@ -236,7 +316,7 @@ local M = {
 			modules = {
 				arrow = function()
 					local arrow_statusline = require("arrow.statusline")
-					return arrow_statusline.text_for_statusline_with_icons()
+					return " | " .. arrow_statusline.text_for_statusline_with_icons()
 				end,
 			},
 		},
@@ -252,7 +332,7 @@ local M = {
 			{ txt = "󰥩 Grep     ", keys = "󱁐 󰰡 󰯽", cmd = "FzfLua live_grep" },
 		},
 	},
-	lsp = { signature = true },
+	lsp = { signature = false },
 	cheatsheet = {
 		theme = "simple",
 		excluded_groups = { "terminal (t)", "autopairs", "Nvim", "Opens" },

@@ -33,9 +33,9 @@ return { -- Autoformat
 			formatters_by_ft = {
 				bash = { "beautysh", "shfmt" },
 				lua = { "stylua" },
-				python = { "blue" },
+				python = { "ruff", "blue" },
 				r = { "rprettify" },
-				rmd = { "rprettify" },
+				rmd = { "rprettify", "prettier" },
 				markdown = { "prettier" },
 			},
 			format_on_save = function(bufnr)

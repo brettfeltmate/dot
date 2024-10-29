@@ -1,7 +1,7 @@
 return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
-	event = "BufReadPre",
+	event = "UIEnter",
 	dependencies = { "echasnovski/mini.icons" },
 	config = function()
 		require("fzf-lua").setup({
@@ -9,12 +9,12 @@ return {
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
 				backdrop = 75,
-				fullscreen = true,
+				fullscreen = false,
 				preview = {
 					title_pos = "center",
-					horizontal = "right:60%",
-					vertical = "up:70%",
-					layout = "horizontal",
+					horizontal = "right:50%",
+					vertical = "up:50%",
+					layout = "vertical",
 				},
 			},
 			files = {
