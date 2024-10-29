@@ -37,8 +37,8 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 inner.horizontal = 6
 inner.vertical = 6
 outer.left = 10
-outer.bottom = 6
-outer.top = 32
+outer.bottom = 8
+outer.top = 38
 outer.right = 10
 
 # 'main' keybindings
