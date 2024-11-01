@@ -27,6 +27,60 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "Save plot" }
 )
 
+local function get_cword()
+	local cword = vim.fn.expand("<cword>")
+	local line = vim.api.nvim_get_current_line()
+	local col = vim.fn.col(".")
+	local before_cursor = line:sub(1, col)
+	local dollar_pos = before_cursor:match(".*()%$")
+
+	local kw = cword
+	if dollar_pos then
+		-- FIXME: this duplicates chars from $ to cursor
+		local id_start = before_cursor:match(".*%f[%w_]().*%$")
+		if id_start then
+			kw = line:sub(id_start, col - 1) .. "$" .. cword
+		end
+	end
+end
+
+vim.keymap.set({ "n" }, "<localleader>s", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 str(" .. kw .. ")")
+end, { buffer = 0, noremap = true, desc = "Structure" })
+
+vim.keymap.set({ "n" }, "<localleader>m", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 " .. "summary(" .. kw .. ")")
+end, { buffer = 0, noremap = true, desc = "Summary" })
+
+vim.keymap.set({ "n" }, "<localleader><localleader>", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 " .. kw)
+end, { buffer = 0, noremap = true, desc = "Print" })
+
+vim.keymap.set({ "n" }, "<localleader>t", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 tail(" .. kw .. ")")
+end, { buffer = 0, noremap = true, desc = "Tail" })
+
+vim.keymap.set({ "n" }, "<localleader>d", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 pclid(" .. kw .. ")")
+end, { buffer = 0, noremap = true, desc = "Density" })
+
+vim.keymap.set({ "n" }, "<localleader>h", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 pclih(" .. kw .. ")")
+end, { buffer = 0, noremap = true, desc = "Histogram" })
+
+vim.keymap.set({ "n" }, "<localleader>k", function()
+	local kw = vim.fn.expand("<cWORD>")
+	vim.cmd("SlimeSend1 skimr::skim(" .. kw .. ")")
+end, { buffer = 0, noremap = true, desc = "Skim" })
+
+-- Shorthands for interactive usage
+
 vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
 vim.keymap.set("i", "<M-p>", " %>% ", { buffer = 0 })
 vim.keymap.set("i", "<M-e>", " %$% ", { buffer = 0 })
