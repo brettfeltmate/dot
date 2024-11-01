@@ -11,7 +11,7 @@ local base16 = {
 	base08 = "#c8a89d",
 	base09 = "#8a909b",
 	base0A = "#bf8f94",
-	base0B = "#bab2aa",
+	base0B = "#c0baa9",
 	base0C = "#bf8080",
 	base0D = "#8ea592",
 	base0E = "#bfaa8c",
@@ -312,13 +312,7 @@ local M = {
 		statusline = {
 			theme = "minimal",
 			separator_style = "round",
-			order = { "mode", "file", "git", "arrow", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
-			modules = {
-				arrow = function()
-					local arrow_statusline = require("arrow.statusline")
-					return " | " .. arrow_statusline.text_for_statusline_with_icons()
-				end,
-			},
+			order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
 		},
 	},
 	nvdash = {
