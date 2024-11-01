@@ -177,6 +177,10 @@ run = ['move-node-to-workspace 2']
 if.app-name-regex-substring = 'calendar'
 run = ['move-node-to-workspace 2']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'Proton Mail'
+run = ['move-node-to-workspace 2']
+
 # 3: File browsers & PDFs
 [[on-window-detected]]
 if.app-name-regex-substring = "marta"
