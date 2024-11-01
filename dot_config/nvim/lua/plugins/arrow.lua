@@ -6,7 +6,7 @@ return {
 	},
 	opts = {
 		leader_key = "_",
-		buffer_leader_key = "-",
+		buffer_leader_key = "+",
 		mappings = {
 			edit = "e",
 			delete_mode = "d",

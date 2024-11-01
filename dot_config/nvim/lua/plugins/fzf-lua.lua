@@ -1,20 +1,23 @@
 return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
-	event = "UIEnter",
+    cmd = "FzfLua",
 	dependencies = { "echasnovski/mini.icons" },
 	config = function()
+		local actions = require("fzf-lua.actions")
 		require("fzf-lua").setup({
-			fzf_bind = "fzf-tmux",
+			-- fzf_bin = "fzf-tmux",
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
-				backdrop = 75,
+				backdrop = 100,
 				fullscreen = false,
 				preview = {
 					title_pos = "center",
-					horizontal = "right:50%",
-					vertical = "up:50%",
+					horizontal = "right:60%",
+					vertical = "up:60%",
 					layout = "vertical",
+					width = 90,
+					height = 90,
 				},
 			},
 			files = {
@@ -24,6 +27,12 @@ return {
 				builtin = {
 					true,
 					["<C-Esc>"] = "hide",
+				},
+			},
+			actions = {
+				files = {
+					true,
+					["alt-t"] = actions.file_tabedit,
 				},
 			},
 		})
