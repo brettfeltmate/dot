@@ -28,9 +28,14 @@ map(
 	{ silent = true }
 )
 
+-- Readline commands
+map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"))
+map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"))
+map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"))
+map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"))
+
 map({ "n" }, "<Esc>", "<cmd>nohlsearch<CR>")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
-map({ "n" }, "<leader><leader>", C("FzfLua builtin"), "FzfLua(s)")
 
 -- Navigating between neovim/tmux splits
 map({ "n" }, "<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
@@ -47,6 +52,9 @@ map({ "n" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Left
 map({ "n" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Down")
 map({ "n" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Up")
 map({ "n" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Right")
+
+map({ "n" }, "<S-Up>", "<C-u>")
+map({ "n" }, "<S-Down>", "<C-d>")
 
 -- Multiple cursors
 map({ "n", "x" }, "<C-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
@@ -82,12 +90,6 @@ map({ "n" }, "<A-x>", C("tabclose"), "Close tab")
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
 
-for i = 1, 9, 1 do
-	vim.keymap.set("n", "," .. i, function()
-		vim.api.nvim_set_current_buf(vim.t.bufs[i])
-	end)
-end
-
 local function open_fzf_buffers()
 	require("fzf-lua").buffers({
 		fzf_opts = { ["--layout"] = "reverse" },
@@ -108,15 +110,16 @@ local function open_fzf_buffers()
 	})
 end
 
-map({ "n" }, ",,", open_fzf_buffers, "Buffers")
+map({ "n" }, "<leader><leader>", open_fzf_buffers, "Buffers")
 
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
 map({ "n" }, L("bx"), C("lua require('nvchad.tabufline').close_buffer()"), "Close")
-map({ "n" }, L("bg"), C("lua require('fzf-lua').grep_curbuf()"), "Grep")
+map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
 map({ "n" }, L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
+map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
 -- | [L]SP
 map(
@@ -127,9 +130,9 @@ map(
 	),
 	"Actions"
 )
-map({ "n" }, L("li"), C("lua require('fzf-lua').lsp_implementions()"), "Implementations")
-map({ "n" }, L("lr"), C("lua require('fzf-lua').lsp_references()"), "References")
-map({ "n" }, L("ld"), C("lua require('fzf-lua').lsp_definitions()"), "Definitions")
+map({ "n" }, L("li"), C("FzfLua lsp_implementations"), "Implementations")
+map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
+map({ "n" }, L("ld"), C("FzfLua lsp_definitions"), "Definitions")
 map({ "n" }, L("lo"), C("Outline!"), "Outline")
 map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols")
 map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename")
@@ -137,19 +140,22 @@ map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
-map({ "n" }, L("sg"), C("lua require('fzf-lua').live_grep()"), "Grep (cwd)")
-map({ "n" }, L("sG"), C("lua require('fzf-lua').live_grep_native({ cwd = '~/projects'})"), "Grep (projs)")
-map({ "n" }, L("sf"), C("lua require('fzf-lua').files()"), "Files (cwd)")
-map({ "n" }, L("sF"), C("lua require('fzf-lua').files({ cwd = '~/projects'})"), "Files (projs)")
+map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
+map({ "n" }, L("sG"), C("FzfLua live_grep cwd=~/projects"), "Grep (projs)")
+map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
+map({ "n" }, L("sF"), C("FzfLua files cwd=~/projects"), "Files (projs)")
 map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
-map({ "n" }, L("s."), C("lua require('fzf-lua').resume()"), "Resume")
-map({ "n" }, L("so"), C("lua require('fzf-lua').oldfiles()"), "Old")
+map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
+map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
+map({ "n" }, L("sw"), C("FzfLua grep_cword"), "cword")
+map({ "n" }, L("sW"), C("FzfLua grep_cWORD"), "cWORD")
+map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
 
-map({ "n" }, L("gC"), C("lua require('fzf-lua').git_commits()"), "Commits (proj)")
-map({ "n" }, L("gc"), C("lua require('fzf-lua').git_bcommits()"), "Commits (buffer)")
+map({ "n" }, L("gC"), C("FzfLua git_commits"), "Commits (proj)")
+map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits (buffer)")
 map({ "n" }, L("gl"), C("LazyGit"), "LazyGit")
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "Preview hunk")
-map({ "n" }, L("gb"), C("Gitsigns blame_line"), "Blame line")
+map({ "n" }, L("gb"), C("Gitsigns toggle_current_line_blame"), "Blame lines")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 
