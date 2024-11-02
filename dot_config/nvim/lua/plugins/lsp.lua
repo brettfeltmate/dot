@@ -7,7 +7,7 @@ return {
 		opts = { floating_window = false },
 	},
 	{
-		event = "BufReadPre",
+		event = "BufRead",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
