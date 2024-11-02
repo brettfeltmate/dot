@@ -29,12 +29,12 @@ map(
 )
 
 -- Readline commands
-map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"))
-map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"))
-map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"))
-map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"))
+map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"), "Move one word forward")
+map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"), "Move one word backward")
+map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"), "Kill word forward")
+map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
 
-map({ "n" }, "<Esc>", "<cmd>nohlsearch<CR>")
+map({ "n" }, "<Esc>", C("nohlsearch"), "Clear highlights")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 
 -- Navigating between neovim/tmux splits
@@ -48,13 +48,13 @@ map({ "t" }, "<C-Down>", "<C-\\><C-n><C-Down>", "Down")
 map({ "t" }, "<C-Up>", "<C-\\><C-n><C-Up>", "Up")
 map({ "t" }, "<C-Right>", "<C-\\><C-n><C-Right>", "Right")
 
-map({ "n" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Left")
-map({ "n" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Down")
-map({ "n" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Up")
-map({ "n" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Right")
+map({ "n" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
+map({ "n" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
+map({ "n" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Resize up")
+map({ "n" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
 
-map({ "n" }, "<S-Up>", "<C-u>")
-map({ "n" }, "<S-Down>", "<C-d>")
+map({ "n" }, "<S-Up>", "<C-u>", "Half page up")
+map({ "n" }, "<S-Down>", "<C-d>", "Half page down")
 
 -- Multiple cursors
 map({ "n", "x" }, "<C-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
@@ -63,11 +63,24 @@ map({ "i" }, "<M-Up>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 map({ "i" }, "<M-Down>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "x", "o" }, "<C-LeftMouse>", C("MultipleCursorMouseAddDelete"), "Add or remove a cursor")
 
-map({ "n", "x" }, "<M-J>", "}}W")
-map({ "n", "x" }, "<M-K>", "{{W")
+-- map({ "n", "x" }, "<M-J>", "}}W")
+-- map({ "n", "x" }, "<M-K>", "{{W")
 
+-- map({ "n" }, "<M-J>", "/^\\s*\\S/e<cr>")
+-- map({ "n" }, "<M-K>", "?^\\s*\\S?e<cr>")
 -- Flash.nvim
 map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
+
+-- nvim-spider
+map({ "n", "o", "x" }, "w", C("lua require('spider').motion('w')"), "Spider-w")
+map({ "n", "o", "x" }, "e", C("lua require('spider').motion('e')"), "Spider-e")
+map({ "n", "o", "x" }, "b", C("lua require('spider').motion('b')"), "Spider-b")
+
+-- squirrel.nvim
+map({ "n", "x" }, "ga", C("lua require('squirrel.hop').hop_linewise()"), "Squirrel hop linewise")
+map({ "n", "x" }, "gA", C("lua require('squirrel.hop').hop()"), "Squirrel hop")
+map({ "n", "x" }, "ge", C("lua require('squirrel.hop').hop_linewise({head = false, tail = true})"))
+map({ "n", "x" }, "gE", C("lua require('squirrel.hop').hop({head = false, tail = true})"))
 
 -- Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
@@ -177,8 +190,13 @@ map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",x"), C("Noice fzf"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",q"), C("qa!"), "Quit")
-map({ "n" }, L(",d"), C("Nvdash"), "Dashboard")
+-- map({ "n" }, L(",d"), C("Nvdash"), "Dashboard")
 map({ "n" }, L(",c"), C("NvCheatsheet"), "Cheatsheet")
+
+if vim.fn.has('macunix') then
+    map({ "n" }, L(",d"), "<Plug>DashSearch", "Dash search")
+end
+
 -- | [W]indows
 -- TODO: refactor functions as script and require
 local FlipSplit = function()

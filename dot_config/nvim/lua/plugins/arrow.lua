@@ -1,6 +1,7 @@
 return {
 	"otavioschwanck/arrow.nvim",
 	lazy = true,
+    event = "BufReadPre",
 	dependencies = {
 		{ "echasnovski/mini.icons" },
 	},
