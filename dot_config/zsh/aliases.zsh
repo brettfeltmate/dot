@@ -65,3 +65,5 @@ alias tdue="task due"
 alias tsum="task summary"
 
 alias icat="imgcat -W 100% -r"
+
+alias diet="NVIM_APPNAME='dietnvim' nvim"
