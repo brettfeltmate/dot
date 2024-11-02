@@ -154,83 +154,85 @@ local M = {
 					LazyReasonSource = { fg = base30.cyan },
 					LazyReasonImport = { fg = base30.white },
 					LazyProgressDone = { fg = base30.green },
-					TodoBgFix = {
-						fg = base30.black2,
-						bg = generate_color(base30.red, -30),
-						bold = true,
-					},
-					TodoBgHack = {
-						fg = base30.black2,
-						bg = generate_color(base30.orange, -30),
-						bold = true,
-					},
-					TodoBgNote = {
-						fg = base30.black2,
-						bg = generate_color(base30.white, -30),
-						bold = true,
-					},
-					TodoBgPerf = {
-						fg = base30.black2,
-						bg = generate_color(base30.purple, -30),
-						bold = true,
-					},
-					TodoBgTest = {
-						fg = base30.black2,
-						bg = generate_color(base30.purple, -30),
-						bold = true,
-					},
-					TodoBgTodo = {
-						fg = base30.black2,
-						bg = generate_color(base30.yellow, -30),
-						bold = true,
-					},
-					TodoBgWarn = {
-						fg = generate_color(base30.orange, -30),
-						bold = true,
-					},
-					TodoFgFix = {
-						fg = generate_color(base30.red, -30),
-					},
-					TodoFgHack = {
-						fg = generate_color(base30.orange, -30),
-					},
-					TodoFgNote = {
-						fg = generate_color(base30.white, -30),
-					},
-					TodoFgPerf = {
-						fg = generate_color(base30.purple, -30),
-					},
-					TodoFgTest = {
-						fg = generate_color(base30.purple, -30),
-					},
-					TodoFgTodo = {
-						fg = generate_color(base30.yellow, -30),
-					},
-					TodoFgWarn = {
-						fg = generate_color(base30.orange, -30),
-					},
-					TodoSignFix = {
-						link = "TodoFgFix",
-					},
-					TodoSignHack = {
-						link = "TodoFgHack",
-					},
-					TodoSignNote = {
-						link = "TodoFgNote",
-					},
-					TodoSignPerf = {
-						link = "TodoFgPerf",
-					},
-					TodoSignTest = {
-						link = "TodoFgTest",
-					},
-					TodoSignTodo = {
-						link = "TodoFgTodo",
-					},
-					TodoSignWarn = {
-						link = "TodoFgWarn",
-					},
 				},
+				--            todo = {
+				-- TodoBgFix = {
+				-- 	fg = base30.black2,
+				-- 	bg = base30.blue,
+				-- 	bold = true,
+				-- },
+				-- TodoBgHack = {
+				-- 	fg = base30.black2,
+				-- 	bg = generate_color(base30.orange, -30),
+				-- 	bold = true,
+				-- },
+				-- TodoBgNote = {
+				-- 	fg = base30.black2,
+				-- 	bg = generate_color(base30.white, -30),
+				-- 	bold = true,
+				-- },
+				-- TodoBgPerf = {
+				-- 	fg = base30.black2,
+				-- 	bg = generate_color(base30.purple, -30),
+				-- 	bold = true,
+				-- },
+				-- TodoBgTest = {
+				-- 	fg = base30.black2,
+				-- 	bg = generate_color(base30.purple, -30),
+				-- 	bold = true,
+				-- },
+				-- TodoBgTodo = {
+				-- 	fg = base30.black2,
+				-- 	bg = generate_color(base30.yellow, -30),
+				-- 	bold = true,
+				-- },
+				-- TodoBgWarn = {
+				-- 	fg = generate_color(base30.orange, -30),
+				-- 	bold = true,
+				-- },
+				-- TodoFgFix = {
+				-- 	fg = generate_color(base30.red, -90),
+				-- },
+				-- TodoFgHack = {
+				-- 	fg = generate_color(base30.orange, -30),
+				-- },
+				-- TodoFgNote = {
+				-- 	fg = generate_color(base30.white, -30),
+				-- },
+				-- TodoFgPerf = {
+				-- 	fg = generate_color(base30.purple, -30),
+				-- },
+				-- TodoFgTest = {
+				-- 	fg = generate_color(base30.purple, -30),
+				-- },
+				-- TodoFgTodo = {
+				-- 	fg = generate_color(base30.yellow, -30),
+				-- },
+				-- TodoFgWarn = {
+				-- 	fg = generate_color(base30.orange, -30),
+				-- },
+				-- TodoSignFix = {
+				-- 	link = "TodoFgFix",
+				-- },
+				-- TodoSignHack = {
+				-- 	link = "TodoFgHack",
+				-- },
+				-- TodoSignNote = {
+				-- 	link = "TodoFgNote",
+				-- },
+				-- TodoSignPerf = {
+				-- 	link = "TodoFgPerf",
+				-- },
+				-- TodoSignTest = {
+				-- 	link = "TodoFgTest",
+				-- },
+				-- TodoSignTodo = {
+				-- 	link = "TodoFgTodo",
+				-- },
+				-- TodoSignWarn = {
+				-- 	link = "TodoFgWarn",
+				-- },
+				-- },
 				arrow = {
 					["@ArrowFileIndex"] = { fg = base30.yellow },
 					["@ArrowCurrentFile"] = { fg = base30.yellow },
@@ -257,46 +259,37 @@ local M = {
 				},
 
 				syntax = {
-					Boolean = { fg = base30.base09 },
-					Character = { fg = base30.base08 },
-					Conditional = { fg = base30.base0E },
-					Constant = { fg = base30.base08 },
-					Define = { fg = base30.base0E, sp = "none" },
-					Delimiter = { fg = base30.base0F },
-					Float = { fg = base30.base06 },
-					Variable = { fg = base30.base05 },
-					Function = { fg = base30.base0D },
-					Identifier = { fg = base30.base08, sp = "none" },
-					Include = { fg = base30.base0D },
-					Keyword = { fg = base30.base0E },
-					Label = { fg = base30.base0A },
-					Number = { fg = base30.base09 },
-					Operator = { fg = base30.base05, sp = "none" },
-					PreProc = { fg = base30.base0A },
-					Repeat = { fg = base30.base0A },
-					Special = { fg = base30.base0C },
-					SpecialChar = { fg = base30.base0F },
-					Statement = { fg = base30.base08 },
-					StorageClass = { fg = base30.base0A },
-					String = { fg = base30.base0B },
-					Structure = { fg = base30.base0E },
-					Tag = { fg = base30.base0A },
-					Todo = { fg = base30.base0A, bg = base30.base01 },
-					Type = { fg = base30.base0A, sp = "none" },
-					Typedef = { fg = base30.base0A },
+					Boolean = { fg = base16.base09 },
+					Character = { fg = base16.base08 },
+					Conditional = { fg = base16.base0E },
+					Constant = { fg = base16.base08 },
+					Define = { fg = base16.base0E, sp = "none" },
+					Delimiter = { fg = base16.base0F },
+					Float = { fg = base16.base06 },
+					Variable = { fg = base16.base05 },
+					Function = { fg = base16.base0D },
+					Identifier = { fg = base16.base08, sp = "none" },
+					Include = { fg = base16.base0D },
+					Keyword = { fg = base16.base0E },
+					Label = { fg = base16.base0A },
+					Number = { fg = base16.base09 },
+					Operator = { fg = base16.base05, sp = "none" },
+					PreProc = { fg = base16.base0A },
+					Repeat = { fg = base16.base0A },
+					Special = { fg = base16.base0C },
+					SpecialChar = { fg = base16.base0F },
+					Statement = { fg = base16.base08 },
+					StorageClass = { fg = base16.base0A },
+					String = { fg = base16.base0B },
+					Structure = { fg = base16.base0E },
+					Tag = { fg = base16.base0A },
+					Todo = { fg = base16.base0A, bg = base16.base01 },
+					Type = { fg = base16.base0A, sp = "none" },
+					Typedef = { fg = base16.base0A },
 				},
 			},
 		},
-		integrations = {
-			"cmp",
-			"devicons",
-			"git",
-			"lsp",
-			"mason",
-			"todo",
-			"treesitter",
-			"markview",
-		},
+		integrations = { "cmp", "devicons", "git", "lsp", "mason", "treesitter", "markview", "nvimtree" },
 	},
 	ui = {
 		cmp = {
@@ -316,7 +309,7 @@ local M = {
 		},
 	},
 	nvdash = {
-		load_on_startup = true,
+		load_on_startup = false,
 		header = {},
 		buttons = {
 			{ txt = "󱁾 Browse   ", keys = "󱁐 󰸤 󰯺", cmd = "Oil" },

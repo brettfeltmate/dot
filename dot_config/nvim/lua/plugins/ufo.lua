@@ -1,7 +1,7 @@
 return {
 	"kevinhwang91/nvim-ufo",
 	lazy = true,
-	event = "UIEnter",
+	event = "BufRead",
 	dependencies = { "kevinhwang91/promise-async", lazy = true },
 	config = function()
 		vim.o.foldcolumn = "0"

@@ -6,12 +6,9 @@ return {
 		require("mini.ai").setup()
 		require("mini.basics").setup()
 		require("mini.bracketed").setup()
-		-- require("mini.bufremove").setup()
 		require("mini.comment").setup()
 		require("mini.extra").setup()
-		-- require("mini.indentscope").setup()
 		require("mini.misc").setup()
-		-- require("mini.pairs").setup()
 		require("mini.trailspace").setup()
 
 		local clue = require("mini.clue")
