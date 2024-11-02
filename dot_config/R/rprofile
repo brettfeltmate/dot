@@ -61,7 +61,7 @@ if (requireNamespace("languageserversetup", quietly = TRUE)) {
 # LanguageServer Setup End
 
 # Disable completion from the language server
-options(
-    languageserver.server_capabilities =
-    list(completionProvider = FALSE, completionItemResolve = FALSE)
-)
+# options(
+#     languageserver.server_capabilities =
+#     list(completionProvider = FALSE, completionItemResolve = FALSE)
+# )

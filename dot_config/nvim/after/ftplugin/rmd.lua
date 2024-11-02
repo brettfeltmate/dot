@@ -1,12 +1,11 @@
 -- Copy settings from 'r.vim'
 vim.cmd("runtime! ftplugin/r.lua")
 
-vim.keymap.set("n", "<leader>rc", "<Plug>SlimeSendCell", { buffer = 0, noremap = true, desc = "Send cell" })
 vim.keymap.set("n", "<CR>", "<Plug>SlimeSendCell", { buffer = 0, noremap = true, desc = "Send cell" })
 
 -- Jump to previous/next cell block
 vim.keymap.set("n", "[r", function()
-	local line, col = unpack(vim.fn.searchpos("^```{", "bW"))
+	local line, _ = unpack(vim.fn.searchpos("^```{", "bW"))
 	if line ~= 0 then
 		local prev_line, prev_col = unpack(vim.fn.searchpos("^```{", "bW"))
 		if prev_line ~= 0 then
