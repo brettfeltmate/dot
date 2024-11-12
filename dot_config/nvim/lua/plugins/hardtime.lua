@@ -11,8 +11,7 @@ return {
 				["<Left>"] = {},
 				["<Right>"] = {},
 			},
-			-- Add "oil" to disabled (ignored) filetypes
-			disabled_filetypes = { "qf", "netrw", "NvimTree", "lazy", "mason", "oil", "neo-tree", "Outline" },
+			disabled_filetypes = { "qf", "netrw", "Noice", "NvimTree", "lazy", "mason", "oil", "neo-tree", "Outline" },
 		})
 	end,
 }

@@ -1,6 +1,7 @@
 return {
 	"piersolenski/wtf.nvim",
-	event = "BufReadPre",
+    lazy = true,
+    cmd = "Wtf",
 	dependencies = { "muniftanjim/nui.nvim" },
 	config = function()
 		require("wtf").setup({
