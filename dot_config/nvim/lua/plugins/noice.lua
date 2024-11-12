@@ -4,7 +4,7 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
 	config = function()
 		require("noice").setup({
-			view = "mini",
+			view = "virtualtext",
             cmdline = { view = "cmdline" },
             popupmenu = { backend = "nui" },
 			hover = { enabled = true },
