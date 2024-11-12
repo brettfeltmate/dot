@@ -1,32 +1,55 @@
-if true then
-	return {}
-end
 return {
-	{
-		"saghen/blink.cmp",
-		lazy = true,
-		event = "BufReadPre",
-		version = "v0.*",
-		dependencies = {
-			{ "saghen/blink.compat", opts = { impersonate_nvim_cmp = true } },
-			{ "rafamadriz/friendly-snippets" },
-			{ "R-nvim/cmp-r", dependences = "R-nvim/R.nvim" },
-			{ "zbirenbaum/copilot.lua", opts = { suggestion = { enable = false }, panel = { enable = false } } },
-			{ "zbirenbaum/copilot-cmp", opts = { fix_pairs = false, auto_trigger = false } },
-		},
-		opts = { keymap = "default", signature_help = { enabled = true } },
-		sources = {
-			completion = { enabled_providers = { "lsp", "path", "buffer", "snippets", "lazydev", "copilot", "cmp_r" } },
-			providers = {
-				lazydev = { name = "lazydev", module = "blink.compat.source", score_offset = 3 },
-				copilot = { name = "copilot", module = "blink.compat.source", score_offset = 2 },
-				cmp_r = { name = "cmp_r", module = "blink.compat.source", score_offset = 3 },
+	"saghen/blink.cmp",
+    lazy = true,
+    event = "InsertEnter",
+	version = "v0.*",
+	dependencies = {
+		"rafamadriz/friendly-snippets",
+		"saghen/blink.compat",
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					path = "luvit-meta/library",
+					words = { "vim%.uv" },
+				},
 			},
-			windows = {
-				autocomplete = { min_width = 15, max_height = 10, selection = "manual" },
-				documentation = { min_width = 10, max_width = 60, max_height = 10, auto_show = true },
-				signature_help = { min_width = 1, max_width = 100, max_height = 10, border = "single" },
+		},
+		{ "bilal2453/luvit-meta", lazy = true },
+	},
+	opts = {
+        nerd_font_variant = "mono",
+		windows = {
+			documentation = { auto_show = true },
+			ghost_text = { enabled = false },
+		},
+		accept = { auto_brackets = { enabled = true } },
+		keymap = {
+			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-h>"] = { "hide", "fallback" },
+			["<C-l>"] = { "accept", "fallback" },
+			["<S-Tab>"] = { "snippet_backward", "fallback" },
+			["<Tab>"] = { "snippet_forward", "fallback" },
+			["<C-j>"] = { "select_next", "fallback" },
+			["<C-k>"] = { "select_prev", "fallback" },
+			["<C-p>"] = { "select_prev", "fallback" },
+			["<C-n>"] = { "select_next", "fallback" },
+			["<C-b>"] = { "scroll_documentation_up", "fallback" },
+			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+		},
+		sources = {
+			completion = {
+				enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+			},
+			providers = {
+				lsp = { fallback_for = { "lazydev" } },
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+				},
 			},
 		},
 	},
+	opts_extend = { "sources.completion.enabled_providers" },
 }

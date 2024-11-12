@@ -1,3 +1,6 @@
+if true then
+	return {}
+end
 return {
 	{ -- Autocompletion
 		"hrsh7th/nvim-cmp",
@@ -8,6 +11,7 @@ return {
 			{ "hrsh7th/cmp-path" },
 			{ "hrsh7th/cmp-cmdline" },
 			{ "onsails/lspkind.nvim" },
+			{ "rafamadriz/friendly-snippets" },
 			-- {
 			-- 	"R-nvim/cmp-r",
 			-- 	dependences = "R-nvim/R.nvim",
@@ -44,11 +48,13 @@ return {
 					["<C-n>"] = cmp.mapping.scroll_docs(4),
 					["<C-l>"] = cmp.mapping.confirm({ select = true }),
 					["<C-Space>"] = cmp.mapping.complete({}),
+					-- ["<Tab>"] = { "snippet_forward", "fallback" },
+					-- ["<S-Tab>"] = { "snippet_backward", "fallback" },
 				},
 				sources = {
 					{ name = "nvim_lsp", group_index = 2, max_item_count = 3, priority = 2 },
 					-- { name = "cmp_r", group_index = 2, max_item_count = 3 },
-					{ name = "copilot", group_index = 2, max_item_count = 2 , priority = 1 },
+					{ name = "copilot", group_index = 2, max_item_count = 2, priority = 1 },
 					{ name = "fuzzy_buffer", group_index = 2, max_item_count = 5, priority = 2 },
 					{ name = "cmdline", group_index = 2, max_item_count = 3, priority = 3 },
 					{ name = "path", group_index = 2, max_item_count = 3, priority = 3 },
