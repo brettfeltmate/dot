@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Created by Zap installer
 [ -f "${XDG_DATA_HOME:-${ZDOTDIR}/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
@@ -38,7 +40,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
-
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
 # Don't think these are needed anymore...
 # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
