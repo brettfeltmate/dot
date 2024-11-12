@@ -6,15 +6,15 @@ return {
 		{ "echasnovski/mini.icons" },
 	},
 	opts = {
-		leader_key = "_",
-		buffer_leader_key = "+",
+		leader_key = "M",
+		buffer_leader_key = "m",
 		mappings = {
 			edit = "e",
-			delete_mode = "d",
+			delete_mode = "D",
 			clear_all_items = "C",
-			toggle = "s", -- used as save if separate_save_and_remove is true
-			open_vertical = "v",
-			open_horizontal = "h",
+			toggle = "b", -- used as save if separate_save_and_remove is true
+			open_vertical = "V",
+			open_horizontal = "H",
 			quit = "q",
 			remove = "x", -- only used if separate_save_and_remove is true
 			next_item = "]",
@@ -28,5 +28,6 @@ return {
 			col = 0,
 			border = "double",
 		},
+        index_keys = "asdfzxcvjkl"
 	},
 }
