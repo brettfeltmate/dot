@@ -34,12 +34,12 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # Pixel gap between windows
 [gaps]
-inner.horizontal = 6
-inner.vertical = 6
-outer.left = 10
-outer.bottom = 8
-outer.top = 38
-outer.right = 10
+inner.horizontal = 8
+inner.vertical = 8
+outer.top = 36
+outer.bottom = 6
+outer.left = 6
+outer.right = 6
 
 # 'main' keybindings
 [mode.main.binding]
