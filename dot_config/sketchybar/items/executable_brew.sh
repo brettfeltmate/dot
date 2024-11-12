@@ -11,6 +11,7 @@ brew=(
 	padding_right=12
 	label.padding_left=4
 	script="$PLUGIN_DIR/brew.sh"
+    background.border_color=$BLUE
 )
 
 sketchybar --add event brew_update \

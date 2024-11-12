@@ -10,9 +10,9 @@ volume_slider=(
 	slider.highlight_color=$YELLOW
 	slider.background.height=5
 	slider.background.corner_radius=3
-	slider.background.color=$BACKGROUND_2
 	slider.knob=􀀁
 	slider.knob.drawing=on
+    background.border_color=$BLUE
 )
 
 volume_icon=(
@@ -26,11 +26,12 @@ volume_icon=(
 	label.width=25
 	label.align=left
 	label.font="$FONT:Regular:14.0"
+    background.border_color=$BLUE
 )
 
 status_bracket=(
 	background.color=$BACKGROUND_1
-	background.border_color=$BACKGROUND_2
+    background.border_color=$BLUE
 )
 
 sketchybar --add slider volume right \

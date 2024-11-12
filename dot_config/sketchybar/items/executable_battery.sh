@@ -8,6 +8,7 @@ battery=(
 	label.drawing=on
 	update_freq=120
 	updates=on
+    background.border_color=$BLUE
 )
 
 sketchybar --add item battery right \

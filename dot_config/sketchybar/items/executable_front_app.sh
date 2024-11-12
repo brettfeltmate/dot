@@ -3,7 +3,7 @@
 #Filename: ~/github/dotfiles-latest/sketchybar/felixkratz/items/front_app.sh
 
 front_app=(
-	label.padding_left=4
+	label.padding_left=0
 	label.padding_right=12
 	label.font="$FONT:Medium:16.0"
 	background.color=$BACKGROUND_1
@@ -11,6 +11,7 @@ front_app=(
 	display=active
 	script="$PLUGIN_DIR/front_app.sh"
 	click_script="open -a 'Mission Control'"
+    background.border_color=$BLUE
 )
 
 sketchybar --add item front_app left \

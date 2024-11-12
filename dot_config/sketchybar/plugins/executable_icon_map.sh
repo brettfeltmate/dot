@@ -293,7 +293,7 @@ function icon_map() {
         "Logseq")
             icon_result=":logseq:"
             ;;
-        "Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "Superhuman" | "Spark Mail" | "邮件")
+        "Canary Mail" | "HEY" | "Mail" | "Mailspring" | "MailMate" | "Superhuman" | "Spark Mail" | "Microsoft Outlook" | "邮件")
             icon_result=":mail:"
             ;;
         "MAMP" | "MAMP PRO")
@@ -319,9 +319,6 @@ function icon_map() {
             ;;
         "Microsoft Excel")
             icon_result=":microsoft_excel:"
-            ;;
-        "Microsoft Outlook")
-            icon_result=":microsoft_outlook:"
             ;;
         "Microsoft PowerPoint")
             icon_result=":microsoft_power_point:"

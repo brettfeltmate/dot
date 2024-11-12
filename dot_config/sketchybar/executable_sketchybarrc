@@ -27,7 +27,7 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/d
 
 # Setting up the general bar appearance of the bar
 bar=(
-	height=45
+	height=44
 	color=$BAR_COLOR
 	border_width=0
 	border_color=$BLUE
@@ -65,6 +65,7 @@ defaults=(
 	popup.background.color=$POPUP_BACKGROUND_COLOR
 	popup.blur_radius=20
 	popup.background.shadow.drawing=on
+    background.border_color=$BLUE
 	scroll_texts=on
 )
 

@@ -3,8 +3,7 @@
 #Filename: ~/github/dotfiles-latest/sketchybar/felixkratz/items/calendar.sh
 
 calendar=(
-	icon=cal
-	# Using "MesloLGM Nerd Font"
+	# icon=cal
 	icon.font="$FONT:Medium:16.0"
 	# Using default "SF Pro"
 	# icon.font="$FONT:Black:12.0"
@@ -18,6 +17,8 @@ calendar=(
 	padding_right=8
 	update_freq=30
 	background.color=$BACKGROUND_1
+    icon.background.drawing=on
+    background.border_color=$BLUE
 	script="$PLUGIN_DIR/calendar.sh"
 	click_script="$PLUGIN_DIR/zen.sh"
 )
