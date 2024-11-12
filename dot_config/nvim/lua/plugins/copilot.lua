@@ -1,12 +1,12 @@
 return {
 	"zbirenbaum/copilot.lua",
-	lazy = true,
-	event = "BufReadPre",
+	cmd = "Copilot",
 	opts = {
-		panel = { layout = { position = "left", ratio = 0.3 } },
-		suggestions = {
-			enable = true,
+		panel = { enabled = true },
+		suggestion = {
+			enabled = true,
 			auto_trigger = true,
+			hide_during_completion = true,
 			keymap = {
 				accept = "<M-l>",
 				next = "<M-j>",
@@ -14,6 +14,6 @@ return {
 				dismiss = "<M-h>",
 			},
 		},
-		filetypes = { markdown = true },
+		filetypes = { markdown = true, help = true },
 	},
 }

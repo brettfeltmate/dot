@@ -1,7 +1,7 @@
 return {
 	"brenton-leighton/multiple-cursors.nvim",
-    lazy = true,
-    cmd = {"MultipleCursorsAddDown", "MultipleCursorsAddUp"},
+	lazy = true,
+	cmd = { "MultipleCursorsAddDown", "MultipleCursorsAddUp" },
 	version = "*",
 	opts = {
 		pre_hook = function()
@@ -12,5 +12,5 @@ return {
 			vim.g.minipairs_disable = false
 			require("nvim-autopairs").enable()
 		end,
-	}
+	},
 }

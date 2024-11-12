@@ -34,51 +34,42 @@ map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"), "Move one wo
 map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"), "Kill word forward")
 map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
 
-map({ "n" }, "<Esc>", C("nohlsearch"), "Clear highlights")
+map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
 
 -- Navigating between neovim/tmux splits
-map({ "n" }, "<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
-map({ "n" }, "<C-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
-map({ "n" }, "<C-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
-map({ "n" }, "<C-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
+map({ "n" }, "<S-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
+map({ "n" }, "<S-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
+map({ "n" }, "<S-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
+map({ "n" }, "<S-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
 
-map({ "t" }, "<C-Left>", "<C-\\><C-n><C-Up>", "Left")
-map({ "t" }, "<C-Down>", "<C-\\><C-n><C-Down>", "Down")
-map({ "t" }, "<C-Up>", "<C-\\><C-n><C-Up>", "Up")
-map({ "t" }, "<C-Right>", "<C-\\><C-n><C-Right>", "Right")
+map({ "t" }, "<S-Left>", "<C-\\><C-n><C-Up>", "Left")
+map({ "t" }, "<S-Down>", "<C-\\><C-n><C-Down>", "Down")
+map({ "t" }, "<S-Up>", "<C-\\><C-n><C-Up>", "Up")
+map({ "t" }, "<S-Right>", "<C-\\><C-n><C-Right>", "Right")
 
 map({ "n" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
 map({ "n" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
 map({ "n" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Resize up")
 map({ "n" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
 
-map({ "n" }, "<S-Up>", "<C-u>", "Half page up")
-map({ "n" }, "<S-Down>", "<C-d>", "Half page down")
-
 -- Multiple cursors
-map({ "n", "x" }, "<C-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
-map({ "n", "x" }, "<C-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
-map({ "i" }, "<M-Up>", C("MultipleCursorsAddUp"), "Add cursor, move up")
-map({ "i" }, "<M-Down>", C("MultipleCursorsAddDown"), "Add cursor, move down")
-map({ "n", "x", "o" }, "<C-LeftMouse>", C("MultipleCursorMouseAddDelete"), "Add or remove a cursor")
+map({ "n", "x" }, "<A-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
+map({ "n", "x" }, "<A-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 
--- map({ "n", "x" }, "<M-J>", "}}W")
--- map({ "n", "x" }, "<M-K>", "{{W")
+map({ "n" }, "<A-n>", "/^\\s*\\S/e<cr>")
+map({ "n" }, "<A-p>", "?^\\s*\\S?e<cr>")
 
--- map({ "n" }, "<M-J>", "/^\\s*\\S/e<cr>")
--- map({ "n" }, "<M-K>", "?^\\s*\\S?e<cr>")
 -- Flash.nvim
 map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
 
 -- nvim-spider
-map({ "n", "o", "x" }, "w", C("lua require('spider').motion('w')"), "Spider-w")
-map({ "n", "o", "x" }, "e", C("lua require('spider').motion('e')"), "Spider-e")
-map({ "n", "o", "x" }, "b", C("lua require('spider').motion('b')"), "Spider-b")
+map({ "n" }, "w", C("lua require('spider').motion('w')"), "Spider-w")
+map({ "n" }, "e", C("lua require('spider').motion('e')"), "Spider-e")
+map({ "n" }, "b", C("lua require('spider').motion('b')"), "Spider-b")
 
 -- squirrel.nvim
 map({ "n", "x" }, "ga", C("lua require('squirrel.hop').hop_linewise()"), "Squirrel hop linewise")
-map({ "n", "x" }, "gA", C("lua require('squirrel.hop').hop()"), "Squirrel hop")
 map({ "n", "x" }, "ge", C("lua require('squirrel.hop').hop_linewise({head = false, tail = true})"))
 map({ "n", "x" }, "gE", C("lua require('squirrel.hop').hop({head = false, tail = true})"))
 
@@ -92,8 +83,7 @@ map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)")
 map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 
 -- wtf.nvim
-map({ "n" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
-map({ "x" }, "gw", C("lua require('wtf').ai()"), "wtf is this")
+map({ "n" }, "gw", C("Wtf"), "wtf is this")
 
 map({ "n" }, "<A-p>", C("tabprevious"), "Previous tab")
 map({ "n" }, "<A-n>", C("tabnext"), "Next tab")
@@ -134,6 +124,34 @@ map({ "n" }, L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
+-- | [C]opilot
+-- Show help actions with fzf-lua
+-- map({ "n" }, L("ch"), function()
+-- 	local actions = require("CopilotChat.actions")
+-- 	require("CopilotChat.integrations.fzflua").pick(actions.help_actions())
+-- end, "Help actions")
+-- -- Show prompts actions with fzf-lua
+-- map({ "n", "v" }, L("ca"), function()
+-- 	local actions = require("CopilotChat.actions")
+-- 	require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+-- end, "Prompt actions")
+-- -- Open chat promp in cmdline
+-- map({ "n", "v" }, L("cc"), function()
+-- 	local input = vim.fn.input("Quick Chat: ")
+-- 	if input ~= "" then
+-- 		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
+-- 	end
+-- end, "Quick chat")
+--
+-- map({ "n" }, L("ct"), C("CopilotChatToggle"), "Toggle")
+-- map({ "n" }, L("cq"), C("CopilotChatStop"), "Stop")
+-- map({ "n" }, L("cR"), C("CopilotChatReset"), "Reset")
+-- map({ "n", "x" }, L("ce"), C("CopilotChatExplain"), "Explain")
+-- map({ "n", "x" }, L("cf"), C("CopilotChatFix"), "Fix")
+-- map({ "n", "x" }, L("cr"), C("CopilotChatReview"), "Review")
+-- map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
+-- map({ "n", "x" }, L("cT"), C("CopilotChatTests"), "Tests")
+-- map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
 -- | [L]SP
 map(
 	{ "n" },
@@ -143,16 +161,20 @@ map(
 	),
 	"Actions"
 )
-map({ "n" }, L("li"), C("FzfLua lsp_implementations"), "Implementations")
-map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
-map({ "n" }, L("ld"), C("FzfLua lsp_definitions"), "Definitions")
-map({ "n" }, L("lo"), C("Outline!"), "Outline")
-map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols")
+map({ "n" }, L("li"), C("Trouble lsp_implementations"), "Implementations")
+map({ "n" }, L("lr"), C("Trouble lsp_references"), "References")
+map({ "n" }, L("ld"), C("Trouble lsp_definitions "), "Definitions")
+map({ "n" }, L("lo"), C("Trouble symbols"), "Outline")
+map({ "n" }, L("ls"), C("Trouble lsp_document_symbols auto_close=true"), "Symbols")
 map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename")
-map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics")
+map({ "n" }, L("lx"), C("Trouble diagnostics toggle"), "Diagnostics (proj)")
+map({ "n" }, L("lX"), C("Trouble diagnostics toggle filter.buf=0"), "Diagnostics (buff)")
+map({ "n" }, L("ll"), C("Trouble loclist toggle"), "Loc list")
+map({ "n" }, L("lq"), C("Trouble qlist toggle"), "Quickfix list")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
+map({ "n" }, L("ss"), C("FzfLua lsp_document_symbols"), "Symbols")
 map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
 map({ "n" }, L("sG"), C("FzfLua live_grep cwd=~/projects"), "Grep (projs)")
 map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
@@ -189,13 +211,9 @@ map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",x"), C("Noice fzf"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
-map({ "n" }, L(",q"), C("qa!"), "Quit")
--- map({ "n" }, L(",d"), C("Nvdash"), "Dashboard")
-map({ "n" }, L(",c"), C("NvCheatsheet"), "Cheatsheet")
-
-if vim.fn.has('macunix') then
-    map({ "n" }, L(",d"), "<Plug>DashSearch", "Dash search")
-end
+map({ "n" }, L(",q"), C("qa!"), "BAIL")
+map({ "n" }, L(",d"), C("wqa!"), "Dip")
+map({ "n" }, L(",t"), C("lua require('toolbox').show_picker()"), "Toolbox")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require

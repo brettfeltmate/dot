@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
-    lazy = true,
-    event = "InsertEnter",
+	lazy = true,
+	event = "InsertEnter",
 	version = "v0.*",
 	dependencies = {
 		"rafamadriz/friendly-snippets",
@@ -19,12 +19,12 @@ return {
 		{ "bilal2453/luvit-meta", lazy = true },
 	},
 	opts = {
-        nerd_font_variant = "mono",
+		nerd_font_variant = "mono",
 		windows = {
 			documentation = { auto_show = true },
 			ghost_text = { enabled = false },
 		},
-		accept = { auto_brackets = { enabled = true } },
+		accept = { auto_brackets = { enabled = false } },
 		keymap = {
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-h>"] = { "hide", "fallback" },

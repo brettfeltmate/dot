@@ -57,10 +57,10 @@ for cword_type, cmd_map in pairs(key_cmd_map) do
 end
 
 vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
-vim.keymap.set("i", "<M-p>", " %>% ", { buffer = 0 })
+vim.keymap.set("i", "<M-m>", " %>% ", { buffer = 0 })
 vim.keymap.set("i", "<M-e>", " %$% ", { buffer = 0 })
 vim.keymap.set("i", "<M-i>", " %in% ", { buffer = 0 })
-vim.keymap.set("i", "<M-t>", " %between% ", { buffer = 0 })
+vim.keymap.set("i", "<M-b>", " %between% ", { buffer = 0 })
 
 -- Indentation
 vim.g.r_indent_align_args = 0 -- else: args on newline, aligned w/ (
@@ -74,8 +74,3 @@ vim.g.r_indent_ess_compatible = 0
 
 -- Use specific comment headers
 vim.bo.comments = [[:#',:###,:##,:#]]
-
-vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#cac4b5" })
-vim.api.nvim_set_hl(0, "Operator", { fg = "#a087a2" })
-vim.api.nvim_set_hl(0, "Delimiter", { fg = "#a6c5b2" })
-vim.api.nvim_set_hl(0, "Float", { fg = "#d9d4e6" })

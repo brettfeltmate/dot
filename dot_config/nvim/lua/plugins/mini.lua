@@ -70,8 +70,8 @@ return {
 			clues = {
 				-- Enhance this by adding descriptions for <Leader> mapping groups
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
-				{ mode = "n", keys = "<leader>a", desc = "Avante" },
-				{ mode = "v", keys = "<leader>a", desc = "Avante" },
+				{ mode = "n", keys = "<leader>c", desc = "Copilot" },
+				{ mode = "v", keys = "<leader>c", desc = "Copilot" },
 				{ mode = "n", keys = "<leader>s", desc = "Search" },
 				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
 				{ mode = "n", keys = "<leader>g", desc = "Git" },

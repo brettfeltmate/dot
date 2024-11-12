@@ -1,5 +1,5 @@
 return {
-    "xiaoshihou514/squirrel.nvim",
-    lazy = true,
-    event = "BufReadPre",
+	"xiaoshihou514/squirrel.nvim",
+	lazy = true,
+	event = "BufReadPre",
 }

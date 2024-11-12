@@ -32,6 +32,12 @@ local autocmds = {
 	winsplits = {
 		{ "BufWinEnter", "*", 'if &buftype == "help" | :wincmd L | endif' },
 	},
+	filetypes = {
+		{ "BufRead",  "*visidatarc" , "set filetype=python" },
+	},
+    -- copilotchat = {
+    --     { "BufEnter", "copilot-*", "setlocal nornu" },
+    -- },
 }
 
 nvim_create_augroups(autocmds)

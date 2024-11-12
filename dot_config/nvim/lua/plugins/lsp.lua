@@ -21,7 +21,6 @@ return {
 			dofile(vim.g.base46_cache .. "lsp")
 			dofile(vim.g.base46_cache .. "mason")
 
-
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 			-- cmp.nvim, comment out if using blink.cmp
@@ -33,11 +32,8 @@ return {
 			-- })
 
 			-- LSP driven file operations (used by nvim-tree)
-			capabilities = vim.tbl_deep_extend(
-        "force",
-        capabilities,
-        require("lsp-file-operations").default_capabilities()
-      )
+			capabilities =
+				vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
 
 			-- (nvim-ufo) Get folds from LSP
 			capabilities.textDocument.foldingRange = {
@@ -45,42 +41,42 @@ return {
 				lineFoldingOnly = true,
 			}
 
-      local servers = {
-        bashls = {},
-        clangd = {},
-        html = {},
-        jedi_language_server = {},
-        julials = {},
-        lua_ls = {},
-        marksman = {},
-        matlab_ls = {},
-        r_language_server = {},
-        taplo = {},
-        ts_ls = {},
-      }
+			local servers = {
+				bashls = {},
+				clangd = {},
+				html = {},
+				jedi_language_server = {},
+				julials = {},
+				lua_ls = {},
+				marksman = {},
+				matlab_ls = {},
+				r_language_server = {},
+				taplo = {},
+				ts_ls = {},
+			}
 
-      local ensure_installed = {
-        "bash-language-server",
-        "beautysh",
-        "blue",
-        "clangd",
-        "html-lsp",
-        "jedi-language-server",
-        "julia-lsp",
-        "lua-language-server",
-        "luacheck",
-        "markdownlint",
-        "marksman",
-        "matlab-language-server",
-        "prettier",
-        "r-languageserver",
-        "ruff",
-        "shellcheck",
-        "sqlfmt",
-        "stylua",
-        "taplo",
-        "typescript-language-server",
-      }
+			local ensure_installed = {
+				"bash-language-server",
+				"beautysh",
+				"blue",
+				"clangd",
+				"html-lsp",
+				"jedi-language-server",
+				"julia-lsp",
+				"lua-language-server",
+				"luacheck",
+				"markdownlint",
+				"marksman",
+				"matlab-language-server",
+				"prettier",
+				"r-languageserver",
+				"ruff",
+				"shellcheck",
+				"sqlfmt",
+				"stylua",
+				"taplo",
+				"typescript-language-server",
+			}
 
 			require("mason").setup()
 
@@ -92,7 +88,7 @@ return {
 			end
 		end,
 	},
-{
+	{
 		"stevearc/conform.nvim",
 		event = "BufWritepre",
 		opts = {
