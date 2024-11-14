@@ -1,13 +1,31 @@
 -- LSPs, formatters, linters, etc.,
 return {
-	{ vim.diagnostic.config({ virtual_text = true }) },
+	{ vim.diagnostic.config({ virtual_text = false }) },
 	{
-		"ray-x/lsp_signature.nvim",
-		event = "InsertEnter",
-		opts = { floating_window = false },
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach", -- Or `LspAttach`
+		priority = 1000, -- needs to be loaded in first
+		opts = {
+			blend = { factor = 0.35 },
+			options = {
+				softwrap = 20,
+				format = function(diagnostic)
+					return diagnostic.message .. " |" .. diagnostic.source .. "|"
+				end,
+				severity = {
+					vim.diagnostic.severity.ERROR,
+					vim.diagnostic.severity.WARN,
+					vim.diagnostic.severity.INFO,
+					vim.diagnostic.severity.HINT,
+				},
+			},
+		},
+		config = function(_, opts)
+			require("tiny-inline-diagnostic").setup(opts)
+		end,
 	},
 	{
-		event = "BufReadPre",
+		event = "VeryLazy",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
@@ -45,30 +63,68 @@ return {
 				bashls = {},
 				clangd = {},
 				html = {},
-				jedi_language_server = {},
+				-- jedi_language_server = {},
 				julials = {},
 				lua_ls = {},
 				marksman = {},
 				matlab_ls = {},
+				pyright = {},
+				-- basedpyright = {
+				-- 	{
+				-- 		basedpyright = {
+				-- 			analysis = {
+				-- 				autoSearchPaths = true,
+				-- 				diagnosticMode = "openFilesOnly",
+				-- 				useLibraryCodeForTypes = true,
+				-- 			},
+				-- 		},
+				-- 	},
+				-- },
+				-- pylsp = {
+				-- 	plugins = {
+				-- 		-- Refactoring plugins
+				-- 		rope = { enabled = true },
+				-- 		pylsp_rope = { enabled = true },
+				-- 		rope_completion = { enabled = true },
+				-- 		rope_autoimport = { enabled = true },
+				-- 		rope_rename = { enabled = false },
+				--
+				-- 		-- Code quality plugins
+				-- 		pycodestyle = { enabled = true },
+				-- 		pyflakes = { enabled = true },
+				-- 		pylint = { enabled = false }, -- Using ruff instead
+				-- 	},
+				-- 	settings = {
+				-- 		rope = {
+				-- 			extensionModules = {},
+				-- 			ropeFolder = { ".ropeproject", "src" },
+				-- 		},
+				-- 	},
+				-- },
 				r_language_server = {},
+				ruff = {},
 				taplo = {},
 				ts_ls = {},
 			}
 
 			local ensure_installed = {
+				-- "basedpyright",
 				"bash-language-server",
 				"beautysh",
-				"blue",
+				-- "blue",
+				"black",
 				"clangd",
 				"html-lsp",
-				"jedi-language-server",
+				-- "jedi-language-server",
 				"julia-lsp",
 				"lua-language-server",
 				"luacheck",
 				"markdownlint",
 				"marksman",
 				"matlab-language-server",
+				-- "python-lsp-server",
 				"prettier",
+				"pyright",
 				"r-languageserver",
 				"ruff",
 				"shellcheck",
@@ -109,13 +165,13 @@ return {
 				json = { "prettier" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				python = { "blue" },
+				python = { "ruff", "black" },
 				r = { "rprettify" },
 				rmd = { "rprettify" },
 				markdown = { "prettier" },
 				sql = { "sqlfmt" },
 			},
-			format_on_save = nil,
+			format_on_save = { timeout_ms = 2000 },
 		},
 	},
 }

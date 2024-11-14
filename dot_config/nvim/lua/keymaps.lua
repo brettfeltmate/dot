@@ -126,32 +126,32 @@ map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
 -- | [C]opilot
 -- Show help actions with fzf-lua
--- map({ "n" }, L("ch"), function()
--- 	local actions = require("CopilotChat.actions")
--- 	require("CopilotChat.integrations.fzflua").pick(actions.help_actions())
--- end, "Help actions")
--- -- Show prompts actions with fzf-lua
--- map({ "n", "v" }, L("ca"), function()
--- 	local actions = require("CopilotChat.actions")
--- 	require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
--- end, "Prompt actions")
--- -- Open chat promp in cmdline
--- map({ "n", "v" }, L("cc"), function()
--- 	local input = vim.fn.input("Quick Chat: ")
--- 	if input ~= "" then
--- 		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
--- 	end
--- end, "Quick chat")
---
--- map({ "n" }, L("ct"), C("CopilotChatToggle"), "Toggle")
--- map({ "n" }, L("cq"), C("CopilotChatStop"), "Stop")
--- map({ "n" }, L("cR"), C("CopilotChatReset"), "Reset")
--- map({ "n", "x" }, L("ce"), C("CopilotChatExplain"), "Explain")
--- map({ "n", "x" }, L("cf"), C("CopilotChatFix"), "Fix")
--- map({ "n", "x" }, L("cr"), C("CopilotChatReview"), "Review")
--- map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
--- map({ "n", "x" }, L("cT"), C("CopilotChatTests"), "Tests")
--- map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
+map({ "n" }, L("ch"), function()
+	local actions = require("CopilotChat.actions")
+	require("CopilotChat.integrations.fzflua").pick(actions.help_actions())
+end, "Help actions")
+-- Show prompts actions with fzf-lua
+map({ "n", "v" }, L("ca"), function()
+	local actions = require("CopilotChat.actions")
+	require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
+end, "Prompt actions")
+-- Open chat promp in cmdline
+map({ "n", "v" }, L("cc"), function()
+	local input = vim.fn.input("Quick Chat: ")
+	if input ~= "" then
+		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
+	end
+end, "Quick chat")
+
+map({ "n" }, L("ct"), C("CopilotChatToggle"), "Toggle")
+map({ "n" }, L("cq"), C("CopilotChatStop"), "Stop")
+map({ "n" }, L("cR"), C("CopilotChatReset"), "Reset")
+map({ "n", "x" }, L("ce"), C("CopilotChatExplain"), "Explain")
+map({ "n", "x" }, L("cf"), C("CopilotChatFix"), "Fix")
+map({ "n", "x" }, L("cr"), C("CopilotChatReview"), "Review")
+map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
+map({ "n", "x" }, L("cT"), C("CopilotChatTests"), "Tests")
+map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
 -- | [L]SP
 map(
 	{ "n" },
@@ -161,6 +161,8 @@ map(
 	),
 	"Actions"
 )
+-- map({ "n" }, L("la"), C("lua require('tiny-code-action').code_action()"), "Actions")
+map({ "n" }, L("lI"), C("lua require('tiny-inline-diagnostic').toggle()"), "Inline diagnostics")
 map({ "n" }, L("li"), C("Trouble lsp_implementations"), "Implementations")
 map({ "n" }, L("lr"), C("Trouble lsp_references"), "References")
 map({ "n" }, L("ld"), C("Trouble lsp_definitions "), "Definitions")
@@ -214,6 +216,7 @@ map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",q"), C("qa!"), "BAIL")
 map({ "n" }, L(",d"), C("wqa!"), "Dip")
 map({ "n" }, L(",t"), C("lua require('toolbox').show_picker()"), "Toolbox")
+map({ "n" }, L(",g"), C("lua require('gitpad').toggle_gitpad()"), "Gitpad")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require

@@ -35,5 +35,9 @@ return {
 			vim.treesitter.language.register("markdown", "rmd")
 		end,
 	},
+	{
+		"nvim-treesitter/nvim-treesitter-context",
+		event = "BufReadPre",
+	},
 }
 -- vim: ts=2 sts=2 sw=2 et

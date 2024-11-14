@@ -2,9 +2,9 @@ return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
     cmd = "FzfLua",
-	dependencies = { "echasnovski/mini.icons" },
+	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
 	config = function()
-		local actions = require("fzf-lua.actions")
+        local trouble = require("trouble.sources.fzf").actions
 		require("fzf-lua").setup({
 			-- fzf_bin = "fzf-tmux",
 			fzf_opts = { ["--layout"] = "reverse" },
@@ -32,7 +32,7 @@ return {
 			actions = {
 				files = {
 					true,
-					["alt-t"] = actions.file_tabedit,
+					["alt-t"] = trouble.open,
 				},
 			},
 		})

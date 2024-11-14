@@ -21,10 +21,10 @@ return {
 	opts = {
 		nerd_font_variant = "mono",
 		windows = {
-			documentation = { auto_show = true },
+			documentation = { auto_show = true, border = "single" },
+            autocomplete = { border = "none" },
 			ghost_text = { enabled = false },
 		},
-		accept = { auto_brackets = { enabled = false } },
 		keymap = {
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-h>"] = { "hide", "fallback" },

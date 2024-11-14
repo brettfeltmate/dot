@@ -24,7 +24,7 @@ local M = {
 	nvdash = { load_on_startup = false, },
 	lsp = { signature = false },
 	mason = { cmd = false, pkgs = {} },
-	colorify = { enabled = true, mode = "fg" },
+	colorify = { enabled = false, mode = "fg" },
 }
 
 return M
