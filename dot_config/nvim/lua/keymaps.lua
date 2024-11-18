@@ -27,12 +27,19 @@ map(
 	"Previous context",
 	{ silent = true }
 )
+map(
+    { "n" },
+    "]c",
+    C("lua require('treesitter-context').go_to_context(vim.v.count1, true)"),
+    "Next context",
+    { silent = true }
+)
 
 -- Readline commands
 map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"), "Move one word forward")
 map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"), "Move one word backward")
-map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"), "Kill word forward")
-map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
+map({ "i" }, "<A-S-f>", C("lua require('readline').kill_word()"), "Kill word forward")
+map({ "i" }, "<A-S-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
 
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
@@ -48,17 +55,17 @@ map({ "t" }, "<S-Down>", "<C-\\><C-n><C-Down>", "Down")
 map({ "t" }, "<S-Up>", "<C-\\><C-n><C-Up>", "Up")
 map({ "t" }, "<S-Right>", "<C-\\><C-n><C-Right>", "Right")
 
-map({ "n" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
-map({ "n" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
-map({ "n" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Resize up")
-map({ "n" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
+map({ "n", "t" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
+map({ "n", "t" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
+map({ "n", "t" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Resize up")
+map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
 
 -- Multiple cursors
 map({ "n", "x" }, "<A-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "x" }, "<A-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 
-map({ "n" }, "<A-n>", "/^\\s*\\S/e<cr>")
-map({ "n" }, "<A-p>", "?^\\s*\\S?e<cr>")
+map({ "n" }, "]n", "/^\\s*\\S/e<cr>")
+map({ "n" }, "[n", "?^\\s*\\S?e<cr>")
 
 -- Flash.nvim
 map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
@@ -85,10 +92,8 @@ map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 -- wtf.nvim
 map({ "n" }, "gw", C("Wtf"), "wtf is this")
 
-map({ "n" }, "<A-p>", C("tabprevious"), "Previous tab")
-map({ "n" }, "<A-n>", C("tabnext"), "Next tab")
-map({ "n" }, "<A-c>", C("tabnew"), "New tab")
-map({ "n" }, "<A-x>", C("tabclose"), "Close tab")
+map({ "n" }, "[t", C("tabprevious"), "Previous tab")
+map({ "n" }, "]t", C("tabnext"), "Next tab")
 
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
@@ -118,7 +123,8 @@ map({ "n" }, "<leader><leader>", open_fzf_buffers, "Buffers")
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
-map({ "n" }, L("bx"), C("lua require('nvchad.tabufline').close_buffer()"), "Close")
+map({ "n" }, L("bx"), C("lua Snacks.bufdelete.delete()"), "Close current")
+map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
 map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
 map({ "n" }, L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
@@ -190,7 +196,9 @@ map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
 
 map({ "n" }, L("gC"), C("FzfLua git_commits"), "Commits (proj)")
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits (buffer)")
-map({ "n" }, L("gl"), C("LazyGit"), "LazyGit")
+map({ "n" }, L("gg"), C("lua Snacks.lazygit.open()"), "LazyGit")
+map({ "n" }, L("gl"), C("lua Snacks.lazygit.log_file()"), "LazyGit log (file)")
+map({ "n" }, L("gL"), C("lua Snacks.lazygit.log()"), "LazyGit log")
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "Preview hunk")
 map({ "n" }, L("gb"), C("Gitsigns toggle_current_line_blame"), "Blame lines")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
@@ -211,12 +219,13 @@ map(
 map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
-map({ "n" }, L(",x"), C("Noice fzf"), "Noice")
+map({ "n" }, L(",x"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",q"), C("qa!"), "BAIL")
 map({ "n" }, L(",d"), C("wqa!"), "Dip")
 map({ "n" }, L(",t"), C("lua require('toolbox').show_picker()"), "Toolbox")
 map({ "n" }, L(",g"), C("lua require('gitpad').toggle_gitpad()"), "Gitpad")
+map({ "n" }, L(",c"), C("NoNeckPain"), "Centre")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require

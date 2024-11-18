@@ -29,7 +29,7 @@ vim.keymap.set({ "n" }, "<leader>q", "<cmd>SlimeSend1 q<cr>", { buffer = 0, nore
 vim.keymap.set({ "n" }, "<leader>Q", "<cmd>SlimeSend1 q()<cr>", { buffer = 0, noremap = true, desc = "Quit R" })
 
 -- #FIX: sends ^C resultng in 'invalid token in ""'
---  vim.keymap.set({ "n" }, "<leader>c", "<cmd>SlimeSend1 \x03<cr>", { buffer = 0, noremap = true, desc = "Emit C-c" })
+vim.keymap.set({ "n" }, "<leader>C", "<cmd>SlimeSend1 \003<cr>", { buffer = 0, noremap = true, desc = "Emit C-c" })
 
 local key_cmd_map = {
 	["<cword>"] = {

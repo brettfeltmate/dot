@@ -2,7 +2,7 @@ return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	branch = "canary",
 	lazy = true,
-	event = "InsertEnter",
+	event = "BufReadPre",
 	build = "make tiktoken",
 	dependencies = {
 		{
@@ -26,11 +26,14 @@ return {
 	},
 	opts = {
 		model = "claude-3.5-sonnet",
-		context = "buffers",
-		question_header = "## Message: ",
-		answer_header = "## Response: ",
+		question_header = "[Query]",
+		answer_header = "[Reply]",
+		error_header = "[Whoops]",
 		show_folds = false,
-
+		-- Default context to use
+		-- -- 'buffers', 'buffer', 'files' or none
+		-- -- (can be specified manually in prompt via #).
+		context = nil,
 		prompts = {
 			Explain = {
 				prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text, include the selected text as a codeblock in your reply.",

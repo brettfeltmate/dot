@@ -167,8 +167,8 @@ local polish_hl = {
 		NvimTreeFolderArrowOpen = { fg = base30.folder_bg },
 		NvimTreeFolderArrowClosed = { fg = base30.grey_fg },
 		NvimTreeGitDirty = { fg = base30.red },
-		NvimTreeNormal = { bg = generate_color(base30.dark_purple, -40) },
-		NvimTreeNormalNC = { bg = generate_color(base30.dark_purple, -40) },
+		-- NvimTreeNormal = { bg = generate_color(base30.dark_purple, -40) },
+		-- NvimTreeNormalNC = { bg = generate_color(base30.dark_purple, -40) },
 		NvimTreeOpenedFolderName = { fg = base30.folder_bg },
 		NvimTreeGitIgnored = { fg = base30.light_grey },
 
@@ -217,12 +217,12 @@ local polish_hl = {
 	},
 
 	markview = {
-		["@markup.heading.1.markdown"] = { fg = base30.red },
-		["@markup.heading.2.markdown"] = { fg = base30.orange },
-		["@markup.heading.3.markdown"] = { fg = base30.yellow },
-		["@markup.heading.4.markdown"] = { fg = base30.green },
-		["@markup.heading.5.markdown"] = { fg = base30.blue },
-		["@markup.heading.6.markdown"] = { fg = base30.purple },
+		["@markup.heading.1.markdown"] = { fg = base16.base0B },
+		["@markup.heading.2.markdown"] = { fg = base16.base07 },
+		["@markup.heading.3.markdown"] = { fg = base16.base08 },
+		["@markup.heading.4.markdown"] = { fg = base16.base0A },
+		["@markup.heading.5.markdown"] = { fg = base16.base0D },
+		["@markup.heading.6.markdown"] = { fg = base16.base0F },
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },

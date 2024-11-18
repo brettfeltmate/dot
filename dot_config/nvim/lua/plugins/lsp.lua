@@ -25,7 +25,7 @@ return {
 		end,
 	},
 	{
-		event = "VeryLazy",
+		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
@@ -41,14 +41,6 @@ return {
 
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-			-- cmp.nvim, comment out if using blink.cmp
-			-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-			-- require("mason-lspconfig").setup_handlers({
-			-- 	function(server_name)
-			-- 		require("lspconfig")[server_name].setup({})
-			-- 	end,
-			-- })
-
 			-- LSP driven file operations (used by nvim-tree)
 			capabilities =
 				vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
@@ -63,44 +55,11 @@ return {
 				bashls = {},
 				clangd = {},
 				html = {},
-				-- jedi_language_server = {},
 				julials = {},
 				lua_ls = {},
 				marksman = {},
 				matlab_ls = {},
 				pyright = {},
-				-- basedpyright = {
-				-- 	{
-				-- 		basedpyright = {
-				-- 			analysis = {
-				-- 				autoSearchPaths = true,
-				-- 				diagnosticMode = "openFilesOnly",
-				-- 				useLibraryCodeForTypes = true,
-				-- 			},
-				-- 		},
-				-- 	},
-				-- },
-				-- pylsp = {
-				-- 	plugins = {
-				-- 		-- Refactoring plugins
-				-- 		rope = { enabled = true },
-				-- 		pylsp_rope = { enabled = true },
-				-- 		rope_completion = { enabled = true },
-				-- 		rope_autoimport = { enabled = true },
-				-- 		rope_rename = { enabled = false },
-				--
-				-- 		-- Code quality plugins
-				-- 		pycodestyle = { enabled = true },
-				-- 		pyflakes = { enabled = true },
-				-- 		pylint = { enabled = false }, -- Using ruff instead
-				-- 	},
-				-- 	settings = {
-				-- 		rope = {
-				-- 			extensionModules = {},
-				-- 			ropeFolder = { ".ropeproject", "src" },
-				-- 		},
-				-- 	},
-				-- },
 				r_language_server = {},
 				ruff = {},
 				taplo = {},
@@ -108,21 +67,17 @@ return {
 			}
 
 			local ensure_installed = {
-				-- "basedpyright",
 				"bash-language-server",
 				"beautysh",
-				-- "blue",
 				"black",
 				"clangd",
 				"html-lsp",
-				-- "jedi-language-server",
 				"julia-lsp",
 				"lua-language-server",
 				"luacheck",
 				"markdownlint",
 				"marksman",
 				"matlab-language-server",
-				-- "python-lsp-server",
 				"prettier",
 				"pyright",
 				"r-languageserver",
@@ -171,7 +126,7 @@ return {
 				markdown = { "prettier" },
 				sql = { "sqlfmt" },
 			},
-			format_on_save = { timeout_ms = 2000 },
+			format_on_save = nil,
 		},
 	},
 }
