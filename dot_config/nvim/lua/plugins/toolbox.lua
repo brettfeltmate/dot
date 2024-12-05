@@ -1,70 +1,57 @@
 return {
 	"DanWlker/toolbox.nvim",
     lazy = true,
+    dependencies = { 'ibhagwan/fzf-lua' },
 	opts = {
 		commands = {
 			{
-				name = "Search share",
-				execute = "FzfLua files cwd=~/.local/share",
+				name = "find local",
+				execute = "FzfLua files cwd=~/.local",
 			},
             {
-                name = "Search home",
+                name = "grep local",
+                execute = "FzfLua live_grep cwd=~/.local",
+            },
+            {
+                name = "find home",
                 execute = "FzfLua files cwd=~/",
             },
             {
-                name = "Search downloads",
-                execute = "FzfLua files cwd=~/Downloads",
-            },
-            {
-                name = "Search documents",
-                execute = "FzfLua files cwd=~/Documents",
-            },
-			{
-				name = "Grep share",
-				execute = "FzfLua live_grep cwd=~/.local/share",
-			},
-            {
-                name = "Grep home",
+                name = "grep home",
                 execute = "FzfLua live_grep cwd=~/",
             },
             {
-                name = "Grep downloads",
+                name = "find downloads",
+                execute = "FzfLua files cwd=~/Downloads",
+            },
+            {
+                name = "grep downloads",
                 execute = "FzfLua live_grep cwd=~/Downloads",
             },
             {
-                name = "Grep documents",
+                name = "find documents",
+                execute = "FzfLua files cwd=~/Documents",
+            },
+            {
+                name = "grep documents",
                 execute = "FzfLua live_grep cwd=~/Documents",
             },
+            {
+                name = "grep projects",
+                execute = "FzfLua live_grep cwd=~/projects",
+            },
+            {
+                name = "find projects",
+                execute = "FzfLua files cwd=~/projects",
+            },
 			{
-				name = "Reload scheme",
+				name = "reload scheme",
 				execute = "lua require('base46').load_all_highlights()",
 			},
             {
-                name = "Colorschemes",
+                name = "load scheme",
                 execute = "lua require('nvchad.themes').open()"
             },
-            {
-                name = "Cmds",
-                execute = "FzfLua commands",
-            },
-            {
-                name ="Noice",
-                execute = "NoiceAll",
-            },
-			{
-				name = "Copy relative",
-				execute = function()
-					local path = vim.fn.expand("%")
-					vim.fn.setreg("+", path)
-				end,
-			},
-			{
-				name = "Copy absolute",
-				execute = function()
-					local path = vim.fn.expand("%:p")
-					vim.fn.setreg("+", path)
-				end,
-			},
 		},
 	},
 }

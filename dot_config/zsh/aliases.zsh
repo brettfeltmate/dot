@@ -67,3 +67,7 @@ alias tsum="task summary"
 alias icat="imgcat -W 100% -r"
 
 alias diet="NVIM_APPNAME='dietnvim' nvim"
+
+# visidata shorthands
+alias vd="visidata --theme=ascii8"
+alias vdkl="vd --filetype=tsv --skip=15 --header=1"

@@ -2,54 +2,27 @@
 return {
 	{ vim.diagnostic.config({ virtual_text = false }) },
 	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "LspAttach", -- Or `LspAttach`
-		priority = 1000, -- needs to be loaded in first
-		opts = {
-			blend = { factor = 0.35 },
-			options = {
-				softwrap = 20,
-				format = function(diagnostic)
-					return diagnostic.message .. " |" .. diagnostic.source .. "|"
-				end,
-				severity = {
-					vim.diagnostic.severity.ERROR,
-					vim.diagnostic.severity.WARN,
-					vim.diagnostic.severity.INFO,
-					vim.diagnostic.severity.HINT,
-				},
-			},
-		},
+		"sontungexpt/better-diagnostic-virtual-text",
+		lazy = true,
+		event = "LspAttach",
+		opts = { ui = { above = true, wrap_line_after = 999 } },
 		config = function(_, opts)
-			require("tiny-inline-diagnostic").setup(opts)
+			require("better-diagnostic-virtual-text").setup(opts)
 		end,
 	},
 	{
-		event = "BufReadPre",
 		"neovim/nvim-lspconfig",
+		event = "BufRead",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
 			{
 				"williamboman/mason-lspconfig.nvim",
 			},
 			{ "whoissethdaniel/mason-tool-installer.nvim" },
-			{ "antosha417/nvim-lsp-file-operations" },
 		},
 		config = function()
 			dofile(vim.g.base46_cache .. "lsp")
 			dofile(vim.g.base46_cache .. "mason")
-
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-			-- LSP driven file operations (used by nvim-tree)
-			capabilities =
-				vim.tbl_deep_extend("force", capabilities, require("lsp-file-operations").default_capabilities())
-
-			-- (nvim-ufo) Get folds from LSP
-			capabilities.textDocument.foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			}
 
 			local servers = {
 				bashls = {},
@@ -71,6 +44,7 @@ return {
 				"beautysh",
 				"black",
 				"clangd",
+				"debugpy",
 				"html-lsp",
 				"julia-lsp",
 				"lua-language-server",

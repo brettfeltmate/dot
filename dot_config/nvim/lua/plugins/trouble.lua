@@ -30,8 +30,8 @@ return {
 			symbols = {
 				desc = "document symbols",
 				mode = "lsp_document_symbols",
-				focus = false,
-				win = { position = "right", width = 25 },
+				focus = true,
+				win = { position = "left", width = 50 },
 			},
 		},
 	}, -- for default options, refer to the configuration section for custom setup.

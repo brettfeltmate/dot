@@ -2,14 +2,14 @@ return {
 	"yarospace/lua-console.nvim",
 	lazy = true,
 	ft = "lua",
-	keys = "~",
+	keys = "`",
 	opts = {
 		window = {
 			border = "rounded",
 			height = 0.4,
 		},
 		mappings = {
-			toggle = "~",
+			toggle = "`",
 			quit = "q",
 			eval = "<CR>",
 			clear = "C",

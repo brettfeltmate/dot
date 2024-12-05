@@ -33,11 +33,15 @@ local autocmds = {
 		{ "BufWinEnter", "*", 'if &buftype == "help" | :wincmd L | endif' },
 	},
 	filetypes = {
-		{ "BufRead",  "*visidatarc" , "set filetype=python" },
+		{ "BufRead", "*visidatarc", "set filetype=python" },
 	},
-    -- copilotchat = {
-    --     { "BufEnter", "copilot-*", "setlocal nornu" },
-    -- },
+    navmd = {
+        { "BufEnter", "nav.md", "lua vim.diagnostic.disable(0)" },
+        { "BufEnter", "nav.md", "setlocal nornu nonu nospell" },
+        { "BufEnter", "nav.md", ":normal! <M-m>" },
+        { "BufLeave", "nav.md", "lua vim.diagnostic.enable(0)" },
+        -- { "BufLeave", "nav.md", "set rnu nonu" },
+    },
 }
 
 nvim_create_augroups(autocmds)

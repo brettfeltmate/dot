@@ -7,3 +7,12 @@ export ZDOTDIR=$HOME/.config/zsh
 export EDITOR="nvim"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/$HOME/.cargo/bin:/$HOME/.local/bin:/opt/homebrew/bin/brew:/opt/homebrew/sbin:$PATH"
+
+##
+# Your previous /Users/brettfeltmate/.zprofile file was backed up as /Users/brettfeltmate/.zprofile.macports-saved_2024-11-20_at_09:50:35
+##
+
+# MacPorts Installer addition on 2024-11-20_at_09:50:35: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+

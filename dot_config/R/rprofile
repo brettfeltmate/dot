@@ -2,7 +2,7 @@ options(lintr.linter_file = "~/.config/R/lintr")
 
 options(stringsAsFactors = FALSE)
 
-options(max.print = 100)
+options(max.print = 1000)
 
 options(scipen = 10)
 

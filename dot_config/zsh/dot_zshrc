@@ -40,7 +40,10 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
-export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+# export MANPAGER="less -R --use-color -Dd+r -Du+b"
+export PAGER="nvimpager -p"
+export MANPAGER="nvimpager -p"
 # Don't think these are needed anymore...
 # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
 # export CPPFLAGS="-I/opt/homebrew/opt/llvm/include"
@@ -75,7 +78,7 @@ zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' popup-min-size 80 40
 
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-export LESSOPEN='|~/.config/shell/lessfilter.sh %s'
+# export LESSOPEN='|~/.config/shell/lessfilter.sh %s'
 export MOZ_DISABLE_SAFE_MODE_KEY=1
 export STARSHIP_LOG=error
 export CLIPBOARD_THEME=ansi
@@ -99,3 +102,7 @@ bindkey -M viins '\es' sesh-sessions
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init zsh --disable-up-arrow)"
+
+export MAGICK_HOME=/opt/homebrew/opt/imagemagick
+export PATH=$MAGICK_HOME/bin:$PATH
+

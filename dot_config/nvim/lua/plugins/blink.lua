@@ -4,7 +4,6 @@ return {
 	event = "InsertEnter",
 	version = "v0.*",
 	dependencies = {
-		"rafamadriz/friendly-snippets",
 		"saghen/blink.compat",
 		{
 			"folke/lazydev.nvim",
@@ -22,7 +21,7 @@ return {
 		nerd_font_variant = "mono",
 		windows = {
 			documentation = { auto_show = true, border = "single" },
-            autocomplete = { border = "none" },
+			autocomplete = { border = "none" },
 			ghost_text = { enabled = false },
 		},
 		keymap = {
@@ -40,7 +39,7 @@ return {
 		},
 		sources = {
 			completion = {
-				enabled_providers = { "lsp", "path", "snippets", "buffer", "lazydev" },
+				enabled_providers = { "lsp", "path", "buffer", "lazydev" },
 			},
 			providers = {
 				lsp = { fallback_for = { "lazydev" } },
@@ -50,6 +49,7 @@ return {
 				},
 			},
 		},
+		-- signature = { enabled = true },
 	},
 	opts_extend = { "sources.completion.enabled_providers" },
 }

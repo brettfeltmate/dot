@@ -1,10 +1,6 @@
 return {
 	{ "nvim-lua/plenary.nvim", lazy = true },
-	{ "nvim-tree/nvim-web-devicons", lazy = true },
-	{ "nvchad/volt", lazy = true },
-	{ "nvchad/minty", lazy = true },
-	{ "nvchad/menu", lazy = true },
-	{ "otavioschwanck/arrow.nvim", lazy = true },
+	-- { "nvim-tree/nvim-web-devicons", lazy = true },
 	{
 		"nvchad/ui",
 		config = function()

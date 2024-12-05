@@ -1,8 +1,8 @@
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
-	branch = "canary",
 	lazy = true,
-	event = "BufReadPre",
+    branch = "main",
+	event = "BufRead",
 	build = "make tiktoken",
 	dependencies = {
 		{
@@ -26,9 +26,9 @@ return {
 	},
 	opts = {
 		model = "claude-3.5-sonnet",
-		question_header = "[Query]",
-		answer_header = "[Reply]",
-		error_header = "[Whoops]",
+		question_header = "~    User  ~  ",
+		answer_header = "~    Copilot  ~  ",
+		error_header = "~    ERROR  ~  ",
 		show_folds = false,
 		-- Default context to use
 		-- -- 'buffers', 'buffer', 'files' or none
@@ -36,22 +36,22 @@ return {
 		context = nil,
 		prompts = {
 			Explain = {
-				prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection as paragraphs of text, include the selected text as a codeblock in your reply.",
+				prompt = "/COPILOT_EXPLAIN Write an explanation for the active selection.",
 			},
 			Review = {
-				prompt = "/COPILOT_REVIEW Review the selected code, include the selected text as a codeblock in your reply.",
+				prompt = "/COPILOT_REVIEW Review the selected code.",
 			},
 			Fix = {
-				prompt = "/COPILOT_GENERATE There is a problem in this code. Rewrite the code to show it with the bug fixed.",
+				prompt = "/COPILOT_GENERATE There is a problem in this code. Provide a fix and explanation.",
 			},
 			Optimize = {
-				prompt = "/COPILOT_GENERATE Optimize the selected code to improve performance and readability, include the selected text as a codeblock in your reply.",
+				prompt = "/COPILOT_GENERATE Optimize the selected code to improve performance and readability.",
 			},
 			Docs = {
-				prompt = "/COPILOT_GENERATE Please add documentation comment for the selection, include the selected text as a codeblock in your reply.",
+				prompt = "/COPILOT_GENERATE Provide documentation for the selection.",
 			},
 			Tests = {
-				prompt = "/COPILOT_GENERATE Please generate tests for my code.",
+				prompt = "/COPILOT_GENERATE Generate tests for my code.",
 			},
 		},
 		window = {
@@ -71,8 +71,8 @@ return {
 			accept_diff = { normal = "<C-y>", insert = "<C-y>" },
 			yank_diff = { normal = "gy", register = '"' },
 			show_diff = { normal = "gd" },
-			show_system_prompt = { normal = "gp" },
-			show_user_selection = { normal = "gs" },
+			show_info = { normal = "gp" },
+			show_context = { normal = "gs" },
 		},
 	},
 }

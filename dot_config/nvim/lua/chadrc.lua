@@ -2,7 +2,7 @@ local M = {
 	base46 = {
 		theme = "amber",
 		transparency = false,
-		integrations = { "cmp", "devicons", "git", "lsp", "mason", "treesitter", "markview", "nvimtree" },
+		integrations = { "cmp", "devicons", "git", "lsp", "mason", "treesitter", "markview", "nvimtree", "dap"},
 	},
 	ui = {
 		cmp = {

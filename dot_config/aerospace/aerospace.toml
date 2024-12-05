@@ -1,8 +1,9 @@
-# Aerospace config
+# Aerospace config #
 
+# Don't set to true if Aerospace is already a login app; gets buggy.
 start-at-login = false
 
-# Not important, delete if not have
+# Ensure sbar & borders are running
 after-startup-command = [
     'exec-and-forget sketchybar',
     'exec-and-forget borders',
@@ -14,7 +15,11 @@ key-mapping.preset = 'qwerty'
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Layout properties
+# Force mouse to follow focus
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
+
+# Layout properties #
 
 # Default to stacking windows
 default-root-container-layout = 'accordion'
@@ -25,7 +30,7 @@ default-root-container-orientation = 'auto'
 # Postitional offset applied to overlayed windows
 accordion-padding = 2
 
-# I think this is so aerospace can find itself; woah that's deep
+# I think this is so aerospace can find itself; deep
 [exec]
 inherit-env-vars = true
 
@@ -40,6 +45,9 @@ outer.top = 36
 outer.bottom = 6
 outer.left = 6
 outer.right = 6
+
+
+# keybindings #
 
 # 'main' keybindings
 [mode.main.binding]
@@ -59,7 +67,7 @@ alt-right = 'focus right'
 alt-esc = 'exec-and-forget sketchybar --bar hidden=toggle'
 alt-shift-esc = 'exec-and-forget sketchybar --reload'
 
-# Toggle window management
+# Toggle between window layout modes
 alt-shift-period = 'layout tiling floating'
 
 # Toggle means of partitioning
@@ -71,14 +79,11 @@ alt-shift-backspace = 'layout horizontal vertical'
 # Shift focus across monitors
 alt-tab = 'workspace-back-and-forth'
 
-# Pass space between windows
-# NOTE: Will move all apps within that space
-# TODO: Check if this can be done at app level
+# Toss space between windows
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-
-# NOTE: To avoid mapping conflicts, only number based spaces used.
-# shift focus to...
+# Shift focus to spaces
+# NOTE: Using numbers since apps love to hog the alts
 alt-0 = 'workspace 0'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -90,7 +95,7 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-# send currently focused container to...
+# Pass focused container to space
 alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -103,8 +108,6 @@ alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
 # Service mode bindings
-
-# Map to enter mode
 alt-shift-semicolon = 'mode service'
 
 [mode.service.binding]
@@ -143,10 +146,9 @@ alt-shift-down = ['join-with down', 'mode service']
 alt-shift-up = ['join-with up', 'mode service']
 alt-shift-right = ['join-with right', 'mode service']
 
+# Window management rules by application #
 
-# App-specific window management rules
-
-# 0: Terminal
+### 0: Terminal
 [[on-window-detected]]
 if.app-name-regex-substring = 'iTerm2'
 run = ['layout tiling', 'move-node-to-workspace 0']
@@ -155,7 +157,7 @@ run = ['layout tiling', 'move-node-to-workspace 0']
 if.app-name-regex-substring = 'wezterm'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
-# 1: Browser
+### 1: Browser
 [[on-window-detected]]
 if.app-name-regex-substring = 'firefox'
 run = ['layout tiling', 'move-node-to-workspace 1']
@@ -164,7 +166,7 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 if.app-name-regex-substring = 'zen'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-# 2: Email & calendar
+### 2: Email & calendar
 [[on-window-detected]]
 if.app-name-regex-substring = 'spark'
 run = ['move-node-to-workspace 2']
@@ -181,7 +183,7 @@ run = ['move-node-to-workspace 2']
 if.app-name-regex-substring = 'Proton Mail'
 run = ['move-node-to-workspace 2']
 
-# 3: File browsers & PDFs
+### 3: File browsers & PDFs
 [[on-window-detected]]
 if.app-name-regex-substring = "marta"
 run = ['move-node-to-workspace 3']
@@ -194,9 +196,7 @@ run = ['move-node-to-workspace 3']
 if.app-name-regex-substring = 'acrobat'
 run = ['move-node-to-workspace 3']
 
-# TODO: Rules for libreoffice suite
-
-# 4: Docs
+### 4: Docs
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
 run = ['move-node-to-workspace 4']
@@ -205,7 +205,7 @@ run = ['move-node-to-workspace 4']
 if.app-name-regex-substring = 'Word'
 run = ['move-node-to-workspace 4']
 
-# 5: Presentations
+### 5: Presentations
 [[on-window-detected]]
 if.app-name-regex-substring = 'Keynote'
 run = ['move-node-to-workspace 5']
@@ -214,7 +214,7 @@ run = ['move-node-to-workspace 5']
 if.app-name-regex-substring = 'PowerPoint'
 run = ['move-node-to-workspace 5']
 
-# 6: Spreadsheets
+### 6: Spreadsheets
 [[on-window-detected]]
 if.app-name-regex-substring = 'Numbers'
 run = ['move-node-to-workspace 6']
@@ -223,7 +223,7 @@ run = ['move-node-to-workspace 6']
 if.app-name-regex-substring = 'Excel'
 run = ['move-node-to-workspace 6']
 
-# 7: Video calls
+### 7: Video calls
 [[on-window-detected]]
 if.app-name-regex-substring = 'Teams'
 run = ['move-node-to-workspace 7']
@@ -236,7 +236,7 @@ run = ['move-node-to-workspace 7']
 if.app-name-regex-substring = 'FaceTime'
 run = ['move-node-to-workspace 7']
 
-# 8: Messages
+### 8: Messages
 [[on-window-detected]]
 if.app-name-regex-substring = 'Texts'
 run = ['move-node-to-workspace 8']
@@ -245,11 +245,16 @@ run = ['move-node-to-workspace 8']
 if.app-name-regex-substring = 'Messages'
 run = ['move-node-to-workspace 8']
 
-# 9: Spotify
+### 9: Media
 [[on-window-detected]]
 if.app-name-regex-substring = 'Spotify'
 run = ['move-node-to-workspace 9']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'stremio'
+run = ['move-node-to-workspace 9']
+
+### Misc
 [[on-window-detected]]
 if.app-name-regex-substring = 'System Settings'
 run = ['layout floating']

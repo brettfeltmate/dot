@@ -15,25 +15,13 @@ end
 
 -- Non-leader mappings ===========================================================
 
+-- Because navigate-note won't let me rebind preview scroll, and the default conflicts with my tmux prefix
+map({ "n" }, "<c-v>", "<c-a>")
+
 map({ "n" }, "<C-c>", function()
 	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
 	require("menu").open(options, {})
 end, "Menu", { noremap = true, silent = true })
-
-map(
-	{ "n" },
-	"[c",
-	C("lua require('treesitter-context').go_to_context(vim.v.count1)"),
-	"Previous context",
-	{ silent = true }
-)
-map(
-    { "n" },
-    "]c",
-    C("lua require('treesitter-context').go_to_context(vim.v.count1, true)"),
-    "Next context",
-    { silent = true }
-)
 
 -- Readline commands
 map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"), "Move one word forward")
@@ -64,21 +52,16 @@ map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()")
 map({ "n", "x" }, "<A-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "x" }, "<A-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 
-map({ "n" }, "]n", "/^\\s*\\S/e<cr>")
-map({ "n" }, "[n", "?^\\s*\\S?e<cr>")
+map({ "n" }, "]n", "/^\\s*\\S/e<cr>:nohl<cr>")
+map({ "n" }, "[n", "?^\\s*\\S?e<cr>:nohl<cr>")
 
 -- Flash.nvim
-map({ "n", "x", "o" }, "s", C("lua require('flash').jump()"))
+map({ "n", "x", "o" }, "<tab>", C("lua require('flash').jump()"))
 
--- nvim-spider
-map({ "n" }, "w", C("lua require('spider').motion('w')"), "Spider-w")
-map({ "n" }, "e", C("lua require('spider').motion('e')"), "Spider-e")
-map({ "n" }, "b", C("lua require('spider').motion('b')"), "Spider-b")
-
--- squirrel.nvim
-map({ "n", "x" }, "ga", C("lua require('squirrel.hop').hop_linewise()"), "Squirrel hop linewise")
-map({ "n", "x" }, "ge", C("lua require('squirrel.hop').hop_linewise({head = false, tail = true})"))
-map({ "n", "x" }, "gE", C("lua require('squirrel.hop').hop({head = false, tail = true})"))
+-- -- nvim-spider
+-- map({ "n" }, "w", C("lua require('spider').motion('w')"), "Spider-w")
+-- map({ "n" }, "e", C("lua require('spider').motion('e')"), "Spider-e")
+-- map({ "n" }, "b", C("lua require('spider').motion('b')"), "Spider-b")
 
 -- Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
@@ -90,57 +73,25 @@ map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)")
 map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 
 -- wtf.nvim
-map({ "n" }, "gw", C("Wtf"), "wtf is this")
+map({ "n" }, "gw", C("Wtf"), "wtf does that mean")
 
 map({ "n" }, "[t", C("tabprevious"), "Previous tab")
 map({ "n" }, "]t", C("tabnext"), "Next tab")
 
-map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
-map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
-
-local function open_fzf_buffers()
-	require("fzf-lua").buffers({
-		fzf_opts = { ["--layout"] = "reverse" },
-		winopts = {
-			fullscreen = false,
-			relative = "editor",
-			row = 0,
-			col = 0,
-			height = 0.7,
-			width = 1,
-			preview = {
-				title_pos = "center",
-				horizontal = "right:60%",
-				vertical = "up:60%",
-				layout = "vertical",
-			},
-		},
-	})
-end
-
-map({ "n" }, "<leader><leader>", open_fzf_buffers, "Buffers")
+map({ "n" }, "H", C("bprev"), "Previous buffer")
+map({ "n" }, "L", C("bnext"), "Next buffer")
 
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
+map({ "n" }, L("bb"), C("FzfLua buffers"), "Buffers")
 map({ "n" }, L("bx"), C("lua Snacks.bufdelete.delete()"), "Close current")
 map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
 map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
-map({ "n" }, L("bz"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
 -- | [C]opilot
--- Show help actions with fzf-lua
-map({ "n" }, L("ch"), function()
-	local actions = require("CopilotChat.actions")
-	require("CopilotChat.integrations.fzflua").pick(actions.help_actions())
-end, "Help actions")
--- Show prompts actions with fzf-lua
-map({ "n", "v" }, L("ca"), function()
-	local actions = require("CopilotChat.actions")
-	require("CopilotChat.integrations.fzflua").pick(actions.prompt_actions())
-end, "Prompt actions")
 -- Open chat promp in cmdline
 map({ "n", "v" }, L("cc"), function()
 	local input = vim.fn.input("Quick Chat: ")
@@ -158,35 +109,24 @@ map({ "n", "x" }, L("cr"), C("CopilotChatReview"), "Review")
 map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
 map({ "n", "x" }, L("cT"), C("CopilotChatTests"), "Tests")
 map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
+
 -- | [L]SP
-map(
-	{ "n" },
-	L("la"),
-	C(
-		"lua require('fzf-lua').lsp_code_actions({ winopts = {fullscreen=false, relative='editor', row=0.5, col=0, height=0.5, width=1} })"
-	),
-	"Actions"
-)
--- map({ "n" }, L("la"), C("lua require('tiny-code-action').code_action()"), "Actions")
-map({ "n" }, L("lI"), C("lua require('tiny-inline-diagnostic').toggle()"), "Inline diagnostics")
+map({ "n" }, L("la"), C("FzfLua lsp_code_actions"), "Actions")
 map({ "n" }, L("li"), C("Trouble lsp_implementations"), "Implementations")
 map({ "n" }, L("lr"), C("Trouble lsp_references"), "References")
 map({ "n" }, L("ld"), C("Trouble lsp_definitions "), "Definitions")
-map({ "n" }, L("lo"), C("Trouble symbols"), "Outline")
-map({ "n" }, L("ls"), C("Trouble lsp_document_symbols auto_close=true"), "Symbols")
+map({ "n" }, L("ls"), C("Trouble lsp_document_symbols win.position=left win.size=40"), "Symbols")
 map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename")
-map({ "n" }, L("lx"), C("Trouble diagnostics toggle"), "Diagnostics (proj)")
-map({ "n" }, L("lX"), C("Trouble diagnostics toggle filter.buf=0"), "Diagnostics (buff)")
+map({ "n" }, L("lx"), C("Trouble diagnostics toggle filter.buf=0"), "Diagnostics (buff)")
+map({ "n" }, L("lX"), C("Trouble diagnostics toggle"), "Diagnostics (proj)")
 map({ "n" }, L("ll"), C("Trouble loclist toggle"), "Loc list")
-map({ "n" }, L("lq"), C("Trouble qlist toggle"), "Quickfix list")
+map({ "n" }, L("lq"), C("Trouble qflist toggle"), "Quickfix list")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
 map({ "n" }, L("ss"), C("FzfLua lsp_document_symbols"), "Symbols")
 map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
-map({ "n" }, L("sG"), C("FzfLua live_grep cwd=~/projects"), "Grep (projs)")
 map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
-map({ "n" }, L("sF"), C("FzfLua files cwd=~/projects"), "Files (projs)")
 map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
 map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
 map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
@@ -204,28 +144,86 @@ map({ "n" }, L("gb"), C("Gitsigns toggle_current_line_blame"), "Blame lines")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 
--- [,] convience mappings
-map({ "n" }, L(",f"), C("lua require('oil').open()"), "Oil")
-map({ "n" }, L(",n"), C("NvimTreeToggle"), "NvimTree")
-map(
-	{ "n" },
-	L(",s"),
-	C(
+--| [N]o-neck-pain
+map({ "n" }, L("nn"), C("NoNeckPain"), "Toggle")
+map({ "n" }, L("ni"), C("NoNeckPainWidthUp"), "Increase width")
+map({ "n" }, L("nd"), C("NoNeckPainWidthDown"), "Decrease width")
+map({ "n" }, L("nr"), C("NoNeckPainToggleRightSide"), "Toggle right")
+map({ "n" }, L("nl"), C("NoNeckPainToggleLeftSide"), "Toggle left")
 
-		"lua require('fzf-lua').spell_suggest({winopts={fullscreen = false, relative='cursor', row=0.1, col=0, height=0.2, width=0.2}})"
-	),
-	"Spell"
-)
-map({ "n" }, L(",h"), C("lua require('hardtime').toggle()"), "Hardtime")
+--| [T]est
+map({ "n" }, L("tt"), function()
+	require("neotest").run.run(vim.fn.expand("%"))
+end, "Test file")
+map({ "n" }, L("tT"), function()
+	require("neotest").run.run(vim.uv.cwd())
+end, "All files")
+map({ "n" }, L("tr"), function()
+	require("neotest").run.run()
+end, "Nearest")
+map({ "n" }, L("tl"), function()
+	require("neotest").run.run_last()
+end, "Last")
+map({ "n" }, L("ts"), function()
+	require("neotest").summary.toggle()
+end, "Summary")
+map({ "n" }, L("tS"), function()
+	require("neotest").run.stop()
+end, "Stop")
+map({ "n" }, L("tw"), function()
+	require("neotest").watch.toggle(vim.fn.expand("%"))
+end, "Watch")
+map({ "n" }, L("to"), function()
+	require("neotest").output.open({
+		enter = true,
+		auto_close = true,
+		open_win = function()
+			vim.cmd("vsplit")
+		end,
+	})
+end, "Output (split)")
+map({ "n" }, L("tO"), function()
+	require("neotest").output.open({
+		enter = true,
+		auto_close = true,
+		open_win = function()
+			vim.cmd("tabnew")
+		end,
+	})
+end, "Output (tab)")
+
+-- [,] convience mappings
+map({ "n" }, "_", C("Oil"), "Files")
+map({ "n" }, L(",s"), function()
+	require("fzf-lua").spell_suggest({
+		winopts = {
+			fullscreen = false,
+			relative = "cursor",
+			row = 1,
+			col = 0,
+			height = 0.2,
+			width = 0.3,
+		},
+	})
+end, "Spell")
+map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
+map({ "n" }, L(",m"), C("lua require('mini.files').open()"), "MiniFiles")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",x"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
-map({ "n" }, L(",q"), C("qa!"), "BAIL")
 map({ "n" }, L(",d"), C("wqa!"), "Dip")
-map({ "n" }, L(",t"), C("lua require('toolbox').show_picker()"), "Toolbox")
+map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
+map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle()"), "Terminal")
 map({ "n" }, L(",g"), C("lua require('gitpad').toggle_gitpad()"), "Gitpad")
-map({ "n" }, L(",c"), C("NoNeckPain"), "Centre")
+map({ "n" }, L(",i"), function()
+	local curr_buf = vim.api.nvim_get_current_buf()
+	local is_disabled = vim.diagnostic.is_disabled(curr_buf)
+	vim.diagnostic.enable(is_disabled, { bfnr = curr_buf })
+end, "Inline diagnostics")
+map({ "n" }, L(",z"), C("lua require('mini.misc').zoom()"), "Zoom")
+map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true})"), "Quickfix")
+map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, loclist=true})"), "Loclist")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
@@ -249,19 +247,24 @@ end
 
 local RotateBuffersCW = function()
 	local visible_buffers = {}
-	local win_count = vim.fn.winnr("$")
+	local win_ids = vim.api.nvim_list_wins()
+	local current_win = vim.api.nvim_get_current_win()
 
-	for i = 1, win_count do
-		vim.fn.win_gotoid(vim.fn.win_getid(i))
-		table.insert(visible_buffers, vim.fn.bufnr("%"))
+	for _, win_id in ipairs(win_ids) do
+		if vim.api.nvim_win_is_valid(win_id) then
+			table.insert(visible_buffers, vim.api.nvim_win_get_buf(win_id))
+		end
 	end
 
 	table.insert(visible_buffers, 1, table.remove(visible_buffers))
 
-	for i = 1, win_count do
-		vim.fn.win_gotoid(vim.fn.win_getid(i))
-		vim.cmd("buffer " .. visible_buffers[i])
+	for i, win_id in ipairs(win_ids) do
+		if vim.api.nvim_win_is_valid(win_id) then
+			vim.api.nvim_win_set_buf(win_id, visible_buffers[i])
+		end
 	end
+
+	vim.api.nvim_set_current_win(current_win)
 end
 
 function ScrollBind()

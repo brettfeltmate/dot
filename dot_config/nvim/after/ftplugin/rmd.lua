@@ -1,9 +1,19 @@
 -- Copy settings from 'r.vim'
 vim.cmd("runtime! ftplugin/r.lua")
 
-vim.keymap.set("n", "<leader>e", "<cmd>CodeEdit<cr>", { buffer = 0, noremap = true, desc = "Edit cell" })
-vim.keymap.set("n", "<leader>n", "<cmd>CodeCreate<cr>", { buffer = 0, noremap = true, desc = "Create cell" })
 vim.keymap.set("n", "<CR>", "<Plug>SlimeSendCell", { buffer = 0, noremap = true, desc = "Send cell" })
+vim.keymap.set("n", "-", function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    local block = {
+        "```{r}",
+        "",
+        "```"
+    }
+    vim.api.nvim_buf_set_lines(0, pos[1], pos[1], false, block)
+    vim.api.nvim_win_set_cursor(0, { pos[1] + 2, 0 })
+end,
+    { buffer = 0, noremap = true, desc = "Insert R code block" }
+)
 
 -- Jump to previous/next cell block
 vim.keymap.set("n", "[r", function()

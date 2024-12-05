@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 update() {
   source "$CONFIG_DIR/colors.sh"
   COLOR=$BLUE

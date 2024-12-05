@@ -2,9 +2,9 @@ local generate_color = require("base46.colors").change_hex_lightness
 
 local M = {}
 local base16 = {
-	base00 = "#221d23",
-	base01 = "#292429",
-	base02 = "#302831",
+	base00 = "#1c171d",
+	base01 = "#1f1a1f",
+	base02 = "#211922",
 	base03 = "#49504f",
 	base04 = "#837972",
 	base05 = "#c5b8b0",
@@ -17,25 +17,25 @@ local base16 = {
 	base0C = "#bf8080",
 	base0D = "#9fbfaa",
 	base0E = "#bfaa8c",
-	base0F = "#906d93",
+	base0F = "#a682a9",
 }
 -- UI
 local base30 = {
 	white = "#c8a89d",
-	black = "#292429",
-	darker_black = "#1d1d22",
-	black2 = "#241f24",
-	one_bg = "#302831",
-	one_bg2 = "#3e333f",
-	one_bg3 = "#413542",
-	grey = "#504452",
-	grey_fg = "#6c5c6e",
-	grey_fg2 = "#7a687c",
-	light_grey = "#88748a",
+	black = "#1f1a1f",
+	darker_black = "#1c171d",
+	black2 = "#1f1a1f",
+	one_bg = "#1c171d",
+	one_bg2 = "#1f1a1f",
+	one_bg3 = "#211922",
+	grey = "#524353",
+	grey_fg = "#5a495b",
+	grey_fg2 = "#635265",
+	light_grey = "#a190a3",
 	red = "#d1969c",
 	baby_pink = "#bf8f94",
 	pink = "#a4777c",
-	line = "#2a3240",
+	line = base16.base03,
 	green = "#66987c",
 	vibrant_green = "#8ea592",
 	nord_blue = "#707d91",
@@ -43,20 +43,20 @@ local base30 = {
 	seablue = "#80a0a4",
 	yellow = "#cbae85",
 	sun = "#ceb27d",
-	purple = "#a68aa9",
-	dark_purple = "#906d93",
+	purple = "#c0adda",
+	dark_purple = "#ad93cd",
 	teal = "#97bf9d",
 	orange = "#e2ae85",
 	cyan = "#899e91",
 	statusline_bg = "#352d37",
 	lightbg = "#6c5c6e",
-	pmenu_bg = "#9a6880",
-	folder_bg = "#a2988b",
+	pmenu_bg = "#b38098",
+	folder_bg = "#c9bba9",
 }
 
 local polish_hl = {
 	defaults = {
-		Comment = { fg = base30.grey_fg, italic = true, bold = true },
+		Comment = { fg = base30.light_grey, italic = true, bold = true },
 		Added = { fg = base30.yellow },
 		Removed = { fg = base30.baby_pink },
 		Changed = { fg = base30.purple },
@@ -99,11 +99,11 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = base30.one_bg3 },
+		CursorLine = { bg = generate_color(base30.line, -20) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
-		LineNr = { fg = base30.grey },
+		LineNr = { fg = base16.base03 },
 		FoldColumn = { bg = "none" },
 		Folded = { fg = base30.light_grey, bg = base30.black2 },
 		CurSearch = { fg = base30.black2, bg = base30.sun, bold = true },
@@ -159,7 +159,6 @@ local polish_hl = {
 		LazyProgressDone = { fg = base30.green },
 	},
 	nvimtree = {
-		-- Nvim-Tree
 		NvimTreeEmptyFolderName = { fg = base30.folder_bg },
 		NvimTreeEndOfBuffer = { fg = base30.darker_black },
 		NvimTreeFolderIcon = { fg = base30.folder_bg },
@@ -167,8 +166,6 @@ local polish_hl = {
 		NvimTreeFolderArrowOpen = { fg = base30.folder_bg },
 		NvimTreeFolderArrowClosed = { fg = base30.grey_fg },
 		NvimTreeGitDirty = { fg = base30.red },
-		-- NvimTreeNormal = { bg = generate_color(base30.dark_purple, -40) },
-		-- NvimTreeNormalNC = { bg = generate_color(base30.dark_purple, -40) },
 		NvimTreeOpenedFolderName = { fg = base30.folder_bg },
 		NvimTreeGitIgnored = { fg = base30.light_grey },
 
@@ -222,7 +219,8 @@ local polish_hl = {
 		["@markup.heading.3.markdown"] = { fg = base16.base08 },
 		["@markup.heading.4.markdown"] = { fg = base16.base0A },
 		["@markup.heading.5.markdown"] = { fg = base16.base0D },
-		["@markup.heading.6.markdown"] = { fg = base16.base0F },
+		["@markup.heading.6.markdown"] = { fg = base16.base09 },
+        ["@MarkviewCode"] = { bg = base30.lightbg },
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },
@@ -235,7 +233,6 @@ local polish_hl = {
 		["@variable.member.key"] = { fg = base16.base08 },
 
 		["@module"] = { fg = base16.base08 },
-		-- ["@module.builtin"] = { fg = base16.base08 },
 
 		["@constant"] = { fg = base16.base08 },
 		["@constant.builtin"] = { fg = base16.base09 },
@@ -245,7 +242,6 @@ local polish_hl = {
 		["@string.regex"] = { fg = base16.base0C },
 		["@string.escape"] = { fg = base16.base0C },
 		["@character"] = { fg = base16.base08 },
-		-- ["@character.special"] = { fg = base16.base08 },
 		["@number"] = { fg = base16.base09 },
 		["@number.float"] = { fg = base16.base09 },
 
@@ -276,10 +272,8 @@ local polish_hl = {
 		["@constructor"] = { fg = base16.base0C },
 
 		["@operator"] = { fg = generate_color(base16.base06, 5) },
-		-- ["@operator.r"] = { fg = base16.base06 },
 		["@reference"] = { fg = base16.base05 },
-		["@punctuation.bracket"] = { fg = base16.base06, bold = true },
-		-- ["@punctuation.bracket.python"] = { fg = base16.base04, bold = true },
+		["@punctuation.bracket"] = { fg = base16.base06 },
 		["@punctuation.delimiter"] = { fg = base16.base09 },
 		["@symbol"] = { fg = base16.base0B },
 		["@tag"] = { fg = base16.base0A },
@@ -306,7 +300,7 @@ local polish_hl = {
 		["@markup.strikethrough"] = { strikethrough = true },
 		["@markup.quote"] = { bg = base30.black2 },
 
-		["@comment"] = { fg = base30.grey_fg },
+		["@comment"] = { fg = base30.lightbg },
 		["@comment.todo"] = { fg = base30.grey, bg = base30.white },
 		["@comment.warning"] = { fg = base30.black2, bg = base16.base09 },
 		["@comment.note"] = { fg = base30.black, bg = base30.blue },
@@ -334,7 +328,7 @@ local polish_hl = {
 		Operator = { fg = base16.base06, sp = "none" },
 		PreProc = { fg = base16.base0A },
 		Repeat = { fg = base16.base0A },
-		Special = { fg = base16.base0C },
+		Special = { fg = base16.base08 },
 		SpecialChar = { fg = base16.base0F },
 		Statement = { fg = base16.base08 },
 		StorageClass = { fg = base16.base0A },

@@ -1,9 +1,10 @@
 vim.g.have_nerd_font = true
 vim.g.autoformat = true
+vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+
 vim.g.lazygit_config = true
 vim.g.lazygit_floating_window_scaling_factor = 1.0
 vim.g.lazygit_floating_window_use_plenary = 1
-vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
 vim.g.undotree_WindowLayout = 2
 
@@ -13,8 +14,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"
-vim.opt.numberwidth = 1
+vim.opt.signcolumn = "number"
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
@@ -36,7 +36,6 @@ vim.opt.splitbelow = true
 vim.opt.list = false
 vim.opt.listchars = { trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
-vim.opt.cursorline = false
 vim.opt.guicursor = ""
 vim.opt.scrolloff = 30
 vim.opt.completeopt = "menu,menuone,preview,noselect"
@@ -46,11 +45,4 @@ vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.tabstop = 4
 vim.opt.virtualedit = "block"
 vim.opt.smoothscroll = true
-
 vim.opt.fillchars = "eob: ,fold: "
-
--- nvim-ufo
-vim.opt.foldcolumn = "0"
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true

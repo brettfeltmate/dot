@@ -10,38 +10,12 @@ vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
-	stats = {
-		real_cputime = true,
-	},
-	profiling = {
-		loader = true,
-		require = true,
-	},
-	performance = {
-		rtp = {
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
-
+	stats = { real_cputime = true, },
+	profiling = { loader = true, require = true, },
 	spec = { { import = "plugins" } },
 })
 
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
 	dofile(vim.g.base46_cache .. v)
 end
---
--- dofile(vim.g.base46_cache .. "defaults")
--- dofile(vim.g.base46_cache .. "statusline")
--- dofile(vim.g.base46_cache .. "syntax")
--- dofile(vim.g.base46_cache .. "treesitter")
-
 -- vim: ts=2 sts=2 sw=2 et
