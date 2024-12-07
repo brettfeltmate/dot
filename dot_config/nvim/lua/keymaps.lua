@@ -18,11 +18,6 @@ end
 -- Because navigate-note won't let me rebind preview scroll, and the default conflicts with my tmux prefix
 map({ "n" }, "<c-v>", "<c-a>")
 
-map({ "n" }, "<C-c>", function()
-	local options = vim.bo.ft == "NvimTree" and "nvimtree" or "default"
-	require("menu").open(options, {})
-end, "Menu", { noremap = true, silent = true })
-
 -- Readline commands
 map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"), "Move one word forward")
 map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"), "Move one word backward")
