@@ -6,6 +6,13 @@ return {
 		require("mini.extra").setup()
 		require("mini.misc").setup()
 
+		require("mini.icons").setup({
+			extension = {
+				[".here"] = { glyph = "󰍎", hl = "MiniIconsYellow" },
+				[".rproj"] = { glyph = "󰟔", hl = "MiniIconsRed" },
+			},
+		})
+
 		local clue = require("mini.clue")
 
 		require("mini.clue").setup({
@@ -45,7 +52,7 @@ return {
 				-- `\` key
 				{ mode = "n", keys = [[\]] },
 
-                -- Arrow.nvim handles these now
+				-- Arrow.nvim handles these now
 				-- Marks
 				{ mode = "n", keys = "'" },
 				{ mode = "n", keys = "`" },
@@ -117,7 +124,7 @@ return {
 			},
 			windows = {
 				preview = true,
-                width_nofocus = 20,
+				width_nofocus = 20,
 				width_focus = 30,
 				width_preview = 75,
 			},

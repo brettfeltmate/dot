@@ -111,7 +111,7 @@ return {
 		"echasnovski/mini.notify",
 		config = function()
 			require("mini.notify").setup()
-			vim.notify = MiniNotify.make_notify()
+            vim
 		end,
 	},
 	{

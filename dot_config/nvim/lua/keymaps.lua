@@ -58,11 +58,6 @@ map({ "n" }, "[n", "?^\\s*\\S?e<cr>:nohl<cr>")
 -- Flash.nvim
 map({ "n", "x", "o" }, "<tab>", C("lua require('flash').jump()"))
 
--- -- nvim-spider
--- map({ "n" }, "w", C("lua require('spider').motion('w')"), "Spider-w")
--- map({ "n" }, "e", C("lua require('spider').motion('e')"), "Spider-e")
--- map({ "n" }, "b", C("lua require('spider').motion('b')"), "Spider-b")
-
 -- Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
 map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
@@ -73,20 +68,20 @@ map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)")
 map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 
 -- wtf.nvim
-map({ "n" }, "gw", C("Wtf"), "wtf does that mean")
+map({ "n" }, "gw", C("Wtf"), "wtf do you mean")
 
 map({ "n" }, "[t", C("tabprevious"), "Previous tab")
 map({ "n" }, "]t", C("tabnext"), "Next tab")
 
-map({ "n" }, "H", C("bprev"), "Previous buffer")
-map({ "n" }, "L", C("bnext"), "Next buffer")
+map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
+map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
 
 -- Leader mappings ==========================================================
 
 -- | [B]uffer
-map({ "n" }, L("bb"), C("FzfLua buffers"), "Buffers")
-map({ "n" }, L("bx"), C("lua Snacks.bufdelete.delete()"), "Close current")
-map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
+map({ "n" }, L("b "), C("FzfLua buffers"), "Buffers")
+map({ "n" }, L("bx"), C("lua require('nvchad.tabufline').close_buffer()"), "Close current")
+map({ "n" }, L("bX"), C("lua require('nvchad.tabufline').closeAllBufs(false)"), "Close others")
 map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
@@ -100,14 +95,13 @@ map({ "n", "v" }, L("cc"), function()
 	end
 end, "Quick chat")
 
-map({ "n" }, L("ct"), C("CopilotChatToggle"), "Toggle")
+map({ "n" }, L("c "), C("CopilotChatToggle"), "Chat")
 map({ "n" }, L("cq"), C("CopilotChatStop"), "Stop")
 map({ "n" }, L("cR"), C("CopilotChatReset"), "Reset")
 map({ "n", "x" }, L("ce"), C("CopilotChatExplain"), "Explain")
 map({ "n", "x" }, L("cf"), C("CopilotChatFix"), "Fix")
-map({ "n", "x" }, L("cr"), C("CopilotChatReview"), "Review")
 map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
-map({ "n", "x" }, L("cT"), C("CopilotChatTests"), "Tests")
+map({ "n", "x" }, L("ct"), C("CopilotChatTests"), "Tests")
 map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
 
 -- | [L]SP
@@ -119,8 +113,6 @@ map({ "n" }, L("ls"), C("Trouble lsp_document_symbols win.position=left win.size
 map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename")
 map({ "n" }, L("lx"), C("Trouble diagnostics toggle filter.buf=0"), "Diagnostics (buff)")
 map({ "n" }, L("lX"), C("Trouble diagnostics toggle"), "Diagnostics (proj)")
-map({ "n" }, L("ll"), C("Trouble loclist toggle"), "Loc list")
-map({ "n" }, L("lq"), C("Trouble qflist toggle"), "Quickfix list")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
@@ -145,7 +137,7 @@ map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 
 --| [N]o-neck-pain
-map({ "n" }, L("nn"), C("NoNeckPain"), "Toggle")
+map({ "n" }, L("n "), C("NoNeckPain"), "Toggle")
 map({ "n" }, L("ni"), C("NoNeckPainWidthUp"), "Increase width")
 map({ "n" }, L("nd"), C("NoNeckPainWidthDown"), "Decrease width")
 map({ "n" }, L("nr"), C("NoNeckPainToggleRightSide"), "Toggle right")
@@ -206,7 +198,6 @@ map({ "n" }, L(",s"), function()
 		},
 	})
 end, "Spell")
-map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",m"), C("lua require('mini.files').open()"), "MiniFiles")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
@@ -215,13 +206,11 @@ map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("wqa!"), "Dip")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
 map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle()"), "Terminal")
-map({ "n" }, L(",g"), C("lua require('gitpad').toggle_gitpad()"), "Gitpad")
 map({ "n" }, L(",i"), function()
 	local curr_buf = vim.api.nvim_get_current_buf()
 	local is_disabled = vim.diagnostic.is_disabled(curr_buf)
 	vim.diagnostic.enable(is_disabled, { bfnr = curr_buf })
 end, "Inline diagnostics")
-map({ "n" }, L(",z"), C("lua require('mini.misc').zoom()"), "Zoom")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, loclist=true})"), "Loclist")
 
