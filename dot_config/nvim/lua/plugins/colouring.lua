@@ -2,7 +2,7 @@ return {
 	{
 		"aileot/emission.nvim",
 		lazy = true,
-		event = "VeryLazy",
+		event = "BufRead",
 		opts = {
 			highlight = { duration = 200 },
 			added = { hl_map = { fg = "#000000", bg = "#9fbfaa" } },

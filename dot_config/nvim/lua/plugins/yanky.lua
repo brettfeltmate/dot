@@ -1,7 +1,7 @@
 return {
 	"gbprod/yanky.nvim",
 	recommended = true,
-	event = "VeryLazy",
+	event = "UIEnter",
 	config = function()
 		require("yanky").setup({
 			picker = {
