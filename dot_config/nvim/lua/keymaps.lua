@@ -21,11 +21,11 @@ map({ "n" }, "<c-v>", "<c-a>")
 -- Readline commands
 map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"), "Move one word forward")
 map({ "i" }, "<A-b>", C("lua require('readline').backward_word()"), "Move one word backward")
-map({ "i" }, "<A-S-f>", C("lua require('readline').kill_word()"), "Kill word forward")
-map({ "i" }, "<A-S-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
+map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"), "Kill word forward")
+map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
 
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
-map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode")
+map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode")
 
 -- Navigating between neovim/tmux splits
 map({ "n" }, "<S-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
@@ -75,8 +75,8 @@ map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
 
 -- | [B]uffer
 map({ "n" }, L("b "), C("FzfLua buffers"), "Buffers")
-map({ "n" }, L("bx"), C("lua require('nvchad.tabufline').close_buffer()"), "Close current")
-map({ "n" }, L("bX"), C("lua require('nvchad.tabufline').closeAllBufs(false)"), "Close others")
+map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Close current")
+map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
 map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
 map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
@@ -100,7 +100,6 @@ map({ "n", "x" }, L("ct"), C("CopilotChatTests"), "Tests")
 map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
 
 -- | [L]SP
-map({ "n" }, L("la"), C("FzfLua lsp_code_actions"), "Actions")
 map({ "n" }, L("li"), C("Trouble lsp_implementations"), "Implementations")
 map({ "n" }, L("lr"), C("Trouble lsp_references"), "References")
 map({ "n" }, L("ld"), C("Trouble lsp_definitions "), "Definitions")
@@ -130,13 +129,6 @@ map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "Preview hunk")
 map({ "n" }, L("gb"), C("Gitsigns toggle_current_line_blame"), "Blame lines")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
-
---| [N]o-neck-pain
-map({ "n" }, L("n "), C("NoNeckPain"), "Toggle")
-map({ "n" }, L("ni"), C("NoNeckPainWidthUp"), "Increase width")
-map({ "n" }, L("nd"), C("NoNeckPainWidthDown"), "Decrease width")
-map({ "n" }, L("nr"), C("NoNeckPainToggleRightSide"), "Toggle right")
-map({ "n" }, L("nl"), C("NoNeckPainToggleLeftSide"), "Toggle left")
 
 --| [T]est
 map({ "n" }, L("tt"), function()
@@ -193,14 +185,14 @@ map({ "n" }, L(",s"), function()
 		},
 	})
 end, "Spell")
-map({ "n" }, L(",m"), C("lua require('mini.files').open()"), "MiniFiles")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",x"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("wqa!"), "Dip")
+map({ "n" }, L(",q"), C("qa!"), "Bail")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
-map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle()"), "Terminal")
+map({ "n" }, L(",t"), C("term"), "Terminal")
 map({ "n" }, L(",i"), function()
 	local curr_buf = vim.api.nvim_get_current_buf()
 	local is_disabled = vim.diagnostic.is_disabled(curr_buf)

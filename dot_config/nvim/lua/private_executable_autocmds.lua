@@ -38,7 +38,6 @@ local autocmds = {
     navmd = {
         { "BufEnter", "nav.md", "lua vim.diagnostic.disable(0)" },
         { "BufEnter", "nav.md", "setlocal nornu nonu nospell" },
-        { "BufEnter", "nav.md", ":normal! <M-m>" },
         { "BufLeave", "nav.md", "lua vim.diagnostic.enable(0)" },
         -- { "BufLeave", "nav.md", "set rnu nonu" },
     },

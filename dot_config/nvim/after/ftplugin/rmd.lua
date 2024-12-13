@@ -16,7 +16,7 @@ end,
 )
 
 -- Jump to previous/next cell block
-vim.keymap.set("n", "[r", function()
+vim.keymap.set("n", "[c", function()
 	local line, _ = unpack(vim.fn.searchpos("^```{", "bW"))
 	if line ~= 0 then
 		local prev_line, prev_col = unpack(vim.fn.searchpos("^```{", "bW"))
@@ -26,7 +26,7 @@ vim.keymap.set("n", "[r", function()
 	end
 end, { buffer = 0, noremap = true, desc = "Jump to previous cell" })
 
-vim.keymap.set("n", "]r", function()
+vim.keymap.set("n", "]c", function()
 	local line, col = unpack(vim.fn.searchpos("^```{", "W"))
 	if line ~= 0 then
 		vim.api.nvim_win_set_cursor(0, { line + 1, col - 1 })
