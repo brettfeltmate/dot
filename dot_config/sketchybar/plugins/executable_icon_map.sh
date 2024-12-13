@@ -237,7 +237,7 @@ function icon_map() {
             icon_result=":iris:"
             ;;
         "iTerm" | "iTerm2")
-            icon_result=":iterm:"
+            icon_result=":terminal:"
             ;;
         "Jellyfin Media Player")
             icon_result=":jellyfin:"
@@ -482,6 +482,9 @@ function icon_map() {
         "Rider" | "JetBrains Rider")
             icon_result=":rider:"
             ;;
+        "RStudio")
+            icon_result=":statistics"
+            ;;
         "Safari" | "Safari浏览器" | "Safari Technology Preview")
             icon_result=":safari:"
             ;;
@@ -520,6 +523,9 @@ function icon_map() {
             ;;
         "Spotlight")
             icon_result=":spotlight:"
+            ;;
+        "stremio")
+            icon_result=":plex:"
             ;;
         "Sublime Text")
             icon_result=":sublime_text:"
@@ -621,7 +627,7 @@ function icon_map() {
             icon_result=":zed:"
             ;;
         "Zen Browser")
-            icon_result=":firefox:"
+            icon_result=":zen_browser:"
             ;;
         "Zeplin")
             icon_result=":zeplin:"
