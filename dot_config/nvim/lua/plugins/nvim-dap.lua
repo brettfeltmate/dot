@@ -4,9 +4,15 @@ return {
 		"mfussenegger/nvim-dap",
 		lazy = true,
 		dependencies = {
-			{ "nvim-neotest/nvim-nio" },
+			{ "nvim-neotest/nvim-nio", "theHamsta/nvim-dap-virtual-text" },
 		},
-		config = function()
+		opts = {
+			configurations = {
+				python = { justMyCode = false },
+			},
+		},
+		config = function(_, opts)
+			require("nvim-dap-virtual-text").setup() ---@diagnostic disable-line
 			local map = function(lhs, rhs, desc)
 				vim.keymap.set("n", "<leader>d" .. lhs, rhs, { desc = desc })
 			end
@@ -64,7 +70,8 @@ return {
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		opts = {
 			layouts = {
-				{ elements = { "scopes", "console" }, position = "bottom", size = 15 },
+				{ elements = { "scopes", "repl" }, position = "bottom", size = 15 },
+				{ elements = { "console" }, position = "right", size = 0.4 },
 			},
 		},
 		config = function(_, opts)
@@ -74,12 +81,12 @@ return {
 			listener.after.event_initialized["dapui_config"] = function()
 				require("dapui").open()
 			end
-			listener.before.event_terminated["dapui_config"] = function()
-				require("dapui").close()
-			end
-			listener.before.event_exited["dapui_config"] = function()
-				require("dapui").close()
-			end
+			-- listener.before.event_terminated["dapui_config"] = function()
+			-- 	require("dapui").close()
+			-- end
+			-- listener.before.event_exited["dapui_config"] = function()
+			-- 	require("dapui").close()
+			-- end
 
 			vim.keymap.set("n", "<leader>du", function()
 				require("dapui").toggle()

@@ -1,7 +1,7 @@
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	lazy = true,
-    branch = "main",
+	branch = "main",
 	event = "BufRead",
 	build = "make tiktoken",
 	dependencies = {
@@ -14,7 +14,9 @@ return {
 					auto_trigger = true,
 					hide_during_completion = true,
 					keymap = {
-						accept = "<M-l>",
+						accept = "<M-CR>",
+						accept_word = "<M-l>",
+						accept_line = "<M-S-l>",
 						next = "<M-j>",
 						prev = "<M-k>",
 						dismiss = "<M-h>",

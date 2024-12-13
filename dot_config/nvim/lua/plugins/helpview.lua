@@ -8,7 +8,6 @@ return {
 	config = function()
 		require("helpview").setup({
 			modes = { "n", "i", "no", "c" },
-			hybrid_modes = { "i", "n" },
 		})
 	end,
 }

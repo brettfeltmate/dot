@@ -2,7 +2,7 @@ return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
 	cmd = "FzfLua",
-	event = "BufRead",
+	-- event = "BufRead",
 	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
 	config = function()
 		-- local trouble = require("trouble.sources.fzf").actions
