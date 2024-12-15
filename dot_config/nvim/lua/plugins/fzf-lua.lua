@@ -2,10 +2,8 @@ return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
 	cmd = "FzfLua",
-	-- event = "BufRead",
 	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
 	config = function()
-		-- local trouble = require("trouble.sources.fzf").actions
 		local quicker = require("quicker")
 		local img_previewer
 		for _, v in ipairs({

@@ -1,12 +1,13 @@
+---@diagnostic disable: missing-fields
 return {
 	"folke/noice.nvim",
-	event = "UIEnter",
+	event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim" },
 	config = function()
 		require("noice").setup({
 			view = "virtualtext",
             cmdline = { view = "cmdline" },
-            popupmenu = { backend = "nui" },
+            popupmenu = { backend = "cmp" },
 			hover = { enabled = true },
 			lsp = {
 				signature = { enabled = true },
