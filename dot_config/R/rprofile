@@ -1,3 +1,6 @@
+# vim: ft=r
+Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
+
 options(lintr.linter_file = "~/.config/R/lintr")
 
 options(stringsAsFactors = FALSE)
@@ -13,11 +16,16 @@ options(show.signif.stars = FALSE)
 options(menu.graphics = FALSE)
 
 options(prompt = "|> ")
+
 options(continue = "|>... ")
 
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
-Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
+options(
+  rsthemes.theme_light = "Textmate (default)",
+  rsthemes.theme_dark = "base16 Ashes {rsthemes}",
+  rsthemes.theme_favorite = c("Textmate (default)", "base16 Ashes {rsthemes}")
+)
 
 if (interactive()) {
   if (require("data.table", quietly = TRUE)) {
