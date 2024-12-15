@@ -3,8 +3,9 @@ return {
 	lazy = true,
 	event = "VeryLazy",
 	opts = {
-		quickfile = { enabled = true },
-		words = { enabled = true },
+		styles = {
+			git = { width = 0.2, height = 0.2 },
+		},
 		statuscolumn = {
 			enabled = true,
 			right = { "git" },
@@ -14,18 +15,18 @@ return {
 				git_hl = false,
 			},
 		},
-        indent = {
-            enabled = true,
-            chunk = {
-                enabled = true,
-                char = {
-                  corner_top = "╭",
-                  corner_bottom = "╰",
-                  horizontal = "─",
-                  vertical = "│",
-                  arrow = ">",
-                },
-            }
-        }
+		indent = {
+			enabled = true,
+			chunk = {
+				enabled = true,
+				char = {
+					corner_top = "╭",
+					corner_bottom = "╰",
+					horizontal = "─",
+					vertical = "│",
+					arrow = ">",
+				},
+			},
+		},
 	},
 }
