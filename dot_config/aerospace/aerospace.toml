@@ -196,6 +196,10 @@ run = ['move-node-to-workspace 3']
 if.app-name-regex-substring = 'acrobat'
 run = ['move-node-to-workspace 3']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'RStudio'
+run = ['move-node-to-workspace 3']
+
 ### 4: Docs
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
