@@ -4,7 +4,7 @@ options(radian.color_scheme = "rose-pine")
 options(radian.editing_mode = "vi")
 options(radian.emacs_bindings_in_vi_insert_mode = FALSE)
 options(radian.show_vi_mode_prompt = TRUE)
-options(radian.vi_mode_prompt = "\033[0;34m[{}]\033[0m ")
+options(radian.vi_mode_prompt = "\033[0;35m[{}]\033[0m ")
 
 options(radian.indent_lines = TRUE)
 options(radian.auto_suggest = TRUE)
@@ -31,7 +31,7 @@ options(radian.history_search_no_duplicates = FALSE)
 options(radian.history_search_ignore_case = FALSE)
 options(radian.history_ignore_browser_commands = TRUE)
 
-options(radian.prompt = "\033[0;34m󰟔\033[0m ")
+options(radian.prompt = "\033[0;35m󰟔\033[0m ")
 options(radian.shell_prompt = "\033[0;31m\033[0m ")
 options(radian.browse_prompt = "\033[0;33mBrowse[{}]>\033[0m ")
 

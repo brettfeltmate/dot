@@ -41,21 +41,45 @@ if (interactive()) {
     )
   }
 
-  if (require("colorout", quietly = TRUE)) {
-    colorout::setOutputColors(
-      index = 12,
-      normal = 15,
-      number = 14,
-      true = 14,
-      negnum = 1,
-      false = 1,
-      string = 12,
-      const = 8,
-      stderror = 4,
-      warn = c(0, 13),
-      error = c(13, 0),
-      verbose = FALSE
-    )
+  if (Sys.getenv("RSTUDIO") == "1") {
+    if (require("colorout", quietly = TRUE)) {
+      # RStudio's console, naturally, isn't aware of my terminal colors
+      colorout::setOutputColors(
+        index = 249,
+        normal = 182,
+        number = 158,
+        true = 72,
+        negnum = 210,
+        false = 168,
+        string = 224,
+        const = 249,
+        stderror = 229,
+        warn = c(16, 213),
+        error = c(213, 16),
+        zero = 249,
+        zero.limit = 1e-10,
+        verbose = FALSE
+      )
+    }
+  } else {
+    if (require("colorout", quietly = TRUE)) {
+      colorout::setOutputColors(
+        index = 8,
+        normal = 7,
+        number = 10,
+        true = 14,
+        negnum = 9,
+        false = 1,
+        string = 5,
+        const = 8,
+        stderror = 4,
+        warn = c(0, 13),
+        error = c(13, 0),
+        zero = 8,
+        zero.limit = 1e-10,
+        verbose = FALSE
+      )
+    }
   }
 }
 
