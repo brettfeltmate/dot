@@ -2,9 +2,9 @@
 
 options=(
 	style=round
-	width=8.0
-	hidpi=on
-    active_color="glow(0xFFE2AE85)"
-    inactive_color="glow(0xAAB38098)"
+	width=6.0
+	hidpi=off
+    active_color="glow(0xFFE5C0D1)"
+    inactive_color="glow(0xFFBC799A)"
 )
 borders "${options[@]}"
