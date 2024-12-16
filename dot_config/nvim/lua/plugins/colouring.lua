@@ -1,5 +1,19 @@
 return {
 	{
+		"mvllow/modes.nvim",
+		event = "BufReadPre",
+		config = function()
+			require("modes").setup({
+				colors = {
+					copy = "#bfaa8c",
+					delete = "#bf8080",
+					insert = "#9fbfaa",
+					visual = "#afafb6",
+				},
+			})
+		end,
+	},
+	{
 		"aileot/emission.nvim",
 		lazy = true,
 		event = { "BufRead", "BufReadPre", "BufNewFile" },

@@ -13,6 +13,9 @@ return {
 				virt_text_priority = 100,
 				use_focus = true,
 			},
+            preview_config = {
+                border = 'rounded'
+            }
 		})
 	end,
 }

@@ -68,8 +68,13 @@ map({ "n" }, "gw", C("Wtf"), "Explain diagnostic")
 map({ "n" }, "[t", C("tabprevious"), "Previous tab")
 map({ "n" }, "]t", C("tabnext"), "Next tab")
 
+
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
+map({ "n" }, "<M-H>", C("tabprevious"), "Previous tab")
+map({ "n" }, "<M-L>", C("tabnext"), "Next tab")
+map({ "n" }, "<M-X>", C("tabclose"), "Close tab")
+map({ "n" }, "<M-N>", C("tabnew"), "New tab")
 
 -- Leader mappings ==========================================================
 
@@ -191,7 +196,7 @@ map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("wqa!"), "Dip")
 map({ "n" }, L(",q"), C("qa!"), "Bail")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
-map({ "n" }, L(",t"), C("term"), "Terminal")
+map({ "n" }, L(",t"), C("tabnew<cr>:term"), "Terminal")
 map({ "n" }, L(",i"), function()
 	local curr_buf = vim.api.nvim_get_current_buf()
 	local is_disabled = vim.diagnostic.is_disabled(curr_buf)
