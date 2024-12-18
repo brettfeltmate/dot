@@ -15,7 +15,7 @@ end
 
 -- Non-leader mappings ===========================================================
 
--- Because navigate-note won't let me rebind preview scroll, and the default conflicts with my tmux prefix
+-- C-a is my tmux prefix
 map({ "n" }, "<c-v>", "<c-a>")
 
 -- Readline commands
@@ -123,11 +123,11 @@ map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
 map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
 map({ "n" }, L("sw"), C("FzfLua grep_cword"), "cword")
 map({ "n" }, L("sW"), C("FzfLua grep_cWORD"), "cWORD")
-map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
+map({ "n" }, L("s "), C("FzfLua builtin"), "Pickers")
 
 -- | [G]it
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Search file commits")
-map({ "n" }, L("gg"), C("lua Snacks.lazygit.open()"), "LazyGit")
+map({ "n" }, L("g "), C("lua Snacks.lazygit.open()"), "LazyGit")
 map({ "n" }, L("gl"), C("lua Snacks.lazygit.log_file()"), "Browse file commits")
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
 map({ "n" }, L("gb"), C("lua Snacks.git.blame_line()"), "Blame line")
@@ -193,14 +193,13 @@ map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",x"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
-map({ "n" }, L(",d"), C("wqa!"), "Dip")
 map({ "n" }, L(",q"), C("qa!"), "Bail")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
-map({ "n" }, L(",t"), C("tabnew<cr>:term"), "Terminal")
+map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle()"), "Terminal")
 map({ "n" }, L(",i"), function()
 	local curr_buf = vim.api.nvim_get_current_buf()
-	local is_disabled = vim.diagnostic.is_disabled(curr_buf)
-	vim.diagnostic.enable(is_disabled, { bfnr = curr_buf })
+	local is_enabled = vim.diagnostic.is_enabled()
+	vim.diagnostic.enable(not is_enabled, { bfnr = curr_buf })
 end, "Inline diagnostics")
 map({ "n" }, L(",f"), C("lua require('quicker').toggle({focus=true})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, loclist=true})"), "Loclist")

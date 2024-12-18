@@ -5,28 +5,17 @@ return {
 	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
 	config = function()
 		local quicker = require("quicker")
-		local img_previewer
-		for _, v in ipairs({
-			{ cmd = "ueberzug", args = {} },
-			{ cmd = "chafa", args = { "{file}", "--format=symbols" } },
-			{ cmd = "viu", args = { "-b" } },
-		}) do
-			if vim.fn.executable(v.cmd) == 1 then
-				img_previewer = vim.list_extend({ v.cmd }, v.args)
-				break
-			end
-		end
 		require("fzf-lua").setup({
-			-- fzf_bin = "fzf-tmux",
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
 				relative = "editor",
 				row = 1,
 				col = 0,
-				backdrop = 100,
+				backdrop = 50,
 				fullscreen = false,
 				width = 1,
 				height = 0.50,
+                treesitter = { enabled = true },
 				preview = {
 					title_pos = "center",
 					horizontal = "right:60%",
@@ -47,18 +36,6 @@ return {
 				files = {
 					true,
 					["alt-t"] = quicker.open,
-				},
-			},
-			previewers = {
-				builtin = {
-					extensions = {
-						["png"] = img_previewer,
-						["jpg"] = img_previewer,
-						["jpeg"] = img_previewer,
-						["gif"] = img_previewer,
-						["webp"] = img_previewer,
-					},
-					ueberzug_scaler = "fit_contain",
 				},
 			},
 		})

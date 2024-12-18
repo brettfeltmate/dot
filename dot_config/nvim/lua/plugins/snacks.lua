@@ -3,9 +3,6 @@ return {
 	lazy = true,
 	event = "VeryLazy",
 	opts = {
-		styles = {
-			git = { width = 0.2, height = 0.2 },
-		},
 		statuscolumn = {
 			enabled = true,
 			right = { "git" },
@@ -28,5 +25,6 @@ return {
 				},
 			},
 		},
+		scroll = { enabled = true },
 	},
 }

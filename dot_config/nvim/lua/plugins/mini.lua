@@ -7,7 +7,7 @@ return {
 		require("mini.ai").setup()
 		require("mini.bracketed").setup()
 		require("mini.comment").setup()
-		require("mini.trailspace").setup()
+		-- require("mini.trailspace").setup()
 		require("mini.surround").setup()
 		require("mini.basics").setup()
 		require("mini.extra").setup()
