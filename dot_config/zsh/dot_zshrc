@@ -42,7 +42,7 @@ export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 # export MANPAGER="less -R --use-color -Dd+r -Du+b"
-export PAGER="nvimpager -p"
+# export PAGER="nvimpager -p"
 export MANPAGER="nvimpager -p"
 # Don't think these are needed anymore...
 # export LDFLAGS="-L/opt/homebrew/opt/llvm/lib"
