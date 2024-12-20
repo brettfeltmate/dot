@@ -7,7 +7,7 @@ return {
 		require("noice").setup({
 			view = "virtualtext",
             cmdline = { view = "cmdline" },
-            popupmenu = { backend = "cmp" },
+            popupmenu = { backend = "nui" },
 			hover = { enabled = true },
 			lsp = {
 				signature = { enabled = true },
