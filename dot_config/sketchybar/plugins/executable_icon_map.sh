@@ -71,6 +71,9 @@ function icon_map() {
         "Bear")
             icon_result=":bear:"
             ;;
+        "Beeper")
+            icon_result=":wechat:"
+            ;;
         "BetterTouchTool")
             icon_result=":bettertouchtool:"
             ;;
@@ -106,6 +109,9 @@ function icon_map() {
             ;;
         "ClickUp")
             icon_result=":click_up:"
+            ;;
+        "CleanMyMac")
+            icon_result=":desktop:"
             ;;
         "Code" | "Code - Insiders")
             icon_result=":code:"
@@ -479,6 +485,9 @@ function icon_map() {
         "qutebrowser")
             icon_result=":qute_browser:"
             ;;
+        "QuickTime Player")
+            icon_result=":iris:"
+            ;;
         "Raindrop.io")
             icon_result=":raindrop_io:"
             ;;
@@ -553,9 +562,6 @@ function icon_map() {
             ;;
         "Terminal" | "终端")
             icon_result=":terminal:"
-            ;;
-        "Texts")
-            icon_result=":signal:"
             ;;
         "Typora")
             icon_result=":text:"

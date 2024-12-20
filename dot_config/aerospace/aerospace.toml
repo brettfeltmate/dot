@@ -157,6 +157,14 @@ run = ['layout tiling', 'move-node-to-workspace 0']
 if.app-name-regex-substring = 'wezterm'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'terminal'
+run = ['layout tiling', 'move-node-to-workspace 0']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'console'
+run = ['layout tiling', 'move-node-to-workspace 0']
+
 ### 1: Browser
 [[on-window-detected]]
 if.app-name-regex-substring = 'firefox'
@@ -183,49 +191,30 @@ run = ['move-node-to-workspace 2']
 if.app-name-regex-substring = 'Proton Mail'
 run = ['move-node-to-workspace 2']
 
-### 3: File browsers & PDFs
-[[on-window-detected]]
-if.app-name-regex-substring = "marta"
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'skim'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'acrobat'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'RStudio'
-run = ['move-node-to-workspace 3']
-
-### 4: Docs
+### 3: Office apps
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Word'
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 3']
 
-### 5: Presentations
 [[on-window-detected]]
 if.app-name-regex-substring = 'Keynote'
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'PowerPoint'
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 3']
 
-### 6: Spreadsheets
 [[on-window-detected]]
 if.app-name-regex-substring = 'Numbers'
-run = ['move-node-to-workspace 6']
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Excel'
-run = ['move-node-to-workspace 6']
+run = ['move-node-to-workspace 3']
 
 ### 7: Video calls
 [[on-window-detected]]
@@ -249,7 +238,11 @@ run = ['move-node-to-workspace 8']
 if.app-name-regex-substring = 'Messages'
 run = ['move-node-to-workspace 8']
 
-### 9: Media
+[[on-window-detected]]
+if.app-name-regex-substring = 'Beeper'
+run = ['move-node-to-workspace 8']
+
+### 9: Entertainment
 [[on-window-detected]]
 if.app-name-regex-substring = 'Spotify'
 run = ['move-node-to-workspace 9']
@@ -258,7 +251,7 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### Misc
+### Floating
 [[on-window-detected]]
 if.app-name-regex-substring = 'System Settings'
 run = ['layout floating']
@@ -274,3 +267,7 @@ run = ['layout floating']
 [[on-window-detected]]
 if.app-name-regex-substring = 'preview'
 run = ['layout floating']
+
+### Default to 5
+[[on-window-detected]]
+run = ['move-node-to-workspace 5']
