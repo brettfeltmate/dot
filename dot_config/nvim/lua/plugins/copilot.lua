@@ -1,7 +1,3 @@
-if true then
-	return {}
-end
-
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	lazy = true,
@@ -14,12 +10,11 @@ return {
 			opts = {
 				panel = { enabled = false },
 				suggestion = {
-					enabled = false,
+					enabled = true,
 					auto_trigger = true,
 					hide_during_completion = true,
 					keymap = {
-						accept = "<M-CR>",
-						accept_word = "<M-l>",
+						accept = "<M-l>",
 						accept_line = "<M-S-l>",
 						next = "<M-j>",
 						prev = "<M-k>",

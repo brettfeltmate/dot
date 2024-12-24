@@ -27,28 +27,28 @@ return {
 			["<C-f>"] = { "scroll_documentation_down", "fallback" },
 		},
 		completion = {
+			-- trigger = {
+			-- 	prefetch_on_insert = false,
+			-- 	show_on_insert_on_trigger_character = false,
+			-- },
 			list = { max_items = 20 },
 			accept = { auto_brackets = { enabled = true } },
 			menu = {
-                border = "rounded",
-                scrolloff = 0,
-                scrollbar = true,
-                auto_show = false,
-                draw = { treesitter = true }
-            },
-			documentation = { auto_show = false, border = "rounded" },
+				border = "rounded",
+				scrolloff = 0,
+				scrollbar = true,
+				auto_show = false,
+			},
+			documentation = { auto_show = false, window = { border = "rounded" } },
 			ghost_text = { enabled = false },
 		},
 		sources = {
-			completion = {
-				enabled_providers = { "lsp", "path", "buffer", "lazydev" },
-			},
 			providers = {
-				lsp = { fallback_for = { "lazydev" } },
+				lsp = { fallbacks = { "lazydev" } },
 				lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
 			},
 		},
-		appearance = { nerd_font_variant = "mono" },
+		signature = { enabled = false },
 	},
-	opts_extend = { "sources.completion.enabled_providers" },
+	opts_extend = { "sources.default" },
 }
