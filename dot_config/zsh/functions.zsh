@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 cfg_exists() {
     local target_dir="$1"
     local found=1
@@ -54,50 +55,13 @@ fabular() {
 
 }
 
-function logg() {
-    git lg | fzf --ansi --no-sort \
-        --preview 'echo {} | grep -o "[a-f0-9]\{7\}" | head -1 | xargs -I % git show % --color=always' \
-        --preview-window=right:50%:wrap --height 100% \
-        --bind 'enter:execute(echo {} | grep -o "[a-f0-9]\{7\}" | head -1 | xargs -I % sh -c "git show % | nvim -c \"setlocal buftype=nofile bufhidden=wipe noswapfile nowrap\" -c \"nnoremap <buffer> q :q!<CR>\" -")' \
-        --bind 'ctrl-e:execute(echo {} | grep -o "[a-f0-9]\{7\}" | head -1 | xargs -I % sh -c "gh browse %")'
-}
-
-function create_tmux_session() {
-    local RESULT="$1"
-    zoxide add "$RESULT" &>/dev/null
-    local FOLDER=$(basename "$RESULT")
-    local SESSION_NAME=$(echo "$FOLDER" | tr ' .:' '_')
-
-    if [ -d "$RESULT/.git" ]; then
-        SESSION_NAME+="_$(git -C "$RESULT" symbolic-ref --short HEAD 2>/dev/null)"
-    fi
-
-    if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-        tmux new-session -d -s "$SESSION_NAME" -c "$RESULT"
-    fi
-
-    if [ -z "$TMUX" ]; then
-        tmux attach -t "$SESSION_NAME"
-    else
-        tmux switch-client -t "$SESSION_NAME"
-    fi
-}
-
 function cd() {
+    local function lscd() {
+        eza --group-directories-first --icons --tree --level 1
+    }
     if [[ "$1" ]]; then
-        z "$1"; ls -a --group-directories-first
+        z "$1"; lscd
     else
-        z "$HOME"; ls -a --group-directories-first
+        z "$HOME"; lscd
     fi
 }
-# function sesh-sessions() {
-#   {
-#     exec </dev/tty
-#     exec <&1
-#     local session
-#     session=$(sesh list -t -c | fzf --height 40% --reverse --border-label ' sesh ' --border --prompt '⚡  ')
-#     [[ -z "$session" ]] && return
-#     sesh connect $session
-#   }
-# }
-#

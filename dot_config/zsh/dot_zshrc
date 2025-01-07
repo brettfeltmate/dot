@@ -73,5 +73,7 @@ export MANPAGER="nvimpager -p"
 export MOZ_DISABLE_SAFE_MODE_KEY=1
 export STARSHIP_LOG=error
 export CLIPBOARD_THEME=ansi
-export EZA_GRID_ROWS=3
-export EZA_ICONS_AUTO
+export EZA_GRID_ROWS=10
+export LESS='-R'  # interpret color characters
+export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
+# export LESSCOLORIZER="nvimpager"

@@ -1,7 +1,8 @@
 # eza shorthands
-alias ls="eza --group-directories-first"
+alias ls="eza --group-directories-first --icons"
 alias la="ls --all --no-user --git"
 alias ll="la --long --grid"
+alias lt="ls --tree --level 1"
 
 # quickly traverse upwards
 alias ..="cd '..' "
@@ -11,6 +12,7 @@ alias ....="cd '../../..'"
 alias r="radian"
 alias lg="lazygit"
 alias yy="yazi"
+alias rr="ranger"
 alias olli="ansiweather -a true -p true -s true -h true -H true -s true -u metric -l 'Halifax,CA'"
 alias cat="bat"
 
