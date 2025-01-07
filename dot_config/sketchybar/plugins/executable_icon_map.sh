@@ -215,6 +215,9 @@ function icon_map() {
         "GoLand")
             icon_result=":goland:"
             ;;
+        "Ghostty")
+            icon_result=":terminal:"
+            ;;
         "Chromium" | "Google Chrome" | "Google Chrome Canary")
             icon_result=":google_chrome:"
             ;;
@@ -246,7 +249,7 @@ function icon_map() {
             icon_result=":iris:"
             ;;
         "iTerm" | "iTerm2")
-            icon_result=":terminal:"
+            icon_result=":iterm:"
             ;;
         "Jellyfin Media Player")
             icon_result=":jellyfin:"
