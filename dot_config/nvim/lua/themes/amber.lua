@@ -17,7 +17,7 @@ local base16 = {
 	base0C = "#bf8080",
 	base0D = "#9fbfaa",
 	base0E = "#bfaa8c",
-	base0F = "#a682a9",
+	base0F = "#b195b3",
 }
 -- UI
 local base30 = {
@@ -50,7 +50,8 @@ local base30 = {
 	cyan = "#6ac1aa",
 	statusline_bg = "#352d37",
 	lightbg = "#6c5c6e",
-	pmenu_bg = "#b38098",
+	-- pmenu_bg = "#9f7188",
+    pmenu_bg = generate_color(base16.base03, 15),
 	folder_bg = "#c9bba9",
 }
 
