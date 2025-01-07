@@ -24,7 +24,7 @@ return {
 				style = "language",
 				language_direction = "right",
 				pad_amount = 0,
-				min_width = 100,
+				min_width = 60,
 			},
 		})
 	end,

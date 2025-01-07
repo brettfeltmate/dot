@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+    lazy = true,
 		event = "BufReadPre",
 		config = function(_)
 			dofile(vim.g.base46_cache .. "treesitter")
@@ -31,13 +32,21 @@ return {
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
-
 			vim.treesitter.language.register("markdown", "rmd")
 		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
 		event = "BufReadPre",
+	},
+	{
+		"aaronik/treewalker.nvim",
+    event = "BufReadPre",
+		opts = {
+			highlight = true,
+			highlight_duration = 250,
+			highlight_group = "WinSeparator",
+		},
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

@@ -1,6 +1,10 @@
 {
     "diagnostics.globals": [
         "vim",
-        "MiniNotify"
+        "MiniNotify",
+        "MiniClue"
+    ],
+    "diagnostics.disable": [
+        "undefined-field"
     ]
 }

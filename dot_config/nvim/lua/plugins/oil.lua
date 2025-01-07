@@ -25,9 +25,6 @@ return {
 				},
 			},
 			-- columns = { "icon", "permissions", "size", "mtime" },
-			default_file_explorer = true,
-			delete_to_trash = true,
-			skip_confirm_for_simple_edits = true,
 			win_options = {
 				winbar = "%!v:lua.get_oil_winbar()",
 			},

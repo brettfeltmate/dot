@@ -7,24 +7,27 @@ return {
 			enabled = true,
 			right = { "git" },
 			left = { "mark", "sign", "fold" },
-			folds = {
-				open = true,
-				git_hl = false,
-			},
+			folds = { open = true, git_hl = false },
 		},
 		indent = {
 			enabled = true,
 			chunk = {
 				enabled = true,
 				char = {
-					corner_top = "╭",
-					corner_bottom = "╰",
+					arrow = ">",
 					horizontal = "─",
 					vertical = "│",
-					arrow = ">",
+					corner_top = "╭",
+					corner_bottom = "╰",
 				},
 			},
 		},
-		scroll = { enabled = true },
+		-- scroll = {
+		-- 	enabled = true,
+		-- 	animate = {
+		-- 		duration = { step = 15, total = 200 },
+		-- 		easing = "linear",
+		-- 	},
+		-- },
 	},
 }
