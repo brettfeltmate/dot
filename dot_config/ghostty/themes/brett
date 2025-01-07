@@ -1,0 +1,37 @@
+#palette = 0= #222022
+#palette = 1= #9b6961
+#palette = 2= #9eada7
+#palette = 3= #bdb6b0
+#palette = 4= #848e92
+#palette = 5= #b299b4
+#palette = 6= #93bcb7
+#palette = 7= #c7c4bb
+#palette = 8= #968e90
+#palette = 9= #b88e80
+#palette = 10=#92b8a9
+#palette = 11=#d3cbba
+#palette = 12=#cbadbc
+#palette = 13=#c7abc9
+#palette = 14=#99b7b3
+#palette = 15=#c5c2b8
+palette = 0=222022
+palette = 1=9b6961
+palette = 2=9eada7
+palette = 3=bdb6b0
+palette = 4=848e92
+palette = 5=b299b4
+palette = 6=93bcb7
+palette = 7=c7c4bb
+palette = 8=968e90
+palette = 9=b88e80
+palette = 10=92b8a9
+palette = 11=d3cbba
+palette = 12=cbadbc
+palette = 13=c7abc9
+palette = 14=99b7b3
+palette = 15=c5c2b8
+background = 1c171d
+foreground = c3b7ad
+cursor-color = c5ac9d
+selection-background = 0e2a29
+selection-foreground = cac6b5

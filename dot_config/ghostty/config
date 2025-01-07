@@ -1,0 +1,22 @@
+font-family = Maple Mono NF Semibold
+font-size = 13.5
+#font-thicken = true
+
+theme = dark:brett,light:vimbones
+bold-is-bright = true
+
+cursor-style = block
+
+background-opacity = .9
+background-blur-radius = 20
+
+macos-titlebar-style = hidden
+mouse-hide-while-typing = true
+macos-option-as-alt = true
+
+confirm-close-surface = false
+
+command = tmux new-session -A -s default
+
+window-padding-balance = true
+window-step-resize = true
