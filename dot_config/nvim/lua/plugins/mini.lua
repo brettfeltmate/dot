@@ -7,13 +7,13 @@ return {
 		require("mini.ai").setup()
 		require("mini.bracketed").setup()
 		require("mini.comment").setup()
-		-- require("mini.trailspace").setup()
 		require("mini.surround").setup()
 		require("mini.basics").setup()
 		require("mini.extra").setup()
 		require("mini.misc").setup()
 
 		require("mini.icons").setup({
+            -- Custom icon highlights
 			file = {
 				[".here"] = { glyph = "󰍎", hl = "MiniIconsPurple" },
 				[".rproj"] = { glyph = "󰟔", hl = "MiniIconsCyan" },
@@ -31,16 +31,14 @@ return {
 				out = { glyph = "󱞊", hl = "MiniIconsGrey" },
 			},
 		})
-
 		MiniIcons.mock_nvim_web_devicons()
 
 		local clue = require("mini.clue")
-
 		require("mini.clue").setup({
-			window = {
-				delay = 300,
-				config = { width = "auto", border = "single" },
-			},
+            -- Popup opts
+			window = { delay = 300, config = { border = "single" } },
+
+            -- Clue opts
 			triggers = {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },
@@ -91,17 +89,29 @@ return {
 			},
 
 			clues = {
-				-- Enhance this by adding descriptions for <Leader> mapping groups
+
+				-- Builtins
+				clue.gen_clues.builtin_completion(),
+				clue.gen_clues.g(),
+				clue.gen_clues.marks(),
+				clue.gen_clues.registers(),
+				clue.gen_clues.windows({ submode_resize = true }),
+				clue.gen_clues.z(),
+
+				-- Custom submodes
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
 				{ mode = "n", keys = "<leader>c", desc = "Copilot" },
 				{ mode = "v", keys = "<leader>c", desc = "Copilot" },
-				{ mode = "n", keys = "<leader>s", desc = "Search" },
-				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
+				{ mode = "n", keys = "<leader>d", desc = "Debug" },
 				{ mode = "n", keys = "<leader>g", desc = "Git" },
+				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
+				{ mode = "n", keys = "<leader>s", desc = "Search" },
 				{ mode = "n", keys = "<leader>,", desc = "UI" },
-				{ mode = "n", keys = "<leader>t", desc = "Test" },
+				{ mode = "n", keys = "<leader>n", desc = "NeoTest" },
+				{ mode = "n", keys = "<leader>t", desc = "Treewalker" },
 				{ mode = "n", keys = "<leader>w", desc = "Window" },
-				{ mode = "n", keys = "<leader>d", postkeys = "<leader>d", desc = "Debug" },
+
+				-- DAP (Hydra style)
 				{ mode = "n", keys = "<leader>dk", postkeys = "<leader>d", desc = "Step out" },
 				{ mode = "n", keys = "<leader>dj", postkeys = "<leader>d", desc = "Step into" },
 				{ mode = "n", keys = "<leader>dl", postkeys = "<leader>d", desc = "Step over" },
@@ -115,23 +125,30 @@ return {
 				{ mode = "n", keys = "<leader>ds", postkeys = "<leader>d", desc = "Scopes" },
 				{ mode = "n", keys = "<leader>du", postkeys = "<leader>d", desc = "UI" },
 
-				clue.gen_clues.builtin_completion(),
-				clue.gen_clues.g(),
-				clue.gen_clues.marks(),
-				clue.gen_clues.registers(),
-				clue.gen_clues.windows({ submode_resize = true }),
-				clue.gen_clues.z(),
+				-- Treewalker (Hydra style)
+				{ mode = "n", keys = "<Leader>tj", postkeys = "<Leader>t", desc = "Move down" },
+				{ mode = "n", keys = "<Leader>tk", postkeys = "<Leader>t", desc = "Move up" },
+				{ mode = "n", keys = "<Leader>th", postkeys = "<Leader>t", desc = "Move left" },
+				{ mode = "n", keys = "<Leader>tl", postkeys = "<Leader>t", desc = "Move right" },
+				{ mode = "v", keys = "<Leader>tj", postkeys = "<Leader>t", desc = "Move down" },
+				{ mode = "v", keys = "<Leader>tk", postkeys = "<Leader>t", desc = "Move up" },
+				{ mode = "v", keys = "<Leader>th", postkeys = "<Leader>t", desc = "Move left" },
+				{ mode = "v", keys = "<Leader>tl", postkeys = "<Leader>t", desc = "Move right" },
+				{ mode = "n", keys = "<Leader>tJ", postkeys = "<Leader>t", desc = "Swap down" },
+				{ mode = "n", keys = "<Leader>tK", postkeys = "<Leader>t", desc = "Swap up" },
+				{ mode = "n", keys = "<Leader>tH", postkeys = "<Leader>t", desc = "Swap left" },
+				{ mode = "n", keys = "<Leader>tL", postkeys = "<Leader>t", desc = "Swap right" },
 			},
 		})
 
 		require("mini.move").setup({
 			mappings = {
-				-- Move visual selection in Visual mode. Defaults are Alt (Meta) + hjkl.
+				-- Move selection (visual mode)
 				left = "<M-C-h>",
 				right = "<M-C-l>",
 				down = "<M-C-j>",
 				up = "<M-C-k>",
-				-- Move current line in Normal mode
+				-- Move current line (normal mode)
 				line_left = "<M-C-h>",
 				line_right = "<M-C-l>",
 				line_down = "<M-C-j>",

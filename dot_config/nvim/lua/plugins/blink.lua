@@ -1,7 +1,7 @@
 return {
 	"saghen/blink.cmp",
 	lazy = true,
-	event = "InsertEnter",
+	event = "VeryLazy",
 	version = "v0.*",
 	dependencies = {
 		"saghen/blink.compat",
@@ -15,31 +15,32 @@ return {
 	opts = {
 		keymap = {
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
-			["<C-h>"] = { "hide", "fallback" },
 			["<C-l>"] = { "accept", "fallback" },
 			["<S-Tab>"] = { "snippet_backward", "fallback" },
 			["<Tab>"] = { "snippet_forward", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
-			["<C-p>"] = { "select_prev", "fallback" },
-			["<C-n>"] = { "select_next", "fallback" },
-			["<C-b>"] = { "scroll_documentation_up", "fallback" },
-			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+			["<C-Up>"] = { "scroll_documentation_up", "fallback" },
+			["<C-Down>"] = { "scroll_documentation_down", "fallback" },
 		},
 		completion = {
-			-- trigger = {
-			-- 	prefetch_on_insert = false,
-			-- 	show_on_insert_on_trigger_character = false,
-			-- },
-			list = { max_items = 20 },
-			accept = { auto_brackets = { enabled = true } },
-			menu = {
-				border = "rounded",
-				scrolloff = 0,
-				scrollbar = true,
-				auto_show = false,
+			trigger = {
+				prefetch_on_insert = false,
+				show_on_insert_on_trigger_character = false,
 			},
-			documentation = { auto_show = false, window = { border = "rounded" } },
+			menu = {
+				auto_show = true,
+				border = "rounded",
+				draw = {
+					treesitter = { "lsp" },
+					columns = {
+						{ "label", "label_description", gap = 1 },
+						{ "kind_icon", "kind" },
+					},
+				},
+			},
+			accept = { auto_brackets = { enabled = true } },
+			documentation = { window = { border = "rounded" } },
 			ghost_text = { enabled = false },
 		},
 		sources = {
@@ -48,7 +49,9 @@ return {
 				lazydev = { name = "LazyDev", module = "lazydev.integrations.blink" },
 			},
 		},
-		signature = { enabled = false },
+		signature = {
+			enabled = true,
+			window = { border = "rounded" },
+		},
 	},
-	opts_extend = { "sources.default" },
 }

@@ -18,7 +18,7 @@ return {
 						accept_line = "<M-S-l>",
 						next = "<M-j>",
 						prev = "<M-k>",
-						dismiss = "<M-h>",
+						dismiss = "<M-space>",
 					},
 				},
 				filetypes = { markdown = true, help = true },
@@ -63,6 +63,7 @@ return {
 			row = 0,
 			col = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.6)),
 			title = "Copilot Chat",
+            border = "rounded",
 		},
 		mappings = {
 			complete = { detail = "Use @<Tab> or /<Tab> for options.", insert = "<Tab>" },

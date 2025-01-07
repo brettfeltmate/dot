@@ -15,8 +15,13 @@ end
 
 -- Non-leader mappings ===========================================================
 
--- C-a is my tmux prefix
+-- C-a clashes with my tmux prefix
 map({ "n" }, "<c-v>", "<c-a>")
+
+map({ "n" }, "<C-d>", "<C-d>zz", "Scroll down w/ cursor at center")
+map({ "n" }, "<C-u>", "<C-u>zz", "Scroll up w/ cursor at center")
+map({ "n" }, "n", "nzzzv")
+map({ "n" }, "N", "Nzzzv")
 
 -- Readline commands
 map({ "i" }, "<A-f>", C("lua require('readline').forward_word()"), "Move one word forward")
@@ -68,7 +73,6 @@ map({ "n" }, "gw", C("Wtf"), "Explain diagnostic")
 map({ "n" }, "[t", C("tabprevious"), "Previous tab")
 map({ "n" }, "]t", C("tabnext"), "Next tab")
 
-
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
 map({ "n" }, "<M-H>", C("tabprevious"), "Previous tab")
@@ -83,7 +87,6 @@ map({ "n" }, L("b "), C("FzfLua buffers"), "Buffers")
 map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Close current")
 map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
 map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
-map({ "n" }, L("bt"), C("lua require('mini.trailspace').trim()"), "Trim whitespace")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
 -- | [C]opilot
@@ -105,58 +108,60 @@ map({ "n", "x" }, L("ct"), C("CopilotChatTests"), "Tests")
 map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
 
 -- | [L]SP
-map({ "n" }, L("li"), C("Trouble lsp_implementations"), "Implementations")
-map({ "n" }, L("lr"), C("Trouble lsp_references"), "References")
-map({ "n" }, L("ld"), C("Trouble lsp_definitions "), "Definitions")
-map({ "n" }, L("ls"), C("Trouble symbols win.position=bottom win.size=10"), "Symbols")
-map({ "n" }, L("ln"), C("lua require('nvchad.lsp.renamer')()"), "Rename")
-map({ "n" }, L("lx"), C("Trouble diagnostics toggle filter.buf=0"), "Diagnostics (buff)")
-map({ "n" }, L("lX"), C("Trouble diagnostics toggle"), "Diagnostics (proj)")
+map({ "n" }, L("li"), C("FzfLua lsp_implementations"), "Implementations")
+map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
+map({ "n" }, L("ld"), C("FzfLua lsp_definitions "), "Definitions")
+map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols (buff)")
+map({ "n" }, L("lS"), C("FzfLua lsp_workspace_symbols"), "Symbols (space)")
+map({ "n" }, L("ll"), C("FzfLua lsp_live_workspace_symbols"), "Symbols (live)")
+map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics (buff)")
+map({ "n" }, L("lX"), C("FzfLua diagnostics_workspace"), "Diagnostics (space)")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
-map({ "n" }, L("ss"), C("FzfLua lsp_document_symbols"), "Symbols")
-map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
+map({ "n" }, L("sg"), C("FzfLua grep"), "Grep (cwd)")
 map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
 map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
 map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
 map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
 map({ "n" }, L("sw"), C("FzfLua grep_cword"), "cword")
 map({ "n" }, L("sW"), C("FzfLua grep_cWORD"), "cWORD")
-map({ "n" }, L("s "), C("FzfLua builtin"), "Pickers")
+map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
+map({ "n" }, L("sq"), C("FzfLua quickfix"), "Quickfix")
+map({ "n" }, L("sl"), C("FzfLua loclist"), "Loclist")
 
 -- | [G]it
-map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Search file commits")
-map({ "n" }, L("g "), C("lua Snacks.lazygit.open()"), "LazyGit")
-map({ "n" }, L("gl"), C("lua Snacks.lazygit.log_file()"), "Browse file commits")
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
-map({ "n" }, L("gb"), C("lua Snacks.git.blame_line()"), "Blame line")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
+map({ "n" }, L("g "), C("lua Snacks.lazygit.open()"), "LazyGit")
+map({ "n" }, L("gl"), C("lua Snacks.lazygit.log_file()"), "Browse file commits")
+map({ "n" }, L("gb"), C("lua Snacks.git.blame_line()"), "Blame line")
+map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Search file commits")
 
 --| [T]est
-map({ "n" }, L("tt"), function()
+map({ "n" }, L("nt"), function()
 	require("neotest").run.run(vim.fn.expand("%"))
 end, "Test file")
-map({ "n" }, L("tT"), function()
+map({ "n" }, L("nT"), function()
 	require("neotest").run.run(vim.uv.cwd())
 end, "All files")
-map({ "n" }, L("tr"), function()
+map({ "n" }, L("nr"), function()
 	require("neotest").run.run()
 end, "Nearest")
-map({ "n" }, L("tl"), function()
+map({ "n" }, L("nl"), function()
 	require("neotest").run.run_last()
 end, "Last")
-map({ "n" }, L("ts"), function()
+map({ "n" }, L("ns"), function()
 	require("neotest").summary.toggle()
 end, "Summary")
-map({ "n" }, L("tS"), function()
+map({ "n" }, L("nS"), function()
 	require("neotest").run.stop()
 end, "Stop")
-map({ "n" }, L("tw"), function()
+map({ "n" }, L("nw"), function()
 	require("neotest").watch.toggle(vim.fn.expand("%"))
 end, "Watch")
-map({ "n" }, L("to"), function()
+map({ "n" }, L("no"), function()
 	require("neotest").output.open({
 		enter = true,
 		auto_close = true,
@@ -165,7 +170,7 @@ map({ "n" }, L("to"), function()
 		end,
 	})
 end, "Output (split)")
-map({ "n" }, L("tO"), function()
+map({ "n" }, L("nO"), function()
 	require("neotest").output.open({
 		enter = true,
 		auto_close = true,
@@ -176,7 +181,7 @@ map({ "n" }, L("tO"), function()
 end, "Output (tab)")
 
 -- [,] convience mappings
-map({ "n" }, "_", C("Oil"), "Files")
+map({ "n" }, "-", C("Oil"), "Files")
 map({ "n" }, L(",s"), function()
 	require("fzf-lua").spell_suggest({
 		winopts = {
@@ -191,9 +196,9 @@ map({ "n" }, L(",s"), function()
 end, "Spell")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
-map({ "n" }, L(",x"), C("NoiceAll"), "Noice")
+map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
-map({ "n" }, L(",q"), C("qa!"), "Bail")
+map({ "n" }, L(",d"), C("qa!"), "Dip")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
 map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle()"), "Terminal")
 map({ "n" }, L(",i"), function()
@@ -201,8 +206,9 @@ map({ "n" }, L(",i"), function()
 	local is_enabled = vim.diagnostic.is_enabled()
 	vim.diagnostic.enable(not is_enabled, { bfnr = curr_buf })
 end, "Inline diagnostics")
-map({ "n" }, L(",f"), C("lua require('quicker').toggle({focus=true})"), "Quickfix")
-map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, loclist=true})"), "Loclist")
+map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
+map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
+map({ "n" }, L(",z"), C("ZenMode"), "Zen mode")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
@@ -266,3 +272,14 @@ map({ "n" }, L("wd"), C("windo diffsplit browse"), "diff split on")
 map({ "n" }, L("wD"), C("windo diffoff"), "diff split off")
 map({ "n" }, L("ws"), ScrollBind, "scrollbind on")
 map({ "n" }, L("wS"), ScrollUnbind, "scrollbind off")
+
+-- | [T]reewalker
+map({ "n", "v" }, L("th"), C("Treewalker Left"), "Move left")
+map({ "n", "v" }, L("tj"), C("Treewalker Down"), "Move down")
+map({ "n", "v" }, L("tk"), C("Treewalker Up"),   "Move up")
+map({ "n", "v" }, L("tl"), C("Treewalker Right"),"Move right")
+
+map({ "n" }, L("tH"), C("Treewalker SwapLeft"), "Swap left")
+map({ "n" }, L("tJ"), C("Treewalker SwapDown"), "Swap down")
+map({ "n" }, L("tK"), C("Treewalker SwapUp"), "Swap up")
+map({ "n" }, L("tL"), C("Treewalker SwapRight"), "Swap right")
