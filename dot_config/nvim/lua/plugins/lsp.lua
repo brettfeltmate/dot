@@ -1,18 +1,18 @@
 -- LSPs, formatters, linters, etc.,
 return {
 	{ vim.diagnostic.config({ virtual_text = false }) },
-	{
-		"sontungexpt/better-diagnostic-virtual-text",
-		lazy = true,
-		event = "LspAttach",
-		opts = { ui = { above = true, wrap_line_after = 999 } },
-		config = function(_, opts)
-			require("better-diagnostic-virtual-text").setup(opts)
-		end,
-	},
+	-- {
+	-- 	"sontungexpt/better-diagnostic-virtual-text",
+	-- 	lazy = true,
+	-- 	event = "LspAttach",
+	-- 	opts = { ui = { above = true, wrap_line_after = 999 } },
+	-- 	config = function(_, opts)
+	-- 		require("better-diagnostic-virtual-text").setup(opts)
+	-- 	end,
+	-- },
 	{
 		"neovim/nvim-lspconfig",
-		event = "BufRead",
+		event = "VeryLazy",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
 			{
