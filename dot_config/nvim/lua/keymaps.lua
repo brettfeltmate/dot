@@ -86,7 +86,7 @@ map({ "n" }, "<M-N>", C("tabnew"), "New tab")
 map({ "n" }, L("b "), C("FzfLua buffers"), "Buffers")
 map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Close current")
 map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
-map({ "n" }, L("bg"), C("FzfLua grep_curbuf"), "Grep")
+map({ "n" }, L("bg"), C("FzfLua lgrep_curbuf"), "Grep")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
 -- | [C]opilot
@@ -119,9 +119,14 @@ map({ "n" }, L("lX"), C("FzfLua diagnostics_workspace"), "Diagnostics (space)")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
-map({ "n" }, L("sg"), C("FzfLua grep"), "Grep (cwd)")
+map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
 map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
 map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
+map({ "n" }, L("sH"), function()
+	require("fzf-lua").live_grep({
+		cwd = vim.fs.joinpath(vim.env.VIMRUNTIME, "doc"),
+	})
+end, "Grep help")
 map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
 map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
 map({ "n" }, L("sw"), C("FzfLua grep_cword"), "cword")
@@ -134,7 +139,8 @@ map({ "n" }, L("sl"), C("FzfLua loclist"), "Loclist")
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
-map({ "n" }, L("g "), C("lua Snacks.lazygit.open()"), "LazyGit")
+map({ "n" }, L("g "), C("Neogit"), "Neogit")
+map({ "n" }, L("gg"), C("lua Snacks.lazygit.open()"), "LazyGit")
 map({ "n" }, L("gl"), C("lua Snacks.lazygit.log_file()"), "Browse file commits")
 map({ "n" }, L("gb"), C("lua Snacks.git.blame_line()"), "Blame line")
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Search file commits")
@@ -230,28 +236,6 @@ local FlipSplit = function()
 	end
 end
 
-local RotateBuffersCW = function()
-	local visible_buffers = {}
-	local win_ids = vim.api.nvim_list_wins()
-	local current_win = vim.api.nvim_get_current_win()
-
-	for _, win_id in ipairs(win_ids) do
-		if vim.api.nvim_win_is_valid(win_id) then
-			table.insert(visible_buffers, vim.api.nvim_win_get_buf(win_id))
-		end
-	end
-
-	table.insert(visible_buffers, 1, table.remove(visible_buffers))
-
-	for i, win_id in ipairs(win_ids) do
-		if vim.api.nvim_win_is_valid(win_id) then
-			vim.api.nvim_win_set_buf(win_id, visible_buffers[i])
-		end
-	end
-
-	vim.api.nvim_set_current_win(current_win)
-end
-
 function ScrollBind()
 	for i = 1, vim.fn.winnr("$") do
 		vim.cmd(i .. "windo set scrollbind")
@@ -265,19 +249,18 @@ function ScrollUnbind()
 end
 map({ "n" }, L("wf"), FlipSplit, "flip split")
 map({ "n" }, L("wx"), "<C-W>c", "X window", { remap = true })
-map({ "n" }, L("wr"), RotateBuffersCW, "rotate buffers (CW)", { remap = true })
 map({ "n" }, L("w-"), "<C-W>s", "split up/down", { remap = true })
 map({ "n" }, L("w|"), "<C-W>v", "split left/right", { remap = true })
-map({ "n" }, L("wd"), C("windo diffsplit browse"), "diff split on")
-map({ "n" }, L("wD"), C("windo diffoff"), "diff split off")
 map({ "n" }, L("ws"), ScrollBind, "scrollbind on")
 map({ "n" }, L("wS"), ScrollUnbind, "scrollbind off")
+map({ "n", "v" }, L("wc"), C("lua require('go-up').centerScreen()"), "Center")
+map({ "n", "v" }, L("wa"), C("lua require('go-up').align()"), "Align")
 
 -- | [T]reewalker
 map({ "n", "v" }, L("th"), C("Treewalker Left"), "Move left")
 map({ "n", "v" }, L("tj"), C("Treewalker Down"), "Move down")
-map({ "n", "v" }, L("tk"), C("Treewalker Up"),   "Move up")
-map({ "n", "v" }, L("tl"), C("Treewalker Right"),"Move right")
+map({ "n", "v" }, L("tk"), C("Treewalker Up"), "Move up")
+map({ "n", "v" }, L("tl"), C("Treewalker Right"), "Move right")
 
 map({ "n" }, L("tH"), C("Treewalker SwapLeft"), "Swap left")
 map({ "n" }, L("tJ"), C("Treewalker SwapDown"), "Swap down")

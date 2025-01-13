@@ -2,7 +2,7 @@
 vim.cmd("runtime! ftplugin/r.lua")
 
 vim.keymap.set("n", "<CR>", "<Plug>SlimeSendCell", { buffer = 0, noremap = true, desc = "Send cell" })
-vim.keymap.set("n", "-", function()
+vim.keymap.set("n", "+", function()
     local pos = vim.api.nvim_win_get_cursor(0)
     local block = {
         "```{r}",
