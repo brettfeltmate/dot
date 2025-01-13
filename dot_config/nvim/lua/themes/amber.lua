@@ -50,8 +50,7 @@ local base30 = {
 	cyan = "#6ac1aa",
 	statusline_bg = "#352d37",
 	lightbg = "#6c5c6e",
-	-- pmenu_bg = "#9f7188",
-    pmenu_bg = generate_color(base16.base03, 15),
+	pmenu_bg = generate_color(base16.base07, -60),
 	folder_bg = "#c9bba9",
 }
 
@@ -65,9 +64,9 @@ local polish_hl = {
 		WinBar = { bg = "NONE" },
 		WinBarNC = { bg = "NONE" },
 		WinSeparator = { fg = base30.line },
-		Pmenu = { bg = base30.one_bg },
+		Pmenu = { bg = base30.pmenu_bg },
 		PmenuSbar = { bg = base30.one_bg },
-		PmenuSel = { bg = base30.pmenu_bg, fg = base30.black },
+		PmenuSel = { bg = base30.statusline_bg, fg = base30.purple },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.cyan },
 		FloatTitle = { fg = base30.white, bg = base30.grey },
@@ -126,19 +125,19 @@ local polish_hl = {
 
 		-- Lazy
 		LazyH1 = {
-			bg = generate_color(base30.pmenu_bg, -40),
-			fg = generate_color(base16.base05, -10),
+			bg = generate_color(base16.base03, -10),
+			fg = base30.white,
 		},
 		LazyButton = {
 			bg = base30.one_bg,
 			fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 10 or -20),
 		},
 		LazyButtonActive = {
-			bg = generate_color(base30.pmenu_bg, -40),
-			fg = generate_color(base16.base05, -10),
+			bg = generate_color(base16.base03, -10),
+			fg = base30.white,
 			bold = true,
 		},
-		LazyH2 = { fg = base30.purple, bold = true, italic = true },
+		LazyH2 = { fg = base30.blue, bold = true, italic = false },
 		LazyReasonPlugin = { fg = base30.red },
 		LazyValue = { fg = base30.teal },
 		LazyDir = { fg = base16.base05 },
@@ -158,6 +157,44 @@ local polish_hl = {
 		LazyReasonSource = { fg = base30.cyan },
 		LazyReasonImport = { fg = base30.white },
 		LazyProgressDone = { fg = base30.green },
+	},
+	neogit = {
+		NeogitHunkHeader= {
+            fg = generate_color(base16.base08, -45),
+			bg = generate_color(base16.base07, -55),
+		},
+		NeogitHunkHeaderHighlight = {
+            fg = generate_color(base16.base08, -10),
+			bg = generate_color(base16.base07, -50),
+		},
+		NeogitHunkHeaderCursor = {
+            fg = generate_color(base16.base08, -5),
+			bg = generate_color(base16.base07, -45),
+		},
+		NeogitDiffAdd = {
+			fg = generate_color(base30.green, 5),
+			bg = generate_color(base30.green, -45),
+		},
+		NeogitDiffAddHighlight = {
+			fg = generate_color(base30.green, 5),
+			bg = generate_color(base30.green, -42),
+		},
+		NeogitDiffAddCursor = {
+			fg = generate_color(base30.green, 10),
+			bg = generate_color(base30.green, -40),
+		},
+        NeogitDiffDelete = {
+            fg = base30.red,
+            bg = generate_color(base30.red, -62),
+        },
+        NeogitDiffDeleteHighlight = {
+            fg = base30.red,
+            bg = generate_color(base30.red, -57),
+        },
+        NeogitDiffDeleteCursor = {
+            fg = generate_color(base30.red, 5),
+            bg = generate_color(base30.red, -55),
+        },
 	},
 	nvimtree = {
 		NvimTreeEmptyFolderName = { fg = base30.folder_bg },
@@ -349,6 +386,8 @@ M.base_16 = base16
 M.base_30 = base30
 M.polish_hl = polish_hl
 M.type = "dark"
+
+-- vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base30.one_bg })
 
 M = require("base46").override_theme(M, "amber")
 
