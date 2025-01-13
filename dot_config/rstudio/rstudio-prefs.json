@@ -2,20 +2,18 @@
     "initial_working_directory": "~",
     "rainbow_parentheses": true,
     "editor_keybindings": "vim",
-    "font_size_points": 12,
+    "font_size_points": 14,
     "posix_terminal_shell": "zsh",
     "load_workspace": false,
     "relative_line_numbers": true,
     "highlight_r_function_calls": true,
     "indent_guides": "rainbowlines",
     "editor_theme": "base16 Ashes {rsthemes}",
-    "toolbar_visible": false,
     "text_rendering": "geometricPrecision",
-    "help_font_size_points": 12,
+    "help_font_size_points": 14,
     "save_workspace": "never",
     "jobs_tab_visibility": "shown",
     "source_with_echo": true,
-    "show_last_dot_value": true,
     "graphics_antialiasing": "subpixel",
     "highlight_selected_line": true,
     "scroll_past_end_of_document": true,
@@ -26,6 +24,41 @@
     "warn_variable_defined_but_not_used": true,
     "style_diagnostics": true,
     "syntax_color_console": true,
-    "reduced_motion": true,
-    "default_project_location": "~/projects/r"
+    "default_project_location": "~/projects/r/5503",
+    "code_formatter_external_command": "~/.config/R/rprettify",
+    "show_panel_focus_rectangle": true,
+    "show_terminal_tab": false,
+    "code_formatter": "styler",
+    "real_time_spellchecking": false,
+    "restore_source_documents": false,
+    "restore_last_project": false,
+    "panes": {
+        "quadrants": [
+            "Source",
+            "TabSet1",
+            "TabSet2",
+            "Console"
+        ],
+        "tabSet1": [
+            "Presentation"
+        ],
+        "tabSet2": [
+            "Environment",
+            "History",
+            "Files",
+            "Plots",
+            "Connections",
+            "Packages",
+            "Help",
+            "Build",
+            "VCS",
+            "Tutorial",
+            "Viewer",
+            "Presentations"
+        ],
+        "hiddenTabSet": [],
+        "console_left_on_top": false,
+        "console_right_on_top": false,
+        "additional_source_columns": 0
+    }
 }

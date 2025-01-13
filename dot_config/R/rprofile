@@ -1,6 +1,8 @@
 # vim: ft=r
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
+options(repos = c(CRAN = "https://cran.rstudio.org"))
+
 options(lintr.linter_file = "~/.config/R/lintr")
 
 options(stringsAsFactors = FALSE)
