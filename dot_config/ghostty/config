@@ -15,6 +15,7 @@ mouse-hide-while-typing = true
 macos-option-as-alt = true
 
 confirm-close-surface = false
+quit-after-last-window-closed = false
 
 command = tmux new-session -A -s default
 
