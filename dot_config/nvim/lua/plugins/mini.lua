@@ -13,7 +13,7 @@ return {
 		require("mini.misc").setup()
 
 		require("mini.icons").setup({
-            -- Custom icon highlights
+			-- Custom icon highlights
 			file = {
 				[".here"] = { glyph = "󰍎", hl = "MiniIconsPurple" },
 				[".rproj"] = { glyph = "󰟔", hl = "MiniIconsCyan" },
@@ -35,10 +35,19 @@ return {
 
 		local clue = require("mini.clue")
 		require("mini.clue").setup({
-            -- Popup opts
-			window = { delay = 300, config = { border = "single" } },
+			-- Popup opts
+			window = {
+				delay = 300,
+				config = {
+					border = "rounded",
+					anchor = "SE",
+					width = "auto",
+					row = "auto",
+					col = "auto",
+				},
+			},
 
-            -- Clue opts
+			-- Clue opts
 			triggers = {
 				-- Leader triggers
 				{ mode = "n", keys = "<Leader>" },

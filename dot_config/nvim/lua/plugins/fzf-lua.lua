@@ -13,11 +13,11 @@ return {
 				-- border = "rounded",
                 title_pos = "center",
 				relative = "editor",
-				row = 0.99,
+				row = 1,
 				col = 0,
 				backdrop = 99,
 				width = 1,
-				height = 0.35,
+				height = 0.45,
 				treesitter = { enabled = true },
 				preview = {
                     --
