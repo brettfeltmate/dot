@@ -107,6 +107,55 @@ map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
 map({ "n", "x" }, L("ct"), C("CopilotChatTests"), "Tests")
 map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
 
+-- | [D]AP
+map({ "n" }, L("dk"), function()
+	require("dap").step_out()
+end, "Step out")
+
+map({ "n" }, L("dj"), function()
+	require("dap").step_into()
+end, "Step into")
+
+map({ "n" }, L("dl"), function()
+	require("dap").step_over()
+end, "Step over")
+
+map({ "n" }, L("db"), function()
+	require("dap").toggle_breakpoint()
+end, "Breakpoint")
+
+map({ "n" }, L("dd"), function()
+	require("dap").continue()
+end, "Start/continue")
+
+map({ "n" }, L("dq"), function()
+	require("dap").terminate()
+end, "Quit")
+
+map({ "n" }, L("dr"), function()
+	require("dap").repl.open()
+end, "REPL")
+
+map({ "n" }, L("du"), function()
+	require("dapui").toggle()
+end, "UI")
+
+map({ "n" }, L("dh"), function()
+	require("dap.ui.widgets").hover()
+end, "Hover")
+
+map({ "n" }, L("dp"), function()
+	require("dap.ui.widgets").preview()
+end, "Preview")
+
+map({ "n" }, L("df"), function()
+	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").frames)
+end, "Frames")
+
+map({ "n" }, L("ds"), function()
+	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").scopes)
+end, "Scopes")
+
 -- | [L]SP
 map({ "n" }, L("li"), C("FzfLua lsp_implementations"), "Implementations")
 map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
