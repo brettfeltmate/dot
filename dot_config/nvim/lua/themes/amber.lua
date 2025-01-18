@@ -66,7 +66,7 @@ local polish_hl = {
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg },
 		PmenuSbar = { bg = base30.one_bg },
-		PmenuSel = { bg = base30.statusline_bg, fg = base30.purple },
+		PmenuSel = { bg = generate_color(base30.statusline_bg, -3), fg = base30.orange, bold = true },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.cyan },
 		FloatTitle = { fg = base30.white, bg = base30.grey },
@@ -99,7 +99,7 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = generate_color(base30.line, -20) },
+		CursorLine = { bg = generate_color(base16.base03, -19) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -160,16 +160,20 @@ local polish_hl = {
 	},
 	neogit = {
 		NeogitHunkHeader= {
-            fg = generate_color(base16.base08, -45),
-			bg = generate_color(base16.base07, -55),
+            fg = generate_color(base16.base07, -25),
+            bg = generate_color(base16.base08, -45),
 		},
 		NeogitHunkHeaderHighlight = {
             fg = generate_color(base16.base08, -10),
-			bg = generate_color(base16.base07, -50),
+			bg = generate_color(base16.base07, -45),
+			-- bg = generate_color(base16.base08, -10),
+			-- fg = generate_color(base16.base07, -50),
 		},
 		NeogitHunkHeaderCursor = {
-            fg = generate_color(base16.base08, -5),
+            fg = generate_color(base16.base08, -10),
 			bg = generate_color(base16.base07, -45),
+            -- bg = generate_color(base16.base08, -5),
+			-- fg = generate_color(base16.base07, -45),
 		},
 		NeogitDiffAdd = {
 			fg = generate_color(base30.green, 5),
@@ -387,7 +391,7 @@ M.base_30 = base30
 M.polish_hl = polish_hl
 M.type = "dark"
 
--- vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base30.one_bg })
+vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base30.one_bg })
 
 M = require("base46").override_theme(M, "amber")
 

@@ -1,4 +1,6 @@
-font-family = Maple Mono NF Semibold
+font-family = Maple Mono NF
+font-style = Medium
+font-style-bold = ExtraBold
 font-size = 13.5
 #font-thicken = true
 
@@ -13,6 +15,8 @@ background-blur-radius = 20
 macos-titlebar-style = hidden
 mouse-hide-while-typing = true
 macos-option-as-alt = true
+macos-auto-secure-input = true
+macos-secure-input-indication = true
 
 confirm-close-surface = false
 quit-after-last-window-closed = false

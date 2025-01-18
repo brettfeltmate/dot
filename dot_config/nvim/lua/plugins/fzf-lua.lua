@@ -9,17 +9,22 @@ return {
 			"borderless-full",
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
-				border = "rounded",
+                border = { " ", "─", " ", " ", " ", " ", " ", " " },
+				-- border = "rounded",
+                title_pos = "center",
 				relative = "editor",
-				row = 1,
+				row = 0.99,
 				col = 0,
 				backdrop = 99,
 				width = 1,
-				height = 0.50,
+				height = 0.35,
 				treesitter = { enabled = true },
 				preview = {
-					border = "rounded",
-					title_pos = "left",
+                    --
+                    --󰇙
+					border = { " ", "─", " ", " ", " ", " ", " ", "" },
+                    -- border = "rounded",
+					title_pos = "center",
 					horizontal = "right:65%",
 					vertical = "down:70%",
 					layout = "horizontal",
@@ -27,6 +32,7 @@ return {
 			},
 			files = {
 				file_icons = "mini",
+                git_icons = false,
 			},
 			keymap = {
 				builtin = {

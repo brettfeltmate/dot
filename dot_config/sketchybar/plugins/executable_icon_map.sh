@@ -314,7 +314,7 @@ function icon_map() {
         "Maps" | "Google Maps")
             icon_result=":maps:"
             ;;
-        "Matlab")
+        "MATLAB")
             icon_result=":matlab:"
             ;;
         "Mattermost")

@@ -25,7 +25,7 @@ vim.keymap.set(
 		.. "file = '.last_plot.png',"
 		.. "path = '~/',"
 		.. "width = 9,"
-		.. "height = 9,"
+		.. "height = 8,"
 		.. "units = 'in',"
 		.. "dpi = 'retina'"
 		.. ")"

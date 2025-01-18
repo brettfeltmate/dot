@@ -2,7 +2,7 @@
 return {
 	"OXY2DEV/markview.nvim",
 	lazy = true,
-	ft = { "codecompanion", "markdown", "md", "rmd", "rmarkdown", "qmd", "quarto", "Avante", "avante", "copilot-*" },
+	ft = { "markdown", "rmarkdown", "rmd", "quarto", "copilot-*" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",

@@ -14,5 +14,6 @@
     "layoutZoomEnvironment": "Ctrl+Shift+E",
     "layoutZoomHelp": "Ctrl+Shift+H",
     "layoutZoomSource": "Ctrl+Shift+S",
-    "zoomOut": "Cmd+Numpadsubtract"
+    "zoomOut": "Cmd+-",
+    "zoomIn": "Cmd+="
 }

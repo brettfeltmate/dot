@@ -31,7 +31,7 @@ vim.opt.smoothscroll = true
 vim.opt.termguicolors = true -- True color support
 vim.opt.background = "dark"
 vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
--- vim.opt.signcolumn = "number"
+vim.opt.signcolumn = "auto:2"
 vim.opt.guicursor = ""
 vim.opt.shortmess:append("WIcC")
 

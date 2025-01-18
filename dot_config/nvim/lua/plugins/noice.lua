@@ -13,7 +13,7 @@ return {
 			popupmenu = { enabled = false, backend = "nui" },
 			hover = { enabled = true },
 			lsp = {
-				signature = { enabled = false },
+				signature = { enabled = true },
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,

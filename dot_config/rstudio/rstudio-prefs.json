@@ -24,7 +24,7 @@
     "warn_variable_defined_but_not_used": true,
     "style_diagnostics": true,
     "syntax_color_console": true,
-    "default_project_location": "~/projects/r/5503",
+    "default_project_location": "~/projects/r/5503/2025",
     "code_formatter_external_command": "~/.config/R/rprettify",
     "show_panel_focus_rectangle": true,
     "show_terminal_tab": false,
@@ -60,5 +60,7 @@
         "console_left_on_top": false,
         "console_right_on_top": false,
         "additional_source_columns": 0
-    }
+    },
+    "default_open_project_location": "~/projects/r",
+    "toolbar_visible": false
 }

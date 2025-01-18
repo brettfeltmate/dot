@@ -2,7 +2,18 @@ local M = {
 	base46 = {
 		theme = "amber",
 		transparency = false,
-		integrations = { "cmp", "devicons", "git", "lsp", "mason", "treesitter", "markview", "dap", "neogit", "diffview"},
+		integrations = {
+			"cmp",
+			"devicons",
+			"git",
+			"lsp",
+			"mason",
+			"treesitter",
+			"markview",
+			"dap",
+			"neogit",
+			"diffview",
+		},
 	},
 	ui = {
 		cmp = {
@@ -21,9 +32,9 @@ local M = {
 			order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
 		},
 	},
-	nvdash = { load_on_startup = false, },
+	nvdash = { load_on_startup = false },
 	lsp = { signature = false },
-	mason = { cmd = false, pkgs = {} },
+	mason = { cmd = true, pkgs = {} },
 	colorify = { enabled = true, mode = "bg" },
 }
 

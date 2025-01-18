@@ -31,7 +31,12 @@ return {
 			local ccc = require("ccc")
 			return {
 				bar_len = 50,
-				inputs = { ccc.input.oklab, ccc.input.oklch, ccc.input.okhsl, ccc.input.okhsv },
+				inputs = {
+					ccc.input.rgb,
+					ccc.input.oklch,
+					ccc.input.okhsl,
+					ccc.input.okhsv,
+				},
 			}
 		end,
 	},

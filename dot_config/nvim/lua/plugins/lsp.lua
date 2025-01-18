@@ -31,7 +31,23 @@ return {
 				julials = {},
 				lua_ls = {},
 				marksman = {},
-				matlab_ls = {},
+				matlab_ls = {
+					cmd = { "matlab-language-server", "--stdio" },
+					matlab = {
+						indexWorkspace = true,
+						installPath = "/Applications/MATLAB_R2024b.app",
+            matlabConnectionTiming = "onStart",
+            telemetry = true,
+					},
+					root_dir = function(fname)
+						return require("lspconfig.util").find_git_ancestor(fname)
+							or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
+							or require("lspconfig.util").root_pattern("Makefile")(fname)
+							or require("lspconfig.util").root_pattern("xmake.lua")(fname)
+					end,
+
+					single_file_support = true,
+				},
 				pyright = {},
 				r_language_server = {},
 				ruff = {},
