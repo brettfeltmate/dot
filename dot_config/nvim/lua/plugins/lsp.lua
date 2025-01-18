@@ -21,8 +21,6 @@ return {
 			{ "whoissethdaniel/mason-tool-installer.nvim" },
 		},
 		config = function()
-			dofile(vim.g.base46_cache .. "lsp")
-			dofile(vim.g.base46_cache .. "mason")
 
 			local servers = {
 				bashls = {},

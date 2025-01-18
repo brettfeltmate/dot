@@ -8,8 +8,6 @@ return {
 		"echasnovski/mini.icons",
 	},
 	config = function()
-		dofile(vim.g.base46_cache .. "markview")
-
 		local presets = require("markview.presets")
 
 		require("markview").setup({
