@@ -51,6 +51,7 @@ return {
 				ruff = {},
 				taplo = {},
 				ts_ls = {},
+        vtsls = {},
 			}
 
 			local ensure_installed = {
@@ -75,6 +76,7 @@ return {
 				"stylua",
 				"taplo",
 				"typescript-language-server",
+        "vtsls",
 			}
 
 			require("mason").setup()

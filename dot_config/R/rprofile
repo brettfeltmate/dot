@@ -17,9 +17,10 @@ options(show.signif.stars = FALSE)
 
 options(menu.graphics = FALSE)
 
-options(prompt = "|> ")
-
-options(continue = "|>... ")
+# Deactivate whilst teaching; students find it confusing :(
+# options(prompt = "|> ")
+#
+# options(continue = "|>... ")
 
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
@@ -87,11 +88,11 @@ if (interactive()) {
 
 # LanguageServer Setup Start (do not change this chunk)
 # to remove this, run languageserversetup::remove_from_rprofile
-if (requireNamespace("languageserversetup", quietly = TRUE)) {
-  options(langserver_library = "/Users/brettfeltmate/languageserver-library")
-  languageserversetup::languageserver_startup()
-  unloadNamespace("languageserversetup")
-}
+# if (requireNamespace("languageserversetup", quietly = TRUE)) {
+#   options(langserver_library = "/Users/brettfeltmate/languageserver-library")
+#   languageserversetup::languageserver_startup()
+#   unloadNamespace("languageserversetup")
+# }
 # LanguageServer Setup End
 
 # Disable completion from the language server

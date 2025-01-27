@@ -99,7 +99,7 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = generate_color(base16.base03, -19) },
+		CursorLine = { bg = generate_color(base16.base09, -47) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -159,46 +159,55 @@ local polish_hl = {
 		LazyProgressDone = { fg = base30.green },
 	},
 	neogit = {
-		NeogitHunkHeader= {
-            fg = generate_color(base16.base07, -25),
-            bg = generate_color(base16.base08, -45),
+		NeogitDiffContext = {
+			bg = generate_color(base30.black, -10),
+		},
+		NeogitDiffContextHighlight = {
+			bg = generate_color(base30.black, -5),
+		},
+		NeogitDiffContextCursor = {
+			bg = generate_color(base30.black, -5),
+		},
+		NeogitHunkHeader = {
+			fg = generate_color(base16.base07, -35),
+			bg = generate_color(base16.base08, -52),
 		},
 		NeogitHunkHeaderHighlight = {
-            fg = generate_color(base16.base08, -10),
+			fg = generate_color(base16.base08, -10),
 			bg = generate_color(base16.base07, -45),
 			-- bg = generate_color(base16.base08, -10),
 			-- fg = generate_color(base16.base07, -50),
 		},
 		NeogitHunkHeaderCursor = {
-            fg = generate_color(base16.base08, -10),
+			fg = generate_color(base16.base08, -10),
 			bg = generate_color(base16.base07, -45),
-            -- bg = generate_color(base16.base08, -5),
+			-- bg = generate_color(base16.base08, -5),
 			-- fg = generate_color(base16.base07, -45),
 		},
 		NeogitDiffAdd = {
-			fg = generate_color(base30.green, 5),
-			bg = generate_color(base30.green, -45),
+			fg = generate_color(base30.green, -10),
+			bg = generate_color(base30.green, -47),
 		},
 		NeogitDiffAddHighlight = {
-			fg = generate_color(base30.green, 5),
-			bg = generate_color(base30.green, -42),
-		},
-		NeogitDiffAddCursor = {
-			fg = generate_color(base30.green, 10),
+			fg = generate_color(base30.green, 15),
 			bg = generate_color(base30.green, -40),
 		},
-        NeogitDiffDelete = {
-            fg = base30.red,
-            bg = generate_color(base30.red, -62),
-        },
-        NeogitDiffDeleteHighlight = {
-            fg = base30.red,
-            bg = generate_color(base30.red, -57),
-        },
-        NeogitDiffDeleteCursor = {
-            fg = generate_color(base30.red, 5),
-            bg = generate_color(base30.red, -55),
-        },
+		NeogitDiffAddCursor = {
+			fg = generate_color(base30.green, 15),
+			bg = generate_color(base30.green, -40),
+		},
+		NeogitDiffDelete = {
+			fg = generate_color(base30.red, -10),
+			bg = generate_color(base30.red, -70),
+		},
+		NeogitDiffDeleteHighlight = {
+			fg = base30.red,
+			bg = generate_color(base30.red, -60),
+		},
+		NeogitDiffDeleteCursor = {
+			fg = base30.red,
+			bg = generate_color(base30.red, -60),
+		},
 	},
 	nvimtree = {
 		NvimTreeEmptyFolderName = { fg = base30.folder_bg },

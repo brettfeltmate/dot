@@ -2,7 +2,7 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
-    lazy = true,
+		lazy = true,
 		event = "BufReadPre",
 		config = function(_)
 			require("nvim-treesitter.install").prefer_git = true
@@ -32,18 +32,21 @@ return {
 				indent = { enable = true },
 			})
 			vim.treesitter.language.register("markdown", "rmd")
+      vim.treesitter.language.register("r", "R")
 		end,
 	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		event = "BufReadPre",
-	},
+	-- {
+	-- 	"nvim-treesitter/nvim-treesitter-context",
+	-- 	lazy = true,
+	-- 	event = "BufReadPre",
+	-- },
 	{
 		"aaronik/treewalker.nvim",
-    event = "BufReadPre",
+		lazy = true,
+		event = "BufReadPre",
 		opts = {
 			highlight = true,
-			highlight_duration = 250,
+			highlight_duration = 100,
 			highlight_group = "WinSeparator",
 		},
 	},

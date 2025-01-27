@@ -41,11 +41,13 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
-outer.top = 38
-outer.bottom = 6
+outer.top = 30
+outer.bottom = 2
 outer.left = 6
 outer.right = 6
 
+# TODO: check out https://github.com/mehd-io/dotfiles/blob/aerospace-sketchybar/sketchybar/plugins/update_workspace_icons.sh
+# exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE && ~/.config/sketchybar/plugins/update_workspace_icons.sh']
 
 # keybindings #
 
@@ -261,7 +263,7 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### Floating
+### Don't manage these
 [[on-window-detected]]
 if.app-name-regex-substring = 'System Settings'
 run = ['layout floating']
@@ -276,6 +278,10 @@ run = ['layout floating']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'preview'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Raycast'
 run = ['layout floating']
 
 ### Default to 5

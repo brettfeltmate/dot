@@ -8,15 +8,24 @@ vim.g.slime_cell_delimiter = "```"
 vim.keymap.set("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
 vim.keymap.set("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
 vim.keymap.set({ "n" }, "<localleader>r", "<cmd>SlimeSend1 r<cr>", { buffer = 0, noremap = true, desc = "Start REPL" })
-vim.keymap.set({ "n" }, "<localleader>Q", "<cmd>SlimeSend1 quit()<cr>", { buffer = 0, noremap = true, desc = "Quit REPL" })
-vim.keymap.set({"n"}, "<localleader>c", "<cmd>SlimeSend1 rm(list=ls())<cr>", { buffer = 0, noremap = true, desc = "Clear environment" })
+vim.keymap.set({ "n" }, "<localleader>q", "<cmd>SlimeSend1 q<cr>", { buffer = 0, noremap = true, desc = "q" })
+vim.keymap.set(
+	{ "n" },
+	"<localleader>Q",
+	"<cmd>SlimeSend1 quit()<cr>",
+	{ buffer = 0, noremap = true, desc = "Quit REPL" }
+)
+vim.keymap.set(
+	{ "n" },
+	"<localleader>c",
+	"<cmd>SlimeSend1 rm(list=ls())<cr>",
+	{ buffer = 0, noremap = true, desc = "Clear environment" }
+)
 
--- #FIX: sends ^C resultng in 'invalid token in ""'
--- vim.keymap.set({ "n" }, "<localleader>c", "<cmd>SlimeSend1 \003<cr>", { buffer = 0, noremap = true, desc = "Emit C-c" })
 
 -- NOTE:
 -- I have iTerm keybound floating profile that monitors and redraws
--- .last_plot when over/re-writ
+-- .last_plot on file update
 vim.keymap.set(
 	"n",
 	"<localleader>p",
@@ -71,10 +80,46 @@ vim.keymap.set("i", "<M-b>", " %between% ", { buffer = 0 })
 vim.cmd([[
   iabbrev <buffer> true TRUE
   iabbrev <buffer> True TRUE
+  iabbrev <buffer> tRue TRUE
+  iabbrev <buffer> trUe TRUE
+  iabbrev <buffer> truE TRUE
+  iabbrev <buffer> TRue TRUE
+  iabbrev <buffer> TrUe TRUE
+  iabbrev <buffer> TruE TRUE
+  iabbrev <buffer> tRUe TRUE
+  iabbrev <buffer> tRuE TRUE
+  iabbrev <buffer> TRuE TRUE
+  iabbrev <buffer> tRUE TRUE
   iabbrev <buffer> false FALSE
   iabbrev <buffer> False FALSE
+  iabbrev <buffer> fAlse FALSE
+  iabbrev <buffer> faLse FALSE
+  iabbrev <buffer> falSe FALSE
+  iabbrev <buffer> falsE FALSE
+  iabbrev <buffer> FAlse FALSE
+  iabbrev <buffer> FaLse FALSE
+  iabbrev <buffer> FalSe FALSE
+  iabbrev <buffer> FalsE FALSE
+  iabbrev <buffer> FALse FALSE
+  iabbrev <buffer> FaLSe FALSE
+  iabbrev <buffer> FaLsE FALSE
+  iabbrev <buffer> FALSe FALSE
+  iabbrev <buffer> FaLSE FALSE
+  iabbrev <buffer> FAlSE FALSE
+  iabbrev <buffer> FAlsE FALSE
+  iabbrev <buffer> fALSE FALSE
   iabbrev <buffer> null NULL
   iabbrev <buffer> Null NULL
+  iabbrev <buffer> nUll NULL
+  iabbrev <buffer> nuLl NULL
+  iabbrev <buffer> nulL NULL
+  iabbrev <buffer> NUll NULL
+  iabbrev <buffer> NuLl NULL
+  iabbrev <buffer> NulL NULL
+  iabbrev <buffer> nULl NULL
+  iabbrev <buffer> NULl NULL
+  iabbrev <buffer> NuLL NULL
+  iabbrev <buffer> nULL NULL
 ]])
 
 -- Indentation
@@ -88,4 +133,3 @@ vim.g.r_indent_ess_compatible = 0
 
 -- Use specific comment headers
 vim.bo.comments = [[:#',:###,:##,:#]]
-

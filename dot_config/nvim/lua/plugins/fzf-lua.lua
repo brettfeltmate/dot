@@ -4,14 +4,12 @@ return {
 	cmd = "FzfLua",
 	dependencies = { "echasnovski/mini.icons", "stevearc/quicker.nvim" },
 	opts = function()
-		local quicker = require("quicker")
+		local border = { " ", "─", " ", " ", " ", " ", " ", " " }
 		local opts = {
 			"borderless-full",
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
-                border = { " ", "─", " ", " ", " ", " ", " ", " " },
-				-- border = "rounded",
-                title_pos = "center",
+				border = border,
 				relative = "editor",
 				row = 1,
 				col = 0,
@@ -20,38 +18,25 @@ return {
 				height = 0.45,
 				treesitter = { enabled = true },
 				preview = {
-                    --
-                    --󰇙
-					border = { " ", "─", " ", " ", " ", " ", " ", "" },
-                    -- border = "rounded",
-					title_pos = "center",
+					border = border,
 					horizontal = "right:65%",
-					vertical = "down:70%",
 					layout = "horizontal",
 				},
 			},
 			files = {
 				file_icons = "mini",
-                git_icons = false,
+				git_icons = false,
 			},
-			keymap = {
-				builtin = {
-					true,
-					["<C-Esc>"] = "hide",
-				},
-			},
-			actions = {
-				files = {
-					true,
-					["alt-q"] = quicker.open,
-				},
+			grep = {
+				git_icons = false,
+				rg_glob = true,
 			},
 		}
 		return opts
 	end,
 	config = function(_, opts)
 		require("fzf-lua").setup(opts)
-        -- make ui_select window height proportional to items returned
+		-- make ui_select window height proportional to items returned
 		require("fzf-lua").register_ui_select(function(_, items)
 			local min_h, max_h = 0.05, 0.20
 			local h = (#items + 4) / vim.o.lines

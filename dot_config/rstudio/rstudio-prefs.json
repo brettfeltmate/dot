@@ -2,7 +2,7 @@
     "initial_working_directory": "~",
     "rainbow_parentheses": true,
     "editor_keybindings": "vim",
-    "font_size_points": 14,
+    "font_size_points": 16,
     "posix_terminal_shell": "zsh",
     "load_workspace": false,
     "relative_line_numbers": true,
@@ -10,7 +10,7 @@
     "indent_guides": "rainbowlines",
     "editor_theme": "base16 Ashes {rsthemes}",
     "text_rendering": "geometricPrecision",
-    "help_font_size_points": 14,
+    "help_font_size_points": 16,
     "save_workspace": "never",
     "jobs_tab_visibility": "shown",
     "source_with_echo": true,
@@ -36,8 +36,8 @@
         "quadrants": [
             "Source",
             "TabSet1",
-            "TabSet2",
-            "Console"
+            "Console",
+            "TabSet2"
         ],
         "tabSet1": [
             "Presentation"
@@ -58,9 +58,10 @@
         ],
         "hiddenTabSet": [],
         "console_left_on_top": false,
-        "console_right_on_top": false,
+        "console_right_on_top": true,
         "additional_source_columns": 0
     },
     "default_open_project_location": "~/projects/r",
-    "toolbar_visible": false
+    "toolbar_visible": false,
+    "show_margin": false
 }

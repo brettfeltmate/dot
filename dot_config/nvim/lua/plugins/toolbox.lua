@@ -44,6 +44,14 @@ return {
 				name = "find projects",
 				execute = "FzfLua files cwd=~/projects",
 			},
+            {
+                name = "find klibs",
+                execute = "FzfLua files cwd=~/projects/python/klibs",
+            },
+            {
+                name = "grep klibs",
+                execute = "FzfLua live_grep cwd=~/projects/python/klibs",
+            },
 			{
 				name = "reload scheme",
 				execute = "lua require('base46').load_all_highlights()",

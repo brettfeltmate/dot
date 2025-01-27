@@ -9,8 +9,8 @@ vim.keymap.set("n", "+", function()
         "",
         "```"
     }
-    vim.api.nvim_buf_set_lines(0, pos[1], pos[1], false, block)
-    vim.api.nvim_win_set_cursor(0, { pos[1] + 2, 0 })
+    vim.api.nvim_buf_set_lines(0, pos[1] - 1, pos[1] - 1, false, block)
+    vim.api.nvim_win_set_cursor(0, { pos[1] + 1, 0 })
 end,
     { buffer = 0, noremap = true, desc = "Insert R code block" }
 )

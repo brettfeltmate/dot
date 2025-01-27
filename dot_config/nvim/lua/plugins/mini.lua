@@ -13,7 +13,6 @@ return {
 		require("mini.misc").setup()
 
 		require("mini.icons").setup({
-			-- Custom icon highlights
 			file = {
 				[".here"] = { glyph = "󰍎", hl = "MiniIconsPurple" },
 				[".rproj"] = { glyph = "󰟔", hl = "MiniIconsCyan" },
@@ -31,50 +30,44 @@ return {
 				out = { glyph = "󱞊", hl = "MiniIconsGrey" },
 			},
 		})
+
 		MiniIcons.mock_nvim_web_devicons()
 
 		local clue = require("mini.clue")
 		require("mini.clue").setup({
-			-- Popup opts
 			window = {
 				delay = 300,
 				config = {
 					border = "rounded",
 					anchor = "SE",
-					width = "auto",
+					width = "auto",  -- Autoscale window to fit clue content
 					row = "auto",
 					col = "auto",
 				},
 			},
 
-			-- Clue opts
 			triggers = {
-				-- Leader triggers
+                -- Leaders
 				{ mode = "n", keys = "<Leader>" },
 				{ mode = "v", keys = "<Leader>" },
 				{ mode = "x", keys = "<Leader>" },
-
-				-- Local Leader triggers
 				{ mode = "n", keys = "<localleader>" },
 				{ mode = "v", keys = "<localleader>" },
 				{ mode = "x", keys = "<localleader>" },
 
-				-- Built-in completion
-				{ mode = "i", keys = "<C-x>" },
-
-				-- `g` key
+				-- g 
 				{ mode = "n", keys = "g" },
 				{ mode = "x", keys = "g" },
 
-				-- `s` key
+				-- Surround
 				{ mode = "n", keys = "s" },
 				{ mode = "x", keys = "s" },
 
-				-- `[]` keys
+				-- Bracketed
 				{ mode = "n", keys = "[" },
 				{ mode = "n", keys = "]" },
 
-				-- `\` key
+				-- Toggles 
 				{ mode = "n", keys = [[\]] },
 
 				-- Marks
@@ -89,10 +82,10 @@ return {
 				{ mode = "i", keys = "<C-r>" },
 				{ mode = "c", keys = "<C-r>" },
 
-				-- Window commands
+				-- Window
 				{ mode = "n", keys = "<C-w>" },
 
-				-- `z` key
+				-- Z
 				{ mode = "n", keys = "z" },
 				{ mode = "x", keys = "z" },
 			},
@@ -107,7 +100,7 @@ return {
 				clue.gen_clues.windows({ submode_resize = true }),
 				clue.gen_clues.z(),
 
-				-- Custom submodes
+				-- Submodes
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
 				{ mode = "n", keys = "<leader>c", desc = "Copilot" },
 				{ mode = "v", keys = "<leader>c", desc = "Copilot" },
@@ -124,15 +117,6 @@ return {
 				{ mode = "n", keys = "<leader>dk", postkeys = "<leader>d", desc = "Step out" },
 				{ mode = "n", keys = "<leader>dj", postkeys = "<leader>d", desc = "Step into" },
 				{ mode = "n", keys = "<leader>dl", postkeys = "<leader>d", desc = "Step over" },
-				{ mode = "n", keys = "<leader>db", postkeys = "<leader>d", desc = "Breakpoint" },
-				{ mode = "n", keys = "<leader>dd", postkeys = "<leader>d", desc = "Start/continue" },
-				{ mode = "n", keys = "<leader>dq", postkeys = "<leader>d", desc = "Quit" },
-				{ mode = "n", keys = "<leader>dr", postkeys = "<leader>d", desc = "Repl" },
-				{ mode = "n", keys = "<leader>dh", postkeys = "<leader>d", desc = "Hover" },
-				{ mode = "n", keys = "<leader>dp", postkeys = "<leader>d", desc = "Preview" },
-				{ mode = "n", keys = "<leader>df", postkeys = "<leader>d", desc = "Frames" },
-				{ mode = "n", keys = "<leader>ds", postkeys = "<leader>d", desc = "Scopes" },
-				{ mode = "n", keys = "<leader>du", postkeys = "<leader>d", desc = "UI" },
 
 				-- Treewalker (Hydra style)
 				{ mode = "n", keys = "<Leader>tj", postkeys = "<Leader>t", desc = "Move down" },

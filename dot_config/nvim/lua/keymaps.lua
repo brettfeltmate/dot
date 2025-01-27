@@ -255,7 +255,7 @@ map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
-map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle()"), "Terminal")
+map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle(nil, { win = { position = 'right', size = 0.3 }})"), "Terminal")
 map({ "n" }, L(",i"), function()
 	local curr_buf = vim.api.nvim_get_current_buf()
 	local is_enabled = vim.diagnostic.is_enabled()
@@ -263,7 +263,7 @@ map({ "n" }, L(",i"), function()
 end, "Inline diagnostics")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
-map({ "n" }, L(",z"), C("ZenMode"), "Zen mode")
+map({ "n" }, L(",z"), C("ZenMode"), "Zen-mode")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require

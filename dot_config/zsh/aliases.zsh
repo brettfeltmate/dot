@@ -7,13 +7,12 @@ alias lt="ls --tree --level 1"
 # quickly traverse upwards
 alias ..="cd '..' "
 alias ...="cd '../..'"
-alias ....="cd '../../..'"
 
+alias nv="nvim"
 alias r="radian"
 alias lg="lazygit"
 alias yy="yazi"
 alias rr="ranger"
-alias olli="ansiweather -a true -p true -s true -h true -H true -s true -u metric -l 'Halifax,CA'"
 alias cat="bat"
 
 # chezmoi shorthands
@@ -31,10 +30,9 @@ alias rig86="rig switch 4.4-x86_64"  # toggling global R version
 alias rig64="rig switch 4.4-arm64"
 
 alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"
-alias moshmini="brosh cogmotorlab@tbd51.wpa.dal.ca"
+alias moshmini="brosh CogMotors-Mac-mini.local"
 
 alias mux="tmux new-session -A -s default"
-alias tms="create_tmux_session"
 alias fab="fabular"
 
 alias icat="imgcat -W 100% -r"
@@ -42,3 +40,6 @@ alias icat="imgcat -W 100% -r"
 # visidata shorthands
 alias vd="visidata --theme=ascii8"
 alias vdkl="vd --filetype=tsv --skip=15 --header=1"
+
+# pyenv
+alias dv="pyenv activate dev"

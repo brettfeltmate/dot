@@ -24,9 +24,15 @@ return {
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
 		opts = {
 			layouts = {
-				{ elements = { { "repl", size = 0.8 }, { "watches", size = 0.2 } }, position = "left", size = 0.2 },
-				{ elements = { "scopes" }, position = "bottom", size = 0.2 },
-				{ elements = { "console" }, position = "right", size = 0.3 },
+				{
+					elements = {
+						{ "watches", size = 0.2 },
+						{ "repl", size = 0.3 },
+						{ "console", size = 0.5 },
+					},
+					position = "right",
+					size = 0.4,
+				},
 			},
 		},
 		config = function(_, opts)

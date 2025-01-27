@@ -10,6 +10,6 @@ return {
 			folds = { open = true, git_hl = false },
 		},
 		indent = { enabled = true, chunk = { enabled = true } },
-        picker = { enabled = true },
+        zen = { enabled = true }
 	},
 }

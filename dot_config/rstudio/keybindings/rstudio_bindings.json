@@ -15,5 +15,7 @@
     "layoutZoomHelp": "Ctrl+Shift+H",
     "layoutZoomSource": "Ctrl+Shift+S",
     "zoomOut": "Cmd+-",
-    "zoomIn": "Cmd+="
+    "zoomIn": "Cmd+=",
+    "goToNextChunk": "] C",
+    "goToPrevChunk": "[ C"
 }
