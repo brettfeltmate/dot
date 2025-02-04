@@ -15,7 +15,7 @@ return {
 				col = 0,
 				backdrop = 99,
 				width = 1,
-				height = 0.45,
+				height = 0.35,
 				treesitter = { enabled = true },
 				preview = {
 					border = border,
@@ -31,6 +31,36 @@ return {
 				git_icons = false,
 				rg_glob = true,
 			},
+			marks = {
+				marks = "%a",
+				-- winopts = {
+				-- 	border = border,
+				-- 	relative = "cursor",
+				-- 	row = 1,
+				-- 	col = 0,
+				-- 	width = 0.2,
+				-- 	height = 0.2,
+				-- 	preview = { hidden = true },
+				-- },
+			},
+            keymap = {
+                builtin = {
+                    true,
+                    ["<C-u>"] = "preview-page-up",
+                    ["<C-d>"] = "preview-page-down",
+                    ["<S-down>"] = nil,
+                    ["<S-up>"] = nil,
+                    ["<M-S-down>"] = nil,
+                    ["<M-S-up>"] = nil,
+                },
+                fzf = {
+                    true,
+                    ["ctrl-u"] = "preview-page-up",
+                    ["ctrl-d"] = "preview-page-down",
+                    ["<S-down>"] = nil,
+                    ["<S-up>"] = nil,
+                }
+            }
 		}
 		return opts
 	end,

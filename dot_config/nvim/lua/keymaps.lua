@@ -30,7 +30,7 @@ map({ "i" }, "<C-f>", C("lua require('readline').kill_word()"), "Kill word forwa
 map({ "i" }, "<C-b>", C("lua require('readline').backward_kill_word()"), "Kill word backward")
 
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
-map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode")
+map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 
 -- Navigating between neovim/tmux splits
 map({ "n" }, "<S-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
@@ -38,10 +38,10 @@ map({ "n" }, "<S-Down>", C("lua require('smart-splits').move_cursor_down()"), "D
 map({ "n" }, "<S-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
 map({ "n" }, "<S-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
 
-map({ "t" }, "<S-Left>", "<C-\\><C-n><C-Up>", "Left")
-map({ "t" }, "<S-Down>", "<C-\\><C-n><C-Down>", "Down")
-map({ "t" }, "<S-Up>", "<C-\\><C-n><C-Up>", "Up")
-map({ "t" }, "<S-Right>", "<C-\\><C-n><C-Right>", "Right")
+map({ "t" }, "<S-Left>", "<C-\\><C-n><S-Up>", "Left", { nowait = true })
+map({ "t" }, "<S-Down>", "<C-\\><C-n><S-Down>", "Down", { nowait = true })
+map({ "t" }, "<S-Up>", "<C-\\><C-n><S-Up>", "Up", { nowait = true })
+map({ "t" }, "<S-Right>", "<C-\\><C-n><S-Right>", "Right", { nowait = true })
 
 map({ "n", "t" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
 map({ "n", "t" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
@@ -51,9 +51,6 @@ map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()")
 -- Multiple cursors
 map({ "n", "x" }, "<A-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "x" }, "<A-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
-
-map({ "n" }, "]n", "/^\\s*\\S/e<cr>:nohl<cr>")
-map({ "n" }, "[n", "?^\\s*\\S?e<cr>:nohl<cr>")
 
 -- Flash.nvim
 map({ "n", "x", "o" }, "<tab>", C("lua require('flash').jump()"))
@@ -70,8 +67,8 @@ map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 -- wtf.nvim
 map({ "n" }, "gw", C("Wtf"), "Explain diagnostic")
 
-map({ "n" }, "[t", C("tabprevious"), "Previous tab")
-map({ "n" }, "]t", C("tabnext"), "Next tab")
+map({ "n" }, "[t", C("tabprevious"), "Previous tab", { noremap = true})
+map({ "n" }, "]t", C("tabnext"), "Next tab", { noremap = true})
 
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
@@ -80,10 +77,27 @@ map({ "n" }, "<M-L>", C("tabnext"), "Next tab")
 map({ "n" }, "<M-X>", C("tabclose"), "Close tab")
 map({ "n" }, "<M-N>", C("tabnew"), "New tab")
 
+map({ "n" }, "s", function()
+	require("substitute").operator()
+end)
+map({ "n" }, "ss", function()
+	require("substitute").line()
+end)
+map({ "n" }, "S", function()
+	require("substitute").eol()
+end)
+map({ "x" }, "s", function()
+	require("substitute").visual()
+end)
+
 -- Leader mappings ==========================================================
 
+map({ "n" }, L("'"), C("FzfLua marks"), "List Marks")
+map({ "n" }, L(";"), C("FzfLua buffers"), "List Buffers")
+
 -- | [B]uffer
-map({ "n" }, L("b "), C("FzfLua buffers"), "Buffers")
+map({ "n" }, L("bl"), C("FzfLua buffers"), "Buffers")
+map({ "n" }, L("bm"), C("FzfLua marks"), "Marks")
 map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Close current")
 map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
 map({ "n" }, L("bg"), C("FzfLua lgrep_curbuf"), "Grep")
@@ -189,10 +203,9 @@ map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
 map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 map({ "n" }, L("g "), C("Neogit"), "Neogit")
-map({ "n" }, L("gg"), C("lua Snacks.lazygit.open()"), "LazyGit")
-map({ "n" }, L("gl"), C("lua Snacks.lazygit.log_file()"), "Browse file commits")
-map({ "n" }, L("gb"), C("lua Snacks.git.blame_line()"), "Blame line")
-map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Search file commits")
+map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits")
+map({ "n" }, L("gl"), C("Neogit log"), "Log")
+map({ "n" }, L("gd"), C("Neogit diff"), "Log")
 
 --| [T]est
 map({ "n" }, L("nt"), function()
@@ -250,20 +263,28 @@ map({ "n" }, L(",s"), function()
 	})
 end, "Spell")
 map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
+map({ "n" }, L(",c"), C("Copilot suggestion toggle_auto_trigger"), "Suggestions")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
 map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
-map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle(nil, { win = { position = 'right', size = 0.3 }})"), "Terminal")
-map({ "n" }, L(",i"), function()
-	local curr_buf = vim.api.nvim_get_current_buf()
-	local is_enabled = vim.diagnostic.is_enabled()
-	vim.diagnostic.enable(not is_enabled, { bfnr = curr_buf })
-end, "Inline diagnostics")
+map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle(nil, { win = { size = 0.25 } })"), "Terminal")
+-- map({ "n" }, L(",i"), function()
+-- 	local curr_buf = vim.api.nvim_get_current_buf()
+-- 	local is_enabled = vim.diagnostic.is_enabled()
+-- 	vim.diagnostic.enable(not is_enabled, { bfnr = curr_buf })
+-- end, "Inline diagnostics")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
 map({ "n" }, L(",z"), C("ZenMode"), "Zen-mode")
+map({ "n" }, L(",i"), function()
+	vim.diagnostic.config({
+		virtual_lines = not vim.diagnostic.config().virtual_lines,
+		virtual_text = not vim.diagnostic.config().virtual_text,
+	})
+end, "Inline diagnostics")
+map({ "n", "v" }, L(",g"), C("GrugFar"), "GrugFar")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
