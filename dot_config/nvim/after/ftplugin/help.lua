@@ -1,4 +1,4 @@
-vim.cmd("setlocal nu rnu")
+vim.cmd("setlocal nonu nornu")
 vim.cmd("setlocal signcolumn=no")
 
 -- Enable 'mini.clue' triggers in help buffer

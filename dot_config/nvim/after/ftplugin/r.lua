@@ -1,9 +1,3 @@
--- Slime settings
-vim.g.slime_bracketed_paste = 1
-vim.g.slime_preserve_curpos = 0
-vim.g.slime_default_config = { socket_name = "default", target_pane = ":.2" }
-vim.g.slime_cell_delimiter = "```"
-
 -- Slime bindings
 vim.keymap.set("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
 vim.keymap.set("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
@@ -33,7 +27,7 @@ vim.keymap.set(
 		.. "ggplot2::ggsave("
 		.. "file = '.last_plot.png',"
 		.. "path = '~/',"
-		.. "width = 9,"
+		.. "width = 12,"
 		.. "height = 8,"
 		.. "units = 'in',"
 		.. "dpi = 'retina'"
