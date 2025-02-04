@@ -1,7 +1,7 @@
 # Aerospace config #
 
 # Don't set to true if Aerospace is already a login app; gets buggy.
-start-at-login = false
+start-at-login = true
 
 # Ensure sbar & borders are running
 after-startup-command = [
@@ -182,7 +182,7 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 
 ### 2: Email & calendar
 [[on-window-detected]]
-if.app-name-regex-substring = 'spark'
+if.app-name-regex-substring = 'Spark Mail'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
