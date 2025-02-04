@@ -13,7 +13,6 @@
     "help_font_size_points": 16,
     "save_workspace": "never",
     "jobs_tab_visibility": "shown",
-    "source_with_echo": true,
     "graphics_antialiasing": "subpixel",
     "highlight_selected_line": true,
     "scroll_past_end_of_document": true,
