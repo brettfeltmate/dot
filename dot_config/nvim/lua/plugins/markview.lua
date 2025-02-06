@@ -2,7 +2,7 @@
 return {
 	"OXY2DEV/markview.nvim",
 	lazy = true,
-	ft = { "markdown", "rmarkdown", "rmd", "quarto", "copilot-*" },
+	ft = { "markdown", "rmarkdown", "rmd", "quarto", "copilot-*", "avante" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",
@@ -11,18 +11,19 @@ return {
 		local presets = require("markview.presets")
 
 		require("markview").setup({
-			modes = { "n", "i", "no", "c" },
-			hybrid_modes = { "i" },
-			headings = presets.headings.glow,
-			checkboxes = presets.checkboxes.nerd,
-			horizontal_rules = presets.horizontal_rules.dotted,
-			html = { enable = true },
-			code_blocks = {
-				icons = "mini",
-				style = "language",
-				language_direction = "right",
-				pad_amount = 0,
-				min_width = 80,
+			preview = {
+				filetypes = { "md", "rmd", "quarto", "codecompanion" },
+				modes = { "n", "no", "c", "v", "i" },
+				hybrid_modes = { "v", "i" },
+				icon_provider = "mini",
+			},
+			markdown = {
+				horizontal_rules = presets.horizontal_rules.double,
+				tables = presets.tables.rounded,
+				code_blocks = {
+					min_width = 80,
+					pad_amount = 0,
+				},
 			},
 		})
 	end,

@@ -12,6 +12,7 @@ return {
 		},
 		{ "bilal2453/luvit-meta", lazy = true },
 		{ "Kaiser-Yang/blink-cmp-dictionary", lazy = true },
+		{ "mikavilpas/blink-ripgrep.nvim", lazy = true },
 	},
 	opts = function(_, opts)
 		opts.completion = {
@@ -41,27 +42,70 @@ return {
 		}
 
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lsp", "path", "buffer", "dictionary" },
+			default = {
+				"lsp",
+				"buffer",
+				"ripgrep",
+				"path",
+				"dictionary",
+				"avante_commands",
+				"avante_mentions",
+				"avante_files",
+			},
 			providers = {
+                avante_mentions = {
+                    name = "avante_mentions",
+                    module = "blink.compat.source",
+                    score_offset = 110,
+                    opts = {},
+                },
+                avante_files = {
+                    name = "avante_files",
+                    module = "blink.compat.source",
+                    score_offset = 100,
+                    opts = {},
+                },
+                avante_commands = {
+                    name = "avante_commands",
+                    module = "blink.compat.source",
+                    score_offset = 90,
+                    opts = {},
+                },
 				lsp = {
 					name = "lsp",
 					enabled = true,
 					module = "blink.cmp.sources.lsp",
 					fallbacks = { "buffer" },
-					score_offset = 90, -- the higher the number, the higher the priority
+					score_offset = 80, -- the higher the number, the higher the priority
 				},
 				lazydev = {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
-					score_offset = 80,
+					score_offset = 70,
 					enabled = true,
 					max_items = 3,
 					min_keyword_length = 4,
 				},
+                ripgrep = {
+                    module = "blink-ripgrep",
+                    name = "Ripgrep",
+                    opts = {
+                        project_root_marker = { ".git", ".rproj", ".here" },
+                    },
+                    score_offset = 60,
+                },
+                buffer = {
+                    name = "Buffer",
+                    enabled = true,
+                    max_items = 3,
+                    module = "blink.cmp.sources.buffer",
+                    min_keyword_length = 3,
+                    score_offset = 50,
+                },
 				path = {
 					name = "Path",
 					module = "blink.cmp.sources.path",
-					score_offset = 25,
+					score_offset = 40,
 					fallbacks = { "buffer" },
 					opts = {
 						trailing_slash = false,
@@ -72,20 +116,12 @@ return {
 						show_hidden_files_by_default = true,
 					},
 				},
-				buffer = {
-					name = "Buffer",
-					enabled = true,
-					max_items = 3,
-					module = "blink.cmp.sources.buffer",
-					min_keyword_length = 4,
-					score_offset = 15,
-				},
 				-- In macOS to get started with a dictionary:
 				-- cp /usr/share/dict/words ~/.config/dictionary
 				dictionary = {
 					module = "blink-cmp-dictionary",
 					name = "Dict",
-					score_offset = 20,
+					score_offset = 30,
 					enabled = true,
 					max_items = 8,
 					min_keyword_length = 3,

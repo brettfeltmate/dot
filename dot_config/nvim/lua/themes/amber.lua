@@ -1,4 +1,5 @@
 local generate_color = require("base46.colors").change_hex_lightness
+local mix_color = require("base46.colors").mix
 
 local M = {}
 local base16 = {
@@ -61,8 +62,8 @@ local polish_hl = {
 		Removed = { fg = base30.baby_pink },
 		Changed = { fg = base30.purple },
 
-		WinBar = { bg = "NONE" },
-		WinBarNC = { bg = "NONE" },
+		WinBar = { bg = generate_color(base16.base03, -18) },
+		WinBarNC = { bg = generate_color(base16.base03, -18) },
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg },
 		PmenuSbar = { bg = base30.one_bg },
@@ -99,7 +100,7 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = generate_color(base16.base09, -47) },
+		CursorLine = { bg = generate_color(base30.white, -58) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -159,6 +160,10 @@ local polish_hl = {
 		LazyProgressDone = { fg = base30.green },
 	},
 	neogit = {
+		NeogitCommitViewHeader = {
+			bg = generate_color(base30.purple, -60),
+			fg = base30.white,
+		},
 		NeogitDiffContext = {
 			bg = generate_color(base30.black, -10),
 		},
@@ -189,23 +194,23 @@ local polish_hl = {
 			bg = generate_color(base30.green, -47),
 		},
 		NeogitDiffAddHighlight = {
-			fg = generate_color(base30.green, 15),
-			bg = generate_color(base30.green, -40),
+			fg = mix_color(base30.green, "#FFFFFF", 50),
+			bg = generate_color(base30.green, -42),
 		},
 		NeogitDiffAddCursor = {
-			fg = generate_color(base30.green, 15),
-			bg = generate_color(base30.green, -40),
+			fg = generate_color(base30.white, 10),
+			bg = generate_color(base30.green, -42),
 		},
 		NeogitDiffDelete = {
 			fg = generate_color(base30.red, -10),
 			bg = generate_color(base30.red, -70),
 		},
 		NeogitDiffDeleteHighlight = {
-			fg = base30.red,
+			fg = mix_color(base30.red, "#FFFFFF", 20),
 			bg = generate_color(base30.red, -60),
 		},
 		NeogitDiffDeleteCursor = {
-			fg = base30.red,
+			fg = generate_color(base30.white, 10),
 			bg = generate_color(base30.red, -60),
 		},
 	},
@@ -265,13 +270,12 @@ local polish_hl = {
 	},
 
 	markview = {
-		["@markup.heading.1.markdown"] = { fg = base16.base07 },
-		["@markup.heading.2.markdown"] = { fg = base16.base0E },
-		["@markup.heading.3.markdown"] = { fg = base16.base08 },
-		["@markup.heading.4.markdown"] = { fg = base16.base0A },
-		["@markup.heading.5.markdown"] = { fg = base16.base0D },
-		["@markup.heading.6.markdown"] = { fg = base16.base09 },
-		["@MarkviewCode"] = { bg = base30.lightbg },
+		["@markup.heading.1.markdown"] = { fg = generate_color(base16.base03, 20) },
+		["@markup.heading.2.markdown"] = { fg = base16.base04 },
+		["@markup.heading.3.markdown"] = { fg = base16.base0F },
+		["@markup.heading.4.markdown"] = { fg = base16.base08 },
+		["@markup.heading.5.markdown"] = { fg = base16.base07 },
+		["@markup.heading.6.markdown"] = { fg = base16.base05 },
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },
@@ -322,10 +326,10 @@ local polish_hl = {
 		["@function.method.call"] = { fg = base16.base0D },
 		["@constructor"] = { fg = base16.base0C },
 
-		["@operator"] = { fg = generate_color(base16.base06, 5) },
+		["@operator"] = { fg = mix_color(base16.base0B, "#FFFFFF", 5) },
 		["@reference"] = { fg = base16.base05 },
-		["@punctuation.bracket"] = { fg = base16.base06 },
-		["@punctuation.delimiter"] = { fg = base16.base09 },
+		["@punctuation.bracket"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
+		["@punctuation.delimiter"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
 		["@symbol"] = { fg = base16.base0B },
 		["@tag"] = { fg = base16.base0A },
 		["@tag.attribute"] = { fg = base16.base08 },
