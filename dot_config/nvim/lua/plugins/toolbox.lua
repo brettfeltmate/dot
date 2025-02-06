@@ -44,14 +44,14 @@ return {
 				name = "find projects",
 				execute = "FzfLua files cwd=~/projects",
 			},
-            {
-                name = "find klibs",
-                execute = "FzfLua files cwd=~/projects/python/klibs",
-            },
-            {
-                name = "grep klibs",
-                execute = "FzfLua live_grep cwd=~/projects/python/klibs",
-            },
+			{
+				name = "find klibs",
+				execute = "FzfLua files cwd=~/projects/python/klibs",
+			},
+			{
+				name = "grep klibs",
+				execute = "FzfLua live_grep cwd=~/projects/python/klibs",
+			},
 			{
 				name = "reload scheme",
 				execute = "lua require('base46').load_all_highlights()",
@@ -59,6 +59,18 @@ return {
 			{
 				name = "load scheme",
 				execute = "lua require('nvchad.themes').open()",
+			},
+			{
+				name = "find scratch",
+				execute = "lua Snacks.scratch.select()",
+			},
+			{
+				name = "open scratch",
+				execute = "lua Snacks.scratch.open()",
+			},
+			{
+				name = "new scratch",
+				execute = "lua Snacks.scratch()",
 			},
 		},
 	},

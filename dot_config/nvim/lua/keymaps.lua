@@ -14,6 +14,7 @@ local C = function(cmd)
 end
 
 -- Non-leader mappings ===========================================================
+map({ "n" }, "-", C("Oil"), "Files")
 
 -- C-a clashes with my tmux prefix
 map({ "n" }, "<c-v>", "<c-a>")
@@ -67,8 +68,8 @@ map({ "n" }, "<C-n>", "<Plug>(YankyNextEntry)")
 -- wtf.nvim
 map({ "n" }, "gw", C("Wtf"), "Explain diagnostic")
 
-map({ "n" }, "[t", C("tabprevious"), "Previous tab", { noremap = true})
-map({ "n" }, "]t", C("tabnext"), "Next tab", { noremap = true})
+map({ "n" }, "[t", C("tabprevious"), "Previous tab", { noremap = true })
+map({ "n" }, "]t", C("tabnext"), "Next tab", { noremap = true })
 
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Previous buffer")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
@@ -92,6 +93,7 @@ end)
 
 -- Leader mappings ==========================================================
 
+map({ "n" }, L("q"), C("q"), ":q")
 map({ "n" }, L("'"), C("FzfLua marks"), "List Marks")
 map({ "n" }, L(";"), C("FzfLua buffers"), "List Buffers")
 
@@ -249,8 +251,8 @@ map({ "n" }, L("nO"), function()
 end, "Output (tab)")
 
 -- [,] convience mappings
-map({ "n" }, "-", C("Oil"), "Files")
-map({ "n" }, L(",s"), function()
+map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Dashboard")
+map({ "n" }, L(",w"), function()
 	require("fzf-lua").spell_suggest({
 		winopts = {
 			fullscreen = false,
@@ -261,15 +263,19 @@ map({ "n" }, L(",s"), function()
 			width = 0.3,
 		},
 	})
-end, "Spell")
-map({ "n" }, L(",r"), C("lua require('persistence').load()"), "Restore")
-map({ "n" }, L(",c"), C("Copilot suggestion toggle_auto_trigger"), "Suggestions")
+end, "Word")
+map({ "n" }, L(",s"), C("Copilot suggestion toggle_auto_trigger"), "Suggestions")
 map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
-map({ "n" }, L(",b"), C("lua require('toolbox').show_picker()"), "Toolbox")
-map({ "n" }, L(",t"), C("lua Snacks.terminal.toggle(nil, { win = { size = 0.25 } })"), "Terminal")
+map({ "n" }, L(",c"), C("lua require('toolbox').show_picker()"), "Commands")
+map(
+	{ "n" },
+	L(",t"),
+	C("lua Snacks.terminal.toggle(nil, { win = {border = 'single', position='float', width=0.99, height=0.99 } })"),
+	"Terminal"
+)
 -- map({ "n" }, L(",i"), function()
 -- 	local curr_buf = vim.api.nvim_get_current_buf()
 -- 	local is_enabled = vim.diagnostic.is_enabled()

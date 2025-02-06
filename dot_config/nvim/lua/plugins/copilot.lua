@@ -1,3 +1,6 @@
+if true then
+	return {}
+end
 return {
 	"CopilotC-Nvim/CopilotChat.nvim",
 	lazy = true,
@@ -11,7 +14,7 @@ return {
 				panel = { enabled = false },
 				suggestion = {
 					enabled = true,
-					auto_trigger = true,
+					auto_trigger = false,
 					hide_during_completion = true,
 					keymap = {
 						accept = "<M-l>",
@@ -63,7 +66,7 @@ return {
 			row = 0,
 			col = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.6)),
 			title = "Copilot Chat",
-            border = "rounded",
+			border = "rounded",
 		},
 		mappings = {
 			complete = { detail = "Use @<Tab> or /<Tab> for options.", insert = "<Tab>" },

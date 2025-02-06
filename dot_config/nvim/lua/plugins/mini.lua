@@ -7,7 +7,7 @@ return {
 		require("mini.ai").setup()
 		require("mini.bracketed").setup()
 		require("mini.comment").setup()
-		require("mini.surround").setup()
+		-- require("mini.surround").setup()
 		require("mini.basics").setup()
 		require("mini.extra").setup()
 		require("mini.misc").setup()
@@ -101,6 +101,8 @@ return {
 				clue.gen_clues.z(),
 
 				-- Submodes
+                { mode = "n", keys = "<leader>a", desc = "Avante" },
+                { mode = "v", keys = "<leader>a", desc = "Avante" },
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
 				{ mode = "n", keys = "<leader>c", desc = "Copilot" },
 				{ mode = "v", keys = "<leader>c", desc = "Copilot" },

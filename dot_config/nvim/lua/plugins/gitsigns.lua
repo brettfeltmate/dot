@@ -3,8 +3,8 @@ return {
 	event = "BufReadPre",
 	config = function()
 		require("gitsigns").setup({
-			numhl = false,
-			signcolumn = true,
+			numhl = true,
+			signcolumn = false,
 			current_line_blame_opts = {
 				virt_text = true,
 				virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'

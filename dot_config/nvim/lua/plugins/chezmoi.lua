@@ -5,17 +5,27 @@ return {
 	cmd = "ChezFzf",
 	config = function()
 		require("chezmoi").setup({})
+		local borders = { " ", "─", " ", " ", " ", "─", " ", " " }
 		Fzf_Chezmoi = function()
 			require("fzf-lua").fzf_exec(require("chezmoi.commands").list(), {
+
 				file_icons = "mini",
 				fzf_opts = { ["--layout"] = "reverse" },
+
 				winopts = {
-					title = "Chezmoi",
-					title_pos = "left",
+                    title = "Configs",
+					border = borders,
+					relative = "editor",
+					row = 1,
+					col = 0,
+					backdrop = 99,
+					width = 1,
+					height = 0.35,
+					treesitter = { enabled = true },
 					preview = {
-						title_pos = "left",
-						horizontal = "right:70%",
-						vertical = "down:70%",
+                        title = true,
+						border = borders,
+						horizontal = "right:65%",
 						layout = "horizontal",
 					},
 				},

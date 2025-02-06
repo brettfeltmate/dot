@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 return {
 	"folke/flash.nvim",
 	lazy = true,

@@ -5,13 +5,14 @@
 front_app=(
 	label.padding_left=0
 	label.padding_right=12
-	label.font="$FONT:Medium:16.0"
+	label.font="$FONT:Bold:16.0"
 	background.color=$BACKGROUND_1
+    background.border_color="0x99aec7b2"
+    background.border_width=2
 	icon.background.drawing=on
 	display=active
 	script="$PLUGIN_DIR/front_app.sh"
 	click_script="open -a 'Mission Control'"
-    background.border_color=$BLUE
 )
 
 sketchybar --add item front_app left \

@@ -75,7 +75,6 @@ return {
 				"sqlfmt",
 				"stylua",
 				"taplo",
-				"typescript-language-server",
         "vtsls",
 			}
 

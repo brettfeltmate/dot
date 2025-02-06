@@ -4,12 +4,15 @@ return {
 	cmd = "FzfLua",
 	dependencies = { "echasnovski/mini.icons", "stevearc/quicker.nvim" },
 	opts = function()
-		local border = { " ", "─", " ", " ", " ", " ", " ", " " }
+		-- local borders = { "╭", "─", "╮", "│", " ", " ", " ", "│" }
+		local borders = { " ", "─", " ", " ", " ", "─", " ", " " }
+        -- local borders = { " ", "─", " ", " ", " ", " ", " ", " " }
+
 		local opts = {
 			"borderless-full",
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
-				border = border,
+                border = borders,
 				relative = "editor",
 				row = 1,
 				col = 0,
@@ -18,49 +21,32 @@ return {
 				height = 0.35,
 				treesitter = { enabled = true },
 				preview = {
-					border = border,
+                    border = borders,
 					horizontal = "right:65%",
 					layout = "horizontal",
 				},
 			},
-			files = {
-				file_icons = "mini",
-				git_icons = false,
+			files = { file_icons = "mini", git_icons = false },
+			grep = { git_icons = false, rg_glob = true },
+			marks = { marks = "%a" },
+			keymap = {
+				builtin = {
+					true,
+					["<C-u>"] = "preview-page-up",
+					["<C-d>"] = "preview-page-down",
+					["<S-down>"] = nil,
+					["<S-up>"] = nil,
+					["<M-S-down>"] = nil,
+					["<M-S-up>"] = nil,
+				},
+				fzf = {
+					true,
+					["ctrl-u"] = "preview-page-up",
+					["ctrl-d"] = "preview-page-down",
+					["<S-down>"] = nil,
+					["<S-up>"] = nil,
+				},
 			},
-			grep = {
-				git_icons = false,
-				rg_glob = true,
-			},
-			marks = {
-				marks = "%a",
-				-- winopts = {
-				-- 	border = border,
-				-- 	relative = "cursor",
-				-- 	row = 1,
-				-- 	col = 0,
-				-- 	width = 0.2,
-				-- 	height = 0.2,
-				-- 	preview = { hidden = true },
-				-- },
-			},
-            keymap = {
-                builtin = {
-                    true,
-                    ["<C-u>"] = "preview-page-up",
-                    ["<C-d>"] = "preview-page-down",
-                    ["<S-down>"] = nil,
-                    ["<S-up>"] = nil,
-                    ["<M-S-down>"] = nil,
-                    ["<M-S-up>"] = nil,
-                },
-                fzf = {
-                    true,
-                    ["ctrl-u"] = "preview-page-up",
-                    ["ctrl-d"] = "preview-page-down",
-                    ["<S-down>"] = nil,
-                    ["<S-up>"] = nil,
-                }
-            }
 		}
 		return opts
 	end,
