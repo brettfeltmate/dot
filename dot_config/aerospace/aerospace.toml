@@ -178,6 +178,11 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'zen'
+if.window-title-regex-substring = 'Picture-in-Picture'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'zen'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
 ### 2: Email & calendar

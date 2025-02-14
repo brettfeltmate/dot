@@ -20,21 +20,21 @@ vim.keymap.set(
 -- NOTE:
 -- I have iTerm keybound floating profile that monitors and redraws
 -- .last_plot on file update
-vim.keymap.set(
-	"n",
-	"<localleader>p",
-	"<cmd>SlimeSend1 "
-		.. "ggplot2::ggsave("
-		.. "file = '.last_plot.png',"
-		.. "path = '~/',"
-		.. "width = 12,"
-		.. "height = 8,"
-		.. "units = 'in',"
-		.. "dpi = 'retina'"
-		.. ")"
-		.. "<cr>",
-	{ buffer = 0, noremap = true, desc = "Save plot" }
-)
+-- vim.keymap.set(
+-- 	"n",
+-- 	"<localleader>p",
+-- 	"<cmd>SlimeSend1 "
+-- 		.. "ggplot2::ggsave("
+-- 		.. "file = '.last_plot.png',"
+-- 		.. "path = '~/',"
+-- 		.. "width = 12,"
+-- 		.. "height = 8,"
+-- 		.. "units = 'in',"
+-- 		.. "dpi = 'retina'"
+-- 		.. ")"
+-- 		.. "<cr>",
+-- 	{ buffer = 0, noremap = true, desc = "Save plot" }
+-- )
 
 -- Semi-working attempts to shorthanding common interactive functions
 -- haven't quite figured out how best to handle R's $elector

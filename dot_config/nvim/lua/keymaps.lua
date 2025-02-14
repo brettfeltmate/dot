@@ -14,8 +14,56 @@ local C = function(cmd)
 end
 
 -- Non-leader mappings ===========================================================
-map({ "n" }, "-", C("Oil"), "Files")
+vim.g.dim_mode_active = false
 
+map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")
+map({ "n" }, "\\d", function()
+	if vim.g.dim_mode_active then
+		vim.cmd("lua Snacks.dim.disable()")
+		vim.g.dim_mode_active = false
+	else
+		vim.cmd("lua Snacks.dim.enable()")
+		vim.g.dim_mode_active = true
+	end
+end, "Toggle 'dimming'")
+map({ "n" }, "\\S", C("ScrollItToggle"), "Toggle 'scrollit'")
+
+map({ "n" }, "-", C("Oil"), "Files")
+map({ "n" }, "|", C("lua Snacks.picker.explorer()"), "Tree")
+
+map({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+map({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+map({ "n", "x", "o" }, "gs", "<Plug>(leap-from-window)")
+-- Create remote versions of all a/i text objects by inserting `r`
+-- into the middle (`iw` becomes `irw`, etc.).
+-- A trick to avoid having to create separate hardcoded mappings for
+-- each text object: when entering `ar`/`ir`, consume the next
+-- character, and create the input from that character concatenated to
+-- `a`/`i`.
+do
+	local remote_text_object = function(prefix)
+		local ok, ch = pcall(vim.fn.getcharstr) -- pcall for handling <C-c>
+		if not ok or ch == vim.keycode("<esc>") then
+			return
+		end
+		require("leap.remote").action({ input = prefix .. ch })
+	end
+	map({ "x", "o" }, "ar", function()
+		remote_text_object("a")
+	end)
+	map({ "x", "o" }, "ir", function()
+		remote_text_object("i")
+	end)
+end
+map({ "x", "o" }, "aa", function()
+	-- Force linewise selection.
+	local V = vim.fn.mode(true):match("V") and "" or "V"
+	-- In any case, do some movement, to trigger operations in O-p mode.
+	local input = vim.v.count > 1 and (vim.v.count - 1 .. "j") or "hl"
+	-- With `count=false` you can skip feeding count to the command
+	-- automatically (we need -1 here, see above).
+	require("leap.remote").action({ input = V .. input, count = false })
+end)
 -- C-a clashes with my tmux prefix
 map({ "n" }, "<c-v>", "<c-a>")
 
@@ -53,9 +101,6 @@ map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()")
 map({ "n", "x" }, "<A-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 map({ "n", "x" }, "<A-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
 
--- Flash.nvim
-map({ "n", "x", "o" }, "<tab>", C("lua require('flash').jump()"))
-
 -- Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
 map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
@@ -78,50 +123,45 @@ map({ "n" }, "<M-L>", C("tabnext"), "Next tab")
 map({ "n" }, "<M-X>", C("tabclose"), "Close tab")
 map({ "n" }, "<M-N>", C("tabnew"), "New tab")
 
-map({ "n" }, "s", function()
-	require("substitute").operator()
-end)
-map({ "n" }, "ss", function()
-	require("substitute").line()
-end)
-map({ "n" }, "S", function()
-	require("substitute").eol()
-end)
-map({ "x" }, "s", function()
-	require("substitute").visual()
-end)
+-- map({ "n" }, "x", function()
+-- 	require("substitute").operator()
+-- end)
+-- map({ "n" }, "xx", function()
+-- 	require("substitute").line()
+-- end)
+-- map({ "n" }, "X", function()
+-- 	require("substitute").eol()
+-- end)
+-- map({ "x" }, "x", function()
+-- 	require("substitute").visual()
+-- end)
 
 -- Leader mappings ==========================================================
 
 map({ "n" }, L("q"), C("q"), ":q")
 map({ "n" }, L("'"), C("FzfLua marks"), "List Marks")
 map({ "n" }, L(";"), C("FzfLua buffers"), "List Buffers")
+map({ "n" }, L("c"), C("lua require('toolbox').show_picker()"), "Commands")
 
 -- | [B]uffer
 map({ "n" }, L("bl"), C("FzfLua buffers"), "Buffers")
 map({ "n" }, L("bm"), C("FzfLua marks"), "Marks")
-map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Close current")
-map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Close others")
+map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Exit (current)")
+map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Exit (others)")
 map({ "n" }, L("bg"), C("FzfLua lgrep_curbuf"), "Grep")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 
--- | [C]opilot
--- Open chat promp in cmdline
-map({ "n", "v" }, L("cc"), function()
-	local input = vim.fn.input("Quick Chat: ")
-	if input ~= "" then
-		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
-	end
-end, "Quick chat")
+-- TODO: explicitly set avante mappings
 
-map({ "n" }, L("c "), C("CopilotChatToggle"), "Chat")
-map({ "n" }, L("cq"), C("CopilotChatStop"), "Stop")
-map({ "n" }, L("cR"), C("CopilotChatReset"), "Reset")
-map({ "n", "x" }, L("ce"), C("CopilotChatExplain"), "Explain")
-map({ "n", "x" }, L("cf"), C("CopilotChatFix"), "Fix")
-map({ "n", "x" }, L("cd"), C("CopilotChatDocs"), "Document")
-map({ "n", "x" }, L("ct"), C("CopilotChatTests"), "Tests")
-map({ "n", "x" }, L("co"), C("CopilotChatOptimize"), "Optimize")
+map({ "n", "v" }, L("aa"), C("AvanteAsk"), "Ask")
+map({ "n" }, L("ab"), C("AvanteBuild"), "Build")
+map({ "n" }, L("ac"), C("AvanteChat"), "Chat")
+map({ "n", "v" }, L("ae"), C("AvanteAsk"), "Edit")
+map({ "n" }, L("at"), C("AvanteToggle"), "Toggle")
+map({ "n" }, L("af"), C("AvanteFocus"), "Focus")
+map({ "n" }, L("ar"), C("AvanteRefresh"), "Refresh")
+map({ "n" }, L("am"), C("AvanteShowRepoMap"), "Map")
+map({ "n" }, L("aa"), C("AvanteAsk"), "Ask")
 
 -- | [D]AP
 map({ "n" }, L("dk"), function()
@@ -173,7 +213,8 @@ map({ "n" }, L("ds"), function()
 end, "Scopes")
 
 -- | [L]SP
-map({ "n" }, L("li"), C("FzfLua lsp_implementations"), "Implementations")
+map({ "n" }, L("lc"), C("FzfLua lsp_incoming_calls"), "Incoming")
+map({ "n" }, L("lC"), C("FzfLua lsp_outgoing_calls"), "Outgoing")
 map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
 map({ "n" }, L("ld"), C("FzfLua lsp_definitions "), "Definitions")
 map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols (buff)")
@@ -199,6 +240,9 @@ map({ "n" }, L("sW"), C("FzfLua grep_cWORD"), "cWORD")
 map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
 map({ "n" }, L("sq"), C("FzfLua quickfix"), "Quickfix")
 map({ "n" }, L("sl"), C("FzfLua loclist"), "Loclist")
+map({ "n" }, L("su"), C("lua Snacks.picker.undo()"), "Undo")
+map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
+map({ "n" }, L("sz"), C("FzfLua zoxide"), "Zoxide")
 
 -- | [G]it
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
@@ -207,7 +251,7 @@ map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 map({ "n" }, L("g "), C("Neogit"), "Neogit")
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits")
 map({ "n" }, L("gl"), C("Neogit log"), "Log")
-map({ "n" }, L("gd"), C("Neogit diff"), "Log")
+map({ "n" }, L("gd"), C("Neogit diff"), "Diff")
 
 --| [T]est
 map({ "n" }, L("nt"), function()
@@ -265,50 +309,47 @@ map({ "n" }, L(",w"), function()
 	})
 end, "Word")
 map({ "n" }, L(",s"), C("Copilot suggestion toggle_auto_trigger"), "Suggestions")
-map({ "n" }, L(",u"), C("UndotreeToggle"), "UndoTree")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
-map({ "n" }, L(",y"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
-map({ "n" }, L(",c"), C("lua require('toolbox').show_picker()"), "Commands")
-map(
-	{ "n" },
-	L(",t"),
-	C("lua Snacks.terminal.toggle(nil, { win = {border = 'single', position='float', width=0.99, height=0.99 } })"),
-	"Terminal"
-)
--- map({ "n" }, L(",i"), function()
--- 	local curr_buf = vim.api.nvim_get_current_buf()
--- 	local is_enabled = vim.diagnostic.is_enabled()
--- 	vim.diagnostic.enable(not is_enabled, { bfnr = curr_buf })
--- end, "Inline diagnostics")
+map({ "n", "v" }, L(",tj"), C("Treewalker Down"), "Down")
+map({ "n", "v" }, L(",tk"), C("Treewalker Up"), "Up")
+map({ "n", "v" }, L(",th"), C("Treewalker Left"), "Left")
+map({ "n", "v" }, L(",tl"), C("Treewalker Right"), "Right")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
-map({ "n" }, L(",z"), C("ZenMode"), "Zen-mode")
 map({ "n" }, L(",i"), function()
 	vim.diagnostic.config({
 		virtual_lines = not vim.diagnostic.config().virtual_lines,
 		virtual_text = not vim.diagnostic.config().virtual_text,
 	})
 end, "Inline diagnostics")
-map({ "n", "v" }, L(",g"), C("GrugFar"), "GrugFar")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
-local FlipSplit = function()
-	local initial = vim.fn.winnr()
-
-	if vim.fn.winwidth(0) > vim.fn.winheight(0) then
-		vim.cmd("wincmd K")
-	else
-		vim.cmd("wincmd H")
+---Toggles the orientation of the current window split
+---@return nil
+local RotSplit = function()
+	-- Exit early if no splits exist
+	if vim.fn.winnr("$") == 1 then
+		vim.notify("No splits to flip", vim.log.levels.WARN)
+		return
 	end
 
-	local affected = vim.fn.winnr()
+	local initial_win = vim.fn.winnr()
+	local is_horizontal = vim.fn.winwidth(0) > vim.fn.winheight(0)
 
-	if initial == affected then
-		vim.cmd("wincmd H")
-	else
-		vim.cmd("wincmd K")
+	-- Try primary orientation flip
+	vim.cmd("wincmd " .. (is_horizontal and "K" or "H"))
+
+	-- If unsuccessful, try opposite orientation
+	if initial_win == vim.fn.winnr() then
+		vim.cmd("wincmd " .. (is_horizontal and "H" or "K"))
+	end
+
+	-- Recenter both windows
+	local commands = { "wincmd p", "normal! zz", "wincmd p", "normal! zz" }
+	for _, cmd in ipairs(commands) do
+		vim.cmd(cmd)
 	end
 end
 
@@ -323,22 +364,9 @@ function ScrollUnbind()
 		vim.cmd(i .. "windo set scrollbind!")
 	end
 end
-map({ "n" }, L("wf"), FlipSplit, "flip split")
-map({ "n" }, L("wx"), "<C-W>c", "X window", { remap = true })
-map({ "n" }, L("w-"), "<C-W>s", "split up/down", { remap = true })
-map({ "n" }, L("w|"), "<C-W>v", "split left/right", { remap = true })
+map({ "n" }, L("wr"), RotSplit, "Rotate splits (90 deg)")
+map({ "n" }, L("wx"), "<C-W>c", "Exit", { remap = true })
+map({ "n" }, L("w-"), "<C-W>s", "Transverse split", { remap = true })
+map({ "n" }, L("w|"), "<C-W>v", "Sagittal split", { remap = true })
 map({ "n" }, L("ws"), ScrollBind, "scrollbind on")
 map({ "n" }, L("wS"), ScrollUnbind, "scrollbind off")
-map({ "n", "v" }, L("wc"), C("lua require('go-up').centerScreen()"), "Center")
-map({ "n", "v" }, L("wa"), C("lua require('go-up').align()"), "Align")
-
--- | [T]reewalker
-map({ "n", "v" }, L("th"), C("Treewalker Left"), "Move left")
-map({ "n", "v" }, L("tj"), C("Treewalker Down"), "Move down")
-map({ "n", "v" }, L("tk"), C("Treewalker Up"), "Move up")
-map({ "n", "v" }, L("tl"), C("Treewalker Right"), "Move right")
-
-map({ "n" }, L("tH"), C("Treewalker SwapLeft"), "Swap left")
-map({ "n" }, L("tJ"), C("Treewalker SwapDown"), "Swap down")
-map({ "n" }, L("tK"), C("Treewalker SwapUp"), "Swap up")
-map({ "n" }, L("tL"), C("Treewalker SwapRight"), "Swap right")

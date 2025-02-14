@@ -10,6 +10,7 @@ local M = {
             "diffview",
             "flash",
 			"git",
+            "leap",
 			"lsp",
             "markview",
 			"mason",

@@ -12,6 +12,8 @@ return {
 		indent = { enabled = true, chunk = { enabled = true } },
 		terminal = { win = { wo = { winbar = "" } } },
 		scratch = {},
+		picker = { ui_select = false, layout = { preset = "ivy" } },
+        dim = {},
 		dashboard = {
 
 			sections = {
@@ -19,49 +21,36 @@ return {
 				{
 					pane = 2,
 					section = "terminal",
-					cmd = "colorscript -e square",
-					height = 5,
+					cmd = "colorscript -e 24",
+					height = 7,
 					padding = 1,
 				},
 				{
 					gap = 1,
 					padding = 1,
 
-					{ icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-					{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-					{
-						icon = " ",
-						key = "g",
-						desc = "Find Text",
-						action = ":lua Snacks.dashboard.pick('live_grep')",
-					},
-					{
-						icon = " ",
-						key = "r",
-						desc = "Recent Files",
-						action = ":lua Snacks.dashboard.pick('oldfiles')",
-					},
-					{
-						icon = " ",
-						key = "c",
-						desc = "Config",
-						action = ":ChezFzf",
-					},
-					{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
+					{ icon = " ", key = "n", desc = "New", action = ":ene | startinsert" },
+                    { icon = "󰱽 ", key = "f", desc = "Find", action = ":FzfLua files" },
+					{ icon = "󱎸 ", key = "g", desc = "Grep", action = ":FzfLua live_grep" },
+					{ icon = " ", key = "o", desc = "Old", action = ":FzfLua oldfiles" },
+					{ icon = "󰦄 ", key = "d", desc = "Dir", action = ":FzfLua zoxide" },
+					{ icon = " ", key = "c", desc = "Config", action = ":ChezFzf" },
+					{ icon = "󰁯 ", key = "r", desc = "Restore", section = "session" },
 					{
 						icon = "󰒲 ",
-						key = "L",
+						key = "l",
 						desc = "Lazy",
 						action = ":Lazy",
 						enabled = package.loaded.lazy ~= nil,
 					},
-					{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+					{ icon = "󰩈 ", key = "q", desc = "Quit", action = ":qa" },
 				},
-				{ pane = 2, icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-				{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+				{ pane = 2, icon = " ", title = "Recent (cwd)", cwd = true, section = "recent_files", indent = 2, padding = 1, limit = 3 },
+				{ pane = 2, icon = "󰪶 ", title = "Recent (all)", section = "recent_files", indent = 2, padding = 1, limit = 4 },
+				{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1, limit = 3 },
 				{
 					pane = 2,
-					icon = " ",
+					icon = "󰊢 ",
 					title = "Git Status",
 					section = "terminal",
 					enabled = function()

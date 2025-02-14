@@ -1,32 +1,56 @@
+local borders = { " ", "─", " ", " ", " ", "─", " ", " " }
+-- local borders = { "╭", "─", "╮", "│", " ", " ", " ", "│" }
+-- local borders = { " ", "─", " ", " ", " ", " ", " ", " " }
+
 return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
 	cmd = "FzfLua",
 	dependencies = { "echasnovski/mini.icons", "stevearc/quicker.nvim" },
 	opts = function()
-		-- local borders = { "╭", "─", "╮", "│", " ", " ", " ", "│" }
-		local borders = { " ", "─", " ", " ", " ", "─", " ", " " }
-        -- local borders = { " ", "─", " ", " ", " ", " ", " ", " " }
-
 		local opts = {
 			"borderless-full",
 			fzf_opts = { ["--layout"] = "reverse" },
 			winopts = {
-                border = borders,
+				border = borders,
 				relative = "editor",
 				row = 1,
 				col = 0,
-				backdrop = 99,
+				backdrop = 95,
 				width = 1,
-				height = 0.35,
+				height = 0.4,
 				treesitter = { enabled = true },
 				preview = {
-                    border = borders,
+					border = borders,
 					horizontal = "right:65%",
 					layout = "horizontal",
 				},
 			},
-			files = { file_icons = "mini", git_icons = false },
+			builtin = {
+				border = borders,
+				relative = "editor",
+				row = 1,
+				col = 0,
+				backdrop = 95,
+				width = 1,
+				height = 0.4,
+			},
+			files = {
+				file_icons = "mini",
+				git_icons = false,
+				path_shorten = false,
+				formatter = "path.filename_first",
+				hidden = false,
+			},
+			keymaps = {
+				winopts = { preview = { hidden = true } },
+			},
+			oldfiles = {
+				file_icons = "mini",
+				git_icons = false,
+				path_shorten = false,
+				formatter = "path.filename_first",
+			},
 			grep = { git_icons = false, rg_glob = true },
 			marks = { marks = "%a" },
 			keymap = {
@@ -47,6 +71,7 @@ return {
 					["<S-up>"] = nil,
 				},
 			},
+			zoxide = { winopts = { preview = { hidden = true } } },
 		}
 		return opts
 	end,
@@ -64,10 +89,11 @@ return {
 			return {
 				winopts = {
 					height = h,
-					width = 0.2,
+					width = 0.4,
 					col = 0,
 					row = 1,
-					backdrop = 100,
+					backdrop = 95,
+					border = borders,
 				},
 			}
 		end)

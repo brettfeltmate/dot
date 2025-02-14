@@ -36,11 +36,6 @@ return {
       vim.treesitter.language.register("r", "R")
 		end,
 	},
-	-- {
-	-- 	"nvim-treesitter/nvim-treesitter-context",
-	-- 	lazy = true,
-	-- 	event = "BufReadPre",
-	-- },
 	{
 		"aaronik/treewalker.nvim",
 		lazy = true,
@@ -50,6 +45,6 @@ return {
 			highlight_duration = 100,
 			highlight_group = "WinSeparator",
 		},
-	},
+	}
 }
 -- vim: ts=2 sts=2 sw=2 et

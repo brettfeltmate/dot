@@ -10,6 +10,16 @@ return {
 	-- 		require("better-diagnostic-virtual-text").setup(opts)
 	-- 	end,
 	-- },
+	--
+	{
+		"rachartier/tiny-inline-diagnostic.nvim",
+		event = "LspAttach", -- Or `LspAttach`
+		priority = 1000, -- needs to be loaded in first
+		opts = {
+			preset = "classic",
+			options = { break_line = { enabled = true, after = 80 } },
+		},
+	},
 	{
 		"neovim/nvim-lspconfig",
 		event = "VeryLazy",
@@ -21,7 +31,6 @@ return {
 			{ "whoissethdaniel/mason-tool-installer.nvim" },
 		},
 		config = function()
-
 			local servers = {
 				bashls = {},
 				clangd = {},
@@ -34,8 +43,8 @@ return {
 					matlab = {
 						indexWorkspace = true,
 						installPath = "/Applications/MATLAB_R2024b.app",
-            matlabConnectionTiming = "onStart",
-            telemetry = true,
+						matlabConnectionTiming = "onStart",
+						telemetry = true,
 					},
 					root_dir = function(fname)
 						return require("lspconfig.util").find_git_ancestor(fname)
@@ -51,13 +60,13 @@ return {
 				ruff = {},
 				taplo = {},
 				ts_ls = {},
-        vtsls = {},
+				vtsls = {},
 			}
 
 			local ensure_installed = {
 				"bash-language-server",
 				"beautysh",
-				"black",
+        "blue",
 				"clangd",
 				"debugpy",
 				"html-lsp",
@@ -75,7 +84,7 @@ return {
 				"sqlfmt",
 				"stylua",
 				"taplo",
-        "vtsls",
+				"vtsls",
 			}
 
 			require("mason").setup()
@@ -109,7 +118,7 @@ return {
 				json = { "prettier" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				python = { "ruff", "black" },
+				python = { "ruff", "blue" },
 				r = { "rprettify" },
 				rmd = { "rprettify" },
 				markdown = { "prettier" },

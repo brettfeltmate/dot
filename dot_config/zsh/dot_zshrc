@@ -77,3 +77,4 @@ export EZA_GRID_ROWS=10
 export LESS='-R'  # interpret color characters
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 # export LESSCOLORIZER="nvimpager"
+export PATH="$HOME/go/bin:$PATH"

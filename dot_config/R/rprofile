@@ -30,9 +30,16 @@ options(
   rsthemes.theme_favorite = c("Textmate (default)", "base16 Ashes {rsthemes}")
 )
 
+options(httpgd.host = "0.0.0.0", httpgd.port = 8889)
+
 if (interactive()) {
   if (require("data.table", quietly = TRUE)) {
     library(data.table, quietly = TRUE)
+  }
+
+  if (require("httpgd", quietly = TRUE)) {
+    library(httpgd)
+    hgd()
   }
 
   if (require("plotcli", quietly = TRUE)) {

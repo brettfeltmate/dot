@@ -72,6 +72,10 @@ return {
 				name = "new scratch",
 				execute = "lua Snacks.scratch()",
 			},
+            {
+                name = "enable triggers",
+                execute = "lua MiniClue.enable_all_triggers()"
+            },
 		},
 	},
 }

@@ -4,7 +4,7 @@ return {
 	event = "VeryLazy",
 	version = "v0.*",
 	dependencies = {
-		"saghen/blink.compat",
+		{"saghen/blink.compat", lazy = true},
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",

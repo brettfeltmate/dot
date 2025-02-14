@@ -1,7 +1,10 @@
+if true then
+	return {}
+end
 return {
 	"andrewferrier/debugprint.nvim",
-    lazy = true,
-    event = "BufRead",
+	lazy = true,
+	event = "BufRead",
 	opts = function()
 		local counter = 0
 
