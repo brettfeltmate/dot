@@ -6,7 +6,6 @@ start-at-login = true
 # Ensure sbar & borders are running
 after-startup-command = [
     'exec-and-forget sketchybar',
-    'exec-and-forget borders',
 ]
 
 key-mapping.preset = 'qwerty'
@@ -28,7 +27,7 @@ default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
 
 # Postitional offset applied to overlayed windows
-accordion-padding = 10
+accordion-padding = 0
 
 # I think this is so aerospace can find itself; deep
 [exec]
@@ -42,9 +41,9 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 inner.horizontal = 8
 inner.vertical = 8
 outer.top = 30
-outer.bottom = 2
-outer.left = 6
-outer.right = 6
+outer.bottom = 0
+outer.left = 2
+outer.right = 2
 
 # TODO: check out https://github.com/mehd-io/dotfiles/blob/aerospace-sketchybar/sketchybar/plugins/update_workspace_icons.sh
 # exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE && ~/.config/sketchybar/plugins/update_workspace_icons.sh']
@@ -164,11 +163,15 @@ if.app-name-regex-substring = 'terminal'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'kitty'
+run = ['layout tiling', 'move-node-to-workspace 0']
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'console'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Ghostty'
+if.app-name-regex-substring = 'ghostty'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
 ### 1: Browser
@@ -228,9 +231,13 @@ run = ['move-node-to-workspace 3']
 if.app-name-regex-substring = 'calendar'
 run = ['move-node-to-workspace 4']
 
-### 6: RStudio
+### 6: Sort-of-common apps
 [[on-window-detected]]
 if.app-name-regex-substring = 'RStudio'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Obsidian'
 run = ['move-node-to-workspace 6']
 
 ### 7: Video calls

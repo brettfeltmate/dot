@@ -7,7 +7,7 @@ return {
 	},
 	config = function()
 		require("helpview").setup({
-			modes = { "n", "i", "no", "c" },
+			preview = { modes = { "n", "i", "no", "c" } },
 		})
 	end,
 }

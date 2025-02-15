@@ -3,6 +3,7 @@ return {
 	lazy = true,
 	dependencies = { "ibhagwan/fzf-lua" },
 	opts = {
+        -- TODO: make use of weight property
 		commands = {
 			{
 				name = "find local",
@@ -76,6 +77,64 @@ return {
                 name = "enable triggers",
                 execute = "lua MiniClue.enable_all_triggers()"
             },
+            {
+                name = "open note",
+                execute = "ObsidianOpen",
+                input = true
+            },
+            {
+                name = "new note",
+                execute = "ObsidianNew",
+                input = true
+            },
+            {
+                name = "search notes",
+                execute = "ObsidianSearch",
+                input = true
+            },
+            {
+                name = "search links",
+                execute = "ObsidianLink",
+                input = true
+            },
+            {
+                name  = "new link",
+                execute = "ObsidianLinkNew",
+                input = true
+            },
+            {
+                name = "rename note",
+                execute = "ObsidianRename",
+                input = true
+            },
+            {
+                name = "search tags",
+                execute = "ObsidianTags",
+                input = true
+            },
+            {
+                name = "new daily",
+                execute = "ObsidianToday",
+            },
+            {
+                name = "search dailies",
+                execute = "ObsidianDailies",
+            },
+            {
+                name = "note templates",
+                execute = "ObsidianTemplate",
+                input = true,
+            },
+            {
+                name = "note from template",
+                execute = "ObsidianNewFromTemplate",
+                input = true,
+            },
+            {
+                name = "note toc",
+                execute = "ObsidianTOC",
+            },
+
 		},
 	},
 }
