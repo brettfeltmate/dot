@@ -4,7 +4,7 @@ return {
 	event = "VeryLazy",
 	version = "v0.*",
 	dependencies = {
-		{"saghen/blink.compat", lazy = true},
+		{ "saghen/blink.compat", lazy = true },
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
@@ -53,24 +53,24 @@ return {
 				"avante_files",
 			},
 			providers = {
-                avante_mentions = {
-                    name = "avante_mentions",
-                    module = "blink.compat.source",
-                    score_offset = 110,
-                    opts = {},
-                },
-                avante_files = {
-                    name = "avante_files",
-                    module = "blink.compat.source",
-                    score_offset = 100,
-                    opts = {},
-                },
-                avante_commands = {
-                    name = "avante_commands",
-                    module = "blink.compat.source",
-                    score_offset = 90,
-                    opts = {},
-                },
+				avante_mentions = {
+					name = "avante_mentions",
+					module = "blink.compat.source",
+					score_offset = 110,
+					opts = {},
+				},
+				avante_files = {
+					name = "avante_files",
+					module = "blink.compat.source",
+					score_offset = 100,
+					opts = {},
+				},
+				avante_commands = {
+					name = "avante_commands",
+					module = "blink.compat.source",
+					score_offset = 90,
+					opts = {},
+				},
 				lsp = {
 					name = "lsp",
 					enabled = true,
@@ -86,22 +86,22 @@ return {
 					max_items = 3,
 					min_keyword_length = 4,
 				},
-                ripgrep = {
-                    module = "blink-ripgrep",
-                    name = "Ripgrep",
-                    opts = {
-                        project_root_marker = { ".git", ".rproj", ".here" },
-                    },
-                    score_offset = 60,
-                },
-                buffer = {
-                    name = "Buffer",
-                    enabled = true,
-                    max_items = 3,
-                    module = "blink.cmp.sources.buffer",
-                    min_keyword_length = 3,
-                    score_offset = 50,
-                },
+				ripgrep = {
+					module = "blink-ripgrep",
+					name = "Ripgrep",
+					opts = {
+						project_root_marker = { ".git", ".rproj", ".here" },
+					},
+					score_offset = 60,
+				},
+				buffer = {
+					name = "Buffer",
+					enabled = true,
+					max_items = 3,
+					module = "blink.cmp.sources.buffer",
+					min_keyword_length = 3,
+					score_offset = 50,
+				},
 				path = {
 					name = "Path",
 					module = "blink.cmp.sources.path",
@@ -151,7 +151,9 @@ return {
 			},
 			-- command line completion, thanks to dpetka2001 in reddit
 			-- https://www.reddit.com/r/neovim/comments/1hjjf21/comment/m37fe4d/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
-			cmdline = function()
+		})
+		opts.cmdline = {
+			sources = function()
 				local type = vim.fn.getcmdtype()
 				if type == "/" or type == "?" then
 					return { "buffer" }
@@ -161,8 +163,7 @@ return {
 				end
 				return {}
 			end,
-		})
-
+		}
 		opts.keymap = {
 			preset = "default",
 			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
