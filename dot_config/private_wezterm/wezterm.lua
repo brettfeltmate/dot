@@ -46,7 +46,7 @@ end
 
 local config = {}
 
-config.term = "wezterm"
+config.term = "xterm-256color"
 
 config.colors = {
 	foreground = "#c3b7ad",
