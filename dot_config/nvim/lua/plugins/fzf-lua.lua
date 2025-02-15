@@ -71,7 +71,20 @@ return {
 					["<S-up>"] = nil,
 				},
 			},
-			zoxide = { winopts = { preview = { hidden = true } } },
+			zoxide = {
+				fzf_opts = {
+					["--no-multi"] = true,
+					["--delimiter"] = "[\t]",
+					["--tabstop"] = "4",
+                    ["--tiebreak"] = "index", -- prefer index over search term
+					["--nth"] = "2..",
+				},
+				winopts = {
+					preview = {
+						hidden = true,
+					},
+				},
+			},
 		}
 		return opts
 	end,
