@@ -30,7 +30,7 @@ options(
   rsthemes.theme_favorite = c("Textmate (default)", "base16 Ashes {rsthemes}")
 )
 
-options(httpgd.host = "0.0.0.0", httpgd.port = 8889)
+options(httpgd.host = "0.0.0.0", httpgd.port = 8899)
 
 if (interactive()) {
   if (require("data.table", quietly = TRUE)) {
@@ -39,7 +39,8 @@ if (interactive()) {
 
   if (require("httpgd", quietly = TRUE)) {
     library(httpgd)
-    hgd()
+    print("hgd() to start httpgd server")
+    print("hgd_browse() to open viewer")
   }
 
   if (require("plotcli", quietly = TRUE)) {
@@ -92,18 +93,3 @@ if (interactive()) {
     }
   }
 }
-
-# LanguageServer Setup Start (do not change this chunk)
-# to remove this, run languageserversetup::remove_from_rprofile
-# if (requireNamespace("languageserversetup", quietly = TRUE)) {
-#   options(langserver_library = "/Users/brettfeltmate/languageserver-library")
-#   languageserversetup::languageserver_startup()
-#   unloadNamespace("languageserversetup")
-# }
-# LanguageServer Setup End
-
-# Disable completion from the language server
-# options(
-#     languageserver.server_capabilities =
-#     list(completionProvider = FALSE, completionItemResolve = FALSE)
-# )

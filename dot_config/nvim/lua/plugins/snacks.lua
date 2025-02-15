@@ -1,7 +1,5 @@
 return {
 	"folke/snacks.nvim",
-	lazy = true,
-	event = "VeryLazy",
 	opts = {
 		statuscolumn = {
 			enabled = true,
@@ -9,11 +7,13 @@ return {
 			left = { "mark", "sign", "fold" },
 			folds = { open = true, git_hl = false },
 		},
+		image = { enabled = true },
+		input = { enabled = true },
 		indent = { enabled = true, chunk = { enabled = true } },
 		terminal = { win = { wo = { winbar = "" } } },
 		scratch = {},
 		picker = { ui_select = false, layout = { preset = "ivy" } },
-        dim = {},
+		dim = {},
 		dashboard = {
 
 			sections = {
@@ -30,7 +30,7 @@ return {
 					padding = 1,
 
 					{ icon = " ", key = "n", desc = "New", action = ":ene | startinsert" },
-                    { icon = "󰱽 ", key = "f", desc = "Find", action = ":FzfLua files" },
+					{ icon = "󰱽 ", key = "f", desc = "Find", action = ":FzfLua files" },
 					{ icon = "󱎸 ", key = "g", desc = "Grep", action = ":FzfLua live_grep" },
 					{ icon = " ", key = "o", desc = "Old", action = ":FzfLua oldfiles" },
 					{ icon = "󰦄 ", key = "d", desc = "Dir", action = ":FzfLua zoxide" },
@@ -45,9 +45,34 @@ return {
 					},
 					{ icon = "󰩈 ", key = "q", desc = "Quit", action = ":qa" },
 				},
-				{ pane = 2, icon = " ", title = "Recent (cwd)", cwd = true, section = "recent_files", indent = 2, padding = 1, limit = 3 },
-				{ pane = 2, icon = "󰪶 ", title = "Recent (all)", section = "recent_files", indent = 2, padding = 1, limit = 4 },
-				{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1, limit = 3 },
+				{
+					pane = 2,
+					icon = " ",
+					title = "Recent (cwd)",
+					cwd = true,
+					section = "recent_files",
+					indent = 2,
+					padding = 1,
+					limit = 3,
+				},
+				{
+					pane = 2,
+					icon = "󰪶 ",
+					title = "Recent (all)",
+					section = "recent_files",
+					indent = 2,
+					padding = 1,
+					limit = 4,
+				},
+				{
+					pane = 2,
+					icon = " ",
+					title = "Projects",
+					section = "projects",
+					indent = 2,
+					padding = 1,
+					limit = 3,
+				},
 				{
 					pane = 2,
 					icon = "󰊢 ",

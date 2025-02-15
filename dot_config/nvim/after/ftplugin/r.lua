@@ -16,7 +16,6 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "Clear environment" }
 )
 
-
 -- NOTE:
 -- I have iTerm keybound floating profile that monitors and redraws
 -- .last_plot on file update
@@ -69,6 +68,13 @@ vim.keymap.set("i", "<M-m>", " %>% ", { buffer = 0 })
 vim.keymap.set("i", "<M-e>", " %$% ", { buffer = 0 })
 vim.keymap.set("i", "<M-i>", " %in% ", { buffer = 0 })
 vim.keymap.set("i", "<M-b>", " %between% ", { buffer = 0 })
+
+-- Open oil as float in img dir, w/ preview
+local function oil_images()
+	require("oil").open(vim.fn.getcwd() .. "/out/fig/", { preview = { horizontal = true } })
+end
+
+vim.keymap.set("n", "_", oil_images, { buffer = 0, noremap = true, desc = "/imgs/" })
 
 -- Auto-correct
 vim.cmd([[

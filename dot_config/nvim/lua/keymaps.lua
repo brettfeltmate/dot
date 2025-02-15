@@ -243,6 +243,14 @@ map({ "n" }, L("sl"), C("FzfLua loclist"), "Loclist")
 map({ "n" }, L("su"), C("lua Snacks.picker.undo()"), "Undo")
 map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
 map({ "n" }, L("sz"), C("FzfLua zoxide"), "Zoxide")
+map({ "n" }, L("si"), function()
+	Snacks.picker.smart({
+		source = "files",
+		patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif" },
+		layout = { title = "images", preset = "sidebar" },
+		matcher = { cwd_bonus = true },
+	})
+end, "Images")
 
 -- | [G]it
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
@@ -294,7 +302,9 @@ map({ "n" }, L("nO"), function()
 	})
 end, "Output (tab)")
 
+
 -- [,] convience mappings
+
 map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Dashboard")
 map({ "n" }, L(",w"), function()
 	require("fzf-lua").spell_suggest({
@@ -323,6 +333,20 @@ map({ "n" }, L(",i"), function()
 		virtual_text = not vim.diagnostic.config().virtual_text,
 	})
 end, "Inline diagnostics")
+map({ "n" }, L(",N"), function()
+	require("snacks").win({
+		file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
+		width = 0.6,
+		height = 0.6,
+		wo = {
+			spell = false,
+			wrap = false,
+			signcolumn = "yes",
+			statuscolumn = " ",
+			conceallevel = 3,
+		},
+	})
+end, "News")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
