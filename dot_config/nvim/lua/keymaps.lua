@@ -156,12 +156,10 @@ map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
 map({ "n", "v" }, L("aa"), C("AvanteAsk"), "Ask")
 map({ "n" }, L("ab"), C("AvanteBuild"), "Build")
 map({ "n" }, L("ac"), C("AvanteChat"), "Chat")
-map({ "n", "v" }, L("ae"), C("AvanteAsk"), "Edit")
 map({ "n" }, L("at"), C("AvanteToggle"), "Toggle")
 map({ "n" }, L("af"), C("AvanteFocus"), "Focus")
 map({ "n" }, L("ar"), C("AvanteRefresh"), "Refresh")
 map({ "n" }, L("am"), C("AvanteShowRepoMap"), "Map")
-map({ "n" }, L("aa"), C("AvanteAsk"), "Ask")
 
 -- | [D]AP
 map({ "n" }, L("dk"), function()
@@ -213,15 +211,10 @@ map({ "n" }, L("ds"), function()
 end, "Scopes")
 
 -- | [L]SP
-map({ "n" }, L("lc"), C("FzfLua lsp_incoming_calls"), "Incoming")
-map({ "n" }, L("lC"), C("FzfLua lsp_outgoing_calls"), "Outgoing")
 map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
 map({ "n" }, L("ld"), C("FzfLua lsp_definitions "), "Definitions")
 map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols (buff)")
-map({ "n" }, L("lS"), C("FzfLua lsp_workspace_symbols"), "Symbols (space)")
-map({ "n" }, L("ll"), C("FzfLua lsp_live_workspace_symbols"), "Symbols (live)")
 map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics (buff)")
-map({ "n" }, L("lX"), C("FzfLua diagnostics_workspace"), "Diagnostics (space)")
 
 -- | [s]earch
 map({ "n" }, L("sc"), C("ChezFzf"), "Config")
@@ -236,13 +229,9 @@ end, "Grep help")
 map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
 map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
 map({ "n" }, L("sw"), C("FzfLua grep_cword"), "cword")
-map({ "n" }, L("sW"), C("FzfLua grep_cWORD"), "cWORD")
 map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
-map({ "n" }, L("sq"), C("FzfLua quickfix"), "Quickfix")
-map({ "n" }, L("sl"), C("FzfLua loclist"), "Loclist")
 map({ "n" }, L("su"), C("lua Snacks.picker.undo()"), "Undo")
 map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
-map({ "n" }, L("sz"), C("FzfLua zoxide"), "Zoxide")
 map({ "n" }, L("si"), function()
 	Snacks.picker.smart({
 		source = "files",
@@ -258,26 +247,12 @@ map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 map({ "n" }, L("g "), C("Neogit"), "Neogit")
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits")
-map({ "n" }, L("gl"), C("Neogit log"), "Log")
-map({ "n" }, L("gd"), C("Neogit diff"), "Diff")
 
 --| [T]est
 map({ "n" }, L("nt"), function()
 	require("neotest").run.run(vim.fn.expand("%"))
 end, "Test file")
-map({ "n" }, L("nT"), function()
-	require("neotest").run.run(vim.uv.cwd())
-end, "All files")
-map({ "n" }, L("nr"), function()
-	require("neotest").run.run()
-end, "Nearest")
-map({ "n" }, L("nl"), function()
-	require("neotest").run.run_last()
-end, "Last")
 map({ "n" }, L("ns"), function()
-	require("neotest").summary.toggle()
-end, "Summary")
-map({ "n" }, L("nS"), function()
 	require("neotest").run.stop()
 end, "Stop")
 map({ "n" }, L("nw"), function()
@@ -292,21 +267,13 @@ map({ "n" }, L("no"), function()
 		end,
 	})
 end, "Output (split)")
-map({ "n" }, L("nO"), function()
-	require("neotest").output.open({
-		enter = true,
-		auto_close = true,
-		open_win = function()
-			vim.cmd("tabnew")
-		end,
-	})
-end, "Output (tab)")
 
 
 -- [,] convience mappings
 
 map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Dashboard")
 map({ "n" }, L(",w"), function()
+-- TODO: set in fzf opts
 	require("fzf-lua").spell_suggest({
 		winopts = {
 			fullscreen = false,
@@ -321,10 +288,6 @@ end, "Word")
 map({ "n" }, L(",s"), C("Copilot suggestion toggle_auto_trigger"), "Suggestions")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
-map({ "n", "v" }, L(",tj"), C("Treewalker Down"), "Down")
-map({ "n", "v" }, L(",tk"), C("Treewalker Up"), "Up")
-map({ "n", "v" }, L(",th"), C("Treewalker Left"), "Left")
-map({ "n", "v" }, L(",tl"), C("Treewalker Right"), "Right")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
 map({ "n" }, L(",i"), function()
@@ -388,9 +351,9 @@ function ScrollUnbind()
 		vim.cmd(i .. "windo set scrollbind!")
 	end
 end
-map({ "n" }, L("wr"), RotSplit, "Rotate splits (90 deg)")
+map({ "n" }, L("wr"), RotSplit, "Rotate")
 map({ "n" }, L("wx"), "<C-W>c", "Exit", { remap = true })
-map({ "n" }, L("w-"), "<C-W>s", "Transverse split", { remap = true })
-map({ "n" }, L("w|"), "<C-W>v", "Sagittal split", { remap = true })
+map({ "n" }, L("w-"), "<C-W>s", "Split", { remap = true })
+map({ "n" }, L("w|"), "<C-W>v", "Vsplit", { remap = true })
 map({ "n" }, L("ws"), ScrollBind, "scrollbind on")
 map({ "n" }, L("wS"), ScrollUnbind, "scrollbind off")
