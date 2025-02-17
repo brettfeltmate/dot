@@ -29,13 +29,12 @@ return {
 					gap = 1,
 					padding = 1,
 
-					{ icon = " ", key = "n", desc = "New", action = ":ene | startinsert" },
 					{ icon = "󰱽 ", key = "f", desc = "Find", action = ":FzfLua files" },
 					{ icon = "󱎸 ", key = "g", desc = "Grep", action = ":FzfLua live_grep" },
-					{ icon = " ", key = "o", desc = "Old", action = ":FzfLua oldfiles" },
-					{ icon = "󰦄 ", key = "d", desc = "Dir", action = ":FzfLua zoxide" },
-					{ icon = " ", key = "c", desc = "Config", action = ":ChezFzf" },
+					{ icon = " ", key = "d", desc = "Dots", action = ":ChezFzf" },
+					{ icon = "󰦄 ", key = "c", desc = "Cwd", action = ":FzfLua zoxide" },
 					{ icon = "󰁯 ", key = "r", desc = "Restore", section = "session" },
+					{ icon = " ", key = "n", desc = "Neogit", action = ":Neogit" },
 					{
 						icon = "󰒲 ",
 						key = "l",
@@ -53,7 +52,7 @@ return {
 					section = "recent_files",
 					indent = 2,
 					padding = 1,
-					limit = 3,
+					limit = 4,
 				},
 				{
 					pane = 2,
@@ -71,7 +70,7 @@ return {
 					section = "projects",
 					indent = 2,
 					padding = 1,
-					limit = 3,
+					limit = 4,
 				},
 				{
 					pane = 2,
