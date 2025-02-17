@@ -1,7 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
 	"OXY2DEV/markview.nvim",
-	lazy = true,
+    event = "VeryLazy",
 	ft = { "markdown", "rmarkdown", "rmd", "quarto", "copilot-*", "avante", "codecompanion" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
@@ -12,7 +12,7 @@ return {
 
 		require("markview").setup({
 			preview = {
-				filetypes = { "md", "rmd", "quarto", "codecompanion" },
+				filetypes = { "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion" },
 				modes = { "n", "no", "c", "v", "i" },
 				hybrid_modes = { "v", "i" },
 				icon_provider = "mini",
