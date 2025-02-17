@@ -9,8 +9,13 @@ return {
 	dependencies = { "echasnovski/mini.icons", "stevearc/quicker.nvim" },
 	opts = function()
 		local opts = {
+			-- Default window configuration
 			"borderless-full",
 			fzf_opts = { ["--layout"] = "reverse" },
+			file_icons = "mini",
+			git_icons = false,
+			path_shorten = false,
+			formatter = "path.filename_first",
 			winopts = {
 				border = borders,
 				relative = "editor",
@@ -26,65 +31,30 @@ return {
 					layout = "horizontal",
 				},
 			},
-			builtin = {
-				border = borders,
-				relative = "editor",
-				row = 1,
-				col = 0,
-				backdrop = 95,
-				width = 1,
-				height = 0.4,
-			},
-			files = {
-				file_icons = "mini",
-				git_icons = false,
-				path_shorten = false,
-				formatter = "path.filename_first",
-				hidden = false,
-			},
-			keymaps = {
-				winopts = { preview = { hidden = true } },
-			},
-			oldfiles = {
-				file_icons = "mini",
-				git_icons = false,
-				path_shorten = false,
-				formatter = "path.filename_first",
-			},
-			grep = { git_icons = false, rg_glob = true },
-			marks = { marks = "%a" },
-			keymap = {
-				builtin = {
-					true,
-					["<C-u>"] = "preview-page-up",
-					["<C-d>"] = "preview-page-down",
-					["<S-down>"] = nil,
-					["<S-up>"] = nil,
-					["<M-S-down>"] = nil,
-					["<M-S-up>"] = nil,
-				},
-				fzf = {
-					true,
-					["ctrl-u"] = "preview-page-up",
-					["ctrl-d"] = "preview-page-down",
-					["<S-down>"] = nil,
-					["<S-up>"] = nil,
-				},
-			},
-			zoxide = {
-				fzf_opts = {
-					["--no-multi"] = true,
-					["--delimiter"] = "[\t]",
-					["--tabstop"] = "4",
-                    ["--tiebreak"] = "index", -- prefer index over search term
-					["--nth"] = "2..",
-				},
-				winopts = {
-					preview = {
-						hidden = true,
-					},
-				},
-			},
+            -- replace default maps for paging previews (conflicts w/ my pane nav binds)
+            keymap = {
+                builtin = {
+                    true,
+                    ["<C-u>"] = "preview-page-up",
+                    ["<C-d>"] = "preview-page-down",
+                    ["<S-down>"] = nil,
+                    ["<S-up>"] = nil,
+                    ["<M-S-down>"] = nil,
+                    ["<M-S-up>"] = nil,
+                },
+                fzf = {
+                    true,
+                    ["ctrl-u"] = "preview-page-up",
+                    ["ctrl-d"] = "preview-page-down",
+                    ["<S-down>"] = nil,
+                    ["<S-up>"] = nil,
+                },
+            },
+			-- Provider specific options
+			grep = { rg_glob = true }, -- allow use of `... -- file glob` (e.g., query -- *.rmd)
+			marks = { marks = "%a" }, -- show only user defined marks
+			keymaps = { winopts = { preview = { hidden = true } } },
+			zoxide = { fzf_opts = { ["--tiebreak"] = "index" } }, -- prioritize index over query match
 		}
 		return opts
 	end,
@@ -99,10 +69,29 @@ return {
 			elseif h > max_h then
 				h = max_h
 			end
+
+			-- get length of longest line in items
+			local max_len = 0
+			for _, item in ipairs(items) do
+				local len
+                if type(item) == "table" and item.value then
+                    len = #item.value
+                else
+                    len = #tostring(item)
+                end
+                max_len = math.max(max_len, len)
+			end
+			-- initially set width to longest item w/padding
+			local w = (max_len + 8) / vim.o.columns
+
+            -- clamp width to between 5% and 40%
+            w = math.min(math.max(w, 0.05), 0.4)
+
 			return {
 				winopts = {
+                    relative = "cursor",
 					height = h,
-					width = 0.4,
+					width = w,
 					col = 0,
 					row = 1,
 					backdrop = 95,
