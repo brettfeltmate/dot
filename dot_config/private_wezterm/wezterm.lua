@@ -81,7 +81,7 @@ config.colors = {
 
 config.scrollback_lines = 50000
 
-config.font = wez.font("Maple Mono NF Medium")
+config.font = wez.font("Maple Mono NF SemiBold")
 
 config.font_size = 15.5
 
@@ -95,11 +95,11 @@ config.window_decorations = "RESIZE"
 
 config.window_padding = { left = 10, right = 0, top = 0, bottom = 0 }
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 
 config.text_background_opacity = 0.9
 
-config.macos_window_background_blur = 25
+config.macos_window_background_blur = 5
 
 config.use_dead_keys = false
 
