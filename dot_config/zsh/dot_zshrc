@@ -78,3 +78,4 @@ export LESS='-R'  # interpret color characters
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 # export LESSCOLORIZER="nvimpager"
 export PATH="$HOME/go/bin:$PATH"
+export DISABLE_AUTO_TITLE="true"

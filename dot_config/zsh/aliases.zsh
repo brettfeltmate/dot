@@ -35,7 +35,7 @@ alias moshmini="brosh CogMotors-Mac-mini.local"
 alias mux="tmux new-session -A -s default"
 alias fab="fabular"
 
-alias icat="imgcat -W 100% -r"
+alias icat="kitten icat"
 
 # visidata shorthands
 alias vd="visidata --theme=ascii8"
@@ -43,3 +43,4 @@ alias vdkl="vd --filetype=tsv --skip=15 --header=1"
 
 # pyenv
 alias dv="pyenv activate dev"
+alias deact="pyenv deactivate"
