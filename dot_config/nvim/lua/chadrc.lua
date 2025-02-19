@@ -8,7 +8,6 @@ local M = {
             "dap",
 			"devicons",
             "diffview",
-            "flash",
 			"git",
             "leap",
 			"lsp",

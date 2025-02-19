@@ -16,6 +16,12 @@ end
 -- Non-leader mappings ===========================================================
 vim.g.dim_mode_active = false
 
+map({ "n" }, "\\i", function()
+	vim.diagnostic.config({
+		virtual_lines = not vim.diagnostic.config().virtual_lines,
+		virtual_text = not vim.diagnostic.config().virtual_text,
+	})
+end, "Toggle 'inline diagnostics'")
 map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")
 map({ "n" }, "\\d", function()
 	if vim.g.dim_mode_active then
@@ -26,7 +32,7 @@ map({ "n" }, "\\d", function()
 		vim.g.dim_mode_active = true
 	end
 end, "Toggle 'dimming'")
-map({ "n" }, "\\S", C("ScrollItToggle"), "Toggle 'scrollit'")
+map({ "n" }, "\\S", C("Copilot suggestion toggle_auto_trigger"), "Toggle 'auto-suggestions'")
 
 map({ "n" }, "-", C("Oil"), "Files")
 map({ "n" }, "|", C("lua Snacks.picker.explorer()"), "Tree")
@@ -150,6 +156,7 @@ map({ "n" }, L("bx"), C("lua Snacks.bufdelete()"), "Exit (current)")
 map({ "n" }, L("bX"), C("lua Snacks.bufdelete.other()"), "Exit (others)")
 map({ "n" }, L("bg"), C("FzfLua lgrep_curbuf"), "Grep")
 map({ "n" }, L("bf"), C("lua require('conform').format()"), "Format")
+map({ "n" }, L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
 -- TODO: explicitly set avante mappings
 
@@ -221,23 +228,18 @@ map({ "n" }, L("sc"), C("ChezFzf"), "Config")
 map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
 map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
 map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
-map({ "n" }, L("sH"), function()
-	require("fzf-lua").live_grep({
-		cwd = vim.fs.joinpath(vim.env.VIMRUNTIME, "doc"),
-	})
-end, "Grep help")
 map({ "n" }, L("s."), C("FzfLua resume"), "Resume")
 map({ "n" }, L("so"), C("FzfLua oldfiles"), "Old")
-map({ "n" }, L("sw"), C("FzfLua grep_cword"), "cword")
 map({ "n" }, L("sb"), C("FzfLua builtin"), "Pickers")
-map({ "n" }, L("su"), C("lua Snacks.picker.undo()"), "Undo")
 map({ "n" }, L("sy"), C("YankyRingHistory"), "Yanks")
+map({ "n" }, L("sq"), C("FzfLua quickfix"), "Quickfix")
 map({ "n" }, L("si"), function()
-	Snacks.picker.smart({
-		source = "files",
-		patterns = { "*.png", "*.jpg", "*.jpeg", "*.gif" },
-		layout = { title = "images", preset = "sidebar" },
-		matcher = { cwd_bonus = true },
+	Snacks.picker.files({
+		finder = "files",
+		format = "file",
+		cmd = "fd",
+		args = { "-I", "-e", "jpg", "-e", "png", "-e", "jpeg", "-e", "pdf" },
+		layout = "vertical",
 	})
 end, "Images")
 
@@ -247,75 +249,39 @@ map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
 map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
 map({ "n" }, L("g "), C("Neogit"), "Neogit")
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits")
+map({ "n" }, L("gl"), C("lua Snacks.git.blame_line()"), "Blame")
+map({ "n" }, L("gd"), C("lua Snacks.picker.git_diff()"), "Diffs")
 
 --| [T]est
 map({ "n" }, L("nt"), function()
 	require("neotest").run.run(vim.fn.expand("%"))
 end, "Test file")
-map({ "n" }, L("ns"), function()
-	require("neotest").run.stop()
-end, "Stop")
-map({ "n" }, L("nw"), function()
-	require("neotest").watch.toggle(vim.fn.expand("%"))
-end, "Watch")
+map({ "n" }, L("ns"), C("lua require('neotest').summary.toggle()"), "Summary")
 map({ "n" }, L("no"), function()
 	require("neotest").output.open({
-		enter = true,
-		auto_close = true,
+		enter = false,
+		auto_close = false,
 		open_win = function()
-			vim.cmd("vsplit")
+			vim.cmd("split")
 		end,
 	})
-end, "Output (split)")
-
+end, "Output")
 
 -- [,] convience mappings
 
-map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Dashboard")
-map({ "n" }, L(",w"), function()
--- TODO: set in fzf opts
-	require("fzf-lua").spell_suggest({
-		winopts = {
-			fullscreen = false,
-			relative = "cursor",
-			row = 1,
-			col = 0,
-			height = 0.2,
-			width = 0.3,
-		},
-	})
-end, "Word")
-map({ "n" }, L(",s"), C("Copilot suggestion toggle_auto_trigger"), "Suggestions")
+map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Home")
+map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
-map({ "n" }, L(",i"), function()
-	vim.diagnostic.config({
-		virtual_lines = not vim.diagnostic.config().virtual_lines,
-		virtual_text = not vim.diagnostic.config().virtual_text,
-	})
-end, "Inline diagnostics")
-map({ "n" }, L(",N"), function()
-	require("snacks").win({
-		file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-		width = 0.6,
-		height = 0.6,
-		wo = {
-			spell = false,
-			wrap = false,
-			signcolumn = "yes",
-			statuscolumn = " ",
-			conceallevel = 3,
-		},
-	})
-end, "News")
+map({ "n" }, L(",u"), C("lua Snacks.picker.undo()"), "Undos")
 
 -- | [W]indows
 -- TODO: refactor functions as script and require
 ---Toggles the orientation of the current window split
 ---@return nil
-local RotSplit = function()
+local TransFlip = function()
 	-- Exit early if no splits exist
 	if vim.fn.winnr("$") == 1 then
 		vim.notify("No splits to flip", vim.log.levels.WARN)
@@ -351,9 +317,10 @@ function ScrollUnbind()
 		vim.cmd(i .. "windo set scrollbind!")
 	end
 end
-map({ "n" }, L("wr"), RotSplit, "Rotate")
+map({ "n" }, L("wr"), TransFlip, "TransFlip")
 map({ "n" }, L("wx"), "<C-W>c", "Exit", { remap = true })
-map({ "n" }, L("w-"), "<C-W>s", "Split", { remap = true })
+map({ "n" }, L("w-"), "<C-W>s", "HSplit", { remap = true })
 map({ "n" }, L("w|"), "<C-W>v", "Vsplit", { remap = true })
-map({ "n" }, L("ws"), ScrollBind, "scrollbind on")
-map({ "n" }, L("wS"), ScrollUnbind, "scrollbind off")
+map({ "n" }, L("ws"), ScrollBind, "Scrollbind: on")
+map({ "n" }, L("wS"), ScrollUnbind, "Scrollbind: off")
+map({ "n" }, L("wm"), C("ScrollItToggle"), "Multipage")

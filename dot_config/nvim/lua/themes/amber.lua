@@ -20,6 +20,7 @@ local base16 = {
 	base0E = "#bfaa8c",
 	base0F = "#b195b3",
 }
+
 -- UI
 local base30 = {
 	white = "#c8a89d",
@@ -46,9 +47,9 @@ local base30 = {
 	sun = "#ceb27d",
 	purple = "#c0adda",
 	dark_purple = "#ad93cd",
-	teal = "#97bf9d",
+	teal = "#97bfa9",
 	orange = "#dcb08d",
-	cyan = "#6ac1aa",
+	cyan = "#9fbfb1",
 	statusline_bg = "#322137",
 	lightbg = "#6c5c6e",
 	pmenu_bg = generate_color(base16.base07, -60),
@@ -69,9 +70,9 @@ local polish_hl = {
 		PmenuSbar = { bg = base30.one_bg },
 		PmenuSel = { bg = generate_color(base30.statusline_bg, 3), fg = base30.orange, bold = true },
 		PmenuThumb = { bg = base30.grey },
-		FloatBorder = { fg = base30.cyan },
-		FloatTitle = { fg = base30.white, bg = base30.grey },
-		NormalFloat = { bg = base30.darker_black },
+		FloatBorder = { fg = base30.red },
+		FloatTitle = { fg = base30.red, bg = base16.base00 },
+		NormalFloat = { bg = base16.base00 },
 		Title = { fg = base16.base0D, sp = "none" },
 		WildMenu = { fg = base16.base08, bg = base16.base0A },
 
@@ -100,7 +101,7 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = generate_color(base30.white, -58) },
+		CursorLine = { bg = mix_color(generate_color(base30.white, -40), base16.base00, 75) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -181,11 +182,11 @@ local polish_hl = {
 			bg = generate_color(base16.base08, -52),
 		},
 		NeogitHunkHeaderHighlight = {
-            fg = generate_color(base16.base08, -50),
+			fg = generate_color(base16.base08, -50),
 			bg = generate_color(base16.base07, -20),
 		},
 		NeogitHunkHeaderCursor = {
-            fg = generate_color(base16.base08, -45),
+			fg = generate_color(base16.base08, -45),
 			bg = generate_color(base16.base07, -18),
 		},
 		NeogitDiffAdd = {
@@ -209,7 +210,7 @@ local polish_hl = {
 			bg = generate_color(base30.red, -60),
 		},
 		NeogitDiffDeleteCursor = {
-            fg = mix_color(base30.red, "#FFFFFF", 30),
+			fg = mix_color(base30.red, "#FFFFFF", 30),
 			bg = mix_color(generate_color(base30.white, -58), base30.red, 10),
 		},
 	},
@@ -403,7 +404,12 @@ M.base_30 = base30
 M.polish_hl = polish_hl
 M.type = "dark"
 
-vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base30.one_bg })
+vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base16.base00 })
+vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "MiniClueSeparator", { link = "WinSeparator" })
+vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = "#cba9ad" })
+vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = "#afafb6" })
+vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = "#c5b8b0" })
 
 M = require("base46").override_theme(M, "amber")
 

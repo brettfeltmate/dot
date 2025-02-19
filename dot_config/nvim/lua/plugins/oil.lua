@@ -8,32 +8,35 @@ function _G.get_oil_winbar()
 end
 
 return {
-	"stevearc/oil.nvim",
-	dependencies = { "echasnovski/mini.icons" },
-	config = function()
-		require("oil").setup({
-			keymaps = {
-				["<bs>"] = "actions.parent",
-				["?"] = "actions.show_help",
-				["q"] = "actions.close",
-				["gy"] = "actions.yank_entry",
-				["gd"] = {
-					function()
-						require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-					end,
-					desc = "Show file details",
+	{
+		"stevearc/oil.nvim",
+		dependencies = { "echasnovski/mini.icons" },
+		config = function()
+			require("oil").setup({
+				keymaps = {
+					["<bs>"] = "actions.parent",
+					["?"] = "actions.show_help",
+					["q"] = "actions.close",
+					["gy"] = "actions.yank_entry",
+					["gd"] = {
+						function()
+							require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+						end,
+						desc = "Show file details",
+					},
+					["<C-f>"] = "actions.preview_scroll_down",
+					["<C-b>"] = "actions.preview_scroll_up",
 				},
-				["<S-Down>"] = "actions.preview_scroll_down",
-				["<S-Up>"] = "actions.preview_scroll_up",
-			},
-			-- columns = { "icon", "permissions", "size", "mtime" },
-			win_options = {
-				winbar = "%!v:lua.get_oil_winbar()",
-			},
-			float = {
-				padding = 0,
-				max_height = 0.5,
-			},
-		})
-	end,
+				win_options = {
+					winbar = "%!v:lua.get_oil_winbar()",
+					signcolumn = "yes:2",
+				},
+			})
+		end,
+	},
+	{
+		"refractalize/oil-git-status.nvim",
+		dependencies = { "stevearc/oil.nvim" },
+		config = true,
+	},
 }

@@ -1,6 +1,5 @@
 return {
 	"stevearc/quicker.nvim",
-	lazy = true,
-	event = "FileType qf",
-	opts = {},
+	event = "VeryLazy",
+	opts = { follow = { enabled = true } },
 }

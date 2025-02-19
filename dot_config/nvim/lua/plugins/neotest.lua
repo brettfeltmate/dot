@@ -7,6 +7,7 @@ return {
 		"nvim-treesitter/nvim-treesitter",
 		"nvim-neotest/neotest-python",
 		"stevearc/quicker.nvim",
+		"mfussenegger/nvim-dap",
 	},
 	lazy = true,
 	-- event = "UIEnter",
@@ -15,10 +16,11 @@ return {
 			"neotest-python",
 		},
 		status = { virtual_text = false },
-		output = { open_on_run = false },
+		output = { open_on_run = true },
+		summary = { expand_errors = true },
 		quickfix = {
 			open = function()
-				require("quicker").open()
+				require("quicker").open({ loclist = false })
 			end,
 		},
 	},

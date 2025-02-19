@@ -2,17 +2,14 @@
 
 update() {
     source "$CONFIG_DIR/colors.sh"
-    COLOR=$BLUE
-    # if [ "$SELECTED" = "true" ]; then
-    #   COLOR=$GREY
-    # fi
-    sketchybar --set "$NAME" background.border_color="$COLOR"
+    sketchybar --set "$NAME" background.border_color="$RED" background.border_width="1"
 }
 
 set_space_label() {
+    source "$CONFIG_DIR/colors.sh"
     source "$CONFIG_DIR/icon_map.sh"
     source "$CONFIG_DIR/icons.sh"
-    sketchybar --set "$NAME" icon="$@"
+    sketchybar --set "$NAME" icon="$@" font.color="$GREEN"
 }
 
 mouse_clicked() {

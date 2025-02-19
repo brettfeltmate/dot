@@ -8,14 +8,45 @@ return {
 			folds = { open = true, git_hl = false },
 		},
 		image = { enabled = true },
-		input = { enabled = true },
+		input = {
+            enabled = true,
+            relative = "cursor",
+            row = -3,
+            col = 0,
+        },
 		indent = { enabled = true, chunk = { enabled = true } },
 		terminal = { win = { wo = { winbar = "" } } },
 		scratch = {},
-		picker = { ui_select = false, layout = { preset = "ivy" } },
+		scroll = { enabled = true },
+		picker = {
+			ui_select = false,
+			layout = { preset = "ivy" },
+			layouts = {
+				vertical = {
+					layout = {
+						backdrop = false,
+						width = 0.4,
+						min_width = 80,
+						height = 0.8,
+						min_height = 30,
+						box = "vertical",
+						border = "none",
+						title = "Images",
+						title_pos = "center",
+						{
+							win = "preview",
+							height = 0.8,
+							border = { " ", "─", " ", " ", " ", "─", " ", " " },
+							-- border = "single",
+						},
+						{ win = "input", height = 1, border = "none" },
+						{ win = "list", border = { " ", "─", " ", " ", " ", "─", " ", " " } },
+					},
+				},
+			},
+		},
 		dim = {},
 		dashboard = {
-
 			sections = {
 				{ section = "header" },
 				{

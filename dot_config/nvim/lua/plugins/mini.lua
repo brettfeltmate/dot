@@ -40,14 +40,14 @@ return {
 				config = {
 					border = "rounded",
 					anchor = "SE",
-					width = "auto",  -- Autoscale window to fit clue content
+					width = "auto", -- Autoscale window to fit clue content
 					row = "auto",
 					col = "auto",
 				},
 			},
 
 			triggers = {
-                -- Leaders
+				-- Leaders
 				{ mode = "n", keys = "<Leader>" },
 				{ mode = "v", keys = "<Leader>" },
 				{ mode = "x", keys = "<Leader>" },
@@ -55,7 +55,7 @@ return {
 				{ mode = "v", keys = "<localleader>" },
 				{ mode = "x", keys = "<localleader>" },
 
-				-- g 
+				-- g
 				{ mode = "n", keys = "g" },
 				{ mode = "x", keys = "g" },
 
@@ -67,7 +67,7 @@ return {
 				{ mode = "n", keys = "[" },
 				{ mode = "n", keys = "]" },
 
-				-- Toggles 
+				-- Toggles
 				{ mode = "n", keys = [[\]] },
 
 				-- Marks
@@ -101,11 +101,11 @@ return {
 				clue.gen_clues.z(),
 
 				-- Submodes
-                { mode = "n", keys = "<leader>a", desc = "Avante" },
-                { mode = "v", keys = "<leader>a", desc = "Avante" },
+				{ mode = "n", keys = "<leader>a", desc = "Avante" },
+				{ mode = "v", keys = "<leader>a", desc = "Avante" },
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
-                { mode = "n", keys = "<leader>c", desc = "Commands" },
-                { mode = "v", keys = "<leader>c", desc = "Commands" },
+				{ mode = "n", keys = "<leader>c", desc = "Commands" },
+				{ mode = "v", keys = "<leader>c", desc = "Commands" },
 				{ mode = "n", keys = "<leader>d", desc = "Debug" },
 				{ mode = "n", keys = "<leader>g", desc = "Git" },
 				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
@@ -131,6 +131,12 @@ return {
 				{ mode = "v", keys = "<Leader>,tl", postkeys = "<Leader>,t", desc = "Right" },
 			},
 		})
+
+		vim.api.nvim_set_hl(0, "MiniClueSeparator", { fg = "#837972" })
+		vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = "#C5B8B0" })
+		vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = "#AFAFB6" })
+		vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = "#CBA9AD" })
+        vim.api.nvim_set_hl(0, "MiniClueTitle", { fg = "#C5B8B0" })
 
 		require("mini.move").setup({
 			mappings = {
