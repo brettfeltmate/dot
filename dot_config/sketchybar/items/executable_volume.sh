@@ -7,40 +7,29 @@ volume_slider=(
 	updates=on
 	label.drawing=off
 	icon.drawing=off
-	slider.highlight_color=$YELLOW
-	slider.background.height=5
+	slider.highlight_color=$RED
+	slider.background.height=6
 	slider.background.corner_radius=3
+    slider.background.color=$ALTGRAY
 	slider.knob=􀀁
 	slider.knob.drawing=on
-    background.border_color=$BLUE
 )
 
 volume_icon=(
 	click_script="$PLUGIN_DIR/volume_click.sh"
-	padding_left=10
+	padding_left=8
 	icon=$VOLUME_100
 	icon.width=0
 	icon.align=left
-	icon.color=$GREY
 	icon.font="$FONT:Regular:14.0"
-	label.width=25
+	label.width=20
 	label.align=left
 	label.font="$FONT:Regular:14.0"
-    background.border_color=$BLUE
 )
 
-status_bracket=(
-	background.color=$BACKGROUND_1
-    background.border_color=$BLUE
-)
-
-sketchybar --add slider volume right \
+sketchybar	--add item volume_icon left \
+	--set volume_icon "${volume_icon[@]}" \
+    --add slider volume left \
 	--set volume "${volume_slider[@]}" \
 	--subscribe volume volume_change \
-	mouse.clicked \
-	\
-	--add item volume_icon right \
-	--set volume_icon "${volume_icon[@]}"
-
-sketchybar --add bracket status brew github.bell wifi volume_icon \
-	--set status "${status_bracket[@]}"
+	mouse.clicked

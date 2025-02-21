@@ -9,7 +9,7 @@ set_space_label() {
     source "$CONFIG_DIR/colors.sh"
     source "$CONFIG_DIR/icon_map.sh"
     source "$CONFIG_DIR/icons.sh"
-    sketchybar --set "$NAME" icon="$@" font.color="$GREEN"
+    sketchybar --set "$NAME" icon="$@" font.color="$RED"
 }
 
 mouse_clicked() {

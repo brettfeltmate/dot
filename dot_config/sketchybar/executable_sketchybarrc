@@ -23,15 +23,15 @@ launchctl unload -F /System/Library/LaunchAgents/com.apple.OSDUIHelper.plist >/d
 
 # Setting up the general bar appearance of the bar
 bar=(
-    height=38
+    height=20
     color=$TRANSPARENT
     border_width=0
     shadow=off
     position=top
     sticky=on
-    padding_right=10
-    padding_left=10
-    y_offset=-5
+    padding_right=8
+    padding_left=4
+    y_offset=0
     margin=2
     topmost=window
 )
@@ -42,19 +42,12 @@ sketchybar --bar "${bar[@]}"
 defaults=(
     updates=when_shown
     icon.font="$FONT:Medium:16.0"
-    icon.color=$WHITE
-    icon.padding_left=$PADDINGS
-    icon.padding_right=$PADDINGS
+    icon.color=$ALTGRAY
     label.font="$FONT:Medium:16.0"
-    label.color=$WHITE
-    label.padding_left=$PADDINGS
-    label.padding_right=$PADDINGS
+    label.font_color=$ALTGRAY
+    label.color=$ALTGRAY
     padding_right=$PADDINGS
     padding_left=$PADDINGS
-    background.height=26
-    background.corner_radius=9
-    background.border_width=1
-    background.border_color=$RED
     scroll_texts=on
 )
 
@@ -66,7 +59,7 @@ sketchybar --default "${defaults[@]}"
 # source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 # source "$ITEM_DIR/aerospace.sh"
-source "$ITEM_DIR/front_app.sh"
+# source "$ITEM_DIR/front_app.sh"
 # source "$ITEM_DIR/svim.sh"
 
 ###############################################################################
@@ -79,9 +72,8 @@ source "$ITEM_DIR/front_app.sh"
 #                               Right side
 ###############################################################################
 source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/brew.sh"
-source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/volume.sh"
 # source "$ITEM_DIR/cpu.sh"
 
