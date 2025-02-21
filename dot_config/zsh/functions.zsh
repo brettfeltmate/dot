@@ -42,7 +42,7 @@ fabular() {
     fi
 
     if [[ -z "$file" ]]; then
-        echo "Usage: fabular <file> [delimiter]"
+        echo "Usage: fabular <file> [delimiter] [lineskip]"
         return
     fi
 
@@ -63,5 +63,23 @@ function cd() {
         z "$1"; lscd
     else
         z "$HOME"; lscd
+    fi
+}
+
+# shorthand to edit or create nvim plugin from cli
+function nvp() {
+    local target_plugin="$1"
+    local target_file="$HOME/.config/nvim/lua/plugins/$target_plugin.lua"
+
+    if [[ -f "$target_file" ]]; then
+        echo "Edit $target_plugin"
+        echo "Remember to applymoi"
+        sleep 1
+        nvim "$target_file"
+    else
+        echo "Make $target_plugin"
+        echo "Remember to addmoi"
+        sleep 1
+        nvim "$target_file"
     fi
 }

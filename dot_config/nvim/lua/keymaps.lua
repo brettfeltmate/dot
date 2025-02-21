@@ -23,7 +23,7 @@ map({ "n" }, "\\i", function()
 	})
 end, "Toggle 'inline diagnostics'")
 map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")
-map({ "n" }, "\\d", function()
+map({ "n" }, "\\D", function()
 	if vim.g.dim_mode_active then
 		vim.cmd("lua Snacks.dim.disable()")
 		vim.g.dim_mode_active = false
@@ -144,6 +144,7 @@ map({ "n" }, "<M-N>", C("tabnew"), "New tab")
 
 -- Leader mappings ==========================================================
 
+map({ "n" }, L("x"), C("lua Snacks.bufdelete()"), "Kill buffer")
 map({ "n" }, L("q"), C("q"), ":q")
 map({ "n" }, L("'"), C("FzfLua marks"), "List Marks")
 map({ "n" }, L(";"), C("FzfLua buffers"), "List Buffers")
@@ -160,13 +161,29 @@ map({ "n" }, L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
 -- TODO: explicitly set avante mappings
 
-map({ "n", "v" }, L("aa"), C("AvanteAsk"), "Ask")
-map({ "n" }, L("ab"), C("AvanteBuild"), "Build")
-map({ "n" }, L("ac"), C("AvanteChat"), "Chat")
-map({ "n" }, L("at"), C("AvanteToggle"), "Toggle")
-map({ "n" }, L("af"), C("AvanteFocus"), "Focus")
-map({ "n" }, L("ar"), C("AvanteRefresh"), "Refresh")
-map({ "n" }, L("am"), C("AvanteShowRepoMap"), "Map")
+map({ "n", "v" }, L("cc"), function()
+	local input = vim.fn.input("Quick Chat: ")
+	if input ~= "" then
+		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
+	end
+end, "Quick chat")
+
+map({ "n" },      L("a "), C("CopilotChatToggle"), "Toggle")
+map({ "n" },      L("as"), C("CopilotChatStop"), "Stop")
+map({ "n" },      L("ar"), C("CopilotChatReset"), "Reset")
+map({ "n", "x" }, L("ae"), C("CopilotChatExplain"), "Explain")
+map({ "n", "x" }, L("af"), C("CopilotChatFix"), "Fix")
+map({ "n", "x" }, L("ad"), C("CopilotChatDocs"), "Document")
+map({ "n", "x" }, L("at"), C("CopilotChatTests"), "Tests")
+map({ "n", "x" }, L("ao"), C("CopilotChatOptimize"), "Optimize")
+
+-- map({ "n", "v" }, L("ac"), C("AvanteAsk"), "Ask")
+-- map({ "n" }, L("ab"), C("AvanteBuild"), "Build")
+-- map({ "n" }, L("ac"), C("AvanteChat"), "Chat")
+-- map({ "n" }, L("at"), C("AvanteToggle"), "Toggle")
+-- map({ "n" }, L("af"), C("AvanteFocus"), "Focus")
+-- map({ "n" }, L("ar"), C("AvanteRefresh"), "Refresh")
+-- map({ "n" }, L("am"), C("AvanteShowRepoMap"), "Map")
 
 -- | [D]AP
 map({ "n" }, L("dk"), function()
@@ -220,11 +237,11 @@ end, "Scopes")
 -- | [L]SP
 map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
 map({ "n" }, L("ld"), C("FzfLua lsp_definitions "), "Definitions")
-map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols (buff)")
-map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics (buff)")
+map({ "n" }, L("ls"), C("FzfLua lsp_live_workspace_symbols"), "Symbols")
+map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics")
 
 -- | [s]earch
-map({ "n" }, L("sc"), C("ChezFzf"), "Config")
+map({ "n" }, L("sd"), C("ChezFzf"), "Dotfiles")
 map({ "n" }, L("sg"), C("FzfLua live_grep"), "Grep (cwd)")
 map({ "n" }, L("sf"), C("FzfLua files"), "Files (cwd)")
 map({ "n" }, L("sh"), C("FzfLua helptags"), "Help")
@@ -245,27 +262,29 @@ end, "Images")
 
 -- | [G]it
 map({ "n" }, L("gh"), C("Gitsigns preview_hunk"), "View hunk")
-map({ "n" }, L("gn"), C("Gitsigns next_hunk"), "Next hunk")
-map({ "n" }, L("gp"), C("Gitsigns prev_hunk"), "Prev hunk")
+map({ "n" }, L("gn"), C("lua require('gitsigns').nav_hunk({direction = 'next'})"), "Next hunk")
+map({ "n" }, L("gp"), C("lua require('gitsigns').nav_hunk({direction = 'prev'})"), "Prev hunk")
 map({ "n" }, L("g "), C("Neogit"), "Neogit")
 map({ "n" }, L("gc"), C("FzfLua git_bcommits"), "Commits")
 map({ "n" }, L("gl"), C("lua Snacks.git.blame_line()"), "Blame")
 map({ "n" }, L("gd"), C("lua Snacks.picker.git_diff()"), "Diffs")
+map({ "n" }, L("gb"), C("lua require('gitsigns').preview_hunk_inline()"), "Preview hunk")
 
 --| [T]est
-map({ "n" }, L("nt"), function()
-	require("neotest").run.run(vim.fn.expand("%"))
-end, "Test file")
-map({ "n" }, L("ns"), C("lua require('neotest').summary.toggle()"), "Summary")
-map({ "n" }, L("no"), function()
-	require("neotest").output.open({
-		enter = false,
-		auto_close = false,
-		open_win = function()
-			vim.cmd("split")
-		end,
-	})
-end, "Output")
+map({ "n" }, L("na"), C("lua require('neotest').run.run(vim.fn.expand('%'))"), "All")
+map({ "n" }, L("nn"), C("lua require('neotest').run.run()"), "Nearest")
+map({ "n" }, L("nw"), C("lua require('neotest').watch.toggle()"), "Watch nearest")
+map({ "n" }, L("nd"), C("lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})"), "All (dap)")
+map({ "n" }, L("ns"), C("lua require('neotest').summary.toggle()"), "Summary (panel)")
+map({ "n" }, L("np"), C("lua require('neotest').output_panel.toggle()"), "Output panel")
+map(
+	{ "n" },
+	L("no"),
+	C(
+		"lua require('neotest').output.open({enter = true, auto_close=false, open_win = function() vim.cmd('tabnew') end, })"
+	),
+	"Output (tab)"
+)
 
 -- [,] convience mappings
 
@@ -273,8 +292,8 @@ map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Home")
 map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
-map({ "n" }, L(",q"), C("lua require('quicker').toggle({focus=true, min_height=8})"), "Quickfix")
-map({ "n" }, L(",l"), C("lua require('quicker').toggle({focus=true, min_height=8, loclist=true})"), "Loclist")
+map({ "n" }, L(",q"), C("Trouble quickfix toggle"), "Quickfix")
+map({ "n" }, L(",l"), C("Trouble loclist toggle"), "Loclist")
 map({ "n" }, L(",u"), C("lua Snacks.picker.undo()"), "Undos")
 
 -- | [W]indows

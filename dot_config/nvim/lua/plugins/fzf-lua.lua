@@ -2,14 +2,15 @@ return {
 	"ibhagwan/fzf-lua",
 	lazy = true,
 	cmd = "FzfLua",
-	dependencies = { "echasnovski/mini.icons", "stevearc/quicker.nvim" },
+	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
 	opts = function()
+
 		local opts = {
 			"ivy",
 			fzf_opts = { ["--layout"] = "reverse" },
 			file_icons = "mini",
-			git_icons = false, -- can dramatically reduce performance
-			path_shorten = false,
+			git_icons = true, -- disabling can improve performance
+			path_shorten = true,
 			formatter = "path.filename_first",
 			winopts = {
 				relative = "editor",
@@ -42,6 +43,15 @@ return {
 					["<S-up>"] = nil,
 				},
 			},
+			previewers = {
+				builtin = {
+					extensions = {
+						["png"] = { "kitten icat" },
+						["jpg"] = { "kitten icat" },
+						["jpeg"] = { "kitten icat" },
+					},
+				},
+			},
 			-- Provider specific options
 			builtin = {
 				winopts = {
@@ -53,6 +63,7 @@ return {
 					prompt = "",
 				},
 			},
+			files = { cwd_prompt = false, hidden = false },
 			grep = { rg_glob = true }, -- allow use of `... -- file glob` (e.g., query -- *.rmd)
 			marks = { marks = "%a" }, -- show only user defined marks
 			keymaps = {
@@ -100,6 +111,12 @@ return {
 
 	config = function(_, opts)
 		require("fzf-lua").setup(opts)
+
+        -- Send selections to trouble qf/lf
+        local fzfconf = require("fzf-lua.config")
+        local trblact = require("trouble.sources.fzf").actions
+        fzfconf.defaults.actions.files["ctrl-t"] = trblact.open
+
 		-- use fzf-lua as default selector
 		require("fzf-lua").register_ui_select(function(_, items)
 			-- initially set height to num items + padding
@@ -136,5 +153,8 @@ return {
 		end)
 		vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = "#1C171D" })
 		vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
+		vim.api.nvim_set_hl(0, "FzfLuaMarker", { fg = "#9FBFB1" })
+		vim.api.nvim_set_hl(0, "FzfLuaFzfMatch", { fg = "#9FBFB1" })
+		vim.api.nvim_set_hl(0, "MatchWord", { fg = "#9FBFB1" })
 	end,
 }

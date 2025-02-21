@@ -22,6 +22,10 @@ alias raddmoi="chezmoi re-add"
 alias applymoi="chezmoi apply"
 alias cdmoi="chezmoi cd"
 alias delmoi="chezmoi destroy"
+alias formoi="chezmoi forget"
+alias manmoi="chezmoi managed"
+alias unmoi="chezmoi unmanaged"
+alias genmoi="chezmoi generate"
 
 # qol aliases when switching between archs
 alias arch86="/usr/bin/arch -x86_64 /usr/bin/env /bin/zsh --login; arch"
@@ -44,3 +48,5 @@ alias vdkl="vd --filetype=tsv --skip=15 --header=1"
 # pyenv
 alias dv="pyenv activate dev"
 alias deact="pyenv deactivate"
+
+alias fc="fancy-cat"

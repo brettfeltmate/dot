@@ -1,5 +1,9 @@
 return {
 	"stevearc/quicker.nvim",
-	event = "VeryLazy",
-	opts = { follow = { enabled = true } },
+	event = "BufRead",
+    ft = { "qf" },
+	opts = {
+        highlight = { load_buffers = true },
+        follow = { enabled = true },
+    },
 }

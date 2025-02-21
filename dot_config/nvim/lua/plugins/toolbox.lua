@@ -141,7 +141,7 @@ return {
 				end,
 			},
 			{
-				name = "Neovime News",
+				name = "Neovim News",
 				execute = function()
 					require("snacks").win({
 						file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
@@ -151,6 +151,26 @@ return {
 					})
 				end,
 			},
+            {
+                name = "Trouble symbols",
+                execute = "Trouble symbols"
+            },
+            {
+                name = "Trouble outline",
+                execute = "Trouble lsp_document_symbols"
+            },
+            {
+                name = "Trouble quickfix",
+                execute = "Trouble quickfix"
+            },
+            {
+                name = "Trouble loclist",
+                execute = "Trouble loclist"
+            },
+            {
+                name = "Trouble diagnostics",
+                execute = "Trouble diagnostics",
+            },
 		},
 	},
 }

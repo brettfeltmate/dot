@@ -14,7 +14,7 @@ return {
 	},
 	opts = {
 		workspaces = { { name = "Obsidian", path = "~/Documents/Obsidian" } },
-		completetion = { nvim_cmp = false },
+		completion = { nvim_cmp = false },
 		new_notes_location = "current_dir",
 		mappings = {
 			-- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.

@@ -40,7 +40,7 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
-outer.top = 30
+outer.top = 23
 outer.bottom = 0
 outer.left = 2
 outer.right = 2

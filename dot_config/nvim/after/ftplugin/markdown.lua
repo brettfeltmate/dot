@@ -1,6 +1,7 @@
 -- Using `vim.cmd` instead of `vim.wo` because it is yet more reliable
 vim.cmd("setlocal spell")
 vim.cmd("setlocal nowrap")
+vim.cmd("set conceallevel=2")
 
 -- Customize 'mini.nvim'
 local has_mini_ai, mini_ai = pcall(require, "mini.ai")

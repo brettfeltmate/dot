@@ -101,9 +101,10 @@ return {
 				clue.gen_clues.z(),
 
 				-- Submodes
-				{ mode = "n", keys = "<leader>a", desc = "Avante" },
-				{ mode = "v", keys = "<leader>a", desc = "Avante" },
+				{ mode = "n", keys = "<leader>a", desc = "AI" },
+				{ mode = "v", keys = "<leader>a", desc = "AI" },
 				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
+                -- TODO: submodes for topical command palettes
 				{ mode = "n", keys = "<leader>c", desc = "Commands" },
 				{ mode = "v", keys = "<leader>c", desc = "Commands" },
 				{ mode = "n", keys = "<leader>d", desc = "Debug" },

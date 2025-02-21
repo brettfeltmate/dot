@@ -110,8 +110,8 @@ local polish_hl = {
 		Folded = { fg = base30.light_grey, bg = base30.black2 },
 		CurSearch = { fg = base30.black2, bg = base30.sun, bold = true },
 
-		Error = { fg = base16.base00, bg = base16.base08 },
-		ErrorMsg = { fg = base16.base08, bg = base16.base00 },
+		Error = { fg = base30.red, bg = base30.statusline_bg },
+		ErrorMsg = { fg = base30.red, bg = base30.statusline_bg },
 		Exception = { fg = base16.base08 },
 		healthSuccess = { bg = base30.green, fg = base30.black },
 		Debug = { fg = base16.base08 },

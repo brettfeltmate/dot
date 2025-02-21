@@ -1,7 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
 	"OXY2DEV/markview.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
 	ft = { "markdown", "rmarkdown", "rmd", "quarto", "copilot-*", "avante", "codecompanion" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",

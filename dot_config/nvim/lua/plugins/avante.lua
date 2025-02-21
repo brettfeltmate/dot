@@ -1,7 +1,8 @@
 return {
 	"yetone/avante.nvim",
-	event = "UIEnter",
+    lazy = true,
 	build = "make",
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	dependencies = {
 		{ "nvim-treesitter/nvim-treesitter", lazy = true },
 		{ "stevearc/dressing.nvim", lazy = true },
@@ -13,7 +14,10 @@ return {
 	opts = {
 		provider = "claude",
 		behaviour = { auto_suggestions = false, auto_set_keymaps = false },
-        dual_boost = { enabled = true, },
+		dual_boost = {
+			enabled = true,
+			prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
+		},
 		windows = {
 			position = "right",
 			width = 40,

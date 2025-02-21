@@ -1,16 +1,18 @@
 -- LSPs, formatters, linters, etc.,
 return {
 	{ vim.diagnostic.config({ virtual_text = false }) },
-	-- {
-	-- 	"sontungexpt/better-diagnostic-virtual-text",
-	-- 	lazy = true,
-	-- 	event = "LspAttach",
-	-- 	opts = { ui = { above = true, wrap_line_after = 999 } },
-	-- 	config = function(_, opts)
-	-- 		require("better-diagnostic-virtual-text").setup(opts)
-	-- 	end,
-	-- },
-	--
+	{
+		"ray-x/lsp_signature.nvim",
+		event = "LspAttach",
+		opts = {
+			floating_window = false,
+			hint_prefix = {
+				above = "↙ ", -- when the hint is on the line above the current line
+				current = "← ", -- when the hint is on the same line
+				below = "↖ ", -- when the hint is on the line below the current line
+			},
+		},
+	},
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "LspAttach", -- Or `LspAttach`
@@ -32,58 +34,30 @@ return {
 		},
 		config = function()
 			local servers = {
-				bashls = {},
 				clangd = {},
-				html = {},
-				julials = {},
 				lua_ls = {},
 				marksman = {},
-				matlab_ls = {
-					cmd = { "matlab-language-server", "--stdio" },
-					matlab = {
-						indexWorkspace = true,
-						installPath = "/Applications/MATLAB_R2024b.app",
-						matlabConnectionTiming = "onStart",
-						telemetry = true,
-					},
-					root_dir = function(fname)
-						return require("lspconfig.util").find_git_ancestor(fname)
-							or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
-							or require("lspconfig.util").root_pattern("Makefile")(fname)
-							or require("lspconfig.util").root_pattern("xmake.lua")(fname)
-					end,
-
-					single_file_support = true,
-				},
 				pyright = {},
 				r_language_server = {},
 				ruff = {},
-				taplo = {},
-				ts_ls = {},
 				vtsls = {},
 			}
 
 			local ensure_installed = {
-				"bash-language-server",
 				"beautysh",
-        "blue",
+				"blue",
 				"clangd",
 				"debugpy",
-				"html-lsp",
-				"julia-lsp",
 				"lua-language-server",
 				"luacheck",
 				"markdownlint",
 				"marksman",
-				"matlab-language-server",
 				"prettier",
 				"pyright",
 				"r-languageserver",
 				"ruff",
-				"shellcheck",
 				"sqlfmt",
 				"stylua",
-				"taplo",
 				"vtsls",
 			}
 

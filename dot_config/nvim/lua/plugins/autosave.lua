@@ -1,6 +1,7 @@
 return {
 	"okuuva/auto-save.nvim",
 	event = "InsertEnter",
+    enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= 'true',
 	config = function()
 		require("auto-save").setup({
 			debounce_delay = 5000,
