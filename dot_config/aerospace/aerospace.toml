@@ -14,9 +14,12 @@ key-mapping.preset = 'qwerty'
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Force mouse to follow focus
+# On change, blit mouse and refresh sketchybar
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
+exec-on-workspace-change = ['/bin/bash', '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+]
 
 # Layout properties #
 
@@ -44,9 +47,6 @@ outer.top = 23
 outer.bottom = 0
 outer.left = 2
 outer.right = 2
-
-# TODO: check out https://github.com/mehd-io/dotfiles/blob/aerospace-sketchybar/sketchybar/plugins/update_workspace_icons.sh
-# exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE PREV_WORKSPACE=$AEROSPACE_PREV_WORKSPACE && ~/.config/sketchybar/plugins/update_workspace_icons.sh']
 
 # keybindings #
 
