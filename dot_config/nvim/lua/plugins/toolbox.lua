@@ -152,16 +152,12 @@ return {
 				end,
 			},
             {
-                name = "Trouble symbols",
-                execute = "Trouble symbols"
-            },
-            {
-                name = "Trouble outline",
-                execute = "Trouble lsp_document_symbols"
-            },
-            {
                 name = "Trouble quickfix",
                 execute = "Trouble quickfix"
+            },
+            {
+                name = "Trouble symbols",
+                execute = "Trouble lsp_document_symbols"
             },
             {
                 name = "Trouble loclist",
@@ -170,6 +166,10 @@ return {
             {
                 name = "Trouble diagnostics",
                 execute = "Trouble diagnostics",
+            },
+            {
+                name = "Trouble treesitter",
+                execute = "Trouble treesitter"
             },
 		},
 	},
