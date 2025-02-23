@@ -1,3 +1,4 @@
+if true then return {} end
 return {
 	"yetone/avante.nvim",
     lazy = true,

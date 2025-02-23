@@ -1,24 +1,24 @@
 return {
 	"saghen/blink.cmp",
-	lazy = true,
-	event = "VeryLazy",
+	event = "InsertEnter",
 	version = "v0.*",
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	dependencies = {
-		{ "saghen/blink.compat", lazy = true },
+		{ "saghen/blink.compat" },
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
 			opts = { library = { path = "luvit-meta/library", words = { "vim%.uv" } } },
 		},
-		{ "bilal2453/luvit-meta", lazy = true },
-		{ "Kaiser-Yang/blink-cmp-dictionary", lazy = true },
-		{ "mikavilpas/blink-ripgrep.nvim", lazy = true },
+		{ "bilal2453/luvit-meta" },
+		{ "Kaiser-Yang/blink-cmp-dictionary" },
+		{ "mikavilpas/blink-ripgrep.nvim" },
 	},
 	opts = function(_, opts)
 		opts.completion = {
 			trigger = {
-				prefetch_on_insert = false,
-				show_on_insert_on_trigger_character = false,
+				prefetch_on_insert = true,
+				show_on_insert_on_trigger_character = true,
 			},
 			menu = {
 				auto_show = true,
@@ -26,20 +26,16 @@ return {
 				draw = {
 					treesitter = { "lsp" },
 					columns = {
-						{ "label", "label_description", gap = 1 },
+						{ "label", "label_description", gap = 2 },
 						{ "kind_icon", "kind" },
 					},
 				},
 			},
 			accept = { auto_brackets = { enabled = true } },
 			documentation = { window = { border = "rounded" } },
-			ghost_text = { enabled = false },
 		}
 
-		opts.signature = {
-			enabled = false,
-			window = { border = "rounded" },
-		}
+		opts.signature = { enabled = false }
 
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
 			default = {
@@ -48,29 +44,8 @@ return {
 				"ripgrep",
 				"path",
 				"dictionary",
-				"avante_commands",
-				"avante_mentions",
-				"avante_files",
 			},
 			providers = {
-				avante_mentions = {
-					name = "avante_mentions",
-					module = "blink.compat.source",
-					score_offset = 110,
-					opts = {},
-				},
-				avante_files = {
-					name = "avante_files",
-					module = "blink.compat.source",
-					score_offset = 100,
-					opts = {},
-				},
-				avante_commands = {
-					name = "avante_commands",
-					module = "blink.compat.source",
-					score_offset = 90,
-					opts = {},
-				},
 				lsp = {
 					name = "lsp",
 					enabled = true,
@@ -116,8 +91,6 @@ return {
 						show_hidden_files_by_default = true,
 					},
 				},
-				-- In macOS to get started with a dictionary:
-				-- cp /usr/share/dict/words ~/.config/dictionary
 				dictionary = {
 					module = "blink-cmp-dictionary",
 					name = "Dict",
@@ -127,31 +100,29 @@ return {
 					min_keyword_length = 3,
 					opts = {
 						get_command = {
-							"rg", -- make sure this command is available in your system
+							"rg",
 							"--color=never",
 							"--no-line-number",
 							"--no-messages",
 							"--no-filename",
 							"--ignore-case",
 							"--",
-							"${prefix}", -- this will be replaced by the result of 'get_prefix' function
-							vim.fn.expand("~/.config/dictionary"), -- where you dictionary is
+							"${prefix}",
+							vim.fn.expand("~/.config/dictionary"),
 						},
 						documentation = {
-							enable = true, -- enable documentation to show the definition of the word
+							enable = true,
 							get_command = {
-								-- make sure "wn" is available in your system (brew install wordnet)
 								"wn",
-								"${word}", -- this will be replaced by the word to search
+								"${word}",
 								"-over",
 							},
 						},
 					},
 				},
 			},
-			-- command line completion, thanks to dpetka2001 in reddit
-			-- https://www.reddit.com/r/neovim/comments/1hjjf21/comment/m37fe4d/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 		})
+
 		opts.cmdline = {
 			sources = function()
 				local type = vim.fn.getcmdtype()

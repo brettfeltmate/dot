@@ -3,7 +3,7 @@ return {
 	{ vim.diagnostic.config({ virtual_text = false }) },
 	{
 		"ray-x/lsp_signature.nvim",
-		event = "LspAttach",
+		lazy = true,
 		opts = {
 			floating_window = false,
 			hint_prefix = {
@@ -24,7 +24,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		event = "VeryLazy",
+		event = "BufReadPre",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
 			{
@@ -67,6 +67,16 @@ return {
 
 			for server, config in pairs(servers or {}) do
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				config.on_attach = function(client, bufnr)
+					require("lsp_signature").setup({
+						floating_window = false,
+						hint_prefix = {
+							above = "↙ ", -- when the hint is on the line above the current line
+							current = "← ", -- when the hint is on the same line
+							below = "↖ ", -- when the hint is on the line below the current line
+						},
+					})
+				end
 				require("lspconfig")[server].setup(config)
 			end
 		end,
