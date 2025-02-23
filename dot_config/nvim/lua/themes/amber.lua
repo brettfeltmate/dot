@@ -14,9 +14,9 @@ local base16 = {
 	base08 = "#c8a89d",
 	base09 = "#8a909b",
 	base0A = "#bf8f94",
-	base0B = "#c0baa9",
+	base0B = "#b6b0a0",
 	base0C = "#bf8080",
-	base0D = "#9fbfaa",
+	base0D = "#95ae9e",
 	base0E = "#bfaa8c",
 	base0F = "#b195b3",
 }
@@ -58,7 +58,7 @@ local base30 = {
 
 local polish_hl = {
 	defaults = {
-		Comment = { fg = base30.light_grey, italic = true, bold = true },
+		Comment = { fg = base16.base04, italic = true, bold = true },
 		Added = { fg = base30.yellow },
 		Removed = { fg = base30.baby_pink },
 		Changed = { fg = base30.purple },
@@ -293,7 +293,6 @@ local polish_hl = {
 		["@constant.builtin"] = { fg = base16.base09 },
 		["@constant.macro"] = { fg = base16.base08 },
 
-		["@string"] = { fg = base16.base0B },
 		["@string.regex"] = { fg = base16.base0C },
 		["@string.escape"] = { fg = base16.base0C },
 		["@character"] = { fg = base16.base08 },
@@ -355,7 +354,7 @@ local polish_hl = {
 		["@markup.strikethrough"] = { strikethrough = true },
 		["@markup.quote"] = { bg = base30.black2 },
 
-		["@comment"] = { fg = base30.lightbg },
+		["@comment"] = { fg = base16.base04 },
 		["@comment.todo"] = { fg = base30.grey, bg = base30.white },
 		["@comment.warning"] = { fg = base30.black2, bg = base16.base09 },
 		["@comment.note"] = { fg = base30.black, bg = base30.blue },
@@ -390,7 +389,7 @@ local polish_hl = {
 		SpecialChar = { fg = base16.base0F },
 		Statement = { fg = base16.base08 },
 		StorageClass = { fg = base16.base0A },
-		String = { fg = base16.base0B },
+		String = { fg = base16.base05 },
 		Structure = { fg = base16.base0E },
 		Tag = { fg = base16.base0A },
 		Todo = { fg = base16.base0A, bg = base16.base01 },

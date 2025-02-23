@@ -148,6 +148,7 @@ return {
 					col = 0,
 					row = 1,
 					backdrop = 95,
+                    border = "rounded"
 				},
 			}
 		end)

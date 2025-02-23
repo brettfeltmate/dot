@@ -10,7 +10,7 @@ return {
 				view = "cmdline",
 				format = { input = { view = "cmdline" } },
 			},
-			popupmenu = { enabled = false, backend = "nui" },
+			popupmenu = { enabled = false },
 			hover = { enabled = true },
 			lsp = {
 				signature = { enabled = true },
