@@ -1,30 +1,42 @@
 return {
-	"zbirenbaum/copilot.lua",
-	event = "VeryLazy",
-	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
-	opts = {
-		panel = { enabled = true },
-		suggestion = {
-			enabled = true,
-			auto_trigger = true,
-			hide_during_completion = true,
-			keymap = {
-				accept = "<M-l>",
-				accept_line = "<M-S-l>",
-				next = "<M-j>",
-				prev = "<M-k>",
-				dismiss = "<M-space>",
+	{
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
+		opts = {
+			panel = { enabled = false },
+			suggestion = {
+				enabled = true,
+				auto_trigger = true,
+				hide_during_completion = true,
+				debounce = 75,
+				keymap = {
+					accept = "<M-l>",
+					accept_word = false,
+					accept_line = false,
+					next = "<M-j>",
+					prev = "<M-k>",
+					dismiss = "<M-h>",
+				},
 			},
 		},
-		filetypes = { markdown = true, help = true },
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
 		lazy = true,
-		branch = "main",
-		event = "VeryLazy",
-		build = "make tiktoken",
+		cmd = {
+			"CopilotChatToggle",
+			"CopilotChatStop",
+			"CopilotChatReset",
+			"CopilotChatExplain",
+			"CopilotChatFix",
+			"CopilotChatDocs",
+			"CopilotChatTests",
+			"CopilotChatOptimize",
+		},
 		dependencies = { "zbirenbaum/copilot.lua" },
+		branch = "main",
+		build = "make tiktoken",
 		opts = {
 			model = "claude-3.5-sonnet",
 			question_header = "~    User  ~  ",

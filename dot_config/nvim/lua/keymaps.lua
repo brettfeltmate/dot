@@ -161,16 +161,16 @@ map({ "n" }, L("bz"), C("lua MiniMisc.zoom()"), "Zoom")
 
 -- TODO: explicitly set avante mappings
 
-map({ "n", "v" }, L("cc"), function()
+map({ "n", "v" }, L("ac"), function()
 	local input = vim.fn.input("Quick Chat: ")
 	if input ~= "" then
 		require("CopilotChat").ask(input, { selection = require("CopilotChat.select").visual })
 	end
 end, "Quick chat")
 
-map({ "n" },      L("a "), C("CopilotChatToggle"), "Toggle")
-map({ "n" },      L("as"), C("CopilotChatStop"), "Stop")
-map({ "n" },      L("ar"), C("CopilotChatReset"), "Reset")
+map({ "n" }, L("a "), C("CopilotChatToggle"), "Toggle")
+map({ "n" }, L("as"), C("CopilotChatStop"), "Stop")
+map({ "n" }, L("ar"), C("CopilotChatReset"), "Reset")
 map({ "n", "x" }, L("ae"), C("CopilotChatExplain"), "Explain")
 map({ "n", "x" }, L("af"), C("CopilotChatFix"), "Fix")
 map({ "n", "x" }, L("ad"), C("CopilotChatDocs"), "Document")
@@ -237,8 +237,10 @@ end, "Scopes")
 -- | [L]SP
 map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
 map({ "n" }, L("ld"), C("FzfLua lsp_definitions "), "Definitions")
-map({ "n" }, L("ls"), C("FzfLua lsp_live_workspace_symbols"), "Symbols")
+map({ "n" }, L("ls"), C("FzfLua lsp_symbols_document"), "Symbols")
 map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics")
+map({ "n" }, L("ll"), C("FzfLua lsp_live_workspace_symbols"), "Workspace")
+map({ "n" }, L("lo"), C("Trouble symbols"), "Outline")
 
 -- | [s]earch
 map({ "n" }, L("sd"), C("ChezFzf"), "Dotfiles")
