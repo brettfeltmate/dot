@@ -19,7 +19,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
 
 # FIXME:
-# exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE' ]
+exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE' ]
 
 # Layout properties #
 
@@ -298,4 +298,4 @@ run = ['layout floating']
 
 ### Default to 5
 [[on-window-detected]]
-run = ['layout floating', 'move-node-to-workspace 5']
+run = ['move-node-to-workspace 5']
