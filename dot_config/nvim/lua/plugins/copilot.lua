@@ -42,7 +42,7 @@ return {
 			question_header = "~    User  ~  ",
 			answer_header = "~    Copilot  ~  ",
 			error_header = "~    ERROR  ~  ",
-			show_folds = true,
+			show_folds = false,
 			-- Default context to use
 			-- -- 'buffers', 'buffer', 'files' or none
 			-- -- (can be specified manually in prompt via #).

@@ -80,8 +80,14 @@ local polish_hl = {
 		Question = { fg = base16.base0D },
 		Search = { fg = base16.base01, bg = base16.base08 },
 		Substitute = { fg = base16.base01, bg = base16.base0A, sp = "none" },
-		IncSearch = { fg = base16.base01, bg = base16.base09 },
-		MatchWord = { bg = base30.grey_fg, fg = base30.baby_pink },
+		IncSearch = {
+			bg = base30.orange,
+			fg = generate_color(base16.base07, -50),
+            bold = true,
+            italic = true,
+            underline = true,
+		},
+		MatchWord = { link = "IncSearch" },
 		MatchParen = { link = "MatchWord" },
 
 		Normal = { fg = base16.base05, bg = base16.base00 },
@@ -404,6 +410,8 @@ M.polish_hl = polish_hl
 M.type = "dark"
 
 vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base16.base00 })
+vim.api.nvim_set_hl(0, "FzfLuaFzfMatch", { bg = base30.grey_fg, fg = base30.purple })
+vim.api.nvim_set_hl(0, "FzfLuaFzfMarker", { bg = base30.grey_fg, fg = base30.purple })
 vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
 vim.api.nvim_set_hl(0, "MiniClueSeparator", { link = "WinSeparator" })
 vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = "#cba9ad" })

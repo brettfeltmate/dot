@@ -1,18 +1,17 @@
 function _G.get_oil_winbar()
-	local dir = require("oil").get_current_dir()
-	if dir then
-		return "Viewing: " .. vim.fn.fnamemodify(dir, ":~")
-	else
-		return "Viewing: " .. vim.api.nvim_buf_get_name(0)
+	local append = require("oil").get_current_dir()
+	if not append then
+		append = vim.api.nvim_buf_get_name(0)
 	end
+	return "Viewing: " .. vim.fn.fnamemodify(append, ":~")
 end
 
 return {
 	{
 		"stevearc/oil.nvim",
 		dependencies = { "echasnovski/mini.icons" },
-		config = function()
-			require("oil").setup({
+		opts = function()
+			local opts = {
 				keymaps = {
 					["<bs>"] = "actions.parent",
 					["?"] = "actions.show_help",
@@ -27,11 +26,9 @@ return {
 					["<C-f>"] = "actions.preview_scroll_down",
 					["<C-b>"] = "actions.preview_scroll_up",
 				},
-				win_options = {
-					winbar = "%!v:lua.get_oil_winbar()",
-					signcolumn = "yes:2",
-				},
-			})
+				win_options = { winbar = "%!v:lua.get_oil_winbar()" },
+			}
+			return opts
 		end,
 	},
 }
