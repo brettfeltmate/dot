@@ -40,6 +40,7 @@ return {
 				pyright = {},
 				r_language_server = {},
 				ruff = {},
+        taplo = {},
 				vtsls = {},
 			}
 
@@ -58,6 +59,7 @@ return {
 				"ruff",
 				"sqlfmt",
 				"stylua",
+        "taplo",
 				"vtsls",
 			}
 
