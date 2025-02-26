@@ -57,7 +57,7 @@ sketchybar --default "${defaults[@]}"
 #                                Left side
 ###############################################################################
 # source "$ITEM_DIR/apple.sh"
-source "$ITEM_DIR/spaces.sh"
+# source "$ITEM_DIR/spaces.sh"
 # source "$ITEM_DIR/aerospace.sh"
 # source "$ITEM_DIR/front_app.sh"
 # source "$ITEM_DIR/svim.sh"

@@ -1,7 +1,7 @@
 # Aerospace config #
 
 # Don't set to true if Aerospace is already a login app; gets buggy.
-start-at-login = true
+start-at-login = false
 
 # Ensure sbar & borders are running
 after-startup-command = [
@@ -17,9 +17,9 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # On change, blit mouse and refresh sketchybar
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+
+# FIXME:
+# exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE' ]
 
 # Layout properties #
 
@@ -65,8 +65,8 @@ alt-up = 'focus up'
 alt-right = 'focus right'
 
 # Manually refresh sketchybar
-alt-shift-esc = 'exec-and-forget sketchybar --bar hidden=toggle'
-alt-esc = 'exec-and-forget sketchybar --reload'
+alt-shift-t = 'exec-and-forget sketchybar --bar hidden=toggle'
+alt-shift-r = 'exec-and-forget sketchybar --reload'
 
 # Toggle between window layout modes
 alt-shift-period = 'layout tiling floating'
@@ -298,4 +298,4 @@ run = ['layout floating']
 
 ### Default to 5
 [[on-window-detected]]
-run = ['move-node-to-workspace 5']
+run = ['layout floating', 'move-node-to-workspace 5']
