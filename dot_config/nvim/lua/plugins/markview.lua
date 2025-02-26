@@ -1,8 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
 	"OXY2DEV/markview.nvim",
-    event = "UIEnter",
-	ft = { "markdown", "rmarkdown", "rmd", "quarto", "copilot-*", "avante", "codecompanion" },
+	ft = { "chat", "markdown", "rmarkdown", "rmd", "quarto", "copilot-*", "avante", "codecompanion" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",
@@ -12,7 +11,7 @@ return {
 
 		require("markview").setup({
 			preview = {
-				filetypes = { "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion" },
+				filetypes = {"chat", "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion" },
 				modes = { "n", "no", "c", "v", "i" },
 				hybrid_modes = { "v", "i" },
 				icon_provider = "mini",

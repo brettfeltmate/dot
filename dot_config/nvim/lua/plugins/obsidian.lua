@@ -1,12 +1,10 @@
 return {
 	"epwalsh/obsidian.nvim",
 	version = "*",
-    event = "VeryLazy",
-	-- lazy = true,
-	-- event = {
-	-- 	"BufReadPre ~/Documents/Obsidian/*.md",
-	-- 	"BufNewFile ~/Documents/Obsidian/*.md",
-	-- },
+	event = {
+		"BufReadPre " .. vim.fn.expand "~" .. "/Documents/Obsidian/*.md",
+		"BufNewFile " .. vim.fn.expand "~" .. "/Documents/Obsidian/*.md",
+	},
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"oflisback/obsidian-bridge.nvim",

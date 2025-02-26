@@ -1,7 +1,7 @@
 return {
 	"ggandor/leap.nvim",
 	dependencies = { "tpope/vim-repeat", lazy = true },
-	event = "UIEnter",
+	event = "BufReadPre",
 	opts = {
 		equivalence_classes = { " \t\r\n", "({[", ")}]", "'\"`" },
 		preview_filter = function(ch0, ch1, ch2)

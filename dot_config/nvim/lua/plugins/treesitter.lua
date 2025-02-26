@@ -39,7 +39,6 @@ return {
 	{
 		"aaronik/treewalker.nvim",
 		lazy = true,
-		event = "BufReadPre",
 		opts = {
 			highlight = true,
 			highlight_duration = 100,

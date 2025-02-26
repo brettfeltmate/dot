@@ -1,5 +1,5 @@
 return {
 		"chentoast/marks.nvim",
-		event = "UIEnter",
+		event = "BufReadPre",
 		opts = {},
 	}
