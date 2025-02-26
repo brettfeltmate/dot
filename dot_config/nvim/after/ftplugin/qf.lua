@@ -10,6 +10,6 @@ if has_quicker then
 	end, { desc = "Collapse" })
 
 	vim.keymap.set({ "n" }, "<localleader>r", function()
-		require("quicker").refresh()
+		require("quicker").refresh(nil, {keep_diagnostics = true})
 	end, { desc = "Refresh" })
 end

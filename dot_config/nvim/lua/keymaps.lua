@@ -70,6 +70,9 @@ map({ "x", "o" }, "aa", function()
 	-- automatically (we need -1 here, see above).
 	require("leap.remote").action({ input = V .. input, count = false })
 end)
+
+-- map({"n"}, "g/", [[vimgrep /<C-R>//j %<CR>\|:cw<CR>]], "Matches to qflist", { noremap = true})
+
 -- C-a clashes with my tmux prefix
 map({ "n" }, "<c-v>", "<c-a>")
 
@@ -237,7 +240,7 @@ end, "Scopes")
 -- | [L]SP
 map({ "n" }, L("lr"), C("FzfLua lsp_references"), "References")
 map({ "n" }, L("ld"), C("FzfLua lsp_definitions "), "Definitions")
-map({ "n" }, L("ls"), C("FzfLua lsp_symbols_document"), "Symbols")
+map({ "n" }, L("ls"), C("FzfLua lsp_document_symbols"), "Symbols")
 map({ "n" }, L("lx"), C("FzfLua diagnostics_document"), "Diagnostics")
 map({ "n" }, L("ll"), C("FzfLua lsp_live_workspace_symbols"), "Workspace")
 map({ "n" }, L("lo"), C("Trouble symbols"), "Outline")
@@ -258,7 +261,7 @@ map({ "n" }, L("si"), function()
 		format = "file",
 		cmd = "fd",
 		args = { "-I", "-e", "jpg", "-e", "png", "-e", "jpeg", "-e", "pdf" },
-		layout = "vertical",
+		layout = "left",
 	})
 end, "Images")
 
@@ -294,8 +297,8 @@ map({ "n" }, L(",."), C("lua Snacks.dashboard()"), "Home")
 map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",d"), C("qa!"), "Dip")
-map({ "n" }, L(",q"), C("Trouble quickfix toggle"), "Quickfix")
-map({ "n" }, L(",l"), C("Trouble loclist toggle"), "Loclist")
+map({ "n" }, L(",q"), C("lua require('quicker').toggle(loclist=false)"), "Quickfix")
+map({ "n" }, L(",l"), C("lua require('quicker').toggle()"), "Loclist")
 map({ "n" }, L(",u"), C("lua Snacks.picker.undo()"), "Undos")
 
 -- | [W]indows

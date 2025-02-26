@@ -1,9 +1,7 @@
 return {
 	"stevearc/quicker.nvim",
-	event = "BufRead",
-    ft = { "qf" },
+    ft = "qf",
 	opts = {
-        highlight = { load_buffers = true },
-        follow = { enabled = true },
+        highlight = {rload_buffers = true },
     },
 }

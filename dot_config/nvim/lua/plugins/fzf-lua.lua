@@ -4,7 +4,6 @@ return {
 	cmd = "FzfLua",
 	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
 	opts = function()
-
 		local opts = {
 			"ivy",
 			fzf_opts = { ["--layout"] = "reverse" },
@@ -87,6 +86,13 @@ return {
 					},
 				},
 			},
+			helptags = {
+				winopts = {
+					preview = {
+						hidden = true,
+					},
+				},
+			},
 			diagnostics = {
 				winopts = {
 					preview = {
@@ -112,10 +118,10 @@ return {
 	config = function(_, opts)
 		require("fzf-lua").setup(opts)
 
-        -- Send selections to trouble qf/lf
-        local fzfconf = require("fzf-lua.config")
-        local trblact = require("trouble.sources.fzf").actions
-        fzfconf.defaults.actions.files["ctrl-t"] = trblact.open
+		-- Send selections to trouble qf/lf
+		local fzfconf = require("fzf-lua.config")
+		local trblact = require("trouble.sources.fzf").actions
+		fzfconf.defaults.actions.files["ctrl-t"] = trblact.open
 
 		-- use fzf-lua as default selector
 		require("fzf-lua").register_ui_select(function(_, items)
@@ -148,7 +154,7 @@ return {
 					col = 0,
 					row = 1,
 					backdrop = 95,
-                    border = "rounded"
+					border = "rounded",
 				},
 			}
 		end)

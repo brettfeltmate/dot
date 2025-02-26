@@ -9,11 +9,11 @@ return {
 		},
 		image = { enabled = true },
 		input = {
-            enabled = true,
-            relative = "cursor",
-            row = -3,
-            col = 0,
-        },
+			enabled = true,
+			relative = "cursor",
+			row = -3,
+			col = 0,
+		},
 		indent = { enabled = true, chunk = { enabled = true } },
 		terminal = { win = { wo = { winbar = "" } } },
 		scratch = {},
@@ -50,22 +50,15 @@ return {
 			sections = {
 				{ section = "header" },
 				{
-					pane = 2,
-					section = "terminal",
-					cmd = "colorscript -e 24",
-					height = 7,
-					padding = 1,
-				},
-				{
 					gap = 1,
 					padding = 1,
-
+					{ icon = " ", key = "e", desc = "Explore", action = ":Oil" },
 					{ icon = "󰱽 ", key = "f", desc = "Find", action = ":FzfLua files" },
 					{ icon = "󱎸 ", key = "g", desc = "Grep", action = ":FzfLua live_grep" },
 					{ icon = " ", key = "d", desc = "Dots", action = ":ChezFzf" },
 					{ icon = "󰦄 ", key = "c", desc = "Cwd", action = ":FzfLua zoxide" },
 					{ icon = "󰁯 ", key = "r", desc = "Restore", section = "session" },
-					{ icon = " ", key = "n", desc = "Neogit", action = ":Neogit" },
+					{ icon = "󰊢 ", key = "n", desc = "Neogit", action = ":Neogit" },
 					{
 						icon = "󰒲 ",
 						key = "l",
@@ -74,6 +67,13 @@ return {
 						enabled = package.loaded.lazy ~= nil,
 					},
 					{ icon = "󰩈 ", key = "q", desc = "Quit", action = ":qa" },
+				},
+				{
+					pane = 2,
+					section = "terminal",
+					cmd = "colorscript -e 24",
+					height = 7,
+					padding = 1,
 				},
 				{
 					pane = 2,
@@ -103,21 +103,21 @@ return {
 					padding = 1,
 					limit = 4,
 				},
-				{
-					pane = 2,
-					icon = "󰊢 ",
-					title = "Git Status",
-					section = "terminal",
-					enabled = function()
-						return Snacks.git.get_root() ~= nil
-					end,
-					cmd = "git status --short --branch --renames",
-					height = 5,
-					padding = 1,
-					ttl = 5 * 60,
-					indent = 3,
-				},
-				{ section = "startup" },
+				-- {
+				-- 	pane = 2,
+				-- 	icon = "󰊢 ",
+				-- 	title = "Git Status",
+				-- 	section = "terminal",
+				-- 	enabled = function()
+				-- 		return Snacks.git.get_root() ~= nil
+				-- 	end,
+				-- 	cmd = "git status --short --branch --renames",
+				-- 	height = 5,
+				-- 	padding = 1,
+				-- 	ttl = 5 * 60,
+				-- 	indent = 3,
+				-- },
+				-- { section = "startup" },
 			},
 		},
 	},
