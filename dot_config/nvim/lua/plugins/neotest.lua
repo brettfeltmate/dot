@@ -9,8 +9,8 @@ return {
 	},
 	lazy = true,
 	opts = {
-		adapters = { "neotest-python", },
-        floating = { max_height = 0.9, max_width = 0.9 },
+		adapters = { "neotest-python" },
+		floating = { max_height = 0.9, max_width = 0.9 },
 		status = { virtual_text = true },
 		output = { open_on_run = false },
 		summary = { expand_errors = true },
@@ -60,3 +60,18 @@ return {
 	end,
 	-- stylua: ignore
 }
+
+-- map({ "n" }, L("na"), C("lua require('neotest').run.run(vim.fn.expand('%'))"), "All")
+-- map({ "n" }, L("nn"), C("lua require('neotest').run.run()"), "Nearest")
+-- map({ "n" }, L("nw"), C("lua require('neotest').watch.toggle()"), "Watch nearest")
+-- map({ "n" }, L("nd"), C("lua require('neotest').run.run({vim.fn.expand('%'), strategy = 'dap'})"), "All (dap)")
+-- map({ "n" }, L("ns"), C("lua require('neotest').summary.toggle()"), "Summary (panel)")
+-- map({ "n" }, L("np"), C("lua require('neotest').output_panel.toggle()"), "Output panel")
+-- map(
+-- 	{ "n" },
+-- 	L("no"),
+-- 	C(
+-- 		"lua require('neotest').output.open({enter = true, auto_close=false, open_win = function() vim.cmd('tabnew') end, })"
+-- 	),
+-- 	"Output (tab)"
+-- )

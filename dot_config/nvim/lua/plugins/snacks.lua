@@ -10,14 +10,21 @@ return {
 		image = { enabled = true },
 		input = {
 			enabled = true,
-			relative = "cursor",
-			row = -3,
-			col = 0,
+			win = {
+				style = "input",
+				title_pos = "left",
+				relative = "cursor",
+				row = -3,
+				col = 0,
+				width = 30,
+			},
 		},
 		indent = { enabled = true, chunk = { enabled = true } },
 		terminal = { win = { wo = { winbar = "" } } },
 		scratch = {},
-		scroll = { enabled = true },
+		-- scroll = {
+		-- 	animate = { step = 10, total = 50 },
+		-- },
 		picker = {
 			ui_select = false,
 			layout = { preset = "ivy" },

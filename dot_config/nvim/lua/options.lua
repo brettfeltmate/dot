@@ -2,14 +2,6 @@ vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
-vim.g.lazygit_config = true
-vim.g.lazygit_floating_window_scaling_factor = 1.0
-vim.g.lazygit_floating_window_use_plenary = 1
-
-vim.g.undotree_DiffAutoOpen = 0
-vim.g.undotree_SetFocusWhenToggle = 1
-vim.g.undotree_ShortIndicators = 1
-
 -- UI
 vim.opt.cmdheight = 0
 vim.opt.number = true
@@ -20,7 +12,7 @@ vim.opt.laststatus = 3 -- global statusline
 vim.opt.pumheight = 6
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 999
 vim.opt.virtualedit = "block"
 vim.opt.hlsearch = true
 vim.opt.list = false
@@ -58,4 +50,5 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldexpr = "v:lua.require('utils').markerOrTreeFold()"

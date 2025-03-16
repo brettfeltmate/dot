@@ -33,3 +33,5 @@ vim.keymap.set("n", "]]", function()
 		vim.api.nvim_win_set_cursor(0, { line + 1, col - 1 })
 	end
 end, { buffer = 0, noremap = true, desc = "Jump to next cell" })
+
+-- vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1c1e27"})

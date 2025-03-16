@@ -38,11 +38,13 @@ return {
 		branch = "main",
 		build = "make tiktoken",
 		opts = {
-			model = "claude-3.5-sonnet",
+			model = "claude-3.7-sonnet",
 			question_header = "~    User  ~  ",
 			answer_header = "~    Copilot  ~  ",
 			error_header = "~    ERROR  ~  ",
 			show_folds = false,
+            highlight_selection = false,
+            highlight_headers = false,
 			-- Default context to use
 			-- -- 'buffers', 'buffer', 'files' or none
 			-- -- (can be specified manually in prompt via #).
@@ -68,14 +70,15 @@ return {
 				},
 			},
 			window = {
-				layout = "float",
-				relative = "win",
-				width = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.4)),
-				height = 1,
-				row = 0,
-				col = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.6)),
-				title = "Copilot Chat",
-				border = "rounded",
+                layout = "vertical",
+				-- layout = "float",
+				-- relative = "win",
+				-- width = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.4)),
+				-- height = 1,
+				-- row = 0,
+				-- col = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.6)),
+				-- title = "Copilot Chat",
+				-- border = "shadow",
 			},
 			mappings = {
 				complete = { detail = "Use @<Tab> or /<Tab> for options.", insert = "<Tab>" },

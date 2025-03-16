@@ -1,8 +1,7 @@
 return {
 	"ibhagwan/fzf-lua",
-	lazy = true,
-	cmd = "FzfLua",
-	dependencies = { "echasnovski/mini.icons", "folke/trouble.nvim" },
+    event = "VeryLazy",
+	dependencies = { "echasnovski/mini.icons"},
 	opts = function()
 		local opts = {
 			"ivy",
@@ -118,11 +117,6 @@ return {
 	config = function(_, opts)
 		require("fzf-lua").setup(opts)
 
-		-- Send selections to trouble qf/lf
-		local fzfconf = require("fzf-lua.config")
-		local trblact = require("trouble.sources.fzf").actions
-		fzfconf.defaults.actions.files["ctrl-t"] = trblact.open
-
 		-- use fzf-lua as default selector
 		require("fzf-lua").register_ui_select(function(_, items)
 			-- initially set height to num items + padding
@@ -131,7 +125,7 @@ return {
 			h = math.min(math.max(h, 0.05), 0.2)
 
 			-- initially set width to longest item w/padding
-			local max_len = 0
+			local max_len = 35
 			for _, item in ipairs(items) do
 				local len
 				if type(item) == "table" and item.value then
@@ -148,11 +142,11 @@ return {
 
 			return {
 				winopts = {
-					relative = "cursor",
+                    relative = "editor",
+                    col = 0.5,
+                    row = 0.5,
 					height = h,
 					width = w,
-					col = 0,
-					row = 1,
 					backdrop = 95,
 					border = "rounded",
 				},

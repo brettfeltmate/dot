@@ -11,7 +11,7 @@ return {
 				ensure_installed = {
           "cpp",
 					"html",
-					"latex",
+					-- "latex",
 					"lua",
 					"luadoc",
 					"markdown",
@@ -36,14 +36,5 @@ return {
       vim.treesitter.language.register("r", "R")
 		end,
 	},
-	{
-		"aaronik/treewalker.nvim",
-		lazy = true,
-		opts = {
-			highlight = true,
-			highlight_duration = 100,
-			highlight_group = "WinSeparator",
-		},
-	}
 }
 -- vim: ts=2 sts=2 sw=2 et

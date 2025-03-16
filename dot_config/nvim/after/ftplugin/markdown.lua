@@ -32,3 +32,5 @@ if has_mini_surround then
 		},
 	}
 end
+
+vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })

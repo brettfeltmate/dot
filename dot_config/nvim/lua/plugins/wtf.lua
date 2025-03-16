@@ -5,7 +5,7 @@ return {
 	dependencies = { "muniftanjim/nui.nvim" },
 	config = function()
 		require("wtf").setup({
-			-- popup_type = "vertical",
+			popup_type = "vertical",
 			openai_api_key = os.getenv("OPENAI_API_KEY"),
 			openai_model_id = "gpt-4o-mini",
 		})

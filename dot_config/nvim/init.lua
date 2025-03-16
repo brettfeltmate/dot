@@ -5,6 +5,8 @@ require("autocmds")
 
 require("lazyload")
 
+require("utils")
+
 require("keymaps")
 
 require("options")

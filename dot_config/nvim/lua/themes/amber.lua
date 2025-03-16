@@ -3,7 +3,7 @@ local mix_color = require("base46.colors").mix
 
 local M = {}
 local base16 = {
-	base00 = "#1c171d",
+	base00 = "#151016",
 	base01 = "#1f1a1f",
 	base02 = "#211922",
 	base03 = "#49504f",
@@ -83,9 +83,9 @@ local polish_hl = {
 		IncSearch = {
 			bg = base30.orange,
 			fg = generate_color(base16.base07, -50),
-            bold = true,
-            italic = true,
-            underline = true,
+			bold = true,
+			italic = true,
+			underline = true,
 		},
 		MatchWord = { link = "IncSearch" },
 		MatchParen = { link = "MatchWord" },
@@ -101,8 +101,8 @@ local polish_hl = {
 
 		ModeMsg = { fg = base16.base0B },
 		MoreMsg = { fg = base16.base0B },
-		Visual = { bg = base16.base02 },
-		VisualNOS = { fg = base16.base08 },
+		Visual = { bg = base30.purple, fg = base16.base00 },
+		VisualNOS = { fg = base16.base09 },
 		Macro = { fg = base16.base08 },
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
@@ -133,26 +133,28 @@ local polish_hl = {
 
 		-- Lazy
 		LazyH1 = {
-			bg = generate_color(base16.base03, -10),
-			fg = base30.white,
+			bg = base30.one_bg,
+			fg = base30.orange,
+			bold = true,
 		},
 		LazyButton = {
 			bg = base30.one_bg,
-			fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 10 or -20),
+			fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 25 or -10),
 		},
 		LazyButtonActive = {
-			bg = generate_color(base16.base03, -10),
-			fg = base30.white,
+			bg = base30.one_bg,
+			-- bg = generate_color(base16.base03, -10),
+			fg = base30.orange,
 			bold = true,
 		},
-		LazyH2 = { fg = base30.blue, bold = true, italic = false },
+		LazyH2 = { fg = base30.white, bold = true, italic = true, underline = false },
 		LazyReasonPlugin = { fg = base30.red },
 		LazyValue = { fg = base30.teal },
 		LazyDir = { fg = base16.base05 },
 		LazyUrl = { fg = base16.base05 },
 		LazyCommit = { fg = base30.green },
 		LazyNoCond = { fg = base30.red },
-		LazySpecial = { fg = base30.blue },
+		LazySpecial = { fg = base16.base0B },
 		LazyReasonFt = { fg = base30.purple },
 		LazyOperator = { fg = base30.white },
 		LazyReasonKeys = { fg = base30.teal },
@@ -230,38 +232,13 @@ local polish_hl = {
 		NvimTreeGitDirty = { fg = base30.red },
 		NvimTreeOpenedFolderName = { fg = base30.folder_bg },
 		NvimTreeGitIgnored = { fg = base30.light_grey },
-
-		NvimTreeWinSeparator = {
-			fg = base30.lightbg,
-			bg = base30.menu_bg,
-		},
-
-		NvimTreeWindowPicker = {
-			fg = base30.red,
-			bg = base30.black2,
-		},
-
-		NvimTreeCursorLine = {
-			bg = base30.black,
-		},
-
-		NvimTreeGitNew = {
-			fg = base30.yellow,
-		},
-
-		NvimTreeGitDeleted = {
-			fg = base30.red,
-		},
-
-		NvimTreeSpecialFile = {
-			fg = base30.yellow,
-			bold = true,
-		},
-
-		NvimTreeRootFolder = {
-			fg = base30.red,
-			bold = true,
-		},
+		NvimTreeWinSeparator = { fg = base30.lightbg, bg = base30.menu_bg },
+		NvimTreeWindowPicker = { fg = base30.red, bg = base30.black2 },
+		NvimTreeCursorLine = { bg = base30.black },
+		NvimTreeGitNew = { fg = base30.yellow },
+		NvimTreeGitDeleted = { fg = base30.red },
+		NvimTreeSpecialFile = { fg = base30.yellow, bold = true },
+		NvimTreeRootFolder = { fg = base30.red, bold = true },
 	},
 	arrow = {
 		["@ArrowFileIndex"] = { fg = base30.yellow },
@@ -359,18 +336,14 @@ local polish_hl = {
 		["@markup.italic"] = { italic = true },
 		["@markup.strikethrough"] = { strikethrough = true },
 		["@markup.quote"] = { bg = base30.black2 },
-
 		["@comment"] = { fg = base16.base04 },
 		["@comment.todo"] = { fg = base30.grey, bg = base30.white },
 		["@comment.warning"] = { fg = base30.black2, bg = base16.base09 },
 		["@comment.note"] = { fg = base30.black, bg = base30.blue },
 		["@comment.danger"] = { fg = base30.black2, bg = base30.red },
-
 		["@diff.plus"] = { fg = base30.green },
 		["@diff.minus"] = { fg = base30.red },
 		["@diff.delta"] = { fg = base30.light_grey },
-
-		-- ['@NeogitDiffDelete'] = { bg = base30.one_black, fg = base30.light_grey },
 		["@NeogitDiffDeleteHighlight"] = { bg = base30.one_bg2, fg = base30.light_grey },
 	},
 	syntax = {
@@ -414,9 +387,11 @@ vim.api.nvim_set_hl(0, "FzfLuaFzfMatch", { bg = base30.grey_fg, fg = base30.purp
 vim.api.nvim_set_hl(0, "FzfLuaFzfMarker", { bg = base30.grey_fg, fg = base30.purple })
 vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
 vim.api.nvim_set_hl(0, "MiniClueSeparator", { link = "WinSeparator" })
-vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = "#cba9ad" })
-vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = "#afafb6" })
-vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = "#c5b8b0" })
+-- vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = generate_color(base16.base0A, 10) })
+vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = base30.orange })
+vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = generate_color(base16.base04, 25) })
+vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = base16.base0A })
+vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
 
 M = require("base46").override_theme(M, "amber")
 

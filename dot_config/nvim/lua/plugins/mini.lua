@@ -1,16 +1,15 @@
 return {
 	"echasnovski/mini.nvim",
-	lazy = true,
-	event = "UIEnter",
+	event = "VeryLazy",
 	config = function()
-		require("mini.align").setup()
 		require("mini.ai").setup()
 		require("mini.bracketed").setup()
 		require("mini.comment").setup()
-		-- require("mini.surround").setup()
+		require("mini.surround").setup()
 		require("mini.basics").setup()
 		require("mini.extra").setup()
 		require("mini.misc").setup()
+        require("mini.pairs").setup()
 
 		require("mini.icons").setup({
 			file = {
@@ -100,44 +99,10 @@ return {
 				clue.gen_clues.windows({ submode_resize = true }),
 				clue.gen_clues.z(),
 
-				-- Submodes
-				{ mode = "n", keys = "<leader>a", desc = "AI" },
-				{ mode = "v", keys = "<leader>a", desc = "AI" },
-				{ mode = "n", keys = "<leader>b", desc = "Buffer" },
-                -- TODO: submodes for topical command palettes
-				{ mode = "n", keys = "<leader>c", desc = "Commands" },
-				{ mode = "v", keys = "<leader>c", desc = "Commands" },
-				{ mode = "n", keys = "<leader>d", desc = "Debug" },
-				{ mode = "n", keys = "<leader>g", desc = "Git" },
-				{ mode = "n", keys = "<leader>l", desc = "Lsp" },
-				{ mode = "n", keys = "<leader>s", desc = "Search" },
-				{ mode = "n", keys = "<leader>,", desc = "UI" },
-				{ mode = "n", keys = "<leader>n", desc = "NeoTest" },
-				{ mode = "n", keys = "<leader>,t", desc = "Treewalker" },
-				{ mode = "n", keys = "<leader>w", desc = "Window" },
-
-				-- DAP (Hydra style)
-				{ mode = "n", keys = "<leader>dk", postkeys = "<leader>d", desc = "Step out" },
-				{ mode = "n", keys = "<leader>dj", postkeys = "<leader>d", desc = "Step into" },
-				{ mode = "n", keys = "<leader>dl", postkeys = "<leader>d", desc = "Step over" },
-
-				-- Treewalker (Hydra style)
-				{ mode = "n", keys = "<Leader>,tj", postkeys = "<Leader>,t", desc = "Down" },
-				{ mode = "n", keys = "<Leader>,tk", postkeys = "<Leader>,t", desc = "Up" },
-				{ mode = "n", keys = "<Leader>,th", postkeys = "<Leader>,t", desc = "Left" },
-				{ mode = "n", keys = "<Leader>,tl", postkeys = "<Leader>,t", desc = "Right" },
-				{ mode = "v", keys = "<Leader>,tj", postkeys = "<Leader>,t", desc = "Down" },
-				{ mode = "v", keys = "<Leader>,tk", postkeys = "<Leader>,t", desc = "Up" },
-				{ mode = "v", keys = "<Leader>,th", postkeys = "<Leader>,t", desc = "Left" },
-				{ mode = "v", keys = "<Leader>,tl", postkeys = "<Leader>,t", desc = "Right" },
+                { mode = "n", keys = "<leader>.", desc = "Commands"},
+				{ mode = "n", keys = "<leader>,", desc = "Utils" },
 			},
 		})
-
-		vim.api.nvim_set_hl(0, "MiniClueSeparator", { fg = "#837972" })
-		vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = "#C5B8B0" })
-		vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = "#AFAFB6" })
-		vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = "#CBA9AD" })
-        vim.api.nvim_set_hl(0, "MiniClueTitle", { fg = "#C5B8B0" })
 
 		require("mini.move").setup({
 			mappings = {

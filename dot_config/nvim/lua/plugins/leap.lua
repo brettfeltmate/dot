@@ -1,6 +1,5 @@
 return {
 	"ggandor/leap.nvim",
-	dependencies = { "tpope/vim-repeat", lazy = true },
 	event = "BufReadPre",
 	opts = {
 		equivalence_classes = { " \t\r\n", "({[", ")}]", "'\"`" },

@@ -35,12 +35,23 @@ return {
 		config = function()
 			local servers = {
 				clangd = {},
+				cssls = {},
 				lua_ls = {},
-				marksman = {},
-				pyright = {},
-				r_language_server = {},
+				marksman = {
+					filetypes = { "markdown", "rmarkdown", "quarto" },
+				},
+        pyright = {},
+				r_language_server = {
+					settings = {
+						r = {
+							lsp = {
+								rich_documentation = false,
+							},
+						},
+					},
+				},
 				ruff = {},
-        taplo = {},
+				taplo = {},
 				vtsls = {},
 			}
 
@@ -48,6 +59,7 @@ return {
 				"beautysh",
 				"blue",
 				"clangd",
+				"css-lsp",
 				"debugpy",
 				"lua-language-server",
 				"luacheck",
@@ -59,7 +71,7 @@ return {
 				"ruff",
 				"sqlfmt",
 				"stylua",
-        "taplo",
+				"taplo",
 				"vtsls",
 			}
 
@@ -99,6 +111,8 @@ return {
 			formatters_by_ft = {
 				sh = { "beautysh" },
 				bash = { "beautysh" },
+				css = { "prettier" },
+				scss = { "prettier" },
 				zsh = { "beautysh" },
 				lua = { "stylua" },
 				json = { "prettier" },
