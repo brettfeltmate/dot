@@ -1,7 +1,6 @@
 # Aerospace config #
 
-# Don't set to true if Aerospace is already a login app; gets buggy.
-start-at-login = false
+start-at-login = true
 
 # Ensure sbar & borders are running
 after-startup-command = [
@@ -44,9 +43,9 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 inner.horizontal = 8
 inner.vertical = 8
 outer.top = 23
-outer.bottom = 0
-outer.left = 2
-outer.right = 2
+outer.bottom = 2
+outer.left = 3
+outer.right = 3
 
 # keybindings #
 
@@ -69,13 +68,13 @@ alt-shift-t = 'exec-and-forget sketchybar --bar hidden=toggle'
 alt-shift-r = 'exec-and-forget sketchybar --reload'
 
 # Toggle between window layout modes
-alt-shift-period = 'layout tiling floating'
+alt-period = 'layout tiling floating'
 
 # Toggle means of partitioning
-alt-shift-comma = 'layout accordion tiles'
+alt-comma = 'layout accordion tiles'
 
 # Toggle orientation of partitions
-alt-shift-backspace = 'layout horizontal vertical'
+alt-slash = 'layout horizontal vertical'
 
 # Shift focus across monitors
 alt-tab = 'workspace-back-and-forth'
@@ -275,7 +274,7 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### Don't manage these
+### Floating windows in current workspace
 [[on-window-detected]]
 if.app-name-regex-substring = 'System Settings'
 run = ['layout floating']
@@ -294,6 +293,14 @@ run = ['layout floating']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Raycast'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Notes'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'TextEdit'
 run = ['layout floating']
 
 ### Default to 5

@@ -32,8 +32,8 @@ for m in $(aerospace list-monitors | awk '{print $1}'); do
         sketchybar --animate sin 10 --set space.$sid label="$icon_strip"
     done
 
-    # for i in $(aerospace list-workspaces --monitor $m --empty); do
-    #     sketchybar --animate sin 10 --set space.$i display.$m
-    # done
+    for i in $(aerospace list-workspaces --monitor $m --empty); do
+        sketchybar --animate sin 10 --set space.$i display.$m
+    done
 
 done

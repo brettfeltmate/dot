@@ -40,7 +40,6 @@
         ],
         "tabSet1": [
             "History",
-            "Files",
             "Connections",
             "Packages",
             "Build",
@@ -52,6 +51,7 @@
         ],
         "tabSet2": [
             "Environment",
+            "Files",
             "Plots",
             "Help"
         ],

@@ -406,3 +406,47 @@ div.sk_arrow[dir=up]>div:nth-of-type(2) {
     padding: 0.2rem;
   }
 }
+
+:root {
+    --theme-ace-bg:#1C171DAB; /*Note the fourth channel, this adds transparency*/
+    --theme-ace-bg-accent:#322137;
+    --theme-ace-fg:#C3B7AD;
+    --theme-ace-fg-accent:#C8A89D;
+    --theme-ace-cursor:#DB8D7C;
+    --theme-ace-select:#7A515A;
+}
+
+#sk_editor {
+    height: 50% !important; /*Remove this to restore the default editor size*/
+    background: var(--theme-ace-bg) !important;
+}
+
+.ace_dialog-bottom{
+    border-top: 1px solid var(--theme-ace-bg) !important;
+}
+
+.ace-chrome .ace_print-margin, .ace_gutter, .ace_gutter-cell, .ace_dialog{
+    background: var(--theme-ace-bg-accent) !important;
+}
+
+.ace-chrome{
+    color: var(--theme-ace-fg) !important;
+}
+
+.ace_gutter, .ace_dialog {
+    color: var(--theme-ace-fg-accent) !important;
+}
+
+.ace_cursor{
+    color: var(--theme-ace-cursor) !important;
+}
+
+.normal-mode .ace_cursor{
+    background-color: var(--theme-ace-cursor) !important;
+    border: var(--theme-ace-cursor) !important;
+}
+
+.ace_marker-layer .ace_selection {
+    background: var(--theme-ace-select) !important;
+}
+`
