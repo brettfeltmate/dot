@@ -1,7 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
     event = "VeryLazy",
-	dependencies = { "echasnovski/mini.icons"},
 	opts = function()
 		local opts = {
 			"ivy",
@@ -142,6 +141,7 @@ return {
 
 			return {
 				winopts = {
+                    prompt = "",
                     relative = "editor",
                     col = 0.5,
                     row = 0.5,
@@ -152,10 +152,5 @@ return {
 				},
 			}
 		end)
-		vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = "#1C171D" })
-		vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
-		vim.api.nvim_set_hl(0, "FzfLuaMarker", { fg = "#9FBFB1" })
-		vim.api.nvim_set_hl(0, "FzfLuaFzfMatch", { fg = "#9FBFB1" })
-		vim.api.nvim_set_hl(0, "MatchWord", { fg = "#9FBFB1" })
 	end,
 }

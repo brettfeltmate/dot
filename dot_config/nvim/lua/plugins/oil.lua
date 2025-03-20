@@ -7,28 +7,26 @@ function _G.get_oil_winbar()
 end
 
 return {
-	{
-		"stevearc/oil.nvim",
-		dependencies = { "echasnovski/mini.icons" },
-		opts = function()
-			local opts = {
-				keymaps = {
-					["<bs>"] = "actions.parent",
-					["?"] = "actions.show_help",
-					["q"] = "actions.close",
-					["gy"] = "actions.yank_entry",
-					["gd"] = {
-						function()
-							require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
-						end,
-						desc = "Show file details",
-					},
-					["<C-f>"] = "actions.preview_scroll_down",
-					["<C-b>"] = "actions.preview_scroll_up",
+	"stevearc/oil.nvim",
+	-- dependencies = { { "echasnovski/mini.icons", lazy = true } },
+	opts = function()
+		local opts = {
+			keymaps = {
+				["<bs>"] = "actions.parent",
+				["?"] = "actions.show_help",
+				["q"] = "actions.close",
+				["gy"] = "actions.yank_entry",
+				["gd"] = {
+					function()
+						require("oil").set_columns({ "icon", "permissions", "size", "mtime" })
+					end,
+					desc = "Show file details",
 				},
-				win_options = { winbar = "%!v:lua.get_oil_winbar()" },
-			}
-			return opts
-		end,
-	},
+				["<C-f>"] = "actions.preview_scroll_down",
+				["<C-b>"] = "actions.preview_scroll_up",
+			},
+			win_options = { winbar = "%!v:lua.get_oil_winbar()" },
+		}
+		return opts
+	end,
 }

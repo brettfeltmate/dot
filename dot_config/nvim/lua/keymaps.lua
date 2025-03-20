@@ -43,8 +43,8 @@ map({ "t" }, "<S-Right>", "<C-\\><C-n><S-Right>", "Right", { nowait = true })
 map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 
 -- |> Multiple Cursors
-map({ "n", "x" }, "<A-j>", C("MultipleCursorsAddDown"), "Add cursor, move down")
-map({ "n", "x" }, "<A-k>", C("MultipleCursorsAddUp"), "Add cursor, move up")
+map({ "n", "x" }, "<A-u>", C("MultipleCursorsAddUp"), "Add cursor, move up")
+map({ "n", "x" }, "<A-d>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 
 -- |> Yanky
 map({ "n", "x" }, "y", "<Plug>(YankyYank)")
@@ -53,23 +53,29 @@ map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
 map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)")
 
 -- |> Navigate
-map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Prev buffer")
-map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buffer")
-map({ "n" }, "[b", C("lua require('nvchad.tabbufline').prev()"), "Prev buffer")
-map({ "n" }, "]b", C("lua require('nvchad.tabbufline').next()"), "Next buffer")
-map({ "n" }, "[t", C("tabprevious"), "Prev tab", { noremap = true })
-map({ "n" }, "]t", C("tabnext"), "Next tab", { noremap = true })
+map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
+map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buff")
+map({ "n" }, "[b", C("lua require('nvchad.tabbufline').prev()"), "Prev buff")
+map({ "n" }, "]b", C("lua require('nvchad.tabbufline').next()"), "Next buff")
+map({ "n" }, "[t", C("tabprevious"), "Prev tab")
+map({ "n" }, "]t", C("tabnext"), "Next tab")
 map({ "n" }, "[h", C("lua require('gitsigns').nav_hunk({direction = 'prev'})"), "Prev hunk")
 map({ "n" }, "]h", C("lua require('gitsigns').nav_hunk({direction = 'next'})"), "Next hunk")
+map({ "n" }, "[c", C("lua MiniBracketed.conflict('backward')"), "Prev conf")
+map({ "n" }, "]c", C("lua MiniBracketed.conflict('forward')"), "Next conf")
+map({ "n" }, "[d", C("lua MiniBracketed.diagnostic('backward')"), "Prev diag")
+map({ "n" }, "]d", C("lua MiniBracketed.diagnostic('forward')"), "Next diag")
+map({ "n" }, "[q", C("lua MiniBracketed.quickfix('backward')"), "Prev qfix")
+map({ "n" }, "]q", C("lua MiniBracketed.quickfix('forward')"), "Next qfix")
 
 -- |> Frequent
 map({ "n" }, L("b"), C("FzfLua buffers"), "Buffers")
-map({ "n" }, L("c"), C("CopilotChatToggle"), "Chat")
+map({ "n" }, L("c"), C("CopilotChatToggle"), "Copilot")
 map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete")
 map({ "n" }, L("e"), C("Oil"), "Explore")
 map({ "n" }, L("s"), C("FzfLua files"), "Search")
 map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep")
-map({ "n" }, L("q"), C("q"), ":q")
+map({ "n" }, L("q"), C("q"), "Quit")
 
 -- |> Handy
 map({ "n" }, L(",b"), C("qa!"), "Bail")

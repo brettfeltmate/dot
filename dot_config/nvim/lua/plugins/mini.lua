@@ -3,13 +3,30 @@ return {
 	event = "VeryLazy",
 	config = function()
 		require("mini.ai").setup()
-		require("mini.bracketed").setup()
 		require("mini.comment").setup()
 		require("mini.surround").setup()
 		require("mini.basics").setup()
 		require("mini.extra").setup()
 		require("mini.misc").setup()
-        require("mini.pairs").setup()
+		require("mini.pairs").setup()
+
+		require("mini.bracketed").setup({
+			buffer = { suffix = "" },
+			comment = { suffix = "" },
+			file = { suffix = "" },
+			indent = { suffix = "" },
+			jump = { suffix = "" },
+			location = { suffix = "" },
+			oldfile = { suffix = "" },
+			treesitter = { suffix = "" },
+			undo = { suffix = "" },
+			window = { suffix = "" },
+			yank = { suffix = "" },
+			conflict = { suffix = "c" },
+			diagnostic = {
+				options = { severity = vim.diagnostic.severity.ERROR },
+			},
+		})
 
 		require("mini.icons").setup({
 			file = {
@@ -99,7 +116,7 @@ return {
 				clue.gen_clues.windows({ submode_resize = true }),
 				clue.gen_clues.z(),
 
-                { mode = "n", keys = "<leader>.", desc = "Commands"},
+				{ mode = "n", keys = "<leader>.", desc = "Commands" },
 				{ mode = "n", keys = "<leader>,", desc = "Utils" },
 			},
 		})

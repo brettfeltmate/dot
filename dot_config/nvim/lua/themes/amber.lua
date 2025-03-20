@@ -16,7 +16,7 @@ local base16 = {
 	base0A = "#bf8f94",
 	base0B = "#b6b0a0",
 	base0C = "#bf8080",
-	base0D = "#95ae9e",
+	base0D = "#9daba2",
 	base0E = "#bfaa8c",
 	base0F = "#b195b3",
 }
@@ -262,11 +262,11 @@ local polish_hl = {
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },
-		["@variable.r"] = { fg = generate_color(base16.base08, 3) },
+		["@variable.r"] = { fg = mix_color(base16.base08, "#DDDDDD", 25) },
 		["@variable.member.r"] = { fg = generate_color(base16.base08, -3) },
 		["@variable.builtin"] = { fg = generate_color(base16.base09, 5) },
 		["@variable.parameter"] = { fg = base16.base08 },
-		["@variable.parameter.r"] = { fg = base30.orange },
+		["@variable.parameter.r"] = { fg = base16.base0E },
 		["@variable.member"] = { fg = base16.base08 },
 		["@variable.member.key"] = { fg = base16.base08 },
 
@@ -309,9 +309,13 @@ local polish_hl = {
 		["@constructor"] = { fg = base16.base0C },
 
 		["@operator"] = { fg = mix_color(base16.base0B, "#FFFFFF", 5) },
+		["@operator.r"] = { fg = base16.base0A },
+		-- ["@operator.r"] = { fg = base30.purple },
 		["@reference"] = { fg = base16.base05 },
 		["@punctuation.bracket"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
 		["@punctuation.delimiter"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
+		["@punctuation.bracket.r"] = { fg = base16.base0A },
+		["@punctuation.delimiter.r"] = { fg = base16.base0A },
 		["@symbol"] = { fg = base16.base0B },
 		["@tag"] = { fg = base16.base0A },
 		["@tag.attribute"] = { fg = base16.base08 },

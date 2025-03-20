@@ -25,13 +25,13 @@ vim.keymap.set("n", "[[", function()
 			vim.api.nvim_win_set_cursor(0, { prev_line + 1, prev_col - 1 })
 		end
 	end
-end, { buffer = 0, noremap = true, desc = "Jump to previous cell" })
+end, { buffer = 0, noremap = true, desc = "Prev cell" })
 
 vim.keymap.set("n", "]]", function()
 	local line, col = unpack(vim.fn.searchpos("^```{", "W"))
 	if line ~= 0 then
 		vim.api.nvim_win_set_cursor(0, { line + 1, col - 1 })
 	end
-end, { buffer = 0, noremap = true, desc = "Jump to next cell" })
+end, { buffer = 0, noremap = true, desc = "Next cell" })
 
 -- vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1c1e27"})

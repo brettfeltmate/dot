@@ -82,6 +82,11 @@ return {
                 exectue = "lua Snacks.picker.undo()",
                 tags = { "search" },
             },
+            {
+                name = "oldfiles",
+                execute = "FzfLua oldfiles",
+                tags = { 'search' }
+            },
 			{
 				name = "local",
 				execute = "FzfLua live_grep cwd=~/.local",

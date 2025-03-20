@@ -11,7 +11,7 @@ return {
 
 		require("markview").setup({
 			preview = {
-				filetypes = {"chat", "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion" },
+				filetypes = { "chat", "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion" },
 				modes = { "n", "no", "c", "v", "i" },
 				hybrid_modes = { "v", "i" },
 				icon_provider = "mini",
@@ -22,6 +22,7 @@ return {
 				code_blocks = {
 					min_width = 70,
 					pad_amount = 0,
+					label_direction = "left",
 				},
 				checkboxes = {
 

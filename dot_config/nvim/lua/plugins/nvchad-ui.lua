@@ -1,7 +1,7 @@
 return {
 	{
 		"nvchad/ui",
-		dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
+		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("nvchad")
 		end,
