@@ -8,7 +8,7 @@ end
 
 return {
 	"stevearc/oil.nvim",
-	-- dependencies = { { "echasnovski/mini.icons", lazy = true } },
+    event = "VeryLazy",
 	opts = function()
 		local opts = {
 			keymaps = {

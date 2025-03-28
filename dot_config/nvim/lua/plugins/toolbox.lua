@@ -1,7 +1,7 @@
 return {
 	"DanWlker/toolbox.nvim",
 	lazy = true,
-	dependencies = { "ibhagwan/fzf-lua" },
+	dependencies = { "ibhagwan/fzf-lua", "nvzone/volt" },
 	opts = {
 		commands = {
 			{
@@ -136,12 +136,18 @@ return {
 			},
 			{
 				name = "schemes",
-				execute = "lua require('nvchad.themes').open()",
+				execute = function()
+                    require('nvchad.themes').open()
+                end,
 				tags = { "misc" },
 			},
 			{
 				name = "scratch",
-				execute = "lua Snacks.scratch()",
+				execute = function(...)
+                    local opts = {...}
+                    require("snacks").scratch.open(opts)
+                end,
+                require_input = true,
 				tags = { "misc" },
 			},
 			{

@@ -1,24 +1,14 @@
 -- Slime bindings
 vim.keymap.set("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
 vim.keymap.set("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
-vim.keymap.set({ "n" }, "<localleader>r", "<cmd>SlimeSend1 r<cr>", { buffer = 0, noremap = true, desc = "Start REPL" })
-vim.keymap.set({ "n" }, "<localleader>q", "<cmd>SlimeSend1 q<cr>", { buffer = 0, noremap = true, desc = "q" })
+vim.keymap.set("n", "<localleader>r", "<cmd>SlimeSend1 r<cr>", { buffer = 0, noremap = true, desc = "Start REPL" })
 vim.keymap.set(
-	{ "n" },
-	"<localleader>Q",
-	"<cmd>SlimeSend1 quit()<cr>",
-	{ buffer = 0, noremap = true, desc = "Quit REPL" }
-)
-vim.keymap.set(
-	{ "n" },
+	"n",
 	"<localleader>c",
 	"<cmd>SlimeSend1 rm(list=ls())<cr>",
-	{ buffer = 0, noremap = true, desc = "Clear environment" }
+	{ buffer = 0, noremap = true, desc = "Clear env" }
 )
 
--- NOTE:
--- I have iTerm keybound floating profile that monitors and redraws
--- .last_plot on file update
 vim.keymap.set(
 	"n",
 	"<localleader>g",
@@ -33,6 +23,16 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "ggsave" }
 )
 
+vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
+
+vim.keymap.set("n", "<localleader>H", "<cms>SlimeSend1 hgd()<cr>", { buffer = 0, noremap = true, desc = "hgd" })
+vim.keymap.set(
+	"n",
+	"<localleader>B",
+	"<cms>SlimeSend1 hgd_browse()<cr>",
+	{ buffer = 0, noremap = true, desc = "hgd_browse" }
+)
+
 -- Semi-working attempts to shorthanding common interactive functions
 -- haven't quite figured out how best to handle R's $elector
 local key_cmd_map = {
@@ -41,11 +41,8 @@ local key_cmd_map = {
 	},
 	["<cWORD>"] = {
 		["s"] = "str",
-		["d"] = "pclid",
-		["m"] = "summary",
 		[","] = "print",
 		["h"] = "pclih",
-		["k"] = "skimr::skim",
 		["u"] = "unique",
 	},
 }
@@ -59,19 +56,6 @@ for cword_type, cmd_map in pairs(key_cmd_map) do
 	end
 end
 
--- R bespoke bindings
-vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
-vim.keymap.set("i", "<M-m>", " %>% ", { buffer = 0 })
-vim.keymap.set("i", "<M-e>", " %$% ", { buffer = 0 })
-vim.keymap.set("i", "<M-i>", " %in% ", { buffer = 0 })
-vim.keymap.set("i", "<M-b>", " %between% ", { buffer = 0 })
-
--- Open oil as float in img dir, w/ preview
-local function oil_images()
-	require("oil").open(vim.fn.getcwd() .. "/out/fig/", { preview = { horizontal = true } })
-end
-
-vim.keymap.set("n", "_", oil_images, { buffer = 0, noremap = true, desc = "/imgs/" })
 
 -- Auto-correct
 vim.cmd([[

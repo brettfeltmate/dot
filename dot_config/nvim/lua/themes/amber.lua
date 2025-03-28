@@ -14,7 +14,7 @@ local base16 = {
 	base08 = "#c8a89d",
 	base09 = "#8a909b",
 	base0A = "#bf8f94",
-	base0B = "#b6b0a0",
+	base0B = "#b8b0a6",
 	base0C = "#bf8080",
 	base0D = "#9daba2",
 	base0E = "#bfaa8c",
@@ -52,7 +52,7 @@ local base30 = {
 	cyan = "#9fbfb1",
 	statusline_bg = "#322137",
 	lightbg = "#6c5c6e",
-	pmenu_bg = generate_color(base16.base07, -60),
+	pmenu_bg = "#241f24",
 	folder_bg = "#c9bba9",
 }
 
@@ -66,9 +66,9 @@ local polish_hl = {
 		WinBar = { bg = generate_color(base16.base03, -18) },
 		WinBarNC = { bg = generate_color(base16.base03, -18) },
 		WinSeparator = { fg = base30.line },
-		Pmenu = { bg = base30.pmenu_bg },
-		PmenuSbar = { bg = base30.one_bg },
-		PmenuSel = { bg = generate_color(base30.statusline_bg, 3), fg = base30.orange, bold = true },
+		Pmenu = { bg = base30.pmenu_bg, fg = base16.base04 },
+		PmenuSbar = { bg = base30.pmenu_bg },
+		PmenuSel = { bg = generate_color(base30.nord_blue, -30), fg = base30.orange, bold = true, italic = true },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.red },
 		FloatTitle = { fg = base30.red, bg = base16.base00 },
@@ -95,13 +95,17 @@ local polish_hl = {
 		Bold = { bold = true },
 		UnderLined = { underline = true },
 		Conceal = { bg = "NONE" },
-		NonText = { fg = base16.base03 },
+		NonText = { fg = base16.base0B },
 		DevIconDefault = { fg = base30.red },
 		Directory = { fg = base16.base0D },
 
 		ModeMsg = { fg = base16.base0B },
 		MoreMsg = { fg = base16.base0B },
-		Visual = { bg = base30.purple, fg = base16.base00 },
+		Visual = {
+			bg = generate_color(base30.nord_blue, -30),
+			fg = base30.orange,
+			italic = true,
+		},
 		VisualNOS = { fg = base16.base09 },
 		Macro = { fg = base16.base08 },
 
@@ -111,7 +115,7 @@ local polish_hl = {
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
-		LineNr = { fg = base16.base03 },
+		LineNr = { fg = base16.base04 },
 		FoldColumn = { bg = "none" },
 		Folded = { fg = base30.light_grey, bg = base30.black2 },
 		CurSearch = { fg = base30.black2, bg = base30.sun, bold = true },
@@ -396,6 +400,8 @@ vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = base30.orange })
 vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = generate_color(base16.base04, 25) })
 vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = base16.base0A })
 vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
+vim.api.nvim_set_hl(0, "SnacksIndent", { fg = base16.base04 })
+vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = base30.nord_blue })
 
 M = require("base46").override_theme(M, "amber")
 

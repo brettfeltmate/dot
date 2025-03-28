@@ -16,6 +16,8 @@ end
 
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 
+map({ "n" }, "<C-s>", C("w"), "Save")
+
 -- |> Toggles
 map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")
 map({ "n" }, "\\a", C("Copilot suggestion toggle_auto_trigger"), "Toggle 'auto-suggestions'")
@@ -86,8 +88,9 @@ map({ "n" }, L(",h"), C("lua Snacks.dashboard()"), "Home")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle()"), "Loclist")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({loclist=false})"), "Quickfix")
+map({ "n" }, L(",r"), C("lua require 'nvchad.lsp.renamer'()"), "Rename")
 map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
-map({ "n" }, L(",t"), C("lua Snacks.picker.explorer()"), "Tree")
+map({ "n" }, L(",t"), C("lua Snacks.picker.explorer({layout = { preview = true } })"), "Tree")
 map({ "n" }, L(",w"), C("Wtf"), "wtf")
 
 -- |> Toolboxes

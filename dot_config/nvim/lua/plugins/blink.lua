@@ -11,7 +11,7 @@ return {
 			opts = { library = { path = "luvit-meta/library", words = { "vim%.uv" } } },
 		},
 		{ "bilal2453/luvit-meta" },
-		{ "Kaiser-Yang/blink-cmp-dictionary" },
+		-- { "Kaiser-Yang/blink-cmp-dictionary" },
 		{ "mikavilpas/blink-ripgrep.nvim" },
 	},
 	opts = function(_, opts)
@@ -32,7 +32,7 @@ return {
 				},
 			},
 			accept = { auto_brackets = { enabled = true } },
-			documentation = { window = { border = "rounded" } },
+            ghost_text = { enabled = false },
 		}
 
 		opts.signature = { enabled = false }
@@ -43,7 +43,7 @@ return {
 				"buffer",
 				"ripgrep",
 				"path",
-				"dictionary",
+				-- "dictionary",
 			},
 			providers = {
 				lsp = {
@@ -51,23 +51,23 @@ return {
 					enabled = true,
 					module = "blink.cmp.sources.lsp",
 					fallbacks = { "buffer" },
-					score_offset = 80, -- the higher the number, the higher the priority
+					score_offset = 90,
 				},
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					score_offset = 70,
-					enabled = true,
-					max_items = 3,
-					min_keyword_length = 4,
-				},
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    score_offset = 80,
+                    enabled = true,
+                    max_items = 3,
+                    min_keyword_length = 4,
+                },
 				ripgrep = {
 					module = "blink-ripgrep",
 					name = "Ripgrep",
 					opts = {
 						project_root_marker = { ".git", ".rproj", ".here" },
 					},
-					score_offset = 60,
+					score_offset = 70,
 				},
 				buffer = {
 					name = "Buffer",
@@ -75,12 +75,12 @@ return {
 					max_items = 3,
 					module = "blink.cmp.sources.buffer",
 					min_keyword_length = 3,
-					score_offset = 50,
+					score_offset = 60,
 				},
 				path = {
 					name = "Path",
 					module = "blink.cmp.sources.path",
-					score_offset = 40,
+					score_offset = 50,
 					fallbacks = { "buffer" },
 					opts = {
 						trailing_slash = false,
@@ -91,35 +91,35 @@ return {
 						show_hidden_files_by_default = true,
 					},
 				},
-				dictionary = {
-					module = "blink-cmp-dictionary",
-					name = "Dict",
-					score_offset = 30,
-					enabled = true,
-					max_items = 8,
-					min_keyword_length = 3,
-					opts = {
-						get_command = {
-							"rg",
-							"--color=never",
-							"--no-line-number",
-							"--no-messages",
-							"--no-filename",
-							"--ignore-case",
-							"--",
-							"${prefix}",
-							vim.fn.expand("~/.config/dictionary"),
-						},
-						documentation = {
-							enable = true,
-							get_command = {
-								"wn",
-								"${word}",
-								"-over",
-							},
-						},
-					},
-				},
+				-- dictionary = {
+				-- 	module = "blink-cmp-dictionary",
+				-- 	name = "Dict",
+				-- 	score_offset = 40,
+				-- 	enabled = true,
+				-- 	max_items = 8,
+				-- 	min_keyword_length = 3,
+				-- 	opts = {
+				-- 		get_command = {
+				-- 			"rg",
+				-- 			"--color=never",
+				-- 			"--no-line-number",
+				-- 			"--no-messages",
+				-- 			"--no-filename",
+				-- 			"--ignore-case",
+				-- 			"--",
+				-- 			"${prefix}",
+				-- 			vim.fn.expand("~/.config/dictionary"),
+				-- 		},
+				-- 		documentation = {
+				-- 			enable = true,
+				-- 			get_command = {
+				-- 				"wn",
+				-- 				"${word}",
+				-- 				"-over",
+				-- 			},
+				-- 		},
+				-- 	},
+				-- },
 			},
 		})
 
@@ -136,15 +136,15 @@ return {
 			end,
 		}
 		opts.keymap = {
-			preset = "default",
-			["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+			preset = "none",
+			["<C-h>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-l>"] = { "accept", "fallback" },
 			["<S-Tab>"] = { "snippet_backward", "fallback" },
 			["<Tab>"] = { "snippet_forward", "fallback" },
 			["<C-j>"] = { "select_next", "fallback" },
 			["<C-k>"] = { "select_prev", "fallback" },
-			["<C-Up>"] = { "scroll_documentation_up", "fallback" },
-			["<C-Down>"] = { "scroll_documentation_down", "fallback" },
+			["<C-b>"] = { "scroll_documentation_up", "fallback" },
+			["<C-f>"] = { "scroll_documentation_down", "fallback" },
 		}
 		return opts
 	end,

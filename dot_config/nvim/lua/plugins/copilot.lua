@@ -1,7 +1,7 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
+        lazy = true,
 		enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 		opts = {
 			panel = { enabled = false },
@@ -23,7 +23,7 @@ return {
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-		lazy = true,
+        event = "BufReadPre",
 		cmd = {
 			"CopilotChatToggle",
 			"CopilotChatStop",

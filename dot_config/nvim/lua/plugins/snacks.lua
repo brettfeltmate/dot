@@ -1,6 +1,21 @@
 return {
 	"folke/snacks.nvim",
+    dependencies = { "echasnovski/mini.icons" },
 	opts = {
+		styles = {
+			scratch = {
+				width = 0.6,
+				height = 0.95,
+				bo = { buftype = "", buflisted = false, bufhidden = "hide", swapfile = false },
+				minimal = false,
+				noautocmd = false,
+				zindex = 20,
+				wo = { winhighlight = "NormalFloat:Normal" },
+				border = "rounded",
+				title_pos = "center",
+				footer_pos = "center",
+			},
+		},
 		statuscolumn = {
 			enabled = true,
 			right = {},
@@ -22,6 +37,30 @@ return {
 		indent = { enabled = true, chunk = { enabled = true } },
 		scratch = {},
 		picker = {
+			sources = {
+				explorer = {
+					layout = {
+						cycle = true,
+                        auto_close = true,
+						layout = {
+							preview = "main",
+							box = "horizontal",
+							position = "float",
+							height = 0.99,
+							width = 0,
+							border = "none",
+							{
+								box = "vertical",
+								width = 40,
+								min_width = 40,
+								{ win = "input", height = 1, title = "{title} {live} {flags}", border = "single" },
+								{ win = "list" },
+							},
+							{ win = "preview", width = 0, border = "left" },
+						},
+					},
+				},
+			},
 			ui_select = false,
 			layout = { preset = "ivy" },
 			layouts = {

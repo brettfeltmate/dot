@@ -5,9 +5,9 @@ return {
 		require("mini.ai").setup()
 		require("mini.comment").setup()
 		require("mini.surround").setup()
-		require("mini.basics").setup()
-		require("mini.extra").setup()
-		require("mini.misc").setup()
+		-- require("mini.basics").setup()
+		-- require("mini.extra").setup()
+		-- require("mini.misc").setup()
 		require("mini.pairs").setup()
 
 		require("mini.bracketed").setup({
@@ -107,8 +107,6 @@ return {
 			},
 
 			clues = {
-
-				-- Builtins
 				clue.gen_clues.builtin_completion(),
 				clue.gen_clues.g(),
 				clue.gen_clues.marks(),

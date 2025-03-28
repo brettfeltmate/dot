@@ -97,7 +97,7 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		event = "BufWritepre",
+		event = "BufRead",
 		opts = {
 			notify_on_error = true,
 			formatters = {
