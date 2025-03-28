@@ -40,6 +40,7 @@ alias mux="tmux new-session -A -s default"
 alias fab="fabular"
 
 alias icat="kitten icat"
+alias gg="icat --use-window-size 1,1,1500,1500 ./scratch.png"
 
 # visidata shorthands
 alias vd="visidata --theme=ascii8"

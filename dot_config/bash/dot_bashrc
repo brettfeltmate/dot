@@ -1,3 +1,2 @@
-alias gg="wezterm imgcat ./scratch.png"
 . "$HOME/.cargo/env"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"

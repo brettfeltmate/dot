@@ -5,10 +5,21 @@
 # Load and initialise brew-provided completions
 if type brew &>/dev/null
 then
-  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+    # Check if completion directories exist before initialization
+    if [[ -d $(brew --prefix)/share/zsh/site-functions ]]; then
+        # Skip nonexistent files in compinit
+        autoload -Uz compinit
+        compinit -i
+    else
+        autoload -Uz compinit
+        compinit
+    fi
+else
+    autoload -Uz compinit
+    compinit
 fi
-autoload -Uz compinit
-compinit
 
 # Source ancillary files
 source <(fzf --zsh)
@@ -74,7 +85,7 @@ export MANPAGER="nvimpager -p"
 export MOZ_DISABLE_SAFE_MODE_KEY=1
 export STARSHIP_LOG=error
 export CLIPBOARD_THEME=ansi
-export EZA_GRID_ROWS=10
+export EZA_GRID_ROWS=15
 export LESS='-R'  # interpret color characters
 export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
 # export LESSCOLORIZER="nvimpager"
