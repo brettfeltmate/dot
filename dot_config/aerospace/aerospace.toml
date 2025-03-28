@@ -2,36 +2,26 @@
 
 start-at-login = true
 
-# Ensure sbar & borders are running
-after-startup-command = [
-    'exec-and-forget sketchybar',
-]
-
 key-mapping.preset = 'qwerty'
 
 # No sweet clue what these are for
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# On change, blit mouse and refresh sketchybar
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 on-focus-changed = ['move-mouse window-lazy-center']
-
-# FIXME:
-exec-on-workspace-change = ['/bin/bash', '-c', 'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE' ]
 
 # Layout properties #
 
 # Default to stacking windows
 default-root-container-layout = 'accordion'
 
-# Monitor orientation determines axis to split on
+# Split axis determined by container size
 default-root-container-orientation = 'auto'
 
-# Postitional offset applied to overlayed windows
+# Z-offset for stacked windows
 accordion-padding = 0
 
-# I think this is so aerospace can find itself; deep
 [exec]
 inherit-env-vars = true
 
@@ -40,32 +30,22 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # Pixel gap between windows
 [gaps]
-inner.horizontal = 8
-inner.vertical = 8
-outer.top = 23
-outer.bottom = 2
-outer.left = 3
-outer.right = 3
+inner.horizontal = 1
+inner.vertical = 1
+outer.top = 1
+outer.bottom = 1
+outer.left = 1
+outer.right = 1
 
-# keybindings #
+# modal keybindings #
 
-# 'main' keybindings
 [mode.main.binding]
-
-# I have neither the power, nor the responsibility to be trusted with these
-cmd-h = []
-cmd-q = []
-cmd-m = []
 
 # Shift focus within display
 alt-left = 'focus left'
 alt-down = 'focus down'
 alt-up = 'focus up'
 alt-right = 'focus right'
-
-# Manually refresh sketchybar
-alt-shift-t = 'exec-and-forget sketchybar --bar hidden=toggle'
-alt-shift-r = 'exec-and-forget sketchybar --reload'
 
 # Toggle between window layout modes
 alt-period = 'layout tiling floating'
@@ -82,8 +62,7 @@ alt-tab = 'workspace-back-and-forth'
 # Toss space between windows
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# Shift focus to spaces
-# NOTE: Using numbers since apps love to hog the alts
+# Shift focus to
 alt-0 = 'workspace 0'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -95,7 +74,7 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-# Pass focused container to space
+# Pass off to
 alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -107,40 +86,39 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
-# Service mode bindings
-alt-shift-semicolon = 'mode service'
+# Enter service mode
+alt-semicolon = 'mode service'
 
 [mode.service.binding]
 
 # escape to main
 esc = ['mode main']
 
-# NOTE: Reverts to main after use
 r = ['reload-config', 'mode main']
 
 # NOTE: Following cmds preserve service mode
-# as they tend to be either repeated or used in conjunction.
+# as they tend to be repeated and/or combined
 
-# Rezise container
+# Rezise
 minus = ['resize smart -50', 'mode service']
 equal = ['resize smart +50', 'mode service']
 
-# Unnest containers
+# Unnest
 f = ['flatten-workspace-tree', 'mode service']
 
-# Select container
+# Select
 left = ['focus left', 'mode service']
 down = ['focus down', 'mode service']
 up = ['focus up', 'mode service']
 right = ['focus right', 'mode service']
 
-# Move container about display
+# Move
 alt-left = ['move left', 'mode service']
 alt-down = ['move down', 'mode service']
 alt-up = ['move up', 'mode service']
 alt-right = ['move right', 'mode service']
 
-# Nest container within spaces/partitions
+# Nest
 alt-shift-left = ['join-with left', 'mode service']
 alt-shift-down = ['join-with down', 'mode service']
 alt-shift-up = ['join-with up', 'mode service']
@@ -187,6 +165,14 @@ run = ['layout floating']
 if.app-name-regex-substring = 'zen'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'safari'
+run = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'chrome'
+run = ['layout tiling', 'move-node-to-workspace 1']
+
 ### 2: Email & calendar
 [[on-window-detected]]
 if.app-name-regex-substring = 'Spark Mail'
@@ -229,6 +215,15 @@ run = ['move-node-to-workspace 3']
 [[on-window-detected]]
 if.app-name-regex-substring = 'calendar'
 run = ['move-node-to-workspace 4']
+
+### 5: ChatGPT & Skim
+[[on-window-detected]]
+if.app-name-regex-substring = 'ChatGPT'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Skim'
+run = ['move-node-to-workspace 5']
 
 ### 6: Sort-of-common apps
 [[on-window-detected]]
@@ -274,35 +269,6 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### Floating windows in current workspace
+### Default to floating in current space
 [[on-window-detected]]
-if.app-name-regex-substring = 'System Settings'
 run = ['layout floating']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Proton Pass'
-run = ['layout floating']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Finder'
-run = ['layout floating']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'preview'
-run = ['layout floating']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Raycast'
-run = ['layout floating']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Notes'
-run = ['layout floating']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'TextEdit'
-run = ['layout floating']
-
-### Default to 5
-[[on-window-detected]]
-run = ['move-node-to-workspace 5']
