@@ -1,6 +1,6 @@
 return {
 	"ibhagwan/fzf-lua",
-    event = "VeryLazy",
+	event = "VeryLazy",
 	opts = function()
 		local opts = {
 			"ivy",
@@ -114,10 +114,11 @@ return {
 	end,
 
 	config = function(_, opts)
-		require("fzf-lua").setup(opts)
+		local fzflua = require("fzf-lua")
+		fzflua.setup(opts)
 
 		-- use fzf-lua as default selector
-		require("fzf-lua").register_ui_select(function(_, items)
+		fzflua.register_ui_select(function(_, items)
 			-- initially set height to num items + padding
 			local h = (#items + 4) / vim.o.lines
 			-- clamp height to between 5% and 20% of screen height
@@ -141,10 +142,10 @@ return {
 
 			return {
 				winopts = {
-                    prompt = "",
-                    relative = "editor",
-                    col = 0.5,
-                    row = 0.5,
+					prompt = "",
+					relative = "editor",
+					col = 0.5,
+					row = 0.5,
 					height = h,
 					width = w,
 					backdrop = 95,

@@ -2,12 +2,11 @@ return {
 	"echasnovski/mini.nvim",
 	event = "VeryLazy",
 	config = function()
+
 		require("mini.ai").setup()
+        require("mini.basics").setup()
 		require("mini.comment").setup()
 		require("mini.surround").setup()
-		-- require("mini.basics").setup()
-		-- require("mini.extra").setup()
-		-- require("mini.misc").setup()
 		require("mini.pairs").setup()
 
 		require("mini.bracketed").setup({

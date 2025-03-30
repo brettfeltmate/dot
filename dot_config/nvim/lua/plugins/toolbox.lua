@@ -67,36 +67,36 @@ return {
 				execute = "lua Snacks.scratch.select()",
 				tags = { "search" },
 			},
-            {
-                name = "working",
-                execute = "FzfLua files",
-                tags = { "search" },
-            },
-            {
-                name = "yanks",
-                exectue = "YankyRingHistory",
-                tags = { "search" },
-            },
-            {
-                name = "undos",
-                exectue = "lua Snacks.picker.undo()",
-                tags = { "search" },
-            },
-            {
-                name = "oldfiles",
-                execute = "FzfLua oldfiles",
-                tags = { 'search' }
-            },
+			{
+				name = "working",
+				execute = "FzfLua files",
+				tags = { "search" },
+			},
+			{
+				name = "yanks",
+				exectue = "YankyRingHistory",
+				tags = { "search" },
+			},
+			{
+				name = "undos",
+				exectue = "lua Snacks.picker.undo()",
+				tags = { "search" },
+			},
+			{
+				name = "oldfiles",
+				execute = "FzfLua oldfiles",
+				tags = { "search" },
+			},
 			{
 				name = "local",
 				execute = "FzfLua live_grep cwd=~/.local",
 				tags = { "grep" },
 			},
-            {
-                name = "working",
-                execute = "FzfLua live_grep",
-                tags = { "grep" },
-            },
+			{
+				name = "working",
+				execute = "FzfLua live_grep",
+				tags = { "grep" },
+			},
 			{
 				name = "home",
 				execute = "FzfLua live_grep cwd=~/",
@@ -124,9 +124,7 @@ return {
 			},
 			{
 				name = "help",
-				execute = function()
-					require("fzf-lua").live_grep({ cwd = vim.fs.joinpath(vim.env.VIMRUNTIME, "doc") })
-				end,
+				execute = "lua require('fzf-lua').live_grep({ cwd = vim.fs.joinpath(vim.env.VIMRUNTIME, 'doc') })",
 				tags = { "grep" },
 			},
 			{
@@ -137,17 +135,17 @@ return {
 			{
 				name = "schemes",
 				execute = function()
-                    require('nvchad.themes').open()
-                end,
+					require("nvchad.themes").open()
+				end,
 				tags = { "misc" },
 			},
 			{
 				name = "scratch",
 				execute = function(...)
-                    local opts = {...}
-                    require("snacks").scratch.open(opts)
-                end,
-                require_input = true,
+					local opts = { ... }
+					require("snacks").scratch.open(opts)
+				end,
+				require_input = true,
 				tags = { "misc" },
 			},
 			{
@@ -173,16 +171,16 @@ return {
 				input = true,
 				tags = { "misc" },
 			},
-            {
-                name = "marks",
-                execute = "FzfLua marks",
-                tags = { "misc" },
-            },
-            {
-                name = "color",
-                execute = "CccPick",
-                tags = { "misc" },
-            },
+			{
+				name = "marks",
+				execute = "FzfLua marks",
+				tags = { "misc" },
+			},
+			{
+				name = "color",
+				execute = "CccPick",
+				tags = { "misc" },
+			},
 			{
 				name = "all",
 				execute = "lua require('neotest').run.run(vim.fn.expand('%'))",
@@ -224,8 +222,18 @@ return {
 				tags = { "lsp" },
 			},
 			{
-				name = "diagnostics",
-				execute = "FzfLua lsp_diagnostics",
+				name = "errors",
+				execute = "FzfLua diagnostics_document severity_only='Error'",
+				tags = { "lsp" },
+			},
+			{
+				name = "warnings",
+				execute = "FzfLua diagnostics_document severity_only='Warning'",
+				tags = { "lsp" },
+			},
+			{
+				name = "hints",
+				execute = "FzfLua diagnostics_document severity_only='Hint'",
 				tags = { "lsp" },
 			},
 			{

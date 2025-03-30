@@ -14,9 +14,17 @@ local C = function(cmd)
 end
 -- }}}
 
+map({ "n" }, "<tab>", "<C-W>w", "Next win", { remap = true })
+
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 
 map({ "n" }, "<C-s>", C("w"), "Save")
+
+-- |> Substitute
+map({ "n" }, "x", C("lua require('substitute').operator()"), "exch oper", { noremap = true })
+map({ "n" }, "xx", C("lua require('substitute').line()"), "exch line", { noremap = true })
+map({ "n" }, "X", C("lua require('substitute').eol()"), "exch eol", { noremap = true })
+map({ "x" }, "x", C("lua require('substitute').visual()"), "exch vis", { noremap = true })
 
 -- |> Toggles
 map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")

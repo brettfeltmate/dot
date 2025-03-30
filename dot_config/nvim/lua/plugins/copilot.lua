@@ -18,7 +18,7 @@ return {
 					prev = "<M-k>",
 					dismiss = "<M-h>",
 				},
-			},
+		},
 		},
 	},
 	{

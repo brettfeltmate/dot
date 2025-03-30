@@ -26,6 +26,7 @@ vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers w
 vim.opt.signcolumn = "auto:2"
 vim.opt.guicursor = ""
 vim.opt.shortmess:append("WIcC")
+vim.opt.wrap = false
 
 -- Behavior
 vim.opt.swapfile = false

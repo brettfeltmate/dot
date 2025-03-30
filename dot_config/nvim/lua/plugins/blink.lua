@@ -27,12 +27,16 @@ return {
 					treesitter = { "lsp" },
 					columns = {
 						{ "label", "label_description", gap = 2 },
-						{ "kind_icon", "kind" },
+						{ "kind_icon", "kind", gap = 2 },
 					},
 				},
 			},
 			accept = { auto_brackets = { enabled = true } },
-            ghost_text = { enabled = false },
+			ghost_text = { enabled = false },
+			documentation = {
+				auto_show = false,
+				window = { border = "rounded" },
+			},
 		}
 
 		opts.signature = { enabled = false }
@@ -53,14 +57,14 @@ return {
 					fallbacks = { "buffer" },
 					score_offset = 90,
 				},
-                lazydev = {
-                    name = "LazyDev",
-                    module = "lazydev.integrations.blink",
-                    score_offset = 80,
-                    enabled = true,
-                    max_items = 3,
-                    min_keyword_length = 4,
-                },
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 80,
+					enabled = true,
+					max_items = 3,
+					min_keyword_length = 4,
+				},
 				ripgrep = {
 					module = "blink-ripgrep",
 					name = "Ripgrep",
