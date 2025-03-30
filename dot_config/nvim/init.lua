@@ -11,4 +11,6 @@ require("keymaps")
 
 require("options")
 
+require("polish_highlights")
+
 -- vim: ts=2 sts=2 sw=2 et

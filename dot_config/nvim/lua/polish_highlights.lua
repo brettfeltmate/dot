@@ -1,0 +1,20 @@
+local base16 = require("base46").get_theme_tb("base_16")
+local base30 = require("base46").get_theme_tb("base_30")
+
+local generate_color = require("base46.colors").change_hex_lightness
+
+vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base16.base00 })
+vim.api.nvim_set_hl(0, "FzfLuaFzfMatch", { bg = base30.grey_fg, fg = base30.purple })
+vim.api.nvim_set_hl(0, "FzfLuaFzfMarker", { bg = base30.grey_fg, fg = base30.purple })
+vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
+vim.api.nvim_set_hl(0, "MiniClueSeparator", { link = "WinSeparator" })
+vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = base30.orange })
+vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = generate_color(base16.base04, 25) })
+vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = base16.base0A })
+vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
+vim.api.nvim_set_hl(0, "SnacksIndent", { fg = base16.base04 })
+vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = base30.nord_blue })
+vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "pmenu" })
+vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "pmenu" })
+vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = base16.base04, bold = true })
+vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = base16.base04 })

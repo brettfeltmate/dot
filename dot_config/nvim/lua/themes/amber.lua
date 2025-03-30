@@ -52,7 +52,7 @@ local base30 = {
 	cyan = "#9fbfb1",
 	statusline_bg = "#322137",
 	lightbg = "#6c5c6e",
-	pmenu_bg = "#241f24",
+	pmenu_bg = "#211c22",
 	folder_bg = "#c9bba9",
 }
 
@@ -68,7 +68,7 @@ local polish_hl = {
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg, fg = base16.base04 },
 		PmenuSbar = { bg = base30.pmenu_bg },
-		PmenuSel = { bg = generate_color(base30.nord_blue, -30), fg = base30.orange, bold = true, italic = true },
+		PmenuSel = { bg = generate_color(base30.nord_blue, -35), fg = "#e97184", bold = true },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.red },
 		FloatTitle = { fg = base30.red, bg = base16.base00 },
@@ -402,6 +402,8 @@ vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = base16.base0A })
 vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
 vim.api.nvim_set_hl(0, "SnacksIndent", { fg = base16.base04 })
 vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = base30.nord_blue })
+vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "pmenu" })
+vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "pmenu" })
 
 M = require("base46").override_theme(M, "amber")
 

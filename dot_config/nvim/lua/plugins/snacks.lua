@@ -1,6 +1,7 @@
 return {
 	"folke/snacks.nvim",
-    dependencies = { "echasnovski/mini.icons" },
+	dependencies = { "echasnovski/mini.icons" },
+	priority = 1000,
 	opts = {
 		styles = {
 			scratch = {
@@ -41,7 +42,7 @@ return {
 				explorer = {
 					layout = {
 						cycle = true,
-                        auto_close = true,
+						auto_close = true,
 						layout = {
 							preview = "main",
 							box = "horizontal",
@@ -79,7 +80,6 @@ return {
 							win = "preview",
 							height = 0.8,
 							border = { " ", "─", " ", " ", " ", "─", " ", " " },
-							-- border = "single",
 						},
 						{ win = "input", height = 1, border = "none" },
 						{ win = "list", border = { " ", "─", " ", " ", " ", "─", " ", " " } },
@@ -113,37 +113,46 @@ return {
 				},
 				{
 					pane = 2,
-					icon = " ",
+					icon = " ",
 					title = "Recent (cwd)",
 					cwd = true,
 					section = "recent_files",
-					indent = 2,
+					indent = 3,
 					padding = 1,
-					limit = 4,
+					limit = 3,
 				},
 				{
 					pane = 2,
 					icon = "󰪶 ",
 					title = "Recent (all)",
 					section = "recent_files",
-					indent = 2,
+					indent = 3,
 					padding = 1,
-					limit = 4,
+					limit = 3,
 				},
 				{
-					pane = 2,
-					icon = "󰊢 ",
-					title = "Git Status",
-					section = "terminal",
-					enabled = function()
-						return Snacks.git.get_root() ~= nil
-					end,
-					cmd = "git status --short --branch --renames",
-					height = 5,
-					padding = 1,
-					ttl = 5 * 60,
-					indent = 3,
-				},
+                    pane = 2,
+                    icon = " ",
+                    title = "Projects",
+                    section = "projects",
+                    indent = 3,
+                    padding = 1,
+                    limit = 3,
+                },
+				-- {
+				-- 	pane = 2,
+				-- 	icon = "󰊢 ",
+				-- 	title = "Git Status",
+				-- 	section = "terminal",
+				-- 	enabled = function()
+				-- 		return Snacks.git.get_root() ~= nil
+				-- 	end,
+				-- 	cmd = "git status --short --branch --renames",
+				-- 	height = 5,
+				-- 	padding = 1,
+				-- 	ttl = 5 * 60,
+				-- 	indent = 3,
+				-- },
 			},
 		},
 	},
