@@ -74,12 +74,13 @@ function nvp() {
     if [[ -f "$target_file" ]]; then
         echo "Edit $target_plugin"
         echo "Remember to applymoi"
-        sleep 1
+        sleep 0.5
         nvim "$target_file"
     else
         echo "Make $target_plugin"
         echo "Remember to addmoi"
-        sleep 1
+        touch "$target_file"
+        sleep 0.5
         nvim "$target_file"
     fi
 }

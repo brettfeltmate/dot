@@ -86,6 +86,7 @@ map({ "n" }, L("e"), C("Oil"), "Explore")
 map({ "n" }, L("s"), C("FzfLua files"), "Search")
 map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep")
 map({ "n" }, L("q"), C("q"), "Quit")
+map({ "n" }, L("<tab>"), C("tabnew %"), "Zoom")
 
 -- |> Handy
 map({ "n" }, L(",b"), C("qa!"), "Bail")

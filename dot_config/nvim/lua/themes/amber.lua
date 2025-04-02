@@ -1,5 +1,5 @@
-local generate_color = require("base46.colors").change_hex_lightness
-local mix_color = require("base46.colors").mix
+local shade = require("base46.colors").change_hex_lightness
+local blend = require("base46.colors").mix
 
 local M = {}
 local base16 = {
@@ -63,12 +63,12 @@ local polish_hl = {
 		Removed = { fg = base30.baby_pink },
 		Changed = { fg = base30.purple },
 
-		WinBar = { bg = generate_color(base16.base03, -18) },
-		WinBarNC = { bg = generate_color(base16.base03, -18) },
+		WinBar = { bg = shade(base16.base03, -18) },
+		WinBarNC = { bg = shade(base16.base03, -18) },
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg, fg = base16.base04 },
 		PmenuSbar = { bg = base30.pmenu_bg },
-		PmenuSel = { bg = generate_color(base30.nord_blue, -35), fg = "#e97184", bold = true },
+		PmenuSel = { bg = shade(base30.nord_blue, -40), fg = base30.teal, bold = true },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.red },
 		FloatTitle = { fg = base30.red, bg = base16.base00 },
@@ -82,7 +82,7 @@ local polish_hl = {
 		Substitute = { fg = base16.base01, bg = base16.base0A, sp = "none" },
 		IncSearch = {
 			bg = base30.orange,
-			fg = generate_color(base16.base07, -50),
+			fg = shade(base16.base07, -50),
 			bold = true,
 			italic = true,
 			underline = true,
@@ -102,7 +102,7 @@ local polish_hl = {
 		ModeMsg = { fg = base16.base0B },
 		MoreMsg = { fg = base16.base0B },
 		Visual = {
-			bg = generate_color(base30.nord_blue, -30),
+			bg = shade(base30.nord_blue, -30),
 			fg = base30.orange,
 			italic = true,
 		},
@@ -111,7 +111,7 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = mix_color(generate_color(base30.white, -40), base16.base00, 75) },
+		CursorLine = { bg = blend(shade(base30.white, -40), base16.base00, 75) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -138,17 +138,17 @@ local polish_hl = {
 		-- Lazy
 		LazyH1 = {
 			bg = base30.one_bg,
-			fg = base30.orange,
+			fg = shade(base30.red, -10),
 			bold = true,
 		},
 		LazyButton = {
 			bg = base30.one_bg,
-			fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 25 or -10),
+			fg = shade(base30.light_grey, vim.o.bg == "dark" and 25 or -10),
 		},
 		LazyButtonActive = {
 			bg = base30.one_bg,
 			-- bg = generate_color(base16.base03, -10),
-			fg = base30.orange,
+			fg = shade(base30.red, -10),
 			bold = true,
 		},
 		LazyH2 = { fg = base30.white, bold = true, italic = true, underline = false },
@@ -174,7 +174,7 @@ local polish_hl = {
 	},
 	neogit = {
 		NeogitCommitViewHeader = {
-			bg = generate_color(base30.purple, -60),
+			bg = shade(base30.purple, -60),
 			fg = base30.white,
 		},
 		NeogitDiffContext = {
@@ -186,44 +186,44 @@ local polish_hl = {
 			fg = base30.light_grey,
 		},
 		NeogitDiffContextCursor = {
-			bg = generate_color(base30.white, -58),
+			bg = shade(base30.white, -58),
 			fg = base16.base07,
 		},
 		NeogitHunkHeader = {
-			fg = generate_color(base16.base07, -35),
-			bg = generate_color(base16.base08, -52),
+			fg = shade(base16.base07, -35),
+			bg = shade(base16.base08, -52),
 		},
 		NeogitHunkHeaderHighlight = {
-			fg = generate_color(base16.base08, -50),
-			bg = generate_color(base16.base07, -20),
+			fg = shade(base16.base08, -50),
+			bg = shade(base16.base07, -20),
 		},
 		NeogitHunkHeaderCursor = {
-			fg = generate_color(base16.base08, -45),
-			bg = generate_color(base16.base07, -18),
+			fg = shade(base16.base08, -45),
+			bg = shade(base16.base07, -18),
 		},
 		NeogitDiffAdd = {
-			fg = generate_color(base30.green, -10),
-			bg = generate_color(base30.green, -44),
+			fg = shade(base30.green, -10),
+			bg = shade(base30.green, -44),
 		},
 		NeogitDiffAddHighlight = {
 			fg = base30.green,
-			bg = generate_color(base30.green, -40),
+			bg = shade(base30.green, -40),
 		},
 		NeogitDiffAddCursor = {
-			fg = mix_color(base30.green, "#FFFFFF", 50),
-			bg = mix_color(generate_color(base30.white, -58), base30.green, 30),
+			fg = blend(base30.green, "#FFFFFF", 50),
+			bg = blend(shade(base30.white, -58), base30.green, 30),
 		},
 		NeogitDiffDelete = {
-			fg = generate_color(base30.red, -20),
-			bg = generate_color(base30.red, -70),
+			fg = shade(base30.red, -20),
+			bg = shade(base30.red, -70),
 		},
 		NeogitDiffDeleteHighlight = {
-			fg = generate_color(base30.red, -10),
-			bg = generate_color(base30.red, -60),
+			fg = shade(base30.red, -10),
+			bg = shade(base30.red, -60),
 		},
 		NeogitDiffDeleteCursor = {
-			fg = mix_color(base30.red, "#FFFFFF", 30),
-			bg = mix_color(generate_color(base30.white, -58), base30.red, 10),
+			fg = blend(base30.red, "#FFFFFF", 30),
+			bg = blend(shade(base30.white, -58), base30.red, 10),
 		},
 	},
 	nvimtree = {
@@ -257,7 +257,7 @@ local polish_hl = {
 	},
 
 	markview = {
-		["@markup.heading.1.markdown"] = { fg = generate_color(base16.base03, 20) },
+		["@markup.heading.1.markdown"] = { fg = shade(base16.base03, 20) },
 		["@markup.heading.2.markdown"] = { fg = base16.base04 },
 		["@markup.heading.3.markdown"] = { fg = base16.base0F },
 		["@markup.heading.4.markdown"] = { fg = base16.base08 },
@@ -266,9 +266,9 @@ local polish_hl = {
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },
-		["@variable.r"] = { fg = mix_color(base16.base08, "#DDDDDD", 25) },
-		["@variable.member.r"] = { fg = generate_color(base16.base08, -3) },
-		["@variable.builtin"] = { fg = generate_color(base16.base09, 5) },
+		["@variable.r"] = { fg = blend(base16.base08, "#DDDDDD", 25) },
+		["@variable.member.r"] = { fg = shade(base16.base08, -3) },
+		["@variable.builtin"] = { fg = shade(base16.base09, 5) },
 		["@variable.parameter"] = { fg = base16.base08 },
 		["@variable.parameter.r"] = { fg = base16.base0E },
 		["@variable.member"] = { fg = base16.base08 },
@@ -312,12 +312,12 @@ local polish_hl = {
 		["@function.method.call"] = { fg = base16.base0D },
 		["@constructor"] = { fg = base16.base0C },
 
-		["@operator"] = { fg = mix_color(base16.base0B, "#FFFFFF", 5) },
+		["@operator"] = { fg = blend(base16.base0B, "#FFFFFF", 5) },
 		["@operator.r"] = { fg = base16.base0A },
 		-- ["@operator.r"] = { fg = base30.purple },
 		["@reference"] = { fg = base16.base05 },
-		["@punctuation.bracket"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
-		["@punctuation.delimiter"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
+		["@punctuation.bracket"] = { fg = blend(base16.base07, "#FFFFFF", 5) },
+		["@punctuation.delimiter"] = { fg = blend(base16.base07, "#FFFFFF", 5) },
 		["@punctuation.bracket.r"] = { fg = base16.base0A },
 		["@punctuation.delimiter.r"] = { fg = base16.base0A },
 		["@symbol"] = { fg = base16.base0B },
@@ -397,7 +397,7 @@ vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
 vim.api.nvim_set_hl(0, "MiniClueSeparator", { link = "WinSeparator" })
 -- vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = generate_color(base16.base0A, 10) })
 vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = base30.orange })
-vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = generate_color(base16.base04, 25) })
+vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = shade(base16.base04, 25) })
 vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = base16.base0A })
 vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
 vim.api.nvim_set_hl(0, "SnacksIndent", { fg = base16.base04 })

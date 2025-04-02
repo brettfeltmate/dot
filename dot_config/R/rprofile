@@ -17,11 +17,6 @@ options(show.signif.stars = FALSE)
 
 options(menu.graphics = FALSE)
 
-# Deactivate whilst teaching; students find it confusing :(
-# options(prompt = "|> ")
-#
-# options(continue = "|>... ")
-
 options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
 
 options(
@@ -32,24 +27,21 @@ options(
 
 options(httpgd.host = "0.0.0.0", httpgd.port = 8899)
 
-if (interactive()) {
-  if (require("data.table", quietly = TRUE)) {
-    library(data.table, quietly = TRUE)
-  }
+# gl <- function(obj) {
+#   if (!requireNamespace("dplyr", quietly = TRUE)) {
+#     stop("Glimpse() is exported by the pillar package, which is not installed.")
+#   }
+#   dplyr::glimpse(obj)
+# }
 
-  if (require("httpgd", quietly = TRUE)) {
-    library(httpgd)
-    print("hgd() to start httpgd server")
-    print("hgd_browse() to open viewer")
-  }
+
+
+if (interactive()) {
+  require("data.table", quietly = TRUE)
+  require("ggplot2", quietly = TRUE)
 
   if (require("plotcli", quietly = TRUE)) {
-    library(plotcli, quietly = TRUE)
-    plotcli_options(
-      plot_width = 45,
-      plot_height = 15,
-      braille = FALSE
-    )
+    plotcli_options(plot_width = 45, plot_height = 15, braille = FALSE)
   }
 
   if (Sys.getenv("RSTUDIO") == "1") {
@@ -90,6 +82,10 @@ if (interactive()) {
         zero.limit = 1e-10,
         verbose = FALSE
       )
+    }
+
+    if (require("httpgd", quietly = TRUE)) {
+      message("httpgd loaded.\nRun hgd() to init.\nRun hgd_browse() to open.")
     }
   }
 }

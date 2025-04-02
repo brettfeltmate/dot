@@ -1,17 +1,12 @@
+vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
+
 -- Slime bindings
 vim.keymap.set("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
 vim.keymap.set("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
-vim.keymap.set("n", "<localleader>r", "<cmd>SlimeSend1 r<cr>", { buffer = 0, noremap = true, desc = "Start REPL" })
-vim.keymap.set(
-	"n",
-	"<localleader>c",
-	"<cmd>SlimeSend1 rm(list=ls())<cr>",
-	{ buffer = 0, noremap = true, desc = "Clear env" }
-)
 
 vim.keymap.set(
 	"n",
-	"<localleader>g",
+	"<localleader>G",
 	"<cmd>SlimeSend1 "
 		.. "ggplot2::ggsave("
 		.. "file = 'scratch.png',"
@@ -23,16 +18,6 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "ggsave" }
 )
 
-vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
-
-vim.keymap.set("n", "<localleader>H", "<cms>SlimeSend1 hgd()<cr>", { buffer = 0, noremap = true, desc = "hgd" })
-vim.keymap.set(
-	"n",
-	"<localleader>B",
-	"<cms>SlimeSend1 hgd_browse()<cr>",
-	{ buffer = 0, noremap = true, desc = "hgd_browse" }
-)
-
 -- Semi-working attempts to shorthanding common interactive functions
 -- haven't quite figured out how best to handle R's $elector
 local key_cmd_map = {
@@ -41,9 +26,15 @@ local key_cmd_map = {
 	},
 	["<cWORD>"] = {
 		["s"] = "str",
+		["g"] = "dplyr::glimpse",
+		["l"] = "levels",
 		[","] = "print",
 		["h"] = "pclih",
 		["u"] = "unique",
+		["r"] = "range",
+		["a"] = "mean",
+		["m"] = "median",
+        ["y"] = "summary",
 	},
 }
 
@@ -55,7 +46,6 @@ for cword_type, cmd_map in pairs(key_cmd_map) do
 		end, { buffer = 0, noremap = true, desc = cmd })
 	end
 end
-
 
 -- Auto-correct
 vim.cmd([[
