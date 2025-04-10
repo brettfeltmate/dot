@@ -2,9 +2,8 @@ return {
 	"echasnovski/mini.nvim",
 	event = "VeryLazy",
 	config = function()
-
 		require("mini.ai").setup()
-        require("mini.basics").setup()
+		require("mini.basics").setup()
 		require("mini.comment").setup()
 		require("mini.surround").setup()
 		require("mini.pairs").setup()
@@ -47,76 +46,6 @@ return {
 		})
 
 		MiniIcons.mock_nvim_web_devicons()
-
-		local clue = require("mini.clue")
-		require("mini.clue").setup({
-			window = {
-				delay = 300,
-				config = {
-					border = "rounded",
-					anchor = "SE",
-					width = "auto", -- Autoscale window to fit clue content
-					row = "auto",
-					col = "auto",
-				},
-			},
-
-			triggers = {
-				-- Leaders
-				{ mode = "n", keys = "<Leader>" },
-				{ mode = "v", keys = "<Leader>" },
-				{ mode = "x", keys = "<Leader>" },
-				{ mode = "n", keys = "<localleader>" },
-				{ mode = "v", keys = "<localleader>" },
-				{ mode = "x", keys = "<localleader>" },
-
-				-- g
-				{ mode = "n", keys = "g" },
-				{ mode = "x", keys = "g" },
-
-				-- Surround
-				{ mode = "n", keys = "s" },
-				{ mode = "x", keys = "s" },
-
-				-- Bracketed
-				{ mode = "n", keys = "[" },
-				{ mode = "n", keys = "]" },
-
-				-- Toggles
-				{ mode = "n", keys = [[\]] },
-
-				-- Marks
-				{ mode = "n", keys = "'" },
-				{ mode = "n", keys = "`" },
-				{ mode = "x", keys = "'" },
-				{ mode = "x", keys = "`" },
-
-				-- Registers
-				{ mode = "n", keys = '"' },
-				{ mode = "x", keys = '"' },
-				{ mode = "i", keys = "<C-r>" },
-				{ mode = "c", keys = "<C-r>" },
-
-				-- Window
-				{ mode = "n", keys = "<C-w>" },
-
-				-- Z
-				{ mode = "n", keys = "z" },
-				{ mode = "x", keys = "z" },
-			},
-
-			clues = {
-				clue.gen_clues.builtin_completion(),
-				clue.gen_clues.g(),
-				clue.gen_clues.marks(),
-				clue.gen_clues.registers(),
-				clue.gen_clues.windows({ submode_resize = true }),
-				clue.gen_clues.z(),
-
-				{ mode = "n", keys = "<leader>.", desc = "Commands" },
-				{ mode = "n", keys = "<leader>,", desc = "Utils" },
-			},
-		})
 
 		require("mini.move").setup({
 			mappings = {

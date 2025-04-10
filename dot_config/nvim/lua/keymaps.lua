@@ -15,10 +15,17 @@ end
 -- }}}
 
 map({ "n" }, "<tab>", "<C-W>w", "Next win", { remap = true })
+map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 
 map({ "n" }, "<C-s>", C("w"), "Save")
+
+-- For some reason n/N is fucky; I think it's Cinnamon.nvim's fault?
+-- Anyway, revert back to default mappings
+
+map({ "n" }, "n", "n", "Next match", { remap = true })
+map({ "n" }, "N", "N", "Next match", { remap = true })
 
 -- |> Substitute
 map({ "n" }, "x", C("lua require('substitute').operator()"), "exch oper", { noremap = true })
@@ -31,36 +38,34 @@ map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")
 map({ "n" }, "\\a", C("Copilot suggestion toggle_auto_trigger"), "Toggle 'auto-suggestions'")
 
 -- |> Leap
-map({ "n", "x", "o" }, ")", "<Plug>(leap-forward)")
-map({ "n", "x", "o" }, "(", "<Plug>(leap-backward)")
-map({ "n", "x", "o" }, "g)", "<Plug>(leap-from-window)")
+map({ "n", "x", "o" }, ")", "<Plug>(leap-forward)", "Leap forward")
+map({ "n", "x", "o" }, "(", "<Plug>(leap-backward)", "Leap backward")
+map({ "n", "x", "o" }, "g)", "<Plug>(leap-from-window)", "Leap from window")
 
 -- |> Splits
 map({ "n" }, "-", "<C-W>s", "Split u|d", { remap = true })
 map({ "n" }, "|", "<C-W>v", "Split l|r", { remap = true })
+
 map({ "n" }, "<S-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
 map({ "n" }, "<S-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
 map({ "n" }, "<S-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
 map({ "n" }, "<S-Right>", C("lua require('smart-splits').move_cursor_right()"), "Right")
+
 map({ "n", "t" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
 map({ "n", "t" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
 map({ "n", "t" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Resize up")
 map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
+
 map({ "t" }, "<S-Left>", "<C-\\><C-n><S-Up>", "Left", { nowait = true })
 map({ "t" }, "<S-Down>", "<C-\\><C-n><S-Down>", "Down", { nowait = true })
 map({ "t" }, "<S-Up>", "<C-\\><C-n><S-Up>", "Up", { nowait = true })
 map({ "t" }, "<S-Right>", "<C-\\><C-n><S-Right>", "Right", { nowait = true })
-map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
-
--- |> Multiple Cursors
-map({ "n", "x" }, "<A-u>", C("MultipleCursorsAddUp"), "Add cursor, move up")
-map({ "n", "x" }, "<A-d>", C("MultipleCursorsAddDown"), "Add cursor, move down")
 
 -- |> Yanky
-map({ "n", "x" }, "y", "<Plug>(YankyYank)")
-map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)")
-map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)")
-map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)")
+map({ "n", "x" }, "y", "<Plug>(YankyYank)", "Yank")
+map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", "Put after")
+map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", "Put before")
+map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)", "Prev yank")
 
 -- |> Navigate
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
@@ -79,27 +84,27 @@ map({ "n" }, "[q", C("lua MiniBracketed.quickfix('backward')"), "Prev qfix")
 map({ "n" }, "]q", C("lua MiniBracketed.quickfix('forward')"), "Next qfix")
 
 -- |> Frequent
-map({ "n" }, L("b"), C("FzfLua buffers"), "Buffers")
-map({ "n" }, L("c"), C("CopilotChatToggle"), "Copilot")
-map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete")
-map({ "n" }, L("e"), C("Oil"), "Explore")
-map({ "n" }, L("s"), C("FzfLua files"), "Search")
-map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep")
-map({ "n" }, L("q"), C("q"), "Quit")
-map({ "n" }, L("<tab>"), C("tabnew %"), "Zoom")
+map({ "n" }, L("b"), C("FzfLua buffers"), "Buffer list")
+map({ "n" }, L("c"), C("CopilotChatToggle"), "Copilot chat")
+map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete buff")
+map({ "n" }, L("e"), C("lua Snacks.picker.explorer()"), "Explorer")
+map({ "n" }, L("o"), C("Oil"), "Oil")
+map({ "n" }, L("s"), C("FzfLua files"), "Search files")
+map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep buff")
+map({ "n" }, L("q"), C("q"), "Quit/close")
+map({ "n" }, L("t"), C("tabnew %"), "Zoom to tab")
 
 -- |> Handy
-map({ "n" }, L(",b"), C("qa!"), "Bail")
-map({ "n" }, L(",d"), C("wqa"), "Dip")
-map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format")
+map({ "n" }, L(",b"), C("qa!"), "Bail out")
+map({ "n" }, L(",d"), C("wqa"), "Dip out")
+map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format buff")
 map({ "n" }, L(",g"), C("Neogit"), "Neogit")
-map({ "n" }, L(",h"), C("lua Snacks.dashboard()"), "Home")
+map({ "n" }, L(",h"), C("lua Snacks.dashboard()"), "Homescreen")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle()"), "Loclist")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({loclist=false})"), "Quickfix")
 map({ "n" }, L(",r"), C("lua require 'nvchad.lsp.renamer'()"), "Rename")
-map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spell")
-map({ "n" }, L(",t"), C("lua Snacks.picker.explorer({layout = { preview = true } })"), "Tree")
+map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spelling")
 map({ "n" }, L(",w"), C("Wtf"), "wtf")
 
 -- |> Toolboxes
