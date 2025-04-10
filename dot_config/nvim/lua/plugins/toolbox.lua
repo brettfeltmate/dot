@@ -127,6 +127,16 @@ return {
 				execute = "lua require('fzf-lua').live_grep({ cwd = vim.fs.joinpath(vim.env.VIMRUNTIME, 'doc') })",
 				tags = { "grep" },
 			},
+            {
+                name = "csvview",
+                execute = "CsvViewToggle",
+                tags = { "misc" },
+            },
+            {
+                name = "tsvview",
+                execute = "CsvViewToggle delimiter='\t'",
+                tags = { "misc" },
+            },
 			{
 				name = "reload",
 				execute = "lua require('base46').load_all_highlights()",

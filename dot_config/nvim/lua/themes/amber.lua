@@ -8,22 +8,22 @@ local base16 = {
 	base02 = "#211922",
 	base03 = "#49504f",
 	base04 = "#837972",
-	base05 = "#c5b8b0",
+	base05 = "#cab8b0",
 	base06 = "#949b9f",
 	base07 = "#afafb6",
-	base08 = "#c8a89d",
+	base08 = "#c3aaa1",
 	base09 = "#8a909b",
 	base0A = "#bf8f94",
-	base0B = "#b8b0a6",
+	base0B = "#bfb7a6",
 	base0C = "#bf8080",
 	base0D = "#9daba2",
-	base0E = "#bfaa8c",
+	base0E = "#cbbba4",
 	base0F = "#b195b3",
 }
 
 -- UI
 local base30 = {
-	white = "#c8a89d",
+	white = "#c3aaa1",
 	black = "#231e23",
 	darker_black = "#211c22",
 	black2 = "#241f24",
@@ -43,8 +43,8 @@ local base30 = {
 	nord_blue = "#707d91",
 	blue = "#8996ab",
 	seablue = "#80a0a4",
-	yellow = "#cbae85",
-	sun = "#ceb27d",
+	yellow = "#c5af91",
+	sun = "#c9b38a",
 	purple = "#c0adda",
 	dark_purple = "#ad93cd",
 	teal = "#97bfa9",
@@ -282,8 +282,10 @@ local polish_hl = {
 
 		["@string.regex"] = { fg = base16.base0C },
 		["@string.escape"] = { fg = base16.base0C },
+		["@string.csv"] = { fg = base16.base04 },
 		["@character"] = { fg = base16.base08 },
 		["@number"] = { fg = base16.base09 },
+        ["@number.csv"] = { fg = base16.base06 },
 		["@number.float"] = { fg = base16.base09 },
 
 		["@annotation"] = { fg = base16.base0F },
@@ -406,5 +408,6 @@ vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "pmenu" })
 vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "pmenu" })
 
 M = require("base46").override_theme(M, "amber")
+
 
 return M

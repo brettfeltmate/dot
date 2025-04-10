@@ -1,7 +1,7 @@
 ---@diagnostic disable: missing-fields
 return {
 	"OXY2DEV/markview.nvim",
-	ft = { "md", "rmd", "qmd", "copilot-*" },
+	ft = { "md", "rmd", "qmd", "copilot-*", "codecompanion" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",

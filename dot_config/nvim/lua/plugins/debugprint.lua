@@ -1,9 +1,5 @@
-if true then
-	return {}
-end
 return {
 	"andrewferrier/debugprint.nvim",
-	lazy = true,
 	event = "BufRead",
 	opts = function()
 		local counter = 0
@@ -16,24 +12,28 @@ return {
 		local opts = {
 			keymaps = {
 				normal = {
-					plain_below = "g?p",
-					plain_above = "g?P",
-					variable_below = "",
-					variable_above = "",
-					variable_below_alwaysprompt = "g?v",
-					variable_above_alwaysprompt = "g?V",
-					textobj_below = "",
-					textobj_above = "",
-					toggle_comment_debug_prints = "g?t",
-					delete_debug_prints = "g?d",
+					plain_below = "gdp",
+					plain_above = "gdP",
+					variable_below = "gdv",
+					variable_above = "gdV",
+					variable_below_alwaysprompt = "",
+					variable_above_alwaysprompt = "",
+					surround_plain = "gdsp",
+					surround_variable = "gdsv",
+					surround_variable_alwaysprompt = "",
+					textobj_below = "gdo",
+					textobj_above = "gdO",
+					textobj_surround = "gdso",
+					toggle_comment_debug_prints = "",
+					delete_debug_prints = "",
 				},
 				insert = {
 					plain = "<C-G>p",
 					variable = "<C-G>v",
 				},
 				visual = {
-					variable_below_alwaysprompt = "g?v",
-					variable_above_alwaysprompt = "g?V",
+					variable_below = "gdv",
+					variable_above = "gdV",
 				},
 			},
 			commands = {

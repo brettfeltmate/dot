@@ -40,7 +40,7 @@ return {
 				marksman = {
 					filetypes = { "markdown", "rmarkdown", "quarto" },
 				},
-        pyright = {},
+				pyright = {},
 				r_language_server = {
 					settings = {
 						r = {
@@ -124,7 +124,10 @@ return {
 				markdown = { "prettier" },
 				sql = { "sqlfmt" },
 			},
-			format_on_save = nil,
+			format_on_save = {
+				lsp_format = "fallback",
+				timeout_ms = 10000,
+			},
 		},
 	},
 }

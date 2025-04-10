@@ -1,5 +1,3 @@
-vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
-
 -- [[ Bootstrap lazy.nvim plugin manager ]]
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -8,10 +6,12 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
+
 -- [[ Configure and install plugins ]]
 require("lazy").setup({
-	stats = { real_cputime = true, },
-	profiling = { loader = true, require = true, },
+	stats = { real_cputime = true },
+	profiling = { loader = true, require = true },
 	spec = { { import = "plugins" } },
 })
 

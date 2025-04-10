@@ -49,6 +49,7 @@ return {
 				"path",
 				-- "dictionary",
 			},
+			per_filetype = { codecompanion = { "codecompanion" } },
 			providers = {
 				lsp = {
 					name = "lsp",

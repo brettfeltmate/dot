@@ -1,6 +1,6 @@
 # Aerospace config #
 
-start-at-login = true
+# start-at-login = true
 
 key-mapping.preset = 'qwerty'
 
@@ -9,7 +9,7 @@ enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = ['move-mouse window-lazy-center']
+# on-focus-changed = ['move-mouse window-lazy-center']
 
 # Layout properties #
 
@@ -20,7 +20,7 @@ default-root-container-layout = 'accordion'
 default-root-container-orientation = 'auto'
 
 # Z-offset for stacked windows
-accordion-padding = 0
+accordion-padding = 10
 
 [exec]
 inherit-env-vars = true
@@ -30,12 +30,12 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
 # Pixel gap between windows
 [gaps]
-inner.horizontal = 1
-inner.vertical = 1
-outer.top = 1
-outer.bottom = 1
-outer.left = 1
-outer.right = 1
+inner.horizontal = 2
+inner.vertical = 2
+outer.top = 2
+outer.bottom = 2
+outer.left = 2
+outer.right = 2
 
 # modal keybindings #
 
@@ -157,6 +157,10 @@ if.app-name-regex-substring = 'firefox'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'arc'
+run = ['layout tiling', 'move-node-to-workspace 1']
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'zen'
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = ['layout floating']
@@ -186,6 +190,10 @@ run = ['move-node-to-workspace 2']
 if.app-name-regex-substring = 'Proton Mail'
 run = ['move-node-to-workspace 2']
 
+[[on-window-detected]]
+if.app-name-regex-substring = 'calendar'
+run = ['move-node-to-workspace 2']
+
 ### 3: Office apps
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
@@ -211,9 +219,13 @@ run = ['move-node-to-workspace 3']
 if.app-name-regex-substring = 'Excel'
 run = ['move-node-to-workspace 3']
 
-### 4: Calendar
+### 4: Writing
 [[on-window-detected]]
-if.app-name-regex-substring = 'calendar'
+if.app-name-regex-substring = 'Ulysses'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Obsidian'
 run = ['move-node-to-workspace 4']
 
 ### 5: ChatGPT & Skim
@@ -224,15 +236,6 @@ run = ['move-node-to-workspace 5']
 [[on-window-detected]]
 if.app-name-regex-substring = 'Skim'
 run = ['move-node-to-workspace 5']
-
-### 6: Sort-of-common apps
-[[on-window-detected]]
-if.app-name-regex-substring = 'RStudio'
-run = ['move-node-to-workspace 6']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Obsidian'
-run = ['move-node-to-workspace 6']
 
 ### 7: Video calls
 [[on-window-detected]]
@@ -269,6 +272,15 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### Default to floating in current space
+### File managers tile
+[[on-window-detected]]
+if.app-name-regex-substring = 'Finder'
+run = ['layout tiling']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Forklift'
+run = ['layout tiling']
+
+### Leave unnaccounted for apps floating
 [[on-window-detected]]
 run = ['layout floating']
