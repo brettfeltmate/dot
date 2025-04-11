@@ -21,12 +21,6 @@ map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 
 map({ "n" }, "<C-s>", C("w"), "Save")
 
--- For some reason n/N is fucky; I think it's Cinnamon.nvim's fault?
--- Anyway, revert back to default mappings
-
-map({ "n" }, "n", "n", "Next match", { remap = true })
-map({ "n" }, "N", "N", "Next match", { remap = true })
-
 -- |> Substitute
 map({ "n" }, "x", C("lua require('substitute').operator()"), "exch oper", { noremap = true })
 map({ "n" }, "xx", C("lua require('substitute').line()"), "exch line", { noremap = true })
@@ -84,17 +78,19 @@ map({ "n" }, "[q", C("lua MiniBracketed.quickfix('backward')"), "Prev qfix")
 map({ "n" }, "]q", C("lua MiniBracketed.quickfix('forward')"), "Next qfix")
 
 -- |> Frequent
-map({ "n" }, L("b"), C("FzfLua buffers"), "Buffer list")
-map({ "n" }, L("c"), C("CopilotChatToggle"), "Copilot chat")
-map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete buff")
-map({ "n" }, L("e"), C("lua Snacks.picker.explorer()"), "Explorer")
+
+map({ "n" }, L("b"), C("FzfLua buffers"), "Buffers")
+map({ "n" }, L("c"), C("CopilotChatToggle"), "Copilot")
+map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete")
+map({ "n" }, L("t"), C("lua Snacks.picker.explorer()"), "Tree")
 map({ "n" }, L("o"), C("Oil"), "Oil")
-map({ "n" }, L("s"), C("FzfLua files"), "Search files")
-map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep buff")
-map({ "n" }, L("q"), C("q"), "Quit/close")
-map({ "n" }, L("t"), C("tabnew %"), "Zoom to tab")
+map({ "n" }, L("s"), C("FzfLua files"), "Search")
+map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep")
+map({ "n" }, L("q"), C("q"), "Quit")
+map({ "n" }, L("z"), C("tabnew %"), "Zoom")
 
 -- |> Handy
+
 map({ "n" }, L(",b"), C("qa!"), "Bail out")
 map({ "n" }, L(",d"), C("wqa"), "Dip out")
 map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format buff")
@@ -108,6 +104,7 @@ map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spelling")
 map({ "n" }, L(",w"), C("Wtf"), "wtf")
 
 -- |> Toolboxes
+
 map({ "n" }, L(".s"), C("lua require('toolbox').show_picker('search')"), "Search")
 map({ "n" }, L(".g"), C("lua require('toolbox').show_picker('grep')"), "Grep")
 map({ "n" }, L(".l"), C("lua require('toolbox').show_picker('lsp')"), "LSP")

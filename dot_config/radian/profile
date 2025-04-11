@@ -1,5 +1,5 @@
 # vim: ft=r
-options(radian.color_scheme = "rose-pine")
+options(radian.color_scheme = "coffee")
 
 options(radian.editing_mode = "vim")
 options(radian.emacs_bindings_in_vi_insert_mode = FALSE)

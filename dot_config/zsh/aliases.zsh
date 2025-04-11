@@ -51,3 +51,4 @@ alias dv="pyenv activate dev"
 alias deact="pyenv deactivate"
 
 alias fc="fancy-cat"
+alias bpy="bpython"

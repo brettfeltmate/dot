@@ -50,6 +50,7 @@ return {
 						},
 					},
 				},
+				-- stan_language_server = {},
 				ruff = {},
 				taplo = {},
 				vtsls = {},
@@ -79,9 +80,27 @@ return {
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			-- -- Add custom config for stan_language_server
+			-- local lspconfig = require("lspconfig")
+			-- local configs = require("lspconfig.configs")
+			--
+			-- if not configs.stan_language_server then
+			-- 	configs.stan_language_server = {
+			-- 		default_config = {
+			-- 			cmd = { "stan-language-server" },
+			-- 			filetypes = { "stan" },
+			-- 			root_dir = function(fname)
+			-- 				return vim.fs.dirname(vim.fs.find({ ".git" }, { path = fname, upward = true })[1])
+			-- 			end,
+			-- 			single_file_support = true,
+			-- 		},
+			-- 	}
+			-- end
+			-- lspconfig.stan_language_server.setup({})
+
 			for server, config in pairs(servers or {}) do
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				config.on_attach = function(client, bufnr)
+				config.on_attach = function(_, _)
 					require("lsp_signature").setup({
 						floating_window = false,
 						hint_prefix = {

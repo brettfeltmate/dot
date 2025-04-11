@@ -1,13 +1,13 @@
 return {
 	{
 		"zbirenbaum/copilot.lua",
-        lazy = true,
+		lazy = true,
 		enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 		opts = {
 			panel = { enabled = false },
 			suggestion = {
 				enabled = true,
-				auto_trigger = true,
+				auto_trigger = false,
 				hide_during_completion = true,
 				debounce = 75,
 				keymap = {
@@ -18,12 +18,12 @@ return {
 					prev = "<M-k>",
 					dismiss = "<M-h>",
 				},
-		},
+			},
 		},
 	},
 	{
 		"CopilotC-Nvim/CopilotChat.nvim",
-        event = "BufReadPre",
+		event = "BufReadPre",
 		cmd = {
 			"CopilotChatToggle",
 			"CopilotChatStop",
@@ -43,8 +43,8 @@ return {
 			answer_header = "~    Copilot  ~  ",
 			error_header = "~    ERROR  ~  ",
 			show_folds = false,
-            highlight_selection = false,
-            highlight_headers = false,
+			highlight_selection = false,
+			highlight_headers = false,
 			-- Default context to use
 			-- -- 'buffers', 'buffer', 'files' or none
 			-- -- (can be specified manually in prompt via #).
@@ -70,7 +70,7 @@ return {
 				},
 			},
 			window = {
-                layout = "vertical",
+				layout = "vertical",
 				-- layout = "float",
 				-- relative = "win",
 				-- width = math.floor(math.max(40, vim.api.nvim_win_get_width(0) * 0.4)),
