@@ -1,4 +1,0 @@
-imap <C-a> <Esc>
-vmap <C-a> <Esc>
-nmap <C-k> <Esc>:m .+1<CR>==gn
-nmap <C-l> <Esc>:m .-2<CR>==gn
