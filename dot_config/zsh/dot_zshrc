@@ -82,6 +82,7 @@ export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
 export MANPAGER="nvimpager -p"
+export PAGER="nvimpager -p"
 export MOZ_DISABLE_SAFE_MODE_KEY=1
 export STARSHIP_LOG=error
 export CLIPBOARD_THEME=ansi

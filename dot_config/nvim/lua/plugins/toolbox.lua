@@ -127,16 +127,16 @@ return {
 				execute = "lua require('fzf-lua').live_grep({ cwd = vim.fs.joinpath(vim.env.VIMRUNTIME, 'doc') })",
 				tags = { "grep" },
 			},
-            {
-                name = "csvview",
-                execute = "CsvViewToggle",
-                tags = { "misc" },
-            },
-            {
-                name = "tsvview",
-                execute = "CsvViewToggle delimiter='\t'",
-                tags = { "misc" },
-            },
+			{
+				name = "csvview",
+				execute = "CsvViewToggle",
+				tags = { "misc" },
+			},
+			{
+				name = "tsvview",
+				execute = "CsvViewToggle delimiter='\t'",
+				tags = { "misc" },
+			},
 			{
 				name = "reload",
 				execute = "lua require('base46').load_all_highlights()",
@@ -260,6 +260,20 @@ return {
 				name = "workspace",
 				execute = "FzfLua lsp_workspace_symbols",
 				tags = { "lsp" },
+			},
+			{
+				name = "write",
+				execute = function(obj_name)
+					vim.cmd(
+						"SlimeSend1 fwrite("
+							.. "as.data.table("
+							.. obj_name
+							.. ", keep.rownames = TRUE)"
+							.. ", file = './scratch.csv')"
+					)
+				end,
+				input = true,
+				tags = { "R" },
 			},
 		},
 	},

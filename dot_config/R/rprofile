@@ -27,15 +27,6 @@ options(
 
 options(httpgd.host = "0.0.0.0", httpgd.port = 8899)
 
-# gl <- function(obj) {
-#   if (!requireNamespace("dplyr", quietly = TRUE)) {
-#     stop("Glimpse() is exported by the pillar package, which is not installed.")
-#   }
-#   dplyr::glimpse(obj)
-# }
-
-
-
 if (interactive()) {
   require("data.table", quietly = TRUE)
   require("ggplot2", quietly = TRUE)

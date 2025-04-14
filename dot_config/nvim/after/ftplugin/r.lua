@@ -27,6 +27,7 @@ local key_cmd_map = {
 	["<cWORD>"] = {
 		["s"] = "str",
 		["g"] = "dplyr::glimpse",
+		["k"] = "skimr::skim",
 		["l"] = "levels",
 		[","] = "print",
 		["h"] = "pclih",
@@ -34,7 +35,7 @@ local key_cmd_map = {
 		["r"] = "range",
 		["a"] = "mean",
 		["m"] = "median",
-        ["y"] = "summary",
+		["y"] = "summary",
 	},
 }
 

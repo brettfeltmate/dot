@@ -52,3 +52,6 @@ alias deact="pyenv deactivate"
 
 alias fc="fancy-cat"
 alias bpy="bpython"
+
+alias xv="xan view -p -R --theme rounded"
+alias xvs="xan view -p -R --theme rounded scratch.csv"

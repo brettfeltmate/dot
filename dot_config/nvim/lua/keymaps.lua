@@ -64,6 +64,10 @@ map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)", "Prev yank")
 -- |> Navigate
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buff")
+map({ "n" }, "<M-H>", C("tabprev"), "Prev tab")
+map({ "n" }, "<M-L>", C("tabnext"), "Next tab")
+
+-- |> Brackets
 map({ "n" }, "[b", C("lua require('nvchad.tabbufline').prev()"), "Prev buff")
 map({ "n" }, "]b", C("lua require('nvchad.tabbufline').next()"), "Next buff")
 map({ "n" }, "[t", C("tabprevious"), "Prev tab")
@@ -110,3 +114,4 @@ map({ "n" }, L(".g"), C("lua require('toolbox').show_picker('grep')"), "Grep")
 map({ "n" }, L(".l"), C("lua require('toolbox').show_picker('lsp')"), "LSP")
 map({ "n" }, L(".m"), C("lua require('toolbox').show_picker('misc')"), "Misc")
 map({ "n" }, L(".t"), C("lua require('toolbox').show_picker('test')"), "Test")
+map({ "n" }, L(".r"), C("lua require('toolbox').show_picker('R')"), "R")
