@@ -32,6 +32,7 @@ return {
 			{ "<leader>.l", icon = "󱃖 " },
 			{ "<leader>.m", icon = " " },
 			{ "<leader>.t", icon = "󰙨 " },
+			{ "<leader>.r", icon = " " },
 		})
 		local o = {
 			preset = "helix",

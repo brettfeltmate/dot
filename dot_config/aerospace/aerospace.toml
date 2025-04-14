@@ -272,15 +272,6 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### File managers tile
-[[on-window-detected]]
-if.app-name-regex-substring = 'Finder'
-run = ['layout tiling']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Forklift'
-run = ['layout tiling']
-
 ### Leave unnaccounted for apps floating
 [[on-window-detected]]
 run = ['layout floating']
