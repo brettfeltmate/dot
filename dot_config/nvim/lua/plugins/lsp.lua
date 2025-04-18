@@ -18,8 +18,10 @@ return {
 		event = "LspAttach", -- Or `LspAttach`
 		priority = 1000, -- needs to be loaded in first
 		opts = {
-			preset = "classic",
-			options = { break_line = { enabled = true, after = 80 } },
+			preset = "modern",
+			transparent_bg = true,
+			-- hi = { background = "None" },
+			options = { break_line = { enabled = true, after = 45 } },
 		},
 	},
 	{
@@ -66,6 +68,7 @@ return {
 				"luacheck",
 				"markdownlint",
 				"marksman",
+				"mdslw",
 				"prettier",
 				"pyright",
 				"r-languageserver",
@@ -140,7 +143,7 @@ return {
 				python = { "ruff", "blue" },
 				r = { "rprettify" },
 				rmd = { "rprettify" },
-				markdown = { "prettier" },
+				markdown = { "prettier", "markdownlint", "mdslw" },
 				sql = { "sqlfmt" },
 			},
 			format_on_save = {

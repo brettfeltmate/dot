@@ -177,101 +177,84 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 if.app-name-regex-substring = 'chrome'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-### 2: Email & calendar
-[[on-window-detected]]
-if.app-name-regex-substring = 'Spark Mail'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Outlook'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Proton Mail'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'calendar'
-run = ['move-node-to-workspace 2']
-
-### 3: Office apps
-[[on-window-detected]]
-if.app-name-regex-substring = 'Pages'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Word'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Keynote'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'PowerPoint'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Numbers'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Excel'
-run = ['move-node-to-workspace 3']
-
-### 4: Writing
+### 2: Reading & Writing
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ulysses'
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Sioyek'
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Obsidian'
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 2']
 
-### 5: ChatGPT & Skim
+### 3: ChatGPT
 [[on-window-detected]]
 if.app-name-regex-substring = 'ChatGPT'
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 3']
 
+### 4: Office-y apps
 [[on-window-detected]]
 if.app-name-regex-substring = 'Skim'
-run = ['move-node-to-workspace 5']
-
-### 7: Video calls
-[[on-window-detected]]
-if.app-name-regex-substring = 'Teams'
-run = ['move-node-to-workspace 7']
+run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Zoom'
-run = ['move-node-to-workspace 7']
+if.app-name-regex-substring = 'Pages'
+run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'FaceTime'
-run = ['move-node-to-workspace 7']
+if.app-name-regex-substring = 'Word'
+run = ['move-node-to-workspace 4']
 
-### 8: Messages
+[[on-window-detected]]
+if.app-name-regex-substring = 'Keynote'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'PowerPoint'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Numbers'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Excel'
+run = ['move-node-to-workspace 4']
+
+### 5: Messages
 [[on-window-detected]]
 if.app-name-regex-substring = 'Texts'
-run = ['move-node-to-workspace 8']
+run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Messages'
-run = ['move-node-to-workspace 8']
+run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Beeper'
-run = ['move-node-to-workspace 8']
+run = ['move-node-to-workspace 5']
 
-### 9: Entertainment
+### 6: Entertainment
 [[on-window-detected]]
 if.app-name-regex-substring = 'Spotify'
-run = ['move-node-to-workspace 9']
+run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'stremio'
-run = ['move-node-to-workspace 9']
+run = ['move-node-to-workspace 6']
 
-### Leave unnaccounted for apps floating
+### File managers tile
 [[on-window-detected]]
-run = ['layout floating']
+if.app-name-regex-substring = 'Finder'
+run = ['layout tiling']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Forklift'
+run = ['layout tiling']
+
+### Consistently blit unaccounted for apps
+[[on-window-detected]]
+run = ['layout floating', 'move-node-to-workspace 9']

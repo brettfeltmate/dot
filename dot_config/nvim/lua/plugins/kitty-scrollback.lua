@@ -10,18 +10,19 @@ return {
 	version = "*", -- latest stable version, may have breaking changes if major version changed
 	opts = {
 		{
+			callbacks = {
+				after_paste_window_ready = vim.cmd("set nu rnu"),
+			},
 			paste_window = {
 				winblend = 10,
 				winopts_overrides = function()
-					-- local h = vim.o.lines - 5 -- TODO: magic number 3 for footer and 2 for border
-                    local r = vim.o.lines
-                    local h = 20
+					local r = vim.o.lines
+					local h = 20
 					return {
 						border = "rounded",
 						row = r - h,
 						col = 0,
-						-- height = h < 1 and 3 or h, -- TODO: magic number 3 for footer
-                        height = h,
+						height = h,
 						width = vim.o.columns,
 					}
 				end,

@@ -8,8 +8,9 @@ return {
 			{ "<leader>c", icon = " " },
 			{ "<leader>d", icon = "󰗩 " },
 			{ "<leader>t", icon = " " },
-			{ "<leader>t", icon = " " },
+			{ "<leader>o", icon = " " },
 			{ "<leader>s", icon = "󰥨 " },
+			{ "<leader>w", icon = " " },
 			{ "<leader>g", icon = "󰺯 " },
 			{ "<leader>q", icon = "󰅗 " },
 			{ "<leader>z", icon = "󰘖 " },
@@ -33,6 +34,8 @@ return {
 			{ "<leader>.m", icon = " " },
 			{ "<leader>.t", icon = "󰙨 " },
 			{ "<leader>.r", icon = " " },
+
+			{ "gd", group = "Debug", icon = " " },
 		})
 		local o = {
 			preset = "helix",

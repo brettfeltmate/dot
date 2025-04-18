@@ -36,11 +36,19 @@ test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(pyenv init -)"
-eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh
 PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
+
+if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
+      "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
+    zle -N zle-keymap-select "";
+fi
+
+eval "$(starship init zsh)"
 
 # plugins
 plug "aloxaf/fzf-tab"
@@ -48,7 +56,6 @@ plug "freed-wu/fzf-tab-source"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 plug "zsh-users/zsh-history-substring-search"
-plug "ael-code/zsh-colored-man-pages"
 
 # Directory history
 setopt AUTO_PUSHD                  # pushes the old directory onto the stack
@@ -58,13 +65,15 @@ setopt extended_glob
 
 # fzf-tab
 zstyle ':completion:*:directory-stack' list-colors '=(#b) #([0-9]#)*( *)==95=38;5;12'
-zstyle ':fzf-tab:*' fzf-command fzf
 zstyle ':completion:*:git-checkout:*' sort false
 zstyle ':completion:*:descriptions' format '[%d]'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
+
+zstyle ':fzf-tab:*' fzf-command fzf
+# zstyle ':fzf-tab:*' fzf-flags '--preview-window=down,30%'
 zstyle ':fzf-tab:*' switch-group '<' '>'
-zstyle ':fzf-tab:*' popup-min-size 80 40
+zstyle ':fzf-tab:*' popup-min-size 80 80
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
 
 # for the odd project with intel only dependencies
@@ -81,14 +90,13 @@ fi
 export BAT_THEME="ansi"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
 export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
-export MANPAGER="nvimpager -p"
-export PAGER="nvimpager -p"
+export MANPAGER='nvim +Man!'
+export PAGER='nvim +Man!'
 export MOZ_DISABLE_SAFE_MODE_KEY=1
 export STARSHIP_LOG=error
 export CLIPBOARD_THEME=ansi
 export EZA_GRID_ROWS=15
 export LESS='-R'  # interpret color characters
-export LESSOPEN="|/opt/homebrew/bin/lesspipe.sh %s"
-# export LESSCOLORIZER="nvimpager"
 export PATH="$HOME/go/bin:$PATH"
 export DISABLE_AUTO_TITLE="true"
+export LESSOPEN="|lesspipe.sh %s"

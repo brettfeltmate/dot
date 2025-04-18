@@ -285,7 +285,7 @@ local polish_hl = {
 		["@string.csv"] = { fg = base16.base04 },
 		["@character"] = { fg = base16.base08 },
 		["@number"] = { fg = base16.base09 },
-        ["@number.csv"] = { fg = base16.base06 },
+		["@number.csv"] = { fg = base16.base06 },
 		["@number.float"] = { fg = base16.base09 },
 
 		["@annotation"] = { fg = base16.base0F },
@@ -408,6 +408,5 @@ vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "pmenu" })
 vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "pmenu" })
 
 M = require("base46").override_theme(M, "amber")
-
 
 return M
