@@ -29,11 +29,9 @@ source "${ZDOTDIR}/keys.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
-source "${ZDOTDIR}/cmp-sources/_atuin"
 test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 
 # init CLI tools
-. "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(pyenv init -)"
 eval "$(zoxide init zsh)"
