@@ -1,8 +1,6 @@
 bat
-borders
 bpython
 btop
-chezmoi
 difftastic
 direnv
 eza

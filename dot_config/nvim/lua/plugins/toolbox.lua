@@ -52,12 +52,9 @@ return {
 			{
 				name = "images",
 				execute = function()
-					require("snacks").picker.files({
-						finder = "files",
-						format = "file",
-						cmd = "fd",
-						args = { "-I", "-e", "jpg", "-e", "png", "-e", "jpeg", "-e", "pdf" },
-						layout = "left",
+					require("fzf-lua").files({
+						prompt = "Images❯ ",
+						fd_opts = [[-I -e jpg -e png -e jpeg -e pdf]],
 					})
 				end,
 				tags = { "search" },

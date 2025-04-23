@@ -45,7 +45,7 @@ return {
 				{
 					pane = 2,
 					section = "terminal",
-					cmd = "colorscript -e 24",
+					cmd = "colorscript -e fade",
 					height = 7,
 					padding = 1,
 				},

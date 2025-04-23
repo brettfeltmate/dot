@@ -32,4 +32,5 @@ settings.theme= `
 }
 .ace_marker-layer .ace_selection {
     background: var(--theme-ace-select) !important;
-} `
+}
+`

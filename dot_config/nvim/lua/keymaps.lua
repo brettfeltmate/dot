@@ -96,9 +96,9 @@ map({ "n" }, L("z"), C("tabnew %"), "Zoom")
 
 -- |> Handy
 
-map({ "n" }, L(",b"), C("qa!"), "Bail out")
-map({ "n" }, L(",d"), C("wqa"), "Dip out")
-map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format buff")
+map({ "n" }, L(",b"), C("qa!"), "BAIL")
+map({ "n" }, L(",d"), C("wqa"), "Dip")
+map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format")
 map({ "n" }, L(",g"), C("Neogit"), "Neogit")
 map({ "n" }, L(",h"), C("lua Snacks.dashboard()"), "Homescreen")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle()"), "Loclist")

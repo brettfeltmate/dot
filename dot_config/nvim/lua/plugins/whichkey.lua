@@ -15,9 +15,9 @@ return {
 			{ "<leader>q", icon = "󰅗 " },
 			{ "<leader>z", icon = "󰘖 " },
 
-			{ "<leader>,", group = "Utils", icon = " " },
-			{ "<leader>,b", icon = "󰑮 " },
+			{ "<leader>,", group = "Utils", icon = " " },
 			{ "<leader>,d", icon = "󰜎 " },
+			{ "<leader>,b", icon = "󰑮 " },
 			{ "<leader>,f", icon = "󰁨 " },
 			{ "<leader>,g", icon = "󰊢 " },
 			{ "<leader>,h", icon = " " },
@@ -25,9 +25,9 @@ return {
 			{ "<leader>,q", icon = " " },
 			{ "<leader>,r", icon = " " },
 			{ "<leader>,s", icon = " " },
-			{ "<leader>,w", icon = "󰋖 " },
+			{ "<leader>,w", icon = "󰺴 " },
 
-			{ "<leader>.", group = "Tools", icon = " " },
+			{ "<leader>.", group = "Tools", icon = "󰹈 " },
 			{ "<leader>.s", icon = "󰥩 " },
 			{ "<leader>.g", icon = "󰺯 " },
 			{ "<leader>.l", icon = "󱃖 " },

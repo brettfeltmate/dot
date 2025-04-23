@@ -1,10 +1,8 @@
-aerospace
+nikitabobko/tap/aerospace
 alt-tab
-font-maple-mono
 kindavim
 kitty
 notunes
-rig
 sioyek
 spotify
 zen-browser
