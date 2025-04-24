@@ -189,6 +189,51 @@ return {
 				tags = { "misc" },
 			},
 			{
+				name = "flip",
+				execute = function()
+					-- Exit early if no splits exist
+					if vim.fn.winnr("$") == 1 then
+						vim.notify("No splits to flip", vim.log.levels.WARN)
+						return
+					end
+
+					local initial_win = vim.fn.winnr()
+					local is_horizontal = vim.fn.winwidth(0) > vim.fn.winheight(0)
+
+					-- Try primary orientation flip
+					vim.cmd("wincmd " .. (is_horizontal and "K" or "H"))
+
+					-- If unsuccessful, try opposite orientation
+					if initial_win == vim.fn.winnr() then
+						vim.cmd("wincmd " .. (is_horizontal and "H" or "K"))
+					end
+
+					-- Recenter both windows
+					local commands = { "wincmd p", "normal! zz", "wincmd p", "normal! zz" }
+					for _, cmd in ipairs(commands) do
+						vim.cmd(cmd)
+					end
+				end,
+				tags = { "misc" },
+			},
+			{
+				name = "scrollbind",
+				execute = function()
+					if not vim.g.scrollbindon then
+						for i = 1, vim.fn.winnr("$") do
+							vim.cmd(i .. "windo set scrollbind")
+						end
+						vim.g.scrollbindon = true
+					else
+						for i = 1, vim.fn.winnr("$") do
+							vim.cmd(i .. "windo set scrollbind!")
+						end
+						vim.g.scrollbindon = false
+					end
+				end,
+				tags = { "misc" },
+			},
+			{
 				name = "all",
 				execute = "lua require('neotest').run.run(vim.fn.expand('%'))",
 				tags = { "test" },
@@ -270,6 +315,21 @@ return {
 					)
 				end,
 				input = true,
+				tags = { "R" },
+			},
+			{
+				name = "plots",
+				execute = function()
+					local r_ft = vim.bo.filetype == "r" or vim.bo.filetype == "rmd"
+
+					local has_slime = vim.fn.exists("g:slime") == 1
+
+					if r_ft and has_slime then
+						vim.cmd(
+							[[SlimeSend1 tryCatch(httpgd::hgd_browse(),error=function(e) {httpgd::hgd();httpgd::hgd_browse()})]]
+						)
+					end
+				end,
 				tags = { "R" },
 			},
 		},

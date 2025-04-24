@@ -1,6 +1,7 @@
 vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
+vim.g.scrollbindon = false
 
 -- UI
 vim.opt.cmdheight = 0

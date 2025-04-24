@@ -143,6 +143,7 @@ return {
 				python = { "ruff", "blue" },
 				r = { "rprettify" },
 				rmd = { "rprettify" },
+				rprofile = { "rprettify" },
 				markdown = { "prettier", "markdownlint", "mdslw" },
 				sql = { "sqlfmt" },
 			},

@@ -1,61 +1,33 @@
 # vim: ft=r
 Sys.setenv(LD_LIBRARY_PATH = "/opt/homebrew/lib:/usr/local/lib")
 
-options(repos = c(CRAN = "https://cran.rstudio.org"))
-
-options(lintr.linter_file = "~/.config/R/lintr")
-
-options(stringsAsFactors = FALSE)
-
-options(max.print = 1000)
-
-options(scipen = 10)
-
-options(editor = "nvim")
-
-options(show.signif.stars = FALSE)
-
-options(menu.graphics = FALSE)
-
-options(styler.addins_style_transformer = "grkstyle::grk_style_transformer()")
-
 options(
+  editor = "nvim",
+  scipen = 10,
+  stringsAsFactors = FALSE,
+  menu.graphics = FALSE,
+  show.signif.stars = FALSE,
+  repos = c(CRAN = "https://cran.rstudio.org"),
+  lintr.linter_file = "~/.config/R/lintr",
+  styler.addins_style_transformer = "grkstyle::grk_style_transformer()",
   rsthemes.theme_light = "Textmate (default)",
   rsthemes.theme_dark = "base16 Ashes {rsthemes}",
   rsthemes.theme_favorite = c("Textmate (default)", "base16 Ashes {rsthemes}")
 )
 
-options(httpgd.host = "0.0.0.0", httpgd.port = 8899)
-
 if (interactive()) {
-  require("data.table", quietly = TRUE)
-  require("ggplot2", quietly = TRUE)
+  if (Sys.getenv("RSTUDIO") == "") {
+    require(data.table, quietly = TRUE)
+    require(ggplot2, quietly = TRUE)
+    require(plotcli, quietly = TRUE)
 
-  if (require("plotcli", quietly = TRUE)) {
     plotcli_options(plot_width = 45, plot_height = 15, braille = FALSE)
-  }
 
-  if (Sys.getenv("RSTUDIO") == "1") {
-    if (require("colorout", quietly = TRUE)) {
-      # RStudio's console, naturally, isn't aware of my terminal colors
-      colorout::setOutputColors(
-        index = 249,
-        normal = 182,
-        number = 158,
-        true = 72,
-        negnum = 210,
-        false = 168,
-        string = 224,
-        const = 249,
-        stderror = 229,
-        warn = c(16, 213),
-        error = c(213, 16),
-        zero = 249,
-        zero.limit = 1e-10,
-        verbose = FALSE
-      )
+    if (require("httpgd", quietly = TRUE)) {
+      options(device = httpgd::hgd, httpgd.port = 8899)
+      # message("httpgd loaded.\nRun hgd() to init.\nRun hgd_browse() to open.")
     }
-  } else {
+
     if (require("colorout", quietly = TRUE)) {
       colorout::setOutputColors(
         index = 8,
@@ -74,9 +46,24 @@ if (interactive()) {
         verbose = FALSE
       )
     }
-
-    if (require("httpgd", quietly = TRUE)) {
-      message("httpgd loaded.\nRun hgd() to init.\nRun hgd_browse() to open.")
+  } else {
+    if (require("colorout", quietly = TRUE)) {
+      colorout::setOutputColors(
+        index = 249,
+        normal = 182,
+        number = 158,
+        true = 72,
+        negnum = 210,
+        false = 168,
+        string = 224,
+        const = 249,
+        stderror = 229,
+        warn = c(16, 213),
+        error = c(213, 16),
+        zero = 249,
+        zero.limit = 1e-10,
+        verbose = FALSE
+      )
     }
   }
 }

@@ -18,6 +18,8 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "ggsave" }
 )
 
+vim.keymap.set("n", "<localleader>b", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "plot view" })
+
 -- Semi-working attempts to shorthanding common interactive functions
 -- haven't quite figured out how best to handle R's $elector
 local key_cmd_map = {
