@@ -1,15 +1,15 @@
 font-family = Maple Mono NF
-font-style = Medium
-font-style-bold = Bold
-font-size = 14
-#font-thicken = true
+font-style = Regular
+font-style-bold = SemiBold
+font-size = 16
+adjust-cell-height = 10%
+font-thicken = true
 
 theme = dark:brett,light:vimbones
-bold-is-bright = true
-
+bold-is-bright = false
 cursor-style = block
-
 background-opacity = 0.95
+unfocused-split-opacity = 0.8
 
 macos-titlebar-style = hidden
 mouse-hide-while-typing = true
@@ -24,4 +24,26 @@ window-padding-balance = true
 window-step-resize = true
 window-inherit-font-size = false
 
-#command = tmux new-session -A -s main
+
+keybind = ctrl+shift+comma=reload_config
+keybind = ctrl+space=new_split:auto
+keybind = ctrl+shift+space=new_tab
+keybind = shift+up=goto_split:up
+keybind = shift+down=goto_split:down
+keybind = shift+right=goto_split:right
+keybind = shift+left=goto_split:left
+keybind = ctrl+shift+up=resize_split:up,3
+keybind = ctrl+shift+down=resize_split:down,3
+keybind = ctrl+shift+right=resize_split:right,3
+keybind = ctrl+shift+left=resize_split:left,3
+keybind = ctrl+shift+z=toggle_split_zoom
+keybind = ctrl+shift+backspace=close_surface
+keybind = ctrl+tab=next_tab
+keybind = ctrl+shift+tab=previous_tab
+
+cursor-color = ffa08b
+background = 151016
+foreground = c3b8ad
+selection-background = 7a515a
+selection-foreground = e0d0ae
+split-divider-color = 49504F
