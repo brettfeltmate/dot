@@ -78,7 +78,7 @@ commands = [["cc", "--version"], ["gcc", "--version"], ["clang", "--version"]]
 
 [character]
 format = "$symbol "
-success_symbol = "[❯](7)"
+success_symbol = "[❯](11)"
 error_symbol = "[❯](9)"
 vimcmd_symbol = "[❮](bold green)"
 vimcmd_visual_symbol = "[❮](bold yellow)"
@@ -935,7 +935,7 @@ detect_folders = [".terraform"]
 
 [time]
 format = "[$time]($style) "
-style = "3"
+style = "bold 8"
 use_12hr = true
 disabled = false
 utc_time_offset = "local"

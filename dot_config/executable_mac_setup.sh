@@ -74,13 +74,18 @@ defaults write NSGlobalDomain KeyRepeat -int 2
 defaults write NSGlobalDomain InitialKeyRepeat -int 15
 # Show path bar in Finder
 defaults write com.apple.finder ShowPathbar -bool true
+# Disable desktop icons
+defaults write com.apple.finder CreateDesktop false
+killall Finder
 
-# Install radian R console
-if command -v pip &>/dev/null; then
-    echo "📊 Installing radian R console..."
-    pip install radian
-else
-    echo "⚠️ pip not found. Skipping radian installation."
-fi
-
-echo "✅ Setup complete! Some changes may require a restart to take effect."
+# TODO: properly automate install of non-brew tools
+#
+# # Install radian R console
+# if command -v pip &>/dev/null; then
+#     echo "📊 Installing radian R console..."
+#     pip install radian
+# else
+#     echo "⚠️ pip not found. Skipping radian installation."
+# fi
+#
+# echo "✅ Setup complete! Some changes may require a restart to take effect."

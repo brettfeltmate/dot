@@ -31,10 +31,10 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # Pixel margin between windows
 inner.horizontal = 2
 inner.vertical = 2
-outer.top = 4
-outer.bottom = 2
-outer.left = 2
-outer.right = 2
+outer.top = 10
+outer.bottom = 12
+outer.left = 15
+outer.right = 15
 
 # modal keybindings #
 
@@ -202,6 +202,10 @@ run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Obsidian'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Paper'
 run = ['move-node-to-workspace 2']
 
 ### 3: Reference
