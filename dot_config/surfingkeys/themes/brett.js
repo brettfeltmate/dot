@@ -1,10 +1,11 @@
-const hintsCss =
-  "font-size: 14pt; font-family: 'Maple Mono', 'JetBrains Mono NL', 'Cascadia Code', 'Helvetica Neue', Helvetica, Arial, sans-serif; border: 0px; color: #bdbdc3 !important; background: #151016; background-color: #151016";
+api.map("<Ctrl-f>", "f", /outlook.office.com|mail.google.com|mail.proton.me/);
 
-api.Hints.style(hintsCss);
-api.Hints.style(hintsCss, "text");
+api.unmapAllExcept(
+  ["b", ",", "<Ctrl-i>", "<Ctrl-f>"],
+  /outlook.office.com|mail.google.com|mail.proton.me/,
+);
 
-api.mapkey("<Space>", "Choose a tab with omnibar", function () {
+api.mapkey(",", "Choose a tab with omnibar", function () {
   api.Front.openOmnibar({ type: "Tabs" });
 });
 
@@ -22,10 +23,24 @@ api.addSearchAlias(
   },
 );
 
-api.unmapAllExcept(
-  ["b", "<Space>", "<Ctrl-i>"],
-  /outlook.office.com|mail.google.com|mail.proton.me/,
-);
+const hintsCss = `
+    font-size: 14pt;
+    font-family:
+        'Maple Mono',
+        'Cascadia Code',
+        'Helvetica Neue',
+        Helvetica,
+        Arial,
+        sans-serif;
+    border: 2px;
+    color: #2e2a40 !important;
+    border-color: #d5b5a9;
+    background: #d5b5a9;
+    background-color: #d5b5a9;
+`;
+
+api.Hints.style(hintsCss);
+api.Hints.style(hintsCss, "text");
 
 settings.scrollStepSize = 100;
 
@@ -75,9 +90,8 @@ settings.theme = `
   }
   body {
     margin: 0;
-
-    font-family: "Maple Mono", "JetBrains Mono NL", "Cascadia Code", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
+    font-family: "Maple Mono", "Cascadia Code", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
   }
   #sk_omnibar {
     overflow: hidden;
@@ -199,7 +213,7 @@ settings.theme = `
     padding: 4px 8px 0 8px;
     border-radius: 4px 4px 0px 0px;
     border: 1px solid #524f67;
-    font-size: 12px;
+    font-size: 14px;
   }
   #sk_status>span {
     line-height: 16px;
@@ -277,13 +291,13 @@ settings.theme = `
     line-height: 22px;
   }
   #sk_usage * {
-    font-size: 10pt;
+    font-size: 14pt;
   }
   kbd {
     white-space: nowrap;
     display: inline-block;
     padding: 3px 5px;
-    font: 11px "JetBrains Mono NL", "Cascadia Code", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font: 11px "Maple Mono", "Cascadia Code", "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 10px;
     vertical-align: middle;
     border: solid 1px #524f67;
@@ -339,7 +353,7 @@ settings.theme = `
     width: 150px;
     display: inline-block;
     vertical-align: middle;
-    font-size: 10pt;
+    font-size: 16pt;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -347,7 +361,7 @@ settings.theme = `
     color: #bdbdc3;
   }
   div.sk_tab_url {
-    font-size: 10pt;
+    font-size: 14pt;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -356,11 +370,11 @@ settings.theme = `
   div.sk_tab_hint {
     display: inline-block;
     float:right;
-    font-size: 10pt;
+    font-size: 14pt;
     font-weight: bold;
     padding: 0px 2px 0px 2px;
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#151016), color-stop(100%,#151016));
-    color: #bdbdc3;
+    color: #c8a89d;
     border: solid 1px #524f67;
     border-radius: 3px;
     box-shadow: #21202e;
@@ -371,10 +385,10 @@ settings.theme = `
     border: 1px solid #524f67;
     border-radius: 4px;
     box-shadow: 0 0 20px #21202e;
-    color: #bdbdc3;
+    color: #c8a89d;
     background-color: #151016;
     z-index: 2147483000;
-    font-size: 14px;
+    font-size: 16px;
   }
   #sk_bubble .sk_bubble_content {
     overflow-y: scroll;
@@ -443,7 +457,7 @@ settings.theme = `
   }
 
 :root {
-    --theme-ace-bg:#1C171DAB; /*Note the fourth channel, this adds transparency*/
+    --theme-ace-bg:#151016FF; /*Note the fourth channel, this adds transparency*/
     --theme-ace-bg-accent:#322137;
     --theme-ace-fg:#C3B7AD;
     --theme-ace-fg-accent:#C8A89D;
@@ -452,7 +466,12 @@ settings.theme = `
 }
 
 #sk_editor {
-    height: 50% !important; /*Remove this to restore the default editor size*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    height: 60% !important;
+    width: 50% !important;
+    transform: translate(-50%, -50%);
     background: var(--theme-ace-bg) !important;
 }
 
