@@ -1,7 +1,7 @@
 return {
 	"stevearc/quicker.nvim",
-    ft = "qf",
+	ft = "qf",
 	opts = {
-        highlight = {rload_buffers = true },
-    },
+		highlight = { reload_buffers = true },
+	},
 }

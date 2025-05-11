@@ -6,9 +6,9 @@ return {
 			"ivy",
 			fzf_opts = { ["--layout"] = "reverse" },
 			file_icons = "mini",
-			git_icons = true, -- disabling can improve performance
 			path_shorten = true,
 			formatter = "path.filename_first",
+			fzf_colors = true,
 			winopts = {
 				relative = "editor",
 				row = 1,

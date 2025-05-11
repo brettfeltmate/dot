@@ -2,6 +2,7 @@ vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 vim.g.scrollbindon = false
+vim.g.winborder = "rounded"
 
 -- UI
 vim.opt.cmdheight = 0
@@ -13,11 +14,10 @@ vim.opt.laststatus = 3 -- global statusline
 vim.opt.pumheight = 6
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.scrolloff = 999
+vim.opt.scrolloff = 8
 vim.opt.virtualedit = "block"
 vim.opt.hlsearch = true
 vim.opt.list = false
-vim.opt.listchars = { trail = "·", nbsp = "␣" }
 vim.opt.inccommand = "split"
 vim.opt.completeopt = "menu,menuone,preview,noselect"
 vim.opt.smoothscroll = true

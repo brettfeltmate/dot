@@ -1,4 +1,5 @@
 return {
-  'arnamak/stay-centered.nvim',
-  event = "BufReadPre"
+	"arnamak/stay-centered.nvim",
+	event = "VeryLazy",
+	opts = {},
 }

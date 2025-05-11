@@ -13,7 +13,14 @@ return {
 			popupmenu = { enabled = false },
 			hover = { enabled = true },
 			lsp = {
-				signature = { enabled = true },
+				signature = {
+					enabled = true,
+					opts = {
+						size = {
+							max_width = 80,
+						},
+					},
+				},
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,

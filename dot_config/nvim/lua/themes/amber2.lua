@@ -1,59 +1,59 @@
-local generate_color = require("base46.colors").change_hex_lightness
-local mix_color = require("base46.colors").mix
+local shade = require("base46.colors").change_hex_lightness
+local mix = require("base46.colors").mix
 
 local M = {}
 local base16 = {
-	base00 = "#141117",
-	base01 = "#221f25",
-	base02 = "#2b282e",
-	base03 = "#49504f",
-	base04 = "#837972",
-	base05 = "#bfb2aa",
-	base06 = "#d3ccb7",
-	base07 = "#dfdec9",
-	base08 = "#e6beb0",
-	base09 = "#a2a8b3",
-	base0A = "#bf989c",
-	base0B = "#bbb7c0",
-	base0C = "#b7a0bd",
-	base0D = "#9daba2",
-	base0E = "#c2a2b8",
-	base0F = "#90a0a0",
+	base00 = "#151016",
+	base01 = "#2b2b1a",
+	base02 = "#503f43",
+	base03 = "#968e90",
+	base04 = "#b6aa9e",
+	base05 = "#c5c2b8",
+	base06 = "#18161b",
+	base07 = "#b4b1b3",
+	base08 = "#c4aeab",
+	base09 = "#abb4b3",
+	base0A = "#cbadbc",
+	base0B = "#d3cbba",
+	base0C = "#b88e80",
+	base0D = "#a4aeaa",
+	base0E = "#d19daa",
+	base0F = "#88b0ab",
 }
 
 -- UI
 local base30 = {
-	white = "#dfc1b6",
-	black = "#141117",
-	darker_black = "#120f15",
-	black2 = "#19151c",
-	one_bg = "#221f25",
-	one_bg2 = "#28252b",
-	one_bg3 = "#2b282e",
-	grey = "#312d34",
-	grey_fg = "#3b373e",
-	grey_fg2 = "#403c43",
-	light_grey = "#504c53",
-	red = "#b58385",
-	baby_pink = "#d6b3bd",
-	pink = "#c99aa7",
-	line = base16.base03,
-	green = "#7db798",
-	vibrant_green = "#8cd1ad",
-	nord_blue = "#8d9bb3",
-	blue = "#657592",
-	seablue = "#80a0a4",
-	yellow = "#c4aa87",
-	sun = "#e3bf94",
-	purple = "#c0adda",
-	dark_purple = "#aa96c3",
-	teal = "#8cbfbc",
-	orange = "#dea779",
-	cyan = "#9fc7c2",
-	statusline_bg = "#322137",
-	lightbg = "#6c5c6e",
-	pmenu_bg = generate_color(base16.base07, -60),
-	folder_bg = "#c9bba9",
+	white = shade(base16.base07, 10),
+	black = base16.base00, -- usually your theme bg
+	darker_black = shade(base16.base00, -6), -- 6% darker than black
+	black2 = shade(base16.base00, 5), -- 6% lighter than black
+	one_bg = shade(base16.base00, 10), -- 10% lighter than black
+	one_bg2 = shade(base16.base00, 15), -- 6% lighter than one_bg2
+	one_bg3 = shade(base16.base00, 20), -- 6% lighter than one_bg3
+	grey = shade(base16.base00, 40), -- 40% lighter than black (the % here depends so choose the perfect grey!)
+	grey_fg = shade(base16.base00, 50), -- 10% lighter than grey
+	grey_fg2 = shade(base16.base00, 55), -- 5% lighter than grey
+	light_grey = base16.base07,
+	red = base16.base0E,
+	baby_pink = shade(base16.base0A, 5),
+	pink = base16.base0A,
+	line = shade(base16.base00, 15), -- 15% lighter than black
+	green = base16.base0D,
+	vibrant_green = shade(base16.base0D, 10),
+	nord_blue = "#a8b1c6",
+	blue = "#a1b1ce",
+	seablue = "#a1bfe5",
+	yellow = base16.base0B, -- 8% lighter than yellow
+	sun = "#dcab9d",
+	purple = "#99859b",
+	dark_purple = "#503f52",
+	teal = base16.base0F,
+	orange = "#dc9684",
+	cyan = "#88bdab",
+	statusline_bg = base16.base02,
+	lightbg = base16.base07,
+	pmenu_bg = base16.base01,
+	folder_bg = base16.base03,
 }
 
 local polish_hl = {
@@ -63,12 +63,12 @@ local polish_hl = {
 		Removed = { fg = base30.baby_pink },
 		Changed = { fg = base30.purple },
 
-		WinBar = { bg = generate_color(base16.base03, -18) },
-		WinBarNC = { bg = generate_color(base16.base03, -18) },
+		WinBar = { bg = shade(base16.base03, -18) },
+		WinBarNC = { bg = shade(base16.base03, -18) },
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg },
 		PmenuSbar = { bg = base30.one_bg },
-		PmenuSel = { bg = generate_color(base30.statusline_bg, 3), fg = base30.orange, bold = true },
+		PmenuSel = { bg = shade(base30.statusline_bg, 3), fg = base30.orange, bold = true },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.red },
 		FloatTitle = { fg = base30.red, bg = base16.base00 },
@@ -82,7 +82,7 @@ local polish_hl = {
 		Substitute = { fg = base16.base01, bg = base16.base0A, sp = "none" },
 		IncSearch = {
 			bg = base30.orange,
-			fg = generate_color(base16.base07, -50),
+			fg = shade(base16.base07, -50),
 			bold = true,
 			italic = true,
 			underline = true,
@@ -107,7 +107,7 @@ local polish_hl = {
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = mix_color(generate_color(base30.white, -40), base16.base00, 75) },
+		CursorLine = { bg = mix(shade(base30.white, -40), base16.base00, 75) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -139,7 +139,7 @@ local polish_hl = {
 		},
 		LazyButton = {
 			bg = base30.one_bg,
-			fg = generate_color(base30.light_grey, vim.o.bg == "dark" and 25 or -10),
+			fg = shade(base30.light_grey, vim.o.bg == "dark" and 25 or -10),
 		},
 		LazyButtonActive = {
 			bg = base30.one_bg,
@@ -170,7 +170,7 @@ local polish_hl = {
 	},
 	neogit = {
 		NeogitCommitViewHeader = {
-			bg = generate_color(base30.purple, -60),
+			bg = shade(base30.purple, -60),
 			fg = base30.white,
 		},
 		NeogitDiffContext = {
@@ -182,44 +182,44 @@ local polish_hl = {
 			fg = base30.light_grey,
 		},
 		NeogitDiffContextCursor = {
-			bg = generate_color(base30.white, -58),
+			bg = shade(base30.white, -58),
 			fg = base16.base07,
 		},
 		NeogitHunkHeader = {
-			fg = generate_color(base16.base07, -35),
-			bg = generate_color(base16.base08, -52),
+			fg = shade(base16.base07, -35),
+			bg = shade(base16.base08, -52),
 		},
 		NeogitHunkHeaderHighlight = {
-			fg = generate_color(base16.base08, -50),
-			bg = generate_color(base16.base07, -20),
+			fg = shade(base16.base08, -50),
+			bg = shade(base16.base07, -20),
 		},
 		NeogitHunkHeaderCursor = {
-			fg = generate_color(base16.base08, -45),
-			bg = generate_color(base16.base07, -18),
+			fg = shade(base16.base08, -45),
+			bg = shade(base16.base07, -18),
 		},
 		NeogitDiffAdd = {
-			fg = generate_color(base30.green, -10),
-			bg = generate_color(base30.green, -44),
+			fg = shade(base30.green, -10),
+			bg = shade(base30.green, -44),
 		},
 		NeogitDiffAddHighlight = {
 			fg = base30.green,
-			bg = generate_color(base30.green, -40),
+			bg = shade(base30.green, -40),
 		},
 		NeogitDiffAddCursor = {
-			fg = mix_color(base30.green, "#FFFFFF", 50),
-			bg = mix_color(generate_color(base30.white, -58), base30.green, 30),
+			fg = mix(base30.green, "#FFFFFF", 50),
+			bg = mix(shade(base30.white, -58), base30.green, 30),
 		},
 		NeogitDiffDelete = {
-			fg = generate_color(base30.red, -20),
-			bg = generate_color(base30.red, -70),
+			fg = shade(base30.red, -20),
+			bg = shade(base30.red, -70),
 		},
 		NeogitDiffDeleteHighlight = {
-			fg = generate_color(base30.red, -10),
-			bg = generate_color(base30.red, -60),
+			fg = shade(base30.red, -10),
+			bg = shade(base30.red, -60),
 		},
 		NeogitDiffDeleteCursor = {
-			fg = mix_color(base30.red, "#FFFFFF", 30),
-			bg = mix_color(generate_color(base30.white, -58), base30.red, 10),
+			fg = mix(base30.red, "#FFFFFF", 30),
+			bg = mix(shade(base30.white, -58), base30.red, 10),
 		},
 	},
 	nvimtree = {
@@ -253,7 +253,7 @@ local polish_hl = {
 	},
 
 	markview = {
-		["@markup.heading.1.markdown"] = { fg = generate_color(base16.base03, 20) },
+		["@markup.heading.1.markdown"] = { fg = shade(base16.base03, 20) },
 		["@markup.heading.2.markdown"] = { fg = base16.base04 },
 		["@markup.heading.3.markdown"] = { fg = base16.base0F },
 		["@markup.heading.4.markdown"] = { fg = base16.base08 },
@@ -262,9 +262,9 @@ local polish_hl = {
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },
-		["@variable.r"] = { fg = mix_color(base16.base08, "#DDDDDD", 25) },
-		["@variable.member.r"] = { fg = generate_color(base16.base08, -3) },
-		["@variable.builtin"] = { fg = generate_color(base16.base09, 5) },
+		["@variable.r"] = { fg = mix(base16.base08, "#DDDDDD", 25) },
+		["@variable.member.r"] = { fg = shade(base16.base08, -3) },
+		["@variable.builtin"] = { fg = shade(base16.base09, 5) },
 		["@variable.parameter"] = { fg = base16.base08 },
 		["@variable.parameter.r"] = { fg = base16.base0E },
 		["@variable.member"] = { fg = base16.base08 },
@@ -308,12 +308,12 @@ local polish_hl = {
 		["@function.method.call"] = { fg = base16.base0D },
 		["@constructor"] = { fg = base16.base0C },
 
-		["@operator"] = { fg = mix_color(base16.base0B, "#FFFFFF", 5) },
+		["@operator"] = { fg = mix(base16.base0B, "#FFFFFF", 5) },
 		["@operator.r"] = { fg = base16.base0A },
 		-- ["@operator.r"] = { fg = base30.purple },
 		["@reference"] = { fg = base16.base05 },
-		["@punctuation.bracket"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
-		["@punctuation.delimiter"] = { fg = mix_color(base16.base07, "#FFFFFF", 5) },
+		["@punctuation.bracket"] = { fg = mix(base16.base07, "#FFFFFF", 5) },
+		["@punctuation.delimiter"] = { fg = mix(base16.base07, "#FFFFFF", 5) },
 		["@punctuation.bracket.r"] = { fg = base16.base0A },
 		["@punctuation.delimiter.r"] = { fg = base16.base0A },
 		["@symbol"] = { fg = base16.base0B },
@@ -351,24 +351,24 @@ local polish_hl = {
 		["@NeogitDiffDeleteHighlight"] = { bg = base30.one_bg2, fg = base30.light_grey },
 	},
 	syntax = {
-		Boolean = { fg = base16.base09 },
-		Character = { fg = base16.base08 },
+		Boolean = { fg = base16.base0E },
+		Character = { fg = base16.base04 },
 		Conditional = { fg = base16.base0E },
-		Constant = { fg = base16.base08 },
-		Define = { fg = base16.base0E, sp = "none" },
-		Delimiter = { fg = base16.base0F },
-		Float = { fg = base16.base06 },
-		Variable = { fg = base16.base05 },
+		Constant = { fg = base16.base09 },
+		Define = { fg = base16.base0D, sp = "none" },
+		Delimiter = { fg = base16.base05 },
+		Float = { fg = base16.base09 },
+		Variable = { fg = base16.base08 },
 		Function = { fg = base16.base0D },
-		Identifier = { fg = base16.base08, sp = "none" },
+		Identifier = { fg = base16.base0E, sp = "none" },
 		Include = { fg = base16.base0D },
 		Keyword = { fg = base16.base0E },
 		Label = { fg = base16.base0A },
-		Number = { fg = base16.base09 },
-		Operator = { fg = base16.base06, sp = "none" },
+		Number = { fg = base16.base05 },
+		Operator = { fg = base16.base05, sp = "none" },
 		PreProc = { fg = base16.base0A },
 		Repeat = { fg = base16.base0A },
-		Special = { fg = base16.base08 },
+		Special = { fg = base16.base05 },
 		SpecialChar = { fg = base16.base0F },
 		Statement = { fg = base16.base08 },
 		StorageClass = { fg = base16.base0A },

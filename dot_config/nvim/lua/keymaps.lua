@@ -28,7 +28,6 @@ map({ "n" }, "X", C("lua require('substitute').eol()"), "exch eol", { noremap = 
 map({ "x" }, "x", C("lua require('substitute').visual()"), "exch vis", { noremap = true })
 
 -- |> Toggles
-map({ "n" }, "\\z", C("ZenMode"), "Toggle 'zenmode'")
 map({ "n" }, "\\a", C("Copilot suggestion toggle_auto_trigger"), "Toggle 'auto-suggestions'")
 
 -- |> Leap
@@ -55,17 +54,11 @@ map({ "t" }, "<S-Down>", "<C-\\><C-n><S-Down>", "Down", { nowait = true })
 map({ "t" }, "<S-Up>", "<C-\\><C-n><S-Up>", "Up", { nowait = true })
 map({ "t" }, "<S-Right>", "<C-\\><C-n><S-Right>", "Right", { nowait = true })
 
--- |> Yanky
-map({ "n", "x" }, "y", "<Plug>(YankyYank)", "Yank")
-map({ "n", "x" }, "p", "<Plug>(YankyPutAfter)", "Put after")
-map({ "n", "x" }, "P", "<Plug>(YankyPutBefore)", "Put before")
-map({ "n" }, "<C-p>", "<Plug>(YankyPreviousEntry)", "Prev yank")
-
 -- |> Navigate
 map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
 map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buff")
-map({ "n" }, "<M-H>", C("tabprev"), "Prev tab")
-map({ "n" }, "<M-L>", C("tabnext"), "Next tab")
+map({ "n" }, "<A-h>", C("tabprev"), "Prev tab")
+map({ "n" }, "<A-l>", C("tabnext"), "Next tab")
 
 -- |> Brackets
 map({ "n" }, "[b", C("lua require('nvchad.tabbufline').prev()"), "Prev buff")
@@ -89,7 +82,7 @@ map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete")
 map({ "n" }, L("t"), C("lua Snacks.picker.explorer()"), "Tree")
 map({ "n" }, L("o"), C("Oil"), "Oil")
 map({ "n" }, L("s"), C("FzfLua files"), "Search")
-map({ "n" }, L("g"), C("FzfLua lgrep_curbuf"), "Grep")
+map({ "n" }, L("g"), C("FzfLua grep_curbuf"), "Grep")
 map({ "n" }, L("q"), C("q"), "Quit")
 map({ "n" }, L("w"), C("FzfLua grep_cword"), "Cword")
 map({ "n" }, L("z"), C("tabnew %"), "Zoom")
@@ -100,13 +93,13 @@ map({ "n" }, L(",b"), C("qa!"), "BAIL")
 map({ "n" }, L(",d"), C("wqa"), "Dip")
 map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format")
 map({ "n" }, L(",g"), C("Neogit"), "Neogit")
-map({ "n" }, L(",h"), C("lua Snacks.dashboard()"), "Homescreen")
 map({ "n" }, L(",l"), C("lua require('quicker').toggle()"), "Loclist")
 map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({loclist=false})"), "Quickfix")
 map({ "n" }, L(",r"), C("lua require 'nvchad.lsp.renamer'()"), "Rename")
-map({ "n" }, L(",s"), C("FzfLua spell_suggest"), "Spelling")
-map({ "n" }, L(",w"), C("Wtf"), "wtf")
+map({ "n" }, L(",s"), C("lua require('snacks').scratch.open()"), "Scratch")
+map({ "n" }, L(",w"), C("FzfLua spell_suggest"), "Word?")
+map({ "n" }, L(",t"), C("TimeMachineToggle"), "TimeMachine")
 
 -- |> Toolboxes
 
@@ -114,5 +107,5 @@ map({ "n" }, L(".s"), C("lua require('toolbox').show_picker('search')"), "Search
 map({ "n" }, L(".g"), C("lua require('toolbox').show_picker('grep')"), "Grep")
 map({ "n" }, L(".l"), C("lua require('toolbox').show_picker('lsp')"), "LSP")
 map({ "n" }, L(".m"), C("lua require('toolbox').show_picker('misc')"), "Misc")
-map({ "n" }, L(".t"), C("lua require('toolbox').show_picker('test')"), "Test")
+-- map({ "n" }, L(".t"), C("lua require('toolbox').show_picker('test')"), "Test")
 map({ "n" }, L(".r"), C("lua require('toolbox').show_picker('R')"), "R")

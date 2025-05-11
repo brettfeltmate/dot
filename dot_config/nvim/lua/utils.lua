@@ -1,16 +1,14 @@
 local M = {}
 
-function M.markerOrTreeFold()
-	-- Check if there's a marker fold on this line
-	local line = vim.fn.getline(vim.v.lnum)
+-- Open plot viewer in browser, or fail gracefully
+function M.browseplots()
+	local r_ft = vim.bo.filetype == "r" or vim.bo.filetype == "rmd"
 
-	-- If the line has a marker fold
-	if string.match(line, "{{{") or string.match(line, "}}}") then
-		return vim.fn.foldlevelmarker(vim.v.lnum)
+	local has_slime = vim.fn.exists("g:slime") == 1
+
+	if r_ft and has_slime then
+		vim.cmd([[SlimeSend1 tryCatch(httpgd::hgd_browse(),error=function(e) {httpgd::hgd();httpgd::hgd_browse()})]])
 	end
-
-	-- Otherwise use treesitter folding
-	return vim.treesitter.foldexpr()
 end
 
 function M.transFlip()
@@ -38,22 +36,21 @@ function M.transFlip()
 	end
 end
 
+vim.g.scrollbindon = false
 function M.scrollBind()
-	for i = 1, vim.fn.winnr("$") do
-		vim.cmd(i .. "windo set scrollbind")
+	if not vim.g.scrollbindon then
+		for i = 1, vim.fn.winnr("$") do
+			vim.cmd(i .. "windo set scrollbind")
+		end
+		vim.g.scrollbindon = true
+	else
+		for i = 1, vim.fn.winnr("$") do
+			vim.cmd(i .. "windo set scrollbind!")
+		end
+		vim.g.scrollbindon = false
 	end
 end
 
-function M.scrollUnbind()
-	for i = 1, vim.fn.winnr("$") do
-		vim.cmd(i .. "windo set scrollbind!")
-	end
-end
-
-vim.api.nvim_create_user_command(
-	"TransFlip",
-	M.transFlip,
-	{ desc = "Flip window arrangement between vertical and horizontal" }
-)
-vim.api.nvim_create_user_command("ScrollBind", M.scrollBind, { desc = "Enable scroll binding for all windows" })
-vim.api.nvim_create_user_command("ScrollUnbind", M.scrollUnbind, { desc = "Disable scroll binding for all windows" })
+vim.api.nvim_create_user_command("TransFlip", M.transFlip, { desc = "Flip window arrangement" })
+vim.api.nvim_create_user_command("ScrollBind", M.scrollBind, { desc = "Toggle scrollbind" })
+vim.api.nvim_create_user_command("BrowsePlots", M.browseplots, { desc = "Open plot viewer" })

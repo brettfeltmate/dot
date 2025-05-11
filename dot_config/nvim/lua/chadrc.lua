@@ -3,9 +3,7 @@ local M = {
 		theme = "amber",
 		transparency = false,
 		integrations = {
-			"avante",
 			"cmp",
-			"dap",
 			"devicons",
 			"diffview",
 			"git",
@@ -15,7 +13,6 @@ local M = {
 			"mason",
 			"neogit",
 			"treesitter",
-			"trouble",
 		},
 	},
 	ui = {
@@ -38,7 +35,7 @@ local M = {
 	nvdash = { load_on_startup = false },
 	lsp = { signature = false },
 	mason = { cmd = true, pkgs = {} },
-	colorify = { enabled = true, mode = "bg" },
+	colorify = { enabled = true, mode = "virtual" },
 }
 
 return M

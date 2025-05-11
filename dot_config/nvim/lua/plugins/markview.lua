@@ -1,13 +1,14 @@
 ---@diagnostic disable: missing-fields
 return {
 	"OXY2DEV/markview.nvim",
-	ft = { "markdown", "rmarkdown", "quarto", "copilot-*", "codecompanion" },
+	ft = { "markdown", "rmd", "quarto", "copilot-*", "codecompanion" },
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",
 	},
 	config = function()
 		local presets = require("markview.presets")
+		require("markview.extras.editor").setup()
 
 		require("markview").setup({
 			preview = {
@@ -24,6 +25,7 @@ return {
 					pad_amount = 0,
 					label_direction = "left",
 				},
+				headings = presets.headings.marker,
 				checkboxes = {
 					enable = true,
 					checked = { text = "󰗠", hl = "MarkviewCheckboxChecked", scope_hl = "MarkviewCheckboxChecked" },

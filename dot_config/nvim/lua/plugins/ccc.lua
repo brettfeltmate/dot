@@ -1,7 +1,8 @@
 return {
 	"uga-rosa/ccc.nvim",
 	lazy = true,
-	cmd = "CccPick",
+	-- cmd = "CccPick",
+	event = "VeryLazy",
 	opts = function()
 		local ccc = require("ccc")
 		return {
@@ -12,6 +13,11 @@ return {
 				ccc.input.okhsl,
 				ccc.input.okhsv,
 			},
+			highlighter = {
+				auto_enable = true,
+				lsp = true,
+			},
+			highlight_mode = "bg",
 		}
 	end,
 }

@@ -32,7 +32,8 @@ return {
 				{
 					gap = 1,
 					padding = 1,
-					{ icon = " ", key = "e", desc = "Explore", action = ":Oil" },
+					{ icon = " ", key = "d", desc = "Directories", action = ":FzfLua zoxide" },
+					{ icon = "󱞋 ", key = "e", desc = "Explore", action = ":Oil" },
 					{ icon = "󰱽 ", key = "s", desc = "Search", action = ":FzfLua files" },
 					{ icon = "󱎸 ", key = "g", desc = "Grep", action = ":FzfLua live_grep" },
 					{ icon = " ", key = "c", desc = "Config", action = ":ChezFzf" },

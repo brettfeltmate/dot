@@ -1,59 +1,59 @@
 local shade = require("base46.colors").change_hex_lightness
-local blend = require("base46.colors").mix
+local mix = require("base46.colors").mix
 
 local M = {}
 local base16 = {
 	base00 = "#151016",
 	base01 = "#1f1a1f",
-	base02 = "#211922",
-	base03 = "#49504f",
-	base04 = "#837972",
+	base02 = "#2b2525",
+	base03 = "#453838",
+	base04 = "#725f5f",
 	base05 = "#cab8b0",
-	base06 = "#949b9f",
-	base07 = "#afafb6",
+	base06 = "#9c797d",
+	base07 = "#a6ab9f",
 	base08 = "#c3aaa1",
-	base09 = "#8a909b",
-	base0A = "#bf8f94",
+	base09 = "#a9a4bf",
+	base0A = "#c4959c",
 	base0B = "#bfb7a6",
-	base0C = "#bf8080",
-	base0D = "#9daba2",
-	base0E = "#cbbba4",
-	base0F = "#b195b3",
+	base0C = "#c6908c",
+	base0D = "#abbaad",
+	base0E = "#c8bcaa",
+	base0F = "#aa8ea2",
 }
 
 -- UI
 local base30 = {
-	white = "#c3aaa1",
-	black = "#231e23",
-	darker_black = "#211c22",
-	black2 = "#241f24",
-	one_bg = "#211c22",
-	one_bg2 = "#241f24",
-	one_bg3 = "#261e27",
-	grey = "#423343",
-	grey_fg = "#473648",
-	grey_fg2 = "#4d3c4f",
-	light_grey = "#655667",
-	red = "#d1969c",
-	baby_pink = "#bf8f94",
-	pink = "#a4777c",
-	line = base16.base03,
-	green = "#66987c",
-	vibrant_green = "#8ea592",
-	nord_blue = "#707d91",
-	blue = "#8996ab",
-	seablue = "#80a0a4",
-	yellow = "#c5af91",
-	sun = "#c9b38a",
-	purple = "#c0adda",
-	dark_purple = "#ad93cd",
-	teal = "#97bfa9",
-	orange = "#dcb08d",
-	cyan = "#9fbfb1",
-	statusline_bg = "#322137",
-	lightbg = "#6c5c6e",
-	pmenu_bg = "#211c22",
-	folder_bg = "#c9bba9",
+	white = shade(base16.base07, 10),
+	black = base16.base00,
+	darker_black = shade(base16.base00, -5),
+	black2 = base16.base01,
+	one_bg = shade(base16.base02, -5),
+	one_bg2 = base16.base02,
+	one_bg3 = shade(base16.base02, 5),
+	grey = shade(base16.base01, 20),
+	grey_fg = shade(base16.base01, 25),
+	grey_fg2 = shade(base16.base01, 30),
+	light_grey = base16.base04,
+	red = base16.base0C,
+	baby_pink = shade(base16.base0A, 5),
+	pink = base16.base0A,
+	line = shade(base16.base06, -20),
+	green = base16.base0D,
+	vibrant_green = shade(base16.base0D, 10),
+	nord_blue = base16.base09,
+	blue = shade(base16.base09, 5),
+	seablue = shade(base16.base09, 10),
+	yellow = base16.base0B,
+	sun = base16.base0E,
+	purple = base16.base0F,
+	dark_purple = shade(base16.base0F, -10),
+	teal = mix(base16.base0D, base16.base09, 10),
+	orange = mix(base16.base08, base16.base0A, 10),
+	cyan = mix(base16.base09, base16.base0D, 10),
+	statusline_bg = base16.base03,
+	lightbg = base16.base07,
+	pmenu_bg = base16.base03,
+	folder_bg = base16.base03,
 }
 
 local polish_hl = {
@@ -68,7 +68,7 @@ local polish_hl = {
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg, fg = base16.base04 },
 		PmenuSbar = { bg = base30.pmenu_bg },
-		PmenuSel = { bg = shade(base30.nord_blue, -40), fg = base30.teal, bold = true },
+		PmenuSel = { bg = shade(base16.base06, -30), fg = shade(base30.orange, 20), bold = true },
 		PmenuThumb = { bg = base30.grey },
 		FloatBorder = { fg = base30.red },
 		FloatTitle = { fg = base30.red, bg = base16.base00 },
@@ -85,7 +85,6 @@ local polish_hl = {
 			fg = shade(base16.base07, -50),
 			bold = true,
 			italic = true,
-			underline = true,
 		},
 		MatchWord = { link = "IncSearch" },
 		MatchParen = { link = "MatchWord" },
@@ -105,13 +104,14 @@ local polish_hl = {
 			bg = shade(base30.nord_blue, -30),
 			fg = base30.orange,
 			italic = true,
+			bold = true,
 		},
 		VisualNOS = { fg = base16.base09 },
 		Macro = { fg = base16.base08 },
 
 		Cursor = { fg = base16.base00, bg = base16.base05 },
 		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = blend(shade(base30.white, -40), base16.base00, 75) },
+		CursorLine = { bg = mix(shade(base30.white, -40), base16.base00, 75) },
 		CursorLineNr = { fg = base30.white },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -137,18 +137,17 @@ local polish_hl = {
 
 		-- Lazy
 		LazyH1 = {
-			bg = base30.one_bg,
-			fg = shade(base30.red, -10),
+			bg = shade(base16.base06, -40),
+			fg = base30.green,
 			bold = true,
 		},
 		LazyButton = {
-			bg = base30.one_bg,
-			fg = shade(base30.light_grey, vim.o.bg == "dark" and 25 or -10),
+			bg = shade(base16.base06, -40),
+			fg = shade(base30.purple, 10),
 		},
 		LazyButtonActive = {
-			bg = base30.one_bg,
-			-- bg = generate_color(base16.base03, -10),
-			fg = shade(base30.red, -10),
+			bg = shade(base16.base06, -40),
+			fg = base30.green,
 			bold = true,
 		},
 		LazyH2 = { fg = base30.white, bold = true, italic = true, underline = false },
@@ -172,58 +171,62 @@ local polish_hl = {
 		LazyReasonImport = { fg = base30.white },
 		LazyProgressDone = { fg = base30.green },
 	},
+	statusline = {
+		St_LspMsg = { fg = base16.base06 },
+		St_Lsp = { fg = base16.base06 },
+	},
 	neogit = {
 		NeogitCommitViewHeader = {
-			bg = shade(base30.purple, -60),
-			fg = base30.white,
+			bg = shade(base30.purple, -40),
+			fg = base16.base08,
 		},
 		NeogitDiffContext = {
-			bg = base16.base00,
-			fg = base30.grey,
+			bg = shade(base16.base03, -18),
+			fg = base30.light_grey,
 		},
 		NeogitDiffContextHighlight = {
-			bg = base30.one_bg2,
+			bg = shade(base16.base03, -15),
 			fg = base30.light_grey,
 		},
 		NeogitDiffContextCursor = {
-			bg = shade(base30.white, -58),
-			fg = base16.base07,
+			bg = shade(base16.base03, -15),
+			fg = base16.base08,
 		},
 		NeogitHunkHeader = {
-			fg = shade(base16.base07, -35),
-			bg = shade(base16.base08, -52),
+			fg = shade(base16.base08, -20),
+			bg = shade(base16.base04, -25),
 		},
 		NeogitHunkHeaderHighlight = {
-			fg = shade(base16.base08, -50),
-			bg = shade(base16.base07, -20),
+			fg = shade(base16.base04, -30),
+			bg = shade(base16.base08, -15),
 		},
 		NeogitHunkHeaderCursor = {
-			fg = shade(base16.base08, -45),
-			bg = shade(base16.base07, -18),
+			fg = shade(base16.base04, -30),
+			bg = shade(base16.base08, -15),
 		},
 		NeogitDiffAdd = {
-			fg = shade(base30.green, -10),
-			bg = shade(base30.green, -44),
+			fg = shade(base30.green, -20),
+			bg = shade(base30.green, -65),
 		},
 		NeogitDiffAddHighlight = {
-			fg = base30.green,
-			bg = shade(base30.green, -40),
+			fg = shade(base30.green, -8),
+			bg = shade(base30.green, -55),
 		},
 		NeogitDiffAddCursor = {
-			fg = blend(base30.green, "#FFFFFF", 50),
-			bg = blend(shade(base30.white, -58), base30.green, 30),
+			fg = mix(base30.green, "#FFFFFF", 50),
+			bg = shade(base30.green, -55),
 		},
 		NeogitDiffDelete = {
-			fg = shade(base30.red, -20),
-			bg = shade(base30.red, -70),
-		},
-		NeogitDiffDeleteHighlight = {
 			fg = shade(base30.red, -10),
 			bg = shade(base30.red, -60),
 		},
+		NeogitDiffDeleteHighlight = {
+			fg = shade(base30.red, -3),
+			bg = shade(base30.red, -50),
+		},
 		NeogitDiffDeleteCursor = {
-			fg = blend(base30.red, "#FFFFFF", 30),
-			bg = blend(shade(base30.white, -58), base30.red, 10),
+			fg = mix(base30.red, "#FFFFFF", 30),
+			bg = shade(base30.red, -50),
 		},
 	},
 	nvimtree = {
@@ -257,27 +260,27 @@ local polish_hl = {
 	},
 
 	markview = {
-		["@markup.heading.1.markdown"] = { fg = shade(base16.base03, 20) },
-		["@markup.heading.2.markdown"] = { fg = base16.base04 },
-		["@markup.heading.3.markdown"] = { fg = base16.base0F },
-		["@markup.heading.4.markdown"] = { fg = base16.base08 },
-		["@markup.heading.5.markdown"] = { fg = base16.base07 },
-		["@markup.heading.6.markdown"] = { fg = base16.base05 },
+		["@markup.heading.1.markdown"] = { fg = base16.base0F },
+		["@markup.heading.2.markdown"] = { fg = shade(base16.base0F, 10) },
+		["@markup.heading.3.markdown"] = { fg = base16.base06 },
+		["@markup.heading.4.markdown"] = { fg = shade(base16.base06, 10) },
+		["@markup.heading.5.markdown"] = { fg = shade(base16.base0E, -20) },
+		["@markup.heading.6.markdown"] = { fg = shade(base16.base0E, -10) },
 	},
 	treesitter = {
 		["@variable"] = { fg = base16.base08 },
-		["@variable.r"] = { fg = blend(base16.base08, "#DDDDDD", 25) },
+		["@variable.r"] = { fg = mix(base16.base08, "#DDDDDD", 25) },
 		["@variable.member.r"] = { fg = shade(base16.base08, -3) },
-		["@variable.builtin"] = { fg = shade(base16.base09, 5) },
+		["@variable.builtin"] = { fg = shade(base16.base0F, 10) },
 		["@variable.parameter"] = { fg = base16.base08 },
-		["@variable.parameter.r"] = { fg = base16.base0E },
+		["@variable.parameter.r"] = { fg = base16.base06 },
 		["@variable.member"] = { fg = base16.base08 },
 		["@variable.member.key"] = { fg = base16.base08 },
 
 		["@module"] = { fg = base16.base08 },
 
-		["@constant"] = { fg = base16.base08 },
-		["@constant.builtin"] = { fg = base16.base09 },
+		["@constant"] = { fg = base16.base06 },
+		["@constant.builtin"] = { fg = base16.base06 },
 		["@constant.macro"] = { fg = base16.base08 },
 
 		["@string.regex"] = { fg = base16.base0C },
@@ -285,8 +288,10 @@ local polish_hl = {
 		["@string.csv"] = { fg = base16.base04 },
 		["@character"] = { fg = base16.base08 },
 		["@number"] = { fg = base16.base09 },
+		-- ["@number.r"] = { fg = base16.base0F },
 		["@number.csv"] = { fg = base16.base06 },
 		["@number.float"] = { fg = base16.base09 },
+		-- ["@number.float.r"] = { fg = base16.base0F },
 
 		["@annotation"] = { fg = base16.base0F },
 		["@attribute"] = { fg = base16.base0A },
@@ -295,6 +300,7 @@ local polish_hl = {
 		["@keyword.exception"] = { fg = base16.base08 },
 		["@keyword"] = { fg = base16.base0E },
 		["@keyword.function"] = { fg = base16.base09 },
+		["@keyword.function.r"] = { fg = base16.base0F },
 		["@keyword.return"] = { fg = base16.base0E },
 		["@keyword.operator"] = { fg = base16.base0E },
 		["@keyword.import"] = { link = "Include" },
@@ -309,19 +315,18 @@ local polish_hl = {
 		["@function.builtin"] = { fg = base16.base0D },
 		["@function.macro"] = { fg = base16.base08 },
 		["@function.call"] = { fg = base16.base0D },
-		["@function.call.r"] = { fg = base16.base0D },
 		["@function.method"] = { fg = base16.base0D },
 		["@function.method.call"] = { fg = base16.base0D },
 		["@constructor"] = { fg = base16.base0C },
+		["@constructor.lua"] = { fg = base16.base0F },
 
-		["@operator"] = { fg = blend(base16.base0B, "#FFFFFF", 5) },
-		["@operator.r"] = { fg = base16.base0A },
-		-- ["@operator.r"] = { fg = base30.purple },
+		["@operator"] = { fg = base16.base06 },
+		["@operator.r"] = { fg = base16.base06 },
 		["@reference"] = { fg = base16.base05 },
-		["@punctuation.bracket"] = { fg = blend(base16.base07, "#FFFFFF", 5) },
-		["@punctuation.delimiter"] = { fg = blend(base16.base07, "#FFFFFF", 5) },
-		["@punctuation.bracket.r"] = { fg = base16.base0A },
-		["@punctuation.delimiter.r"] = { fg = base16.base0A },
+		["@punctuation.bracket"] = { fg = base16.base0F },
+		["@punctuation.delimiter"] = { fg = base16.base06 },
+		["@punctuation.bracket.r"] = { fg = base16.base0F },
+		["@punctuation.delimiter.r"] = { fg = base16.base06 },
 		["@symbol"] = { fg = base16.base0B },
 		["@tag"] = { fg = base16.base0A },
 		["@tag.attribute"] = { fg = base16.base08 },
@@ -340,7 +345,7 @@ local polish_hl = {
 		["@markup.link"] = { fg = base16.base08 },
 		["@markup.link.url"] = { fg = base16.base09, underline = true },
 		["@markup.link.label"] = { fg = base16.base0C },
-		["@markup.list"] = { fg = base16.base08 },
+		["@markup.list.markdown"] = { fg = base16.base07 },
 		["@markup.strong"] = { bold = true },
 		["@markup.underline"] = { underline = true },
 		["@markup.italic"] = { italic = true },
@@ -354,7 +359,13 @@ local polish_hl = {
 		["@diff.plus"] = { fg = base30.green },
 		["@diff.minus"] = { fg = base30.red },
 		["@diff.delta"] = { fg = base30.light_grey },
-		["@NeogitDiffDeleteHighlight"] = { bg = base30.one_bg2, fg = base30.light_grey },
+	},
+	whichkey = {
+		WhichKey = { fg = base16.base06 },
+		WhichKeySeparator = { link = "WinSeparator" },
+		WhichKeyDesc = { fg = base16.base08 },
+		WhichKeyGroup = { fg = base16.base06 },
+		WhichKeyValue = { fg = base16.base06 },
 	},
 	syntax = {
 		Boolean = { fg = base16.base09 },
@@ -374,7 +385,7 @@ local polish_hl = {
 		Operator = { fg = base16.base06, sp = "none" },
 		PreProc = { fg = base16.base0A },
 		Repeat = { fg = base16.base0A },
-		Special = { fg = base16.base08 },
+		Special = { fg = base16.base0B },
 		SpecialChar = { fg = base16.base0F },
 		Statement = { fg = base16.base08 },
 		StorageClass = { fg = base16.base0A },
@@ -391,21 +402,6 @@ M.base_16 = base16
 M.base_30 = base30
 M.polish_hl = polish_hl
 M.type = "dark"
-
-vim.api.nvim_set_hl(0, "FzfLuaPreviewNormal", { bg = base16.base00 })
-vim.api.nvim_set_hl(0, "FzfLuaFzfMatch", { bg = base30.grey_fg, fg = base30.purple })
-vim.api.nvim_set_hl(0, "FzfLuaFzfMarker", { bg = base30.grey_fg, fg = base30.purple })
-vim.api.nvim_set_hl(0, "FzfLuaBorder", { link = "FloatBorder" })
-vim.api.nvim_set_hl(0, "MiniClueSeparator", { link = "WinSeparator" })
--- vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = generate_color(base16.base0A, 10) })
-vim.api.nvim_set_hl(0, "MiniClueDescGroup", { fg = base30.orange })
-vim.api.nvim_set_hl(0, "MiniClueDescSingle", { fg = shade(base16.base04, 25) })
-vim.api.nvim_set_hl(0, "MiniClueNextKey", { fg = base16.base0A })
-vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
-vim.api.nvim_set_hl(0, "SnacksIndent", { fg = base16.base04 })
-vim.api.nvim_set_hl(0, "SnacksIndentScope", { fg = base30.nord_blue })
-vim.api.nvim_set_hl(0, "BlinkCmpDoc", { link = "pmenu" })
-vim.api.nvim_set_hl(0, "BlinkCmpDocBorder", { link = "pmenu" })
 
 M = require("base46").override_theme(M, "amber")
 
