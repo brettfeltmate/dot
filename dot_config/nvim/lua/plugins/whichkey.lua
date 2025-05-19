@@ -15,35 +15,34 @@ return {
 			{ "<leader>q", icon = "󰅗  " },
 			{ "<leader>z", icon = "󰘖  " },
 
-			{ "<leader>,", group = "Utils", icon = "  " },
-			{ "<leader>,d", icon = "󰜎  " },
+			{ "<leader>,", group = "Cmds" },
 			{ "<leader>,b", icon = "󰑮  " },
+			{ "<leader>,d", icon = "󰜎  " },
 			{ "<leader>,f", icon = "󰁨  " },
-			{ "<leader>,g", icon = "󰊢  " },
-			{ "<leader>,h", icon = "  " },
-			{ "<leader>,l", icon = "  " },
+			{ "<leader>,n", icon = "󰊢  " },
 			{ "<leader>,q", icon = "  " },
-			{ "<leader>,r", icon = "  " },
-			{ "<leader>,s", icon = "  " },
-			{ "<leader>,w", icon = "󰺴  " },
+			{ "<leader>,r", icon = "󰑕  " },
+			{ "<leader>,s", icon = "  " },
+			{ "<leader>,w", icon = "  " },
 
-			{ "<leader>.", group = "Tools", icon = "󰹈  " },
-			{ "<leader>.s", icon = "󰥩  " },
+			{ "<leader>.", group = "Util" },
+			{ "<leader>.c", icon = "  " },
+			{ "<leader>.e", icon = "  " },
+			{ "<leader>.f", icon = "󰦭  " },
 			{ "<leader>.g", icon = "󰺯  " },
-			{ "<leader>.l", icon = "󱃖  " },
-			{ "<leader>.m", icon = "  " },
-			-- { "<leader>.t", icon = "󰙨 " },
-			{ "<leader>.r", icon = "  " },
+			{ "<leader>.i", icon = "󰥷  " },
+			{ "<leader>.r", icon = "󰑓  " },
+			{ "<leader>.s", icon = "󰥨  " },
+			{ "<leader>.t", icon = "󱇻  " },
 
 			{ "gd", group = "Debug", icon = "  " },
 		})
 		local o = {
 			preset = "helix",
 			win = {
-                padding = { 0, 1 },
-                wo = { winblend = 0 }
-            },
-			-- layout = { width = { min = 5 } },
+				padding = { 0, 1 },
+				wo = { winblend = 0 },
+			},
 		}
 		return o
 	end,

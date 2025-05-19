@@ -65,8 +65,6 @@ map({ "n" }, "[b", C("lua require('nvchad.tabbufline').prev()"), "Prev buff")
 map({ "n" }, "]b", C("lua require('nvchad.tabbufline').next()"), "Next buff")
 map({ "n" }, "[t", C("tabprevious"), "Prev tab")
 map({ "n" }, "]t", C("tabnext"), "Next tab")
-map({ "n" }, "[h", C("lua require('gitsigns').nav_hunk({direction = 'prev'})"), "Prev hunk")
-map({ "n" }, "]h", C("lua require('gitsigns').nav_hunk({direction = 'next'})"), "Next hunk")
 map({ "n" }, "[c", C("lua MiniBracketed.conflict('backward')"), "Prev conf")
 map({ "n" }, "]c", C("lua MiniBracketed.conflict('forward')"), "Next conf")
 map({ "n" }, "[d", C("lua MiniBracketed.diagnostic('backward')"), "Prev diag")
@@ -75,7 +73,6 @@ map({ "n" }, "[q", C("lua MiniBracketed.quickfix('backward')"), "Prev qfix")
 map({ "n" }, "]q", C("lua MiniBracketed.quickfix('forward')"), "Next qfix")
 
 -- |> Frequent
-
 map({ "n" }, L("b"), C("FzfLua buffers"), "Buffers")
 map({ "n" }, L("c"), C("CopilotChatToggle"), "Copilot")
 map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete")
@@ -88,24 +85,36 @@ map({ "n" }, L("w"), C("FzfLua grep_cword"), "Cword")
 map({ "n" }, L("z"), C("tabnew %"), "Zoom")
 
 -- |> Handy
-
 map({ "n" }, L(",b"), C("qa!"), "BAIL")
 map({ "n" }, L(",d"), C("wqa"), "Dip")
 map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format")
-map({ "n" }, L(",g"), C("Neogit"), "Neogit")
-map({ "n" }, L(",l"), C("lua require('quicker').toggle()"), "Loclist")
-map({ "n" }, L(",n"), C("NoiceAll"), "Noice")
+map({ "n" }, L(",n"), C("Neogit"), "Neogit")
+map({ "n" }, L(",m"), C("NoiceAll"), "Messages")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({loclist=false})"), "Quickfix")
 map({ "n" }, L(",r"), C("lua require 'nvchad.lsp.renamer'()"), "Rename")
 map({ "n" }, L(",s"), C("lua require('snacks').scratch.open()"), "Scratch")
 map({ "n" }, L(",w"), C("FzfLua spell_suggest"), "Word?")
-map({ "n" }, L(",t"), C("TimeMachineToggle"), "TimeMachine")
 
--- |> Toolboxes
+-- |> Occasionals
+map({ "n" }, L(".c"), C("ChezFzf"), "Config")
+map({ "n" }, L(".e"), C("FzfLua diagnostics_document severity_only='Error'"), "Errors")
+map({ "n" }, L(".f"), C("FzfLua builtin"), "FzfLua builtin")
+map({ "n" }, L(".r"), C("lua require('base46').load_all_highlights()"), "Reload scheme")
+map({ "n" }, L(".t"), C("TimeMachineToggle"), "TimeMachine")
 
-map({ "n" }, L(".s"), C("lua require('toolbox').show_picker('search')"), "Search")
-map({ "n" }, L(".g"), C("lua require('toolbox').show_picker('grep')"), "Grep")
-map({ "n" }, L(".l"), C("lua require('toolbox').show_picker('lsp')"), "LSP")
-map({ "n" }, L(".m"), C("lua require('toolbox').show_picker('misc')"), "Misc")
--- map({ "n" }, L(".t"), C("lua require('toolbox').show_picker('test')"), "Test")
-map({ "n" }, L(".r"), C("lua require('toolbox').show_picker('R')"), "R")
+map({ "n" }, L(".g"), function()
+	local dir = vim.fn.input("Grep dir: ", "~/")
+	vim.cmd("FzfLua live_grep cwd=" .. dir)
+end, "Grep...")
+
+map({ "n" }, L(".i"), function()
+	require("fzf-lua").files({
+		prompt = "Images: ",
+		fd_opts = [[-I -e jpg -e png -e jpeg]],
+	})
+end, "Images")
+
+map({ "n" }, L(".s"), function()
+	local dir = vim.fn.input("Search dir: ", "~/")
+	vim.cmd("FzfLua files cwd=" .. dir)
+end, "Search...")
