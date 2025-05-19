@@ -8,17 +8,17 @@ local base16 = {
 	base02 = "#2b2525",
 	base03 = "#453838",
 	base04 = "#725f5f",
-	base05 = "#cab8b0",
+	base05 = "#c8b9b2",
 	base06 = "#9c797d",
 	base07 = "#a6ab9f",
-	base08 = "#c3aaa1",
-	base09 = "#a9a4bf",
+	base08 = "#c1aba3",
+	base09 = "#ae9bb0",
 	base0A = "#c4959c",
 	base0B = "#bfb7a6",
 	base0C = "#c6908c",
 	base0D = "#abbaad",
 	base0E = "#c8bcaa",
-	base0F = "#aa8ea2",
+	base0F = "#bda0b4",
 }
 
 -- UI
@@ -143,7 +143,8 @@ local polish_hl = {
 		},
 		LazyButton = {
 			bg = shade(base16.base06, -40),
-			fg = shade(base30.purple, 10),
+			-- fg = shade(base30.purple, 10),
+			fg = base30.dark_purple,
 		},
 		LazyButtonActive = {
 			bg = shade(base16.base06, -40),
@@ -364,7 +365,7 @@ local polish_hl = {
 		WhichKey = { fg = base16.base06 },
 		WhichKeySeparator = { link = "WinSeparator" },
 		WhichKeyDesc = { fg = base16.base08 },
-		WhichKeyGroup = { fg = base16.base06 },
+		WhichKeyGroup = { fg = shade(base16.base07, -20) },
 		WhichKeyValue = { fg = base16.base06 },
 	},
 	syntax = {

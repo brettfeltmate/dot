@@ -31,10 +31,10 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # Pixel margin between windows
 inner.horizontal = 2
 inner.vertical = 2
-outer.top = 10
+outer.top = 12
 outer.bottom = 12
-outer.left = 15
-outer.right = 15
+outer.left = 12
+outer.right = 12
 
 # modal keybindings #
 

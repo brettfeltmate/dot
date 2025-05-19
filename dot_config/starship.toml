@@ -1,14 +1,44 @@
 # Warning: This config does not include keys that have an unset value
 
-# $all is shorthand for $username$hostname$localip$shlvl$singularity$kubernetes$nats$directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit$git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context$package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel$gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs$ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red$ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$zig$buf$guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack$azure$direnv$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs$battery$time$status$container$os$shell$character
 "$schema" = "https://starship.rs/config-schema.json"
-format = "$all"
+
 right_format = ""
 continuation_prompt = "[∙](bright-black) "
 scan_timeout = 30
 command_timeout = 500
 add_newline = true
 follow_symlinks = true
+
+# $all is shorthand for:
+# $username$hostname$localip$shlvl$singularity$kubernetes$nats\
+# $directory$vcsh$fossil_branch$fossil_metrics$git_branch$git_commit\
+# $git_state$git_metrics$git_status$hg_branch$pijul_channel$docker_context\
+# $package$bun$c$cmake$cobol$daml$dart$deno$dotnet$elixir$elm$erlang$fennel\
+# $gleam$golang$gradle$haskell$haxe$helm$java$julia$kotlin$lua$nim$nodejs\
+# $ocaml$odin$opa$perl$php$pulumi$purescript$python$quarto$raku$rlang$red\
+# $ruby$rust$scala$solidity$swift$terraform$typst$vlang$vagrant$zig$buf\
+# $guix_shell$nix_shell$conda$meson$spack$memory_usage$aws$gcloud$openstack\
+# $azure$direnv$env_var$crystal$custom$sudo$cmd_duration$line_break$jobs\
+# $battery$time$status$container$os$shell$character\
+format = """
+$username\
+$hostname\
+$directory\
+$cmd_duration\
+
+$fill \
+
+$git_branch\
+$git_status\
+$direnv\
+$python\
+$rlang\
+
+$line_break\
+
+$battery\
+$time\
+$character"""
 
 [profiles]
 
@@ -78,12 +108,12 @@ commands = [["cc", "--version"], ["gcc", "--version"], ["clang", "--version"]]
 
 [character]
 format = "$symbol "
-success_symbol = "[❯](11)"
-error_symbol = "[❯](9)"
-vimcmd_symbol = "[❮](bold green)"
-vimcmd_visual_symbol = "[❮](bold yellow)"
-vimcmd_replace_symbol = "[❮](bold purple)"
-vimcmd_replace_one_symbol = "[❮](bold purple)"
+success_symbol = "[](11)"
+error_symbol = "[](9)"
+vimcmd_symbol = "[](bold green)"
+vimcmd_visual_symbol = "[](bold yellow)"
+vimcmd_replace_symbol = "[](bold purple)"
+vimcmd_replace_one_symbol = "[](bold purple)"
 disabled = false
 
 [cmake]
@@ -183,7 +213,7 @@ fish_style_pwd_dir_length = 0
 use_logical_path = true
 format = "[$path]($style)[$read_only]($read_only_style) "
 repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
-style = "12"
+style = "4"
 disabled = false
 read_only = ""
 read_only_style = "red"
@@ -277,8 +307,8 @@ detect_files = []
 detect_folders = []
 
 [fill]
-style = "bold black"
-symbol = "."
+style = "8"
+symbol = " "
 disabled = false
 
 [fossil_branch]
@@ -308,9 +338,9 @@ detect_env_vars = []
 [gcloud.project_aliases]
 
 [git_branch]
-format = "~ [$symbol$branch(:$remote_branch)]($style) "
-symbol = " "
-style = "bold purple"
+format = "[$branch(:$remote_branch)]($style) "
+symbol = " "
+style = "8"
 truncation_length = 9223372036854775807
 truncation_symbol = "…"
 only_attached = false
@@ -350,7 +380,7 @@ disabled = false
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
-style = "red bold"
+style = "8"
 stashed = '\$'
 ahead = "⇡"
 behind = "⇣"
