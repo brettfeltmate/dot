@@ -18,36 +18,43 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "ggsave" }
 )
 
-vim.keymap.set("n", "<localleader>b", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "plot view" })
+vim.keymap.set("n", "<localleader>v", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "viewer" })
 
--- Semi-working attempts to shorthanding common interactive functions
--- haven't quite figured out how best to handle R's $elector
-local key_cmd_map = {
-	["<cword>"] = {
-		["?"] = "help",
-	},
-	["<cWORD>"] = {
-		["s"] = "str",
-		["g"] = "dplyr::glimpse",
-		["k"] = "skimr::skim",
-		["l"] = "levels",
-		[","] = "print",
-		["h"] = "pclih",
-		["u"] = "unique",
-		["r"] = "range",
-		["a"] = "mean",
-		["m"] = "median",
-		["y"] = "summary",
-	},
+vim.keymap.set("n", "localleader>w", function()
+	vim.ui.input({ prompt = "Write to file: " }, function(input)
+		if input and input ~= "" then
+			vim.cmd("SlimeSend1 fwrite(as.data.table(" .. input .. ", keep.rownames = FALSE), file = './scratch.csv')")
+		end
+	end)
+end, { buffer = 0, noremap = true, desc = "write csv" })
+
+-- Calls R function on user input
+local function r_popup_command(cmd)
+	local function on_confirm(input)
+		if input and input ~= "" then
+			vim.cmd("SlimeSend1 " .. cmd .. "(" .. input .. ")")
+		end
+	end
+
+	vim.ui.input({ prompt = cmd .. "(): " }, on_confirm)
+end
+
+-- Map common R commands to <localleader> + key
+local popup_cmds = {
+	["s"] = "str",
+	["k"] = "skimr::skim",
+	["l"] = "levels",
+	["u"] = "unique",
+	["y"] = "summary",
+	["h"] = "pclih",
+	["p"] = "pclis",
+	["b"] = "pclibx",
 }
 
-for cword_type, cmd_map in pairs(key_cmd_map) do
-	for key, cmd in pairs(cmd_map) do
-		vim.keymap.set("n", "<localleader>" .. key, function()
-			local kw = vim.fn.expand(cword_type)
-			vim.cmd("SlimeSend1 " .. cmd .. "(" .. kw .. ")")
-		end, { buffer = 0, noremap = true, desc = cmd })
-	end
+for key, cmd in pairs(popup_cmds) do
+	vim.keymap.set("n", "<localleader>" .. key, function()
+		r_popup_command(cmd)
+	end, { buffer = 0, noremap = true, desc = cmd })
 end
 
 -- Auto-correct

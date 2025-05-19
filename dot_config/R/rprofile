@@ -18,10 +18,23 @@ options(
 if (interactive()) {
   if (Sys.getenv("RSTUDIO") == "") {
     require(data.table, quietly = TRUE)
-    require(ggplot2, quietly = TRUE)
-    require(plotcli, quietly = TRUE)
 
-    plotcli_options(plot_width = 45, plot_height = 15, braille = FALSE)
+    if (require(plotcli, quietly = TRUE)) {
+      plotcli_options(plot_width = 40, plot_height = 12, braille = FALSE)
+    }
+
+    if (require(ggplot2, quietly = TRUE)) {
+      # source("~/.config/R/utilities/ggplot_theme_Publication-2.R")
+      #
+      # ggplot2::theme_set(
+      #   theme_dark_blue(base_family = "Maple Mono NF") +
+      #     theme(
+      #       legend.position = "right",
+      #       legend.title.position = "top",
+      #       legend.direction = "vertical"
+      #     )
+      # )
+    }
 
     if (require("httpgd", quietly = TRUE)) {
       options(device = httpgd::hgd, httpgd.port = 8899)
