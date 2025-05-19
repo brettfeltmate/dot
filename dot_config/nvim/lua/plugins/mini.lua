@@ -33,11 +33,14 @@ return {
 			},
 			filetype = {
 				r = { glyph = "󰟔", hl = "MiniIconsCyan" },
+				R = { glyph = "󰟔", hl = "MiniIconsCyan" },
 				rmd = { glyph = "󰟔", hl = "MiniIconsCyan" },
+				Rmd = { glyph = "󰟔", hl = "MiniIconsCyan" },
 				csv = { glpyh = "", hl = "MiniIconsGrey" },
 			},
 			directory = {
 				r = { glyph = "󰴉", hl = "MiniIconsCyan" },
+				R = { glyph = "󰴉", hl = "MiniIconsCyan" },
 				proc = { glyph = "󱧼", hl = "MiniIconsYellow" },
 				raw = { glyph = "󱋣", hl = "MiniIconsRed" },
 				data = { glyph = "󱧶", hl = "MiniIconsGrey" },

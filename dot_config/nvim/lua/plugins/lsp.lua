@@ -65,11 +65,12 @@ return {
 		opts = {
 			notify_on_error = true,
 			formatters = {
-				-- Because air doesn't handle rmarkdown yet
-				my_styler = {
-					command = "R",
-					args = { "-s", "-e", "styler::style_file(commandArgs(TRUE)[1])", "--args", "$FILENAME" },
+				-- Fallback for cases/doctypes where Air fails
+				rprettify = {
+					inherit = false,
 					stdin = false,
+					command = "/Users/brettfeltmate/.config/R/rprettify",
+					args = { "$FILENAME" },
 				},
 			},
 			formatters_by_ft = {
@@ -84,9 +85,9 @@ return {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				python = { "blue" },
-				r = { "air" },
-				rmd = { "markdownlint", "my_styler" },
-				rprofile = { "air" },
+				r = { "air", "rprettify" },
+				rmd = { "air", "markdownlint", "rprettify" },
+				rprofile = { "air", "rprettify" },
 				markdown = { "markdownlint" },
 				sql = { "sqruff" },
 			},

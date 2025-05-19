@@ -51,18 +51,12 @@ return {
 				-- 	max_items = 3,
 				-- 	min_keyword_length = 4,
 				-- },
-				-- ripgrep = {
-				-- 	module = "blink-ripgrep",
-				-- 	name = "Ripgrep",
-				-- 	opts = { project_root_marker = { ".git", ".rproj", ".here" } },
-				-- 	score_offset = 70,
-				-- },
 				buffer = {
 					name = "Buffer",
 					enabled = true,
 					max_items = 3,
 					module = "blink.cmp.sources.buffer",
-					min_keyword_length = 3,
+					min_keyword_length = 2,
 					score_offset = 60,
 				},
 				path = {
@@ -96,7 +90,7 @@ return {
 				return {}
 			end,
 			completion = {
-				list = { selection = { preselect = false, auto_insert = false } },
+				list = { selection = { preselect = false, auto_insert = true } },
 				menu = { auto_show = true },
 			},
 		}

@@ -1,7 +1,5 @@
 return {
 	"uga-rosa/ccc.nvim",
-	lazy = true,
-	-- cmd = "CccPick",
 	event = "VeryLazy",
 	opts = function()
 		local ccc = require("ccc")

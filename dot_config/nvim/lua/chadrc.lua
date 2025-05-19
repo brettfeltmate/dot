@@ -29,7 +29,7 @@ local M = {
 		statusline = {
 			theme = "minimal",
 			separator_style = "round",
-			order = { "mode", "file", "git", "%=", "lsp_msg", "%=", "diagnostics", "lsp", "cwd", "cursor" },
+			order = { "mode", "cursor", "%=", "git", "diagnostics", "%=", "file", "cwd" },
 		},
 	},
 	nvdash = { load_on_startup = false },

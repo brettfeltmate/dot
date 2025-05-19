@@ -6,6 +6,9 @@ return {
 	config = function()
 		require("noice").setup({
 			view = "virtualtext",
+			routes = {
+				{ view = "notify", filter = { event = "msg_showmode" } },
+			},
 			cmdline = {
 				view = "cmdline",
 				format = { input = { view = "cmdline" } },
@@ -15,11 +18,7 @@ return {
 			lsp = {
 				signature = {
 					enabled = true,
-					opts = {
-						size = {
-							max_width = 80,
-						},
-					},
+					opts = { size = { max_width = 80 } },
 				},
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
