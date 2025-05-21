@@ -1,4 +1,4 @@
--- |> Helper methods {{{
+-- |> Helper methods
 local map = function(mode, lhs, rhs, desc, opts)
 	opts = opts or {}
 	opts.desc = desc
@@ -12,7 +12,6 @@ end
 local C = function(cmd)
 	return "<Cmd>" .. cmd .. "<CR>"
 end
--- }}}
 
 map({ "n" }, "<tab>", "<C-W>w", "Next win", { remap = true })
 map({ "t" }, "<Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
@@ -31,9 +30,9 @@ map({ "x" }, "x", C("lua require('substitute').visual()"), "exch vis", { noremap
 map({ "n" }, "\\a", C("Copilot suggestion toggle_auto_trigger"), "Toggle 'auto-suggestions'")
 
 -- |> Leap
-map({ "n", "x", "o" }, ")", "<Plug>(leap-forward)", "Leap forward")
-map({ "n", "x", "o" }, "(", "<Plug>(leap-backward)", "Leap backward")
-map({ "n", "x", "o" }, "g)", "<Plug>(leap-from-window)", "Leap from window")
+map({ "n", "x", "o" }, "s", "<Plug>(leap-forward)", "Leap forward")
+map({ "n", "x", "o" }, "S", "<Plug>(leap-backward)", "Leap backward")
+map({ "n", "x", "o" }, "gs", "<Plug>(leap-from-window)", "Leap from window")
 
 -- |> Splits
 map({ "n" }, "-", "<C-W>s", "Split u|d", { remap = true })
@@ -55,22 +54,38 @@ map({ "t" }, "<S-Up>", "<C-\\><C-n><S-Up>", "Up", { nowait = true })
 map({ "t" }, "<S-Right>", "<C-\\><C-n><S-Right>", "Right", { nowait = true })
 
 -- |> Navigate
-map({ "n" }, "H", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
-map({ "n" }, "L", C("lua require('nvchad.tabufline').next()"), "Next buff")
-map({ "n" }, "<A-h>", C("tabprev"), "Prev tab")
-map({ "n" }, "<A-l>", C("tabnext"), "Next tab")
+map({ "n" }, "<A-h>", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
+map({ "n" }, "<A-l>", C("lua require('nvchad.tabufline').next()"), "Next buff")
+map({ "n" }, "<M-H>", C("tabprev"), "Prev tab")
+map({ "n" }, "<M-L>", C("tabnext"), "Next tab")
+map({ "n", "x" }, "<A-j>", function()
+	local line = vim.fn.line(".")
+	local last_line = vim.fn.line("$")
 
--- |> Brackets
-map({ "n" }, "[b", C("lua require('nvchad.tabbufline').prev()"), "Prev buff")
-map({ "n" }, "]b", C("lua require('nvchad.tabbufline').next()"), "Next buff")
-map({ "n" }, "[t", C("tabprevious"), "Prev tab")
-map({ "n" }, "]t", C("tabnext"), "Next tab")
-map({ "n" }, "[c", C("lua MiniBracketed.conflict('backward')"), "Prev conf")
-map({ "n" }, "]c", C("lua MiniBracketed.conflict('forward')"), "Next conf")
-map({ "n" }, "[d", C("lua MiniBracketed.diagnostic('backward')"), "Prev diag")
-map({ "n" }, "]d", C("lua MiniBracketed.diagnostic('forward')"), "Next diag")
-map({ "n" }, "[q", C("lua MiniBracketed.quickfix('backward')"), "Prev qfix")
-map({ "n" }, "]q", C("lua MiniBracketed.quickfix('forward')"), "Next qfix")
+	while line < last_line do
+		line = line + 1
+		local text = vim.fn.getline(line)
+		-- Skip empty lines and comment lines
+		if text:match("^%s*$") == nil and text:match("^%s*[-/#]") == nil then
+			vim.fn.cursor(line, 1)
+			break
+		end
+	end
+end, "Next line")
+
+map({ "n", "x" }, "<A-k>", function()
+	local line = vim.fn.line(".")
+
+	while line > 1 do
+		line = line - 1
+		local text = vim.fn.getline(line)
+		-- Skip empty lines and comment lines
+		if text:match("^%s*$") == nil and text:match("^%s*[-/#]") == nil then
+			vim.fn.cursor(line, 1)
+			break
+		end
+	end
+end, "Prev line")
 
 -- |> Frequent
 map({ "n" }, L("b"), C("FzfLua buffers"), "Buffers")
@@ -89,7 +104,7 @@ map({ "n" }, L(",b"), C("qa!"), "BAIL")
 map({ "n" }, L(",d"), C("wqa"), "Dip")
 map({ "n" }, L(",f"), C("lua require('conform').format()"), "Format")
 map({ "n" }, L(",n"), C("Neogit"), "Neogit")
-map({ "n" }, L(",m"), C("NoiceAll"), "Messages")
+map({ "n" }, L(",m"), C("NoiceAll"), "Noice")
 map({ "n" }, L(",q"), C("lua require('quicker').toggle({loclist=false})"), "Quickfix")
 map({ "n" }, L(",r"), C("lua require 'nvchad.lsp.renamer'()"), "Rename")
 map({ "n" }, L(",s"), C("lua require('snacks').scratch.open()"), "Scratch")
@@ -98,9 +113,10 @@ map({ "n" }, L(",w"), C("FzfLua spell_suggest"), "Word?")
 -- |> Occasionals
 map({ "n" }, L(".c"), C("ChezFzf"), "Config")
 map({ "n" }, L(".e"), C("FzfLua diagnostics_document severity_only='Error'"), "Errors")
-map({ "n" }, L(".f"), C("FzfLua builtin"), "FzfLua builtin")
-map({ "n" }, L(".r"), C("lua require('base46').load_all_highlights()"), "Reload scheme")
+map({ "n" }, L(".f"), C("FzfLua builtin"), "FzfLua...")
+map({ "n" }, L(".r"), C("lua require('base46').load_all_highlights()"), "Repaint")
 map({ "n" }, L(".t"), C("TimeMachineToggle"), "TimeMachine")
+map({ "n" }, L(".u"), C("lua Snacks.picker.undo()"), "Undos")
 
 map({ "n" }, L(".g"), function()
 	local dir = vim.fn.input("Grep dir: ", "~/")

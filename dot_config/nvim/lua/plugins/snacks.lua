@@ -12,7 +12,7 @@ return {
 		indent = { chunk = {} },
 		statuscolumn = {
 			right = {},
-			left = { "mark", "sign", "fold" },
+			left = { "mark", "fold" },
 			folds = { open = true, git_hl = false },
 		},
 		picker = {

@@ -4,6 +4,9 @@ return {
 		build = ":TSUpdate",
 		lazy = true,
 		event = "BufReadPre",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
 		config = function(_)
 			require("nvim-treesitter.install").prefer_git = true
 			---@diagnostic disable-next-line: missing-fields
@@ -46,6 +49,72 @@ return {
 				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
+				textobjects = {
+					select = {
+						enable = true,
+						lookahead = true,
+						keymaps = {
+							["aa"] = "@assignment.outer",
+							["ia"] = "@assignment.inner",
+							["ab"] = "@block.outer",
+							["ib"] = "@block.inner",
+							["ac"] = "@call.outer",
+							["ic"] = "@call.inner",
+							["af"] = "@function.outer",
+							["if"] = "@function.inner",
+							["al"] = "@loop.outer",
+							["il"] = "@loop.inner",
+							["at"] = "@attribute.outer",
+							["it"] = "@attribute.inner",
+							["am"] = "@method.outer",
+							["im"] = "@method.inner",
+						},
+					},
+					move = {
+						enable = true,
+						set_jumps = true,
+						goto_next_start = {
+							["]a"] = "@assignment.outer",
+							["]b"] = "@block.outer",
+							["]c"] = "@call.outer",
+							["]e"] = "@conditional.outer",
+							["]f"] = "@function.outer",
+							["]l"] = "@loop.outer",
+							["]t"] = "@attribute.outer",
+							["]m"] = "@method.outer",
+						},
+						goto_next_end = {
+							["]A"] = "@assignment.outer",
+							["]B"] = "@block.outer",
+							["]C"] = "@call.outer",
+							["]E"] = "@conditional.outer",
+							["]F"] = "@function.outer",
+							["]L"] = "@loop.outer",
+							["]T"] = "@attribute.outer",
+							["]M"] = "@method.outer",
+						},
+						goto_previous_start = {
+							["[a"] = "@assignment.outer",
+							["[b"] = "@block.outer",
+							["[c"] = "@call.outer",
+							["[e"] = "@conditional.outer",
+							["[f"] = "@function.outer",
+							["[l"] = "@loop.outer",
+							["[t"] = "@attribute.outer",
+							["[m"] = "@method.outer",
+						},
+						goto_previous_end = {
+							["[A"] = "@assignment.outer",
+							["[B"] = "@block.outer",
+							["[C"] = "@call.outer",
+							["[E"] = "@conditional.outer",
+							["[F"] = "@function.outer",
+							["[L"] = "@loop.outer",
+							["[T"] = "@attribute.outer",
+							["[M"] = "@method.outer",
+						},
+					},
+				},
 			})
 			vim.treesitter.language.register("markdown", "rmd")
 			vim.treesitter.language.register("r", "R")
@@ -60,6 +129,17 @@ return {
 				},
 			}
 		end,
+	},
+	{
+		"romgrk/nvim-treesitter-context",
+		lazy = true,
+		event = "BufReadPre",
+		opts = {
+			multiwindow = true,
+			separator = "┈",
+			max_lines = 5,
+			trim_scope = "inner",
+		},
 	},
 }
 -- vim: ts=2 sts=2 sw=2 et

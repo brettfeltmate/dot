@@ -1,7 +1,6 @@
 vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
-vim.g.scrollbindon = false
 vim.g.winborder = "rounded"
 
 -- UI
@@ -13,7 +12,7 @@ vim.opt.showmode = false
 vim.opt.laststatus = 3 -- global statusline
 vim.opt.pumheight = 6
 vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.opt.splitbelow = false
 vim.opt.scrolloff = 8
 vim.opt.virtualedit = "block"
 vim.opt.hlsearch = true
@@ -23,7 +22,7 @@ vim.opt.completeopt = "menu,menuone,preview,noselect"
 vim.opt.smoothscroll = true
 vim.opt.termguicolors = true -- True color support
 vim.opt.background = "dark"
-vim.opt.conceallevel = 2 -- Hide * markup for bold and italic, but not markers with substitutions
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic, but not markers with substitutions
 vim.opt.signcolumn = "auto:2"
 vim.opt.guicursor = ""
 vim.opt.shortmess:append("WIcC")

@@ -31,9 +31,10 @@ return {
 			{ "<leader>.f", icon = "󰦭  " },
 			{ "<leader>.g", icon = "󰺯  " },
 			{ "<leader>.i", icon = "󰥷  " },
-			{ "<leader>.r", icon = "󰑓  " },
+			{ "<leader>.r", icon = "󰏙  " },
 			{ "<leader>.s", icon = "󰥨  " },
 			{ "<leader>.t", icon = "󱇻  " },
+			{ "<leader>.u", icon = "  " },
 
 			{ "gd", group = "Debug", icon = "  " },
 		})

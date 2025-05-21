@@ -1,4 +1,6 @@
+---@type fun(hex: string, amount: number): string
 local shade = require("base46.colors").change_hex_lightness
+---@type fun(color1: string, color2: string, weight: number): string
 local mix = require("base46.colors").mix
 
 local M = {}
@@ -172,18 +174,18 @@ local polish_hl = {
 		LazyReasonImport = { fg = base30.white },
 		LazyProgressDone = { fg = base30.green },
 	},
-	statusline = {
-		St_LspMsg = { fg = base16.base06 },
-		St_Lsp = { fg = base16.base06 },
-	},
+	-- statusline = {
+	-- 	St_LspMsg = { fg = base16.base06 },
+	-- 	St_Lsp = { fg = base16.base06 },
+	-- },
 	neogit = {
 		NeogitCommitViewHeader = {
 			bg = shade(base30.purple, -40),
 			fg = base16.base08,
 		},
 		NeogitDiffContext = {
-			bg = shade(base16.base03, -18),
-			fg = base30.light_grey,
+			bg = shade(base16.base03, -20),
+			fg = shade(base30.light_grey, -5),
 		},
 		NeogitDiffContextHighlight = {
 			bg = shade(base16.base03, -15),
@@ -206,20 +208,20 @@ local polish_hl = {
 			bg = shade(base16.base08, -15),
 		},
 		NeogitDiffAdd = {
-			fg = shade(base30.green, -20),
-			bg = shade(base30.green, -65),
+			fg = shade(mix(base30.green, base16.base03, 50), -5),
+			bg = shade(mix(base30.green, base16.base03, 45), -45),
 		},
 		NeogitDiffAddHighlight = {
 			fg = shade(base30.green, -8),
 			bg = shade(base30.green, -55),
 		},
 		NeogitDiffAddCursor = {
-			fg = mix(base30.green, "#FFFFFF", 50),
+			fg = mix(base30.green, "#FFFFFF", 40),
 			bg = shade(base30.green, -55),
 		},
 		NeogitDiffDelete = {
-			fg = shade(base30.red, -10),
-			bg = shade(base30.red, -60),
+			fg = shade(mix(base30.red, base16.base03, 50), -5),
+			bg = shade(mix(base30.red, base16.base03, 50), -40),
 		},
 		NeogitDiffDeleteHighlight = {
 			fg = shade(base30.red, -3),

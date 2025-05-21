@@ -5,26 +5,8 @@ return {
 		require("mini.ai").setup()
 		require("mini.basics").setup()
 		require("mini.comment").setup()
-		require("mini.surround").setup()
+		require("mini.diff").setup()
 		require("mini.pairs").setup()
-
-		require("mini.bracketed").setup({
-			buffer = { suffix = "" },
-			comment = { suffix = "" },
-			file = { suffix = "" },
-			indent = { suffix = "" },
-			jump = { suffix = "" },
-			location = { suffix = "" },
-			oldfile = { suffix = "" },
-			treesitter = { suffix = "" },
-			undo = { suffix = "" },
-			window = { suffix = "" },
-			yank = { suffix = "" },
-			conflict = { suffix = "c" },
-			diagnostic = {
-				options = { severity = vim.diagnostic.severity.ERROR },
-			},
-		})
 
 		require("mini.icons").setup({
 			file = {
