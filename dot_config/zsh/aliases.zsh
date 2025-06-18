@@ -5,18 +5,19 @@ alias lt="ls --tree --level 1"
 
 alias ..="cd '..' "
 alias ...="cd '../..'"
+alias - -="cd -"
 
 alias nv="nvim"
 alias v="nvim"
 alias vn="nvim"
 alias n="nvim"
-
+alias fzv='nvim $(fzf --multi --preview "bat --color=always --style=numbers --line-range :500 {}")'
 alias r="radian"
-alias gg="icat --use-window-size 1,1,1500,1500 ./scratch.png"
-
 alias bp="bpython"
 
 alias icat="kitten icat"
+alias pic="icat --align=left --use-window-size 1,1,1500,1500"
+alias gg="pic ./scratch.png"
 
 alias fc="fancy-cat"
 
@@ -37,3 +38,15 @@ alias raddmoi="chezmoi re-add"
 alias applymoi="chezmoi apply"
 alias cdmoi="chezmoi cd"
 alias delmoi="chezmoi destroy"
+
+alias pt="papis-tui -c ~/.config/papis/papistui.yaml"
+
+alias c="cb"
+alias ce="cb edit"
+alias cs="cb show"
+alias ci="cb info"
+
+alias scihubdown="~/Documents/cloned_repos/scihub-cli-downloader/download_from_scihub.sh"
+
+alias bat="nvimpager -c"
+alias mactop="sudo mactop"

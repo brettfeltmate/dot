@@ -153,5 +153,8 @@ return {
 				},
 			}
 		end)
+
+		-- vim.cmd([[FzfLua register_ui_select]])
 	end,
+	-- register fzf-lua as default for all ui-select calls
 }

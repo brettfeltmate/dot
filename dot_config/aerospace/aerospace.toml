@@ -31,10 +31,10 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # Pixel margin between windows
 inner.horizontal = 2
 inner.vertical = 2
-outer.top = 12
-outer.bottom = 12
-outer.left = 12
-outer.right = 12
+outer.top = 10
+outer.bottom = 10
+outer.left = 10
+outer.right = 10
 
 # modal keybindings #
 
@@ -191,7 +191,7 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 if.app-name-regex-substring = 'chrome'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-### 2: Writing
+### 2: Reading & Writing
 [[on-window-detected]]
 if.app-name-regex-substring = 'Ulysses'
 run = ['move-node-to-workspace 2']
@@ -208,14 +208,15 @@ run = ['move-node-to-workspace 2']
 if.app-name-regex-substring = 'Paper'
 run = ['move-node-to-workspace 2']
 
-### 3: Reference
 [[on-window-detected]]
 if.app-name-regex-substring = 'Sioyek'
-run = ['move-node-to-workspace 3']
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Skim'
-run = ['move-node-to-workspace 3']
+if.app-name-regex-substring = 'Zotero'
+run = ['move-node-to-workspace 2']
+
+## 3: ChatGPT
 
 # leverage the fact that the "main" ChatGPT window
 # gets titled, but the toggle chat doesn't
@@ -226,7 +227,6 @@ if.window-title-regex-substring = 'ChatGPT'
 run = ['move-node-to-workspace 3']
 
 # Leave toggle-chat to float wherever called
-# Oh, this is redundant...
 [[on-window-detected]]
 if.app-name-regex-substring = 'ChatGPT'
 run = ['layout floating']

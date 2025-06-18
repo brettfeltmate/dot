@@ -1,12 +1,16 @@
-vim.keymap.set("i", "<M-a>", " <- ", { buffer = 0 })
+local function map(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts or {})
+end
+
+map("i", "<M-a>", " <- ", { buffer = 0 })
 
 -- Slime bindings
-vim.keymap.set("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
-vim.keymap.set("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
+map("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
+map("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
 
-vim.keymap.set(
+map(
 	"n",
-	"<localleader>G",
+	"<localleader>g",
 	"<cmd>SlimeSend1 "
 		.. "ggplot2::ggsave("
 		.. "file = 'scratch.png',"
@@ -18,9 +22,9 @@ vim.keymap.set(
 	{ buffer = 0, noremap = true, desc = "ggsave" }
 )
 
-vim.keymap.set("n", "<localleader>v", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "viewer" })
+map("n", "<localleader>v", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "viewer" })
 
-vim.keymap.set("n", "localleader>w", function()
+map("n", "localleader>w", function()
 	vim.ui.input({ prompt = "Write to file: " }, function(input)
 		if input and input ~= "" then
 			vim.cmd("SlimeSend1 fwrite(as.data.table(" .. input .. ", keep.rownames = FALSE), file = './scratch.csv')")
@@ -49,10 +53,11 @@ local popup_cmds = {
 	["h"] = "pclih",
 	["p"] = "pclis",
 	["b"] = "pclibx",
+	["c"] = "print",
 }
 
 for key, cmd in pairs(popup_cmds) do
-	vim.keymap.set("n", "<localleader>" .. key, function()
+	map("n", "<localleader>" .. key, function()
 		r_popup_command(cmd)
 	end, { buffer = 0, noremap = true, desc = cmd })
 end
@@ -114,3 +119,19 @@ vim.g.r_indent_ess_compatible = 0
 
 -- Use specific comment headers
 vim.bo.comments = [[:#',:###,:##,:#]]
+
+local wk = require("which-key")
+wk.add({
+	{ "<localleader>", icon = "󰟔  ", group = "R..." },
+	{ "<localleader>G", mode = "n" },
+	{ "<localleader>v", mode = "n" },
+	{ "<localleader>w", mode = "n" },
+	{ "<localleader>s", mode = "n" },
+	{ "<localleader>l", mode = "n" },
+	{ "<localleader>k", mode = "n" },
+	{ "<localleader>u", mode = "n" },
+	{ "<localleader>y", mode = "n" },
+	{ "<localleader>h", mode = "n" },
+	{ "<localleader>p", mode = "n" },
+	{ "<localleader>b", mode = "n" },
+})

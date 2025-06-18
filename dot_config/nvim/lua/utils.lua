@@ -51,6 +51,14 @@ function M.scrollBind()
 	end
 end
 
+function M.toggleMargin()
+	if vim.wo.signcolumn == "auto:2" then
+		vim.cmd("lua vim.wo.signcolumn = 'yes:8'")
+	else
+		vim.cmd("lua vim.wo.signcolumn = 'auto:8'")
+	end
+end
 vim.api.nvim_create_user_command("TransFlip", M.transFlip, { desc = "Flip window arrangement" })
 vim.api.nvim_create_user_command("ScrollBind", M.scrollBind, { desc = "Toggle scrollbind" })
 vim.api.nvim_create_user_command("BrowsePlots", M.browseplots, { desc = "Open plot viewer" })
+vim.api.nvim_create_user_command("ToggleMargin", M.toggleMargin, { desc = "Toggle margin" })

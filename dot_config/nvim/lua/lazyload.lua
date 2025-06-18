@@ -13,6 +13,11 @@ require("lazy").setup({
 	stats = { real_cputime = true },
 	profiling = { loader = true, require = true },
 	spec = { { import = "plugins" } },
+	ui = {
+		size = { width = 0.95, height = 0.90 },
+		border = "rounded",
+	},
+	diff = { cmd = "diffview.nvim" },
 })
 
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do

@@ -1,11 +1,3 @@
-function _G.get_oil_winbar()
-	local append = require("oil").get_current_dir()
-	if not append then
-		append = vim.api.nvim_buf_get_name(0)
-	end
-	return "Viewing: " .. vim.fn.fnamemodify(append, ":~")
-end
-
 return {
 	"stevearc/oil.nvim",
 	event = "VeryLazy",
@@ -25,7 +17,17 @@ return {
 				["<C-f>"] = "actions.preview_scroll_down",
 				["<C-b>"] = "actions.preview_scroll_up",
 			},
-			win_options = { winbar = "%!v:lua.get_oil_winbar()" },
+			delete_to_trash = true,
+			skip_confirm_for_simple_edits = true,
+			constrain_cursor = "name",
+			watch_for_changes = true,
+			float = {
+				max_width = 0.8,
+				max_height = 0.8,
+			},
+			-- preview_win = {
+			-- 	preview_method = "load",
+			-- },
 		}
 		return opts
 	end,

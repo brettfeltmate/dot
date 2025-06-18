@@ -38,6 +38,7 @@ $line_break\
 
 $battery\
 $time\
+$jobs\
 $character"""
 
 [profiles]
@@ -513,8 +514,8 @@ threshold = 1
 symbol_threshold = 1
 number_threshold = 2
 format = "[$symbol$number]($style) "
-symbol = "✦"
-style = "bold blue"
+symbol = "󰉇"
+style = "9"
 disabled = false
 
 [julia]

@@ -3,5 +3,16 @@ return {
 	lazy = true,
 	event = "BufReadPre",
 	dependencies = { "MunifTanjim/nui.nvim" },
-	opts = {},
+	opts = {
+		disable_mouse = false,
+		disabled_keys = {
+			["<Up>"] = false,
+			["<Down>"] = false,
+			["<Left>"] = false,
+			["<Right>"] = false,
+		},
+		disabled_filetypes = {
+			["Otree"] = true,
+		},
+	},
 }

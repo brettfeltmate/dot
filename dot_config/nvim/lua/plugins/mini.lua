@@ -5,7 +5,7 @@ return {
 		require("mini.ai").setup()
 		require("mini.basics").setup()
 		require("mini.comment").setup()
-		require("mini.diff").setup()
+		-- require("mini.diff").setup()
 		require("mini.pairs").setup()
 
 		require("mini.icons").setup({

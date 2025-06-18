@@ -1,6 +1,6 @@
 -- Using `vim.cmd` instead of `vim.wo` because it is yet more reliable
 vim.cmd("setlocal spell")
-vim.cmd("setlocal nowrap")
+vim.cmd("setlocal wrap")
 vim.cmd("set conceallevel=2")
 
 -- Customize 'mini.nvim'

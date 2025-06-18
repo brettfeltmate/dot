@@ -44,8 +44,8 @@ return {
 				"prettier",
 				"pyright",
 				"r-languageserver",
+				"ruff",
 				"stylua",
-				"sqruff",
 				"vtsls",
 			}
 
@@ -64,15 +64,6 @@ return {
 		event = "BufRead",
 		opts = {
 			notify_on_error = true,
-			formatters = {
-				-- Fallback for cases/doctypes where Air fails
-				rprettify = {
-					inherit = false,
-					stdin = false,
-					command = "/Users/brettfeltmate/.config/R/rprettify",
-					args = { "$FILENAME" },
-				},
-			},
 			formatters_by_ft = {
 				sh = { "beautysh" },
 				bash = { "beautysh" },
@@ -84,12 +75,12 @@ return {
 				json = { "prettier" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-				python = { "blue" },
-				r = { "air", "rprettify" },
-				rmd = { "air", "markdownlint", "rprettify" },
-				rprofile = { "air", "rprettify" },
+				python = { "ruff", "blue" },
+				r = { "air" },
+				R = { "air" },
+				rmd = { "air", "markdownlint" },
+				rprofile = { "air" },
 				markdown = { "markdownlint" },
-				sql = { "sqruff" },
 			},
 			format_on_save = { timeout_ms = 3000 },
 		},

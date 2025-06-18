@@ -1,2 +1,20 @@
 . "$HOME/.cargo/env"
 export DYLD_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_LIBRARY_PATH"
+
+export PATH="$PATH:/Users/brettfeltmate/Documents/cloned_repos/scihub-cli-downloader"
+alias scihubdown='/Users/brettfeltmate/Documents/cloned_repos/scihub-cli-downloader/download_from_scihub.sh'
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/Users/brettfeltmate/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/Users/brettfeltmate/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
