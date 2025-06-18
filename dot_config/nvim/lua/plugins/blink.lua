@@ -4,14 +4,14 @@ return {
 	version = "v0.*",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	dependencies = {
-		-- { "saghen/blink.compat" },
-		-- {
-		-- 	"folke/lazydev.nvim",
-		-- 	ft = "lua",
-		-- 	opts = { library = { path = "luvit-meta/library", words = { "vim%.uv" } } },
-		-- },
-		-- { "bilal2453/luvit-meta" },
-		-- { "mikavilpas/blink-ripgrep.nvim" },
+		{ "saghen/blink.compat" },
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = { library = { path = "luvit-meta/library", words = { "vim%.uv" } } },
+		},
+		{ "bilal2453/luvit-meta" },
+		{ "Kaiser-Yang/blink-cmp-avante" },
 	},
 	opts = function(_, opts)
 		opts.completion = {
@@ -31,11 +31,18 @@ return {
 			documentation = { auto_show = false, window = { border = "rounded" } },
 		}
 
-		opts.signature = { enabled = false }
+		opts.signature = {
+			enabled = true,
+			window = { border = "rounded" },
+		}
 
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lsp", "buffer", "path" },
+			default = { "lsp", "lazydev", "avante", "buffer", "path" },
 			providers = {
+				avante = {
+					name = "Avante",
+					module = "blink-cmp-avante",
+				},
 				lsp = {
 					name = "lsp",
 					enabled = true,
@@ -43,14 +50,14 @@ return {
 					fallbacks = { "buffer" },
 					score_offset = 90,
 				},
-				-- lazydev = {
-				-- 	name = "LazyDev",
-				-- 	module = "lazydev.integrations.blink",
-				-- 	score_offset = 80,
-				-- 	enabled = true,
-				-- 	max_items = 3,
-				-- 	min_keyword_length = 4,
-				-- },
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 80,
+					enabled = true,
+					max_items = 3,
+					min_keyword_length = 4,
+				},
 				buffer = {
 					name = "Buffer",
 					enabled = true,

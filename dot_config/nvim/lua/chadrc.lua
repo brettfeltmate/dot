@@ -1,8 +1,10 @@
 local M = {
 	base46 = {
 		theme = "amber",
+		theme_toggle = { "amber", "everforest_light" },
 		transparency = false,
 		integrations = {
+			"avante",
 			"cmp",
 			"devicons",
 			"diffview",
@@ -29,7 +31,7 @@ local M = {
 		statusline = {
 			theme = "minimal",
 			separator_style = "round",
-			order = { "mode", "cursor", "%=", "git", "diagnostics", "%=", "file", "cwd" },
+			order = { "mode", "diagnostics", "%=", "git", "%=", "file", "cwd" },
 		},
 	},
 	nvdash = { load_on_startup = false },

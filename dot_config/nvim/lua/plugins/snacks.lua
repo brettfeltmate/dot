@@ -11,9 +11,9 @@ return {
 		quickfile = {},
 		indent = { chunk = {} },
 		statuscolumn = {
-			right = {},
-			left = { "mark", "fold" },
-			folds = { open = true, git_hl = false },
+			left = { "fold", "git" },
+			right = { "mark", "sign" },
+			folds = { git_hl = false },
 		},
 		picker = {
 			ui_select = false,
@@ -21,7 +21,7 @@ return {
 			sources = {
 				explorer = {
 					cycle = true,
-					auto_close = true,
+					auto_close = false,
 					layout = { preview = "main" },
 				},
 			},
