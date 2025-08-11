@@ -64,6 +64,14 @@ return {
 		event = "BufRead",
 		opts = {
 			notify_on_error = true,
+			formatters = {
+				rprettify = {
+					inherit = false,
+					stdin = false,
+					command = "/Users/brettfeltmate/.config/R/rprettify",
+					args = { "$FILENAME" },
+				},
+			},
 			formatters_by_ft = {
 				sh = { "beautysh" },
 				bash = { "beautysh" },
@@ -76,13 +84,13 @@ return {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				python = { "ruff", "blue" },
-				r = { "air" },
-				R = { "air" },
-				rmd = { "air", "markdownlint" },
-				rprofile = { "air" },
+				r = { "air", "rprettify" },
+				R = { "air", "rprettify" },
+				rmd = { "rprettify", "markdownlint" },
+				rprofile = { "air", "rprettify" },
 				markdown = { "markdownlint" },
 			},
-			format_on_save = { timeout_ms = 3000 },
+			format_on_save = { timeout_ms = 5000 },
 		},
 	},
 }

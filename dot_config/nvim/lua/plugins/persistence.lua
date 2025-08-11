@@ -1,6 +1,7 @@
 return {
 	"folke/persistence.nvim",
 	event = "BufReadPre",
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	config = function()
 		require("persistence").setup({
 			options = { "globals" },

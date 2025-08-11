@@ -4,10 +4,10 @@ return {
 	event = "BufRead",
 	version = false,
 	build = "make",
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"stevearc/dressing.nvim",
-		-- "folke/snacks.nvim",
 		"nvim-lua/plenary.nvim",
 		"MunifTanjim/nui.nvim",
 		"ibhagwan/fzf-lua",
@@ -15,9 +15,7 @@ return {
 		"oxy2dev/markview.nvim",
 	},
 	opts = {
-		---@alias Provider "claude" | "openai" | "azure" | "gemini" | "cohere" | "copilot" | string
 		provider = "claude",
-		---@alias Mode "agentic" | "legacy"
 		mode = "legacy",
 		auto_suggestions_provider = "copilot",
 		behaviour = {
@@ -70,22 +68,16 @@ return {
 				close_from_input = { normal = "<Esc>", insert = "<C-e>" },
 			},
 		},
-		input = {
-			-- provider = "snacks",
-			provider_opts = {
-				-- Additional snacks.input options
-				title = "Avante Input",
-				icon = " ",
-			},
-		},
 		hints = { enabled = true },
-		windows = {
-			width = 40,
-			ask = { floating = true },
-		},
 		suggestion = {
 			debounce = 600,
 			throttle = 600,
+		},
+		windows = {
+			width = 50,
+			input = { height = 12 },
+			edit = { start_insert = false },
+			ask = { floating = false },
 		},
 	},
 }

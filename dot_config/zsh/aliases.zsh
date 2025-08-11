@@ -16,7 +16,7 @@ alias r="radian"
 alias bp="bpython"
 
 alias icat="kitten icat"
-alias pic="icat --align=left --use-window-size 1,1,1500,1500"
+alias pic="icat --align=center --use-window-size 1,1,2250,2250"
 alias gg="pic ./scratch.png"
 
 alias fc="fancy-cat"
@@ -50,3 +50,5 @@ alias scihubdown="~/Documents/cloned_repos/scihub-cli-downloader/download_from_s
 
 alias bat="nvimpager -c"
 alias mactop="sudo mactop"
+
+alias nc="nyancat"

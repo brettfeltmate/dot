@@ -2,9 +2,8 @@ return {
 	"m4xshen/hardtime.nvim",
 	lazy = true,
 	event = "BufReadPre",
-	dependencies = { "MunifTanjim/nui.nvim" },
+	enabled = false,
 	opts = {
-		disable_mouse = false,
 		disabled_keys = {
 			["<Up>"] = false,
 			["<Down>"] = false,

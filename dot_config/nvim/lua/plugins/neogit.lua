@@ -1,31 +1,24 @@
 return {
-	{
-		"neogitorg/neogit",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"sindrets/diffview.nvim",
-			"ibhagwan/fzf-lua",
-		},
-		cmd = "Neogit",
-		opts = {},
-		config = function(_, opts)
-			require("neogit").setup(opts)
-		end,
+	"neogitorg/neogit",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"ibhagwan/fzf-lua",
+		-- {
+		-- 	"sindrets/diffview.nvim",
+		-- 	opts = { enhanced_diff_hl = true },
+		-- },
 	},
-	{
-		"sindrets/diffview.nvim",
-		lazy = true,
-		cmds = {
-			"DiffviewOpen",
-			"DiffviewFileHistory",
-		},
-		opts = {
-			enhanced_diff_hl = true,
-			view = {
-				merge_tool = {
-					layout = "diff3_mixed",
-				},
-			},
+	cmd = "Neogit",
+	opts = {
+		graph_style = "ascii",
+		disable_line_numbers = false,
+		disable_relative_line_numbers = false,
+		integrations = {
+			snacks = false,
+			mini_pick = false,
 		},
 	},
+	config = function(_, opts)
+		require("neogit").setup(opts)
+	end,
 }

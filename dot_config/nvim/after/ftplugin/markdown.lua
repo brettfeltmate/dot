@@ -1,36 +1,7 @@
 -- Using `vim.cmd` instead of `vim.wo` because it is yet more reliable
 vim.cmd("setlocal spell")
 vim.cmd("setlocal wrap")
-vim.cmd("set conceallevel=2")
-
--- Customize 'mini.nvim'
-local has_mini_ai, mini_ai = pcall(require, "mini.ai")
-if has_mini_ai then
-	vim.b.miniai_config = {
-		custom_textobjects = {
-			["*"] = mini_ai.gen_spec.pair("*", "*", { type = "greedy" }),
-			["_"] = mini_ai.gen_spec.pair("_", "_", { type = "greedy" }),
-		},
-	}
-end
-
-local has_mini_surround, mini_surround = pcall(require, "mini.surround")
-if has_mini_surround then
-	vim.b.minisurround_config = {
-		custom_surroundings = {
-			-- Bold
-			B = { input = { "%*%*().-()%*%*" }, output = { left = "**", right = "**" } },
-
-			-- Link
-			L = {
-				input = { "%[().-()%]%(.-%)" },
-				output = function()
-					local link = mini_surround.user_input("Link: ")
-					return { left = "[", right = "](" .. link .. ")" }
-				end,
-			},
-		},
-	}
-end
-
-vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })
+vim.keymap.set({ "n", "x" }, "<C-c>m", ":Checkbox toggle<CR>", { desc = "Toggle Checkbox" })
+vim.keymap.set({ "n", "x" }, "<C-c>M", ":Checkbox interactive<CR>", { desc = "Set Checkbox" })
+-- vim.cmd("set conceallevel=2")
+-- vim.api.nvim_set_hl(0, "MarkviewCode", { bg = "#1e171c" })

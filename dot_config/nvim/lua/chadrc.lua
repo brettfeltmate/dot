@@ -31,7 +31,7 @@ local M = {
 		statusline = {
 			theme = "minimal",
 			separator_style = "round",
-			order = { "mode", "diagnostics", "%=", "git", "%=", "file", "cwd" },
+			order = { "mode", "diagnostics", "git" },
 		},
 	},
 	nvdash = { load_on_startup = false },

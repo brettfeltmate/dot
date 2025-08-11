@@ -27,7 +27,7 @@ local base30 = {
 	white = base16.base08,
 	black = base16.base00,
 	darker_black = base16.base01,
-	black2 = base16.base03,
+	black2 = base16.base02,
 	one_bg = base16.base01,
 	one_bg2 = shade(base16.base01, 5),
 	one_bg3 = shade(base16.base01, 8),
@@ -38,7 +38,7 @@ local base30 = {
 	red = base16.base0C,
 	baby_pink = shade(base16.base0A, 5),
 	pink = base16.base0A,
-	line = shade(base16.base03, 20),
+	line = base16.base08,
 	green = base16.base07,
 	vibrant_green = base16.base0D,
 	nord_blue = base16.base09,
@@ -80,7 +80,7 @@ local polish_hl = {
 		QuickFixLine = { bg = base16.base01, sp = "none" },
 		Question = { fg = base16.base0D },
 		Search = { fg = base16.base01, bg = base16.base08 },
-		Substitute = { fg = base16.base01, bg = base16.base0A, sp = "none" },
+		Substitute = { fg = base16.base01, bg = base16.base07, bold = true, sp = "none" },
 		IncSearch = {
 			bg = base30.orange,
 			fg = shade(base16.base07, -50),
@@ -389,9 +389,9 @@ local polish_hl = {
 		["@LeapBackdrop"] = { bg = shade(base16.base03, -5), fg = base16.base04 },
 		["@LeapLabelDimmed"] = { bg = shade(base16.base03, -5), fg = base16.base09 },
 	},
-	flash = {
-		["@FlashMatch"] = { link = "Normal" },
-	},
+	-- flash = {
+	-- 	["@FlashMatch"] = { link = "Normal" },
+	-- },
 	treesitter_context = {
 		["@TreesitterContext"] = { bg = base30.one_bg },
 		["@TreesitterContextSeparator"] = { fg = shade(base16.base03, 20), bg = base30.one_bg },

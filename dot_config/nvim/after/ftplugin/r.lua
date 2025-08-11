@@ -47,7 +47,6 @@ end
 local popup_cmds = {
 	["s"] = "str",
 	["k"] = "skimr::skim",
-	["l"] = "levels",
 	["u"] = "unique",
 	["y"] = "summary",
 	["h"] = "pclih",
@@ -61,6 +60,12 @@ for key, cmd in pairs(popup_cmds) do
 		r_popup_command(cmd)
 	end, { buffer = 0, noremap = true, desc = cmd })
 end
+
+vim.keymap.set("n", "<localleader>l", "<cmd>SlimeSend1 print(.Last.value)<cr>", {
+	buffer = 0,
+	noremap = true,
+	desc = "Print last value",
+})
 
 -- Auto-correct
 vim.cmd([[

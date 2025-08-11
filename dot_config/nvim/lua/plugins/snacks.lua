@@ -1,12 +1,13 @@
 return {
 	"folke/snacks.nvim",
 	dependencies = { "echasnovski/mini.icons" },
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	priority = 1000,
 	opts = {
 		styles = { scratch = { width = 0.6, height = 0.95 } },
 		bigfile = {},
 		image = {},
-		input = {},
+		-- input = {},
 		scratch = {},
 		quickfile = {},
 		indent = { chunk = {} },

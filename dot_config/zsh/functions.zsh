@@ -56,13 +56,10 @@ fabular() {
 }
 
 function cd() {
-    local function lscd() {
-        eza --group-directories-first --icons --dereference --tree --level 1
-    }
     if [[ "$1" ]]; then
-        z "$1"; lscd
+        z "$1"; ls
     else
-        z "$HOME"; lscd
+        z "$HOME"; ls
     fi
 }
 

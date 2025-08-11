@@ -1,6 +1,7 @@
 return {
 	"andrewferrier/debugprint.nvim",
 	event = "BufRead",
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = function()
 		local counter = 0
 

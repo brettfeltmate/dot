@@ -1,0 +1,68 @@
+return {
+	"Eutrius/Otree.nvim",
+	lazy = true,
+	cmd = "Otree",
+	dependencies = { "stevearc/oil.nvim" },
+	opts = {
+		win_size = math.floor(vim.o.columns * 0.20),
+		open_on_startup = false,
+		hijack_netrw = true,
+		show_hidden = true,
+		show_ignore = true,
+		cursorline = true,
+		oil = "split",
+
+		ignore_patterns = {},
+
+		keymaps = {
+			["<CR>"] = "actions.select",
+			["l"] = "actions.select",
+			["h"] = "actions.close_dir",
+			["q"] = "actions.close_win",
+			["-"] = "actions.goto_parent",
+			["<C-g>"] = "actions.goto_dir",
+			["_"] = "actions.goto_home_dir",
+			["~"] = "actions.change_home_dir",
+			["L"] = "actions.open_dirs",
+			["H"] = "actions.close_dirs",
+			["o"] = "actions.oil_dir",
+			["O"] = "actions.oil_into_dir",
+			["t"] = "actions.open_tab",
+			["v"] = "actions.open_vsplit",
+			["s"] = "actions.open_split",
+			["g."] = "actions.toggle_hidden",
+			["i"] = "actions.toggle_ignore",
+			["<C-l>"] = "actions.refresh",
+			["f"] = "actions.focus_file",
+			["?"] = "actions.open_help",
+		},
+
+		tree = {
+			space_after_icon = " ",
+			space_after_connector = " ",
+			connector_space = " ",
+			connector_last = "└",
+			connector_middle = "├",
+			vertical_line = "│",
+		},
+
+		icons = {
+			title = " ",
+			default_file = "",
+			default_directory = "",
+			empty_dir = "",
+			trash = " ",
+			keymap = "⌨ ",
+			oil = "  ",
+		},
+
+		highlights = {
+			directory = "Directory",
+			file = "Normal",
+			title = "FloatTitle",
+			tree = "Comment",
+			float_normal = "NormalFloat",
+			float_border = "FloatBorder",
+		},
+	},
+}

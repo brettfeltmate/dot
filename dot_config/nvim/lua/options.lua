@@ -42,6 +42,7 @@ vim.opt.timeoutlen = 300
 vim.opt.expandtab = true -- Use spaces instead of tabs
 vim.opt.shiftwidth = 4 -- Size of an indent
 vim.opt.tabstop = 4
+vim.opt.jumpoptions = "stack"
 
 -- Folding
 vim.opt.fillchars = "eob: ,fold:-,foldopen:,foldsep:|,foldclose:"

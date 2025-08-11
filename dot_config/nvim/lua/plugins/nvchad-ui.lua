@@ -4,9 +4,6 @@ return {
 		lazy = true,
 	},
 	{
-		"nvzone/volt",
-	},
-	{
 		"nvchad/ui",
 		config = function()
 			require("nvchad")

@@ -21,6 +21,8 @@ else
     compinit
 fi
 
+launchctl setenv PATH $PATH
+. "$HOME/.cargo/env"
 # Source ancillary files
 source <(fzf --zsh)
 source "${ZDOTDIR}/aliases.zsh"

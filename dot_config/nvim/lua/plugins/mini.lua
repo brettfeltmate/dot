@@ -4,10 +4,12 @@ return {
 	config = function()
 		require("mini.ai").setup()
 		require("mini.basics").setup()
+		require("mini.bracketed").setup({
+			file = { suffix = "" },
+			quickfix = { suffix = "f" },
+		})
 		require("mini.comment").setup()
-		-- require("mini.diff").setup()
 		require("mini.pairs").setup()
-
 		require("mini.icons").setup({
 			file = {
 				[".here"] = { glyph = "󰍎", hl = "MiniIconsPurple" },
