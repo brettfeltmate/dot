@@ -1,0 +1,164 @@
+{
+  "title": "Tap Caps Lock for ESC or Hold for Control",
+  "rules": [
+    {
+      "description": "Tap Caps Lock for ESC, Hold for Control, Tap-then-Hold for Ctrl+Shift",
+      "manipulators": [
+        {
+          "description": "Caps Lock: Set tapped state and send ESC if alone",
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "caps_lock_pressed",
+                "value": 1
+              }
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "to_after_key_up": [
+            {
+              "set_variable": {
+                "name": "caps_lock_pressed",
+                "value": 0
+              }
+            },
+            {
+              "set_variable": {
+                "name": "caps_tapped",
+                "value": 0
+              }
+            },
+            {
+              "set_variable": {
+                "name": "ctrl_shift_mode",
+                "value": 0
+              }
+            }
+          ],
+          "to_delayed_action": {
+            "to_if_invoked": [
+              {
+                "set_variable": {
+                  "name": "caps_tapped",
+                  "value": 1
+                }
+              }
+            ],
+            "to_if_canceled": []
+          },
+          "parameters": {
+            "basic.to_delayed_action_delay_milliseconds": 200
+          }
+        },
+        {
+          "description": "Caps Lock held after tap: activate Ctrl+Shift mode",
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_tapped",
+              "value": 1
+            }
+          ],
+          "to": [
+            {
+              "set_variable": {
+                "name": "ctrl_shift_mode",
+                "value": 1
+              }
+            }
+          ]
+        },
+        {
+          "description": "Regular hold without tap: send Control",
+          "type": "basic",
+          "from": {
+            "key_code": "caps_lock",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "caps_lock_pressed",
+              "value": 1
+            },
+            {
+              "type": "variable_if",
+              "name": "caps_tapped",
+              "value": 0
+            }
+          ],
+          "to": [
+            {
+              "key_code": "left_control"
+            }
+          ]
+        },
+        {
+          "description": "Apply Ctrl+Shift to all keys when in Ctrl+Shift mode",
+          "type": "basic",
+          "from": {
+            "any": "key_code",
+            "modifiers": {
+              "optional": ["any"]
+            }
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "ctrl_shift_mode",
+              "value": 1
+            }
+          ],
+          "to": [
+            {
+              "key_code": "{{key_code}}",
+              "modifiers": ["left_control", "left_shift"]
+            }
+          ]
+        },
+        {
+          "description": "Exit Ctrl+Shift mode on ESC",
+          "type": "basic",
+          "from": {
+            "key_code": "escape"
+          },
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "ctrl_shift_mode",
+              "value": 1
+            }
+          ],
+          "to": [
+            {
+              "set_variable": {
+                "name": "ctrl_shift_mode",
+                "value": 0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

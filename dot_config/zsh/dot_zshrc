@@ -41,6 +41,8 @@ eval "$(zoxide init zsh)"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh   
+# make forgit a subcommand of git
+PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
 
 if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
       "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then

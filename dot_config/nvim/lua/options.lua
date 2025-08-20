@@ -28,7 +28,7 @@ vim.opt.shortmess:append("WIcC")
 vim.opt.wrap = false
 
 -- Behavior
-vim.opt.swapfile = false
+-- vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 vim.opt.undofile = true

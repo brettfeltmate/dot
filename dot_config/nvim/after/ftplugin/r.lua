@@ -22,7 +22,7 @@ map(
 	{ buffer = 0, noremap = true, desc = "ggsave" }
 )
 
-map("n", "<localleader>v", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "viewer" })
+map("n", "<localleader>b", "<cmd>SlimeSend1 hgd_browse()<cr>", { buffer = 0, desc = "viewer" })
 
 map("n", "localleader>w", function()
 	vim.ui.input({ prompt = "Write to file: " }, function(input)
@@ -50,9 +50,10 @@ local popup_cmds = {
 	["u"] = "unique",
 	["y"] = "summary",
 	["h"] = "pclih",
-	["p"] = "pclis",
-	["b"] = "pclibx",
+	["x"] = "pclibx",
 	["c"] = "print",
+	["i"] = "pak::pak",
+	["l"] = "library",
 }
 
 for key, cmd in pairs(popup_cmds) do
@@ -61,7 +62,7 @@ for key, cmd in pairs(popup_cmds) do
 	end, { buffer = 0, noremap = true, desc = cmd })
 end
 
-vim.keymap.set("n", "<localleader>l", "<cmd>SlimeSend1 print(.Last.value)<cr>", {
+vim.keymap.set("n", "<localleader>v", "<cmd>SlimeSend1 print(.Last.value)<cr>", {
 	buffer = 0,
 	noremap = true,
 	desc = "Print last value",

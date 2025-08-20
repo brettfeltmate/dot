@@ -4,22 +4,22 @@ return {
 	opts = function()
 		local wk = require("which-key")
 		wk.add({
-			{ "<leader>a", icon = "󰞋  ", group = "Avante...", mode = { "n", "x" } },
+			{ "<leader>a", icon = "󰞋  ", group = "OpenCode", mode = { "n", "x" } },
 
-			{ "<leader>aa", icon = "󱜹  ", desc = "Ask", mode = { "n", "x" } },
-			{ "<leader>aB", icon = "󱐏  ", desc = "Add buffers" },
-			{ "<leader>ac", icon = "󱐒  ", desc = "Add current" },
-			{ "<leader>ad", desc = "Debug mode" },
-			{ "<leader>af", icon = "󰨻  ", desc = "Focus" },
-			{ "<leader>ah", icon = "󱝖  ", desc = "History" },
-			{ "<leader>an", icon = "󰻞  ", desc = "New", mode = { "n", "x" } },
-			{ "<leader>ar", icon = "󱣲  ", desc = "Refresh" },
-			{ "<leader>aR", icon = "󰳏  ", desc = "Repo map" },
-			{ "<leader>as", icon = "󱠁  ", desc = "Autosuggest" },
-			{ "<leader>aS", desc = "Stop" }, -- 
-			{ "<leader>at", icon = "󱨦  ", desc = "Toggle" },
-			{ "<leader>a?", icon = "󱄕  ", desc = "Models" },
-			{ "<leader>ae", icon = "󱓙  ", desc = "edit", mode = "x" },
+			-- { "<leader>aa", icon = "󱜹  ", desc = "Ask", mode = { "n", "x" } },
+			-- { "<leader>aB", icon = "󱐏  ", desc = "Add buffers" },
+			-- { "<leader>ac", icon = "󱐒  ", desc = "Add current" },
+			-- { "<leader>ad", desc = "Debug mode" },
+			-- { "<leader>af", icon = "󰨻  ", desc = "Focus" },
+			-- { "<leader>ah", icon = "󱝖  ", desc = "History" },
+			-- { "<leader>an", icon = "󰻞  ", desc = "New", mode = { "n", "x" } },
+			-- { "<leader>ar", icon = "󱣲  ", desc = "Refresh" },
+			-- { "<leader>aR", icon = "󰳏  ", desc = "Repo map" },
+			-- { "<leader>as", icon = "󱠁  ", desc = "Autosuggest" },
+			-- { "<leader>aS", desc = "Stop" }, -- 
+			-- { "<leader>at", icon = "󱨦  ", desc = "Toggle" },
+			-- { "<leader>a?", icon = "󱄕  ", desc = "Models" },
+			-- { "<leader>ae", icon = "󱓙  ", desc = "edit", mode = "x" },
 
 			{ "<leader>c", icon = "  " },
 			{ "<leader>d", icon = "󰗩  " },
@@ -31,7 +31,7 @@ return {
 			{ "<leader>q", icon = "󰅗  " },
 			{ "<leader>s", icon = "  " },
 			{ "<leader>x", icon = "󰜎  " },
-			{ "<leader>z", icon = "  " },
+			{ "<leader>n", icon = "  " },
 
 			{ "<leader>.", icon = "󰊢  ", group = "Hunk...", mode = { "n", "x" } },
 			{ "<leader>.s", icon = "  ", mode = { "n", "x" } },

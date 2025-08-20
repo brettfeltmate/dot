@@ -67,31 +67,23 @@ map({ "n" }, "<S-tab>", C("tabnext"), "Next tab")
 map({ "n" }, L("c"), C("FzfLua grep_cword"), "Cword")
 map({ "n" }, L("d"), C("lua Snacks.bufdelete()"), "Delete")
 map({ "n" }, L("e"), C("Otree"), "Explore")
-map(
-	{ "n" },
-	L("f"),
-	C("FzfLua combine pickers=buffers;oldfiles;files;lsp_document_symbols;lsp_workspace_symbols"),
-	"Find"
-)
+map({ "n" }, L("f"), C("FzfLua combine pickers=buffers;oldfiles;files"), "Find")
 map({ "n" }, L("g"), C("FzfLua combine pickers=grep_curbuf;grep_project"), "Grep")
+map({ "n" }, L("h"), C("FzfLua helptags"), "Helptags")
 map({ "n" }, L("i"), function()
 	require("fzf-lua").files({
 		prompt = "Images: ",
 		fd_opts = [[-I -e jpg -e png -e jpeg]],
 	})
 end, "Images")
-map({ "n" }, L("j"), C("lua require('snacks').scratch.open()"), "Jot")
-map(
-	{ "n" },
-	L("l"),
-	C("FzfLua combine pickers=lsp_references;lsp_definitions;lsp_implementations;lsp_type_definitions"),
-	"LSP"
-)
+map({ "n" }, L("j"), C("lua require('snacks').scratch.open()"), "Jotnotes")
+map({ "n" }, L("l"), C("FzfLua combine pickers=lsp_document_symbols;lsp_workspace_symbols"), "LSP")
 map({ "n" }, L("m"), C("NoiceAll"), "Messages")
+map({ "n" }, L("n"), C("NoNeckPain"), "NoNeckPain")
 map({ "n" }, L("o"), C("Oil"), "Oil")
 map({ "n" }, L("q"), C("quit"), "Quit")
 map({ "n" }, L("r"), C("lua require 'nvchad.lsp.renamer'()"), "Rename")
 map({ "n" }, L("s"), C("FzfLua spell_suggest"), "Spell")
 map({ "n" }, L("w"), C("write"), "Write")
 map({ "n" }, L("x"), C("wqa"), "Exit")
-map({ "n" }, L("z"), C("NoNeckPain"), "NoNeckPain")
+map({ "n" }, L("y"), C("Trouble symbols toggle"), "Symbols")

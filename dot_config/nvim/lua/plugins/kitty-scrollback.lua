@@ -11,26 +11,16 @@ return {
 	opts = {
 		{
 			callbacks = {
-				after_paste_window_ready = vim.cmd("set nu rnu"),
+				after_paste_window_ready = function()
+					vim.cmd("set nu rnu")
+				end,
 			},
 			paste_window = {
-				winblend = 10,
-				winopts_overrides = function()
-					local r = vim.o.lines
-					local h = 20
-					return {
-						border = "rounded",
-						row = r - h,
-						col = 0,
-						height = h,
-						width = vim.o.columns,
-					}
-				end,
+				winblend = 0,
 				footer_winopts_overrides = function()
 					return {
 						border = "rounded",
 						title = "",
-						title_pos = "center",
 					}
 				end,
 			},
