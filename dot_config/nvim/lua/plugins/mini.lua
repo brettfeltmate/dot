@@ -48,5 +48,8 @@ return {
 				line_up = "<M-C-k>",
 			},
 		})
+
+		-- require("mini.tabline").setup({ tabpage_section = "right" })
+		-- require("mini.statusline").setup()
 	end,
 }

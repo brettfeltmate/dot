@@ -1,0 +1,4 @@
+# External repos managed via .chezmoiexternal.toml
+# These directories should not be tracked by chezmoi directly
+dot_config/kitty/kitty-scrollback.nvim/
+dot_config/kitty/kitty-terminal-project-launcher/

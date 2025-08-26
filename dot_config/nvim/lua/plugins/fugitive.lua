@@ -1,5 +1,6 @@
 return {
 	"tpope/vim-fugitive",
-	event = "VeryLazy",
+	event = "BufRead",
+	cmd = { "G", "Git" },
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 }

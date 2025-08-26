@@ -2,38 +2,40 @@
 return {
 	{ vim.diagnostic.config({ virtual_text = false }) },
 	{
-		"rachartier/tiny-inline-diagnostic.nvim",
-		event = "LspAttach",
-		priority = 1000,
-		opts = {
-			preset = "modern",
-			transparent_bg = true,
-			options = { break_line = { enabled = true, after = 45 } },
-		},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		event = "BufReadPre",
 		dependencies = {
 			{ "williamboman/mason.nvim", config = true },
 			{ "williamboman/mason-lspconfig.nvim" },
 			{ "whoissethdaniel/mason-tool-installer.nvim" },
+			{
+				"rachartier/tiny-inline-diagnostic.nvim",
+				event = "LspAttach",
+				priority = 1000,
+				opts = {
+					preset = "modern",
+					transparent_bg = true,
+					options = { break_line = { enabled = true, after = 45 } },
+				},
+			},
 		},
 		config = function()
 			local servers = {
+				bashls = {},
 				clangd = {},
 				cssls = {},
 				html = {},
 				lua_ls = {},
 				marksman = { filetypes = { "markdown", "rmarkdown", "quarto" } },
 				pyright = {},
-				r_language_server = { settings = { r = { lsp = { rich_documentation = false } } } },
+				r_language_server = { settings = { r = { lsp = { rich_documentation = true } } } },
 				taplo = {},
 				vtsls = {},
 			}
 
 			local ensure_installed = {
 				"air",
+				"bash-language-server",
 				"beautysh",
 				"blue",
 				"clangd",
@@ -61,7 +63,7 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		event = "BufRead",
+		event = "BufWritePre",
 		opts = {
 			notify_on_error = true,
 			formatters = {

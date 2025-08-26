@@ -1,32 +1,34 @@
 return {
 	"mikesmithgh/kitty-scrollback.nvim",
 	lazy = true,
-	cmd = {
-		"KittyScrollbackGenerateKittens",
-		"KittyScrollbackCheckHealth",
-		"KittyScrollbackGenerateCommandLineEditing",
-	},
+	-- cmd = {
+	-- 	"KittyScrollbackGenerateKittens",
+	-- 	"KittyScrollbackCheckHealth",
+	-- 	"KittyScrollbackGenerateCommandLineEditing",
+	-- },
 	event = { "User KittyScrollbackLaunch" },
 	version = "*", -- latest stable version, may have breaking changes if major version changed
 	opts = {
-		{
-			callbacks = {
-				after_paste_window_ready = function()
-					vim.cmd("set nu rnu")
-				end,
+		callbacks = {
+			after_paste_window_ready = function()
+				vim.cmd("set nu rnu")
+			end,
+		},
+		paste_window = {
+			winblend = 0,
+			winopts_override = {
+				relative = "editor",
+				row = 1,
+				col = 0,
+				anchor = "SW",
+				width = 40,
+				height = 10,
+				border = "rounded",
 			},
-			paste_window = {
-				winblend = 0,
-				footer_winopts_overrides = function()
-					return {
-						border = "rounded",
-						title = "",
-					}
-				end,
+			footer_winopts_overrides = {
+				border = "rounded",
+				title = "",
 			},
 		},
 	},
-	config = function(_, opts)
-		require("kitty-scrollback").setup(opts)
-	end,
 }

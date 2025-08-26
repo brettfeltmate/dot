@@ -1,6 +1,5 @@
 return {
 	"chentoast/marks.nvim",
 	event = "BufReadPre",
-	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = {},
 }

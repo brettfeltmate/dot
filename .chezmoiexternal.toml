@@ -1,0 +1,12 @@
+# External repositories managed by chezmoi
+# These repos will be automatically cloned/updated on `chezmoi apply`
+
+[".config/kitty/kitty-scrollback.nvim"]
+    type = "git-repo"
+    url = "https://github.com/mikesmithgh/kitty-scrollback.nvim.git"
+    refreshPeriod = "168h"  # weekly refresh
+    
+[".config/kitty/kitty-terminal-project-launcher"]
+    type = "git-repo" 
+    url = "https://github.com/David-Else/kitty-terminal-project-launcher.git"
+    refreshPeriod = "168h"  # weekly refresh

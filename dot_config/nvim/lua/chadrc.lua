@@ -18,20 +18,15 @@ local M = {
 		},
 	},
 	ui = {
-		cmp = {
-			icons = true,
-			lspkind_text = true,
-			style = "default",
-		},
 		tabufline = {
 			enabled = true,
 			lazyload = true,
-			order = { "treeOffset", "buffers", "tabs" },
+			order = { "buffers", "tabs" },
 		},
 		statusline = {
-			theme = "minimal",
-			separator_style = "round",
-			order = { "mode", "diagnostics", "git" },
+			theme = "vscode_colored",
+			-- separator_style = "round",
+			-- order = { "mode", "diagnostics", "git" },
 		},
 	},
 	nvdash = { load_on_startup = false },

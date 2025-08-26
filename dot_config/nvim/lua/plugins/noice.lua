@@ -3,22 +3,33 @@ return {
 	"folke/noice.nvim",
 	event = "VeryLazy",
 	dependencies = { "MunifTanjim/nui.nvim" },
+	enabled = true,
 	config = function()
 		require("noice").setup({
-			view = "virtualtext",
-			cmdline = {
-				view = "cmdline",
-				format = {
-					input = {
-						view = "cmdline",
+			lsp = {
+				hover = {
+					enabled = true,
+					silent = true,
+				},
+				signature = {
+					enabled = true,
+					auto_open = { enabled = false },
+				},
+				documentation = {
+					view = "hover",
+					opts = {
+						lang = "markdown",
+						replace = true,
+						render = "plain",
+						format = { "{message}" },
+						win_options = { concealcursor = "n", conceallevel = 3 },
 					},
 				},
-			},
-			lsp = {
-				signature = { enabled = false },
-			},
-			routes = {
-				{ view = "notify", filter = { event = "msg_showmode" } },
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true,
+				},
 			},
 			presets = {
 				lsp_doc_border = true,

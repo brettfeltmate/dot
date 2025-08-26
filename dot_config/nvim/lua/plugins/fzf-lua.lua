@@ -1,7 +1,8 @@
 return {
 	"ibhagwan/fzf-lua",
-	event = "VeryLazy",
-	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
+	lazy = true,
+	event = "BufRead",
+	cmd = "FzfLua",
 	opts = function()
 		local opts = {
 			"ivy",

@@ -14,3 +14,11 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.schedule(edit_watch)
 	end,
 })
+
+-- Disable LSP diagnostics for nav.md files
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = "*/nav.md",
+	callback = function()
+		vim.diagnostic.enable(false, { bufnr = 0 })
+	end,
+})

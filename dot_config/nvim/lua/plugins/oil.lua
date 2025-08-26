@@ -1,6 +1,7 @@
 return {
 	"stevearc/oil.nvim",
-	event = "VeryLazy",
+	lazy = true,
+	cmd = { "Oil" },
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = function()
 		local opts = {

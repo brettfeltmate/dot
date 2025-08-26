@@ -2,6 +2,7 @@ return {
 	"Eutrius/Otree.nvim",
 	lazy = true,
 	cmd = "Otree",
+	enabled = false,
 	dependencies = { "stevearc/oil.nvim" },
 	opts = {
 		win_size = math.floor(vim.o.columns * 0.20),
