@@ -16,8 +16,9 @@ end
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 map({ "n" }, "\\a", C("Copilot suggestion toggle_auto_trigger"), "Toggle 'auto-suggestions'")
-map({ "n" }, "\\v", C(":ASToggle<CR>"), "Toggle Auto-Save")
+map({ "n" }, "\\v", C(":ASToggle<CR>"), "Toggle 'Auto-Save'")
 map({ "n" }, "gdq", C("Debugprint qflist"), "To qflist")
+map({ "n" }, "\\m", C("lua require('base46').toggle_theme()"), "Toggle 'dark/light'")
 
 -- [[ Editing ]] --
 

@@ -9,5 +9,6 @@ require("keymaps")
 
 require("autocmds")
 
-require("polish_highlights")
+-- require("polish_highlights")
+require("base46").load_all_highlights()
 -- vim: ts=2 sts=2 sw=2 et

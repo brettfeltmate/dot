@@ -6,6 +6,7 @@ return {
 	enabled = true,
 	config = function()
 		require("noice").setup({
+			cmdline = { view = "cmdline" },
 			lsp = {
 				hover = {
 					enabled = true,
@@ -20,7 +21,7 @@ return {
 					opts = {
 						lang = "markdown",
 						replace = true,
-						render = "plain",
+						render = "markdown",
 						format = { "{message}" },
 						win_options = { concealcursor = "n", conceallevel = 3 },
 					},

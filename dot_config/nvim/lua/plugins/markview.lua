@@ -13,7 +13,7 @@ return {
 
 		require("markview").setup({
 			preview = {
-				filetypes = { "chat", "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion" },
+				filetypes = { "chat", "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion", "noice" },
 				modes = { "n", "no" },
 				hybrid_modes = { "v", "i", "c" },
 				icon_provider = "mini",

@@ -1,8 +1,9 @@
 return {
 	"NickvanDyke/opencode.nvim",
 	dependencies = { "folke/snacks.nvim" },
+	enabled = false,
 	---@type opencode.Config
-	opts = {},
+	opts = { terminal = { win = { enter = true, position = "tab" } } },
 	keys = {
 		{
 			"<leader>at",

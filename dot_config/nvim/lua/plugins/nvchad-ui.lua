@@ -1,7 +1,7 @@
 return {
+	{ "nvim-lua/plenary.nvim" },
 	{
 		"nvchad/ui",
-		lazy = false,
 		config = function()
 			require("nvchad")
 		end,

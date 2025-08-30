@@ -1,6 +1,6 @@
 return {
 	"folke/which-key.nvim",
-	event = "UIEnter",
+	event = "VeryLazy",
 	opts = function()
 		local wk = require("which-key")
 		wk.add({

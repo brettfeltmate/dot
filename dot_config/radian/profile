@@ -16,7 +16,7 @@ options(radian.auto_indentation = TRUE)
 options(radian.tab_size = 2)
 
 options(radian.complete_while_typing = TRUE)
-options(radian.completion_prefix_length = 2)
+options(radian.completion_prefix_length = 3)
 options(radian.completion_timeout = 0.05)
 options(radian.completion_adding_spaces_around_equals = TRUE)
 

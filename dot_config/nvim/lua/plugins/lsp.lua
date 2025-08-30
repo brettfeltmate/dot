@@ -55,6 +55,57 @@ return {
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+			-- Function to preprocess R documentation HTML content
+			-- local function preprocess_r_documentation(content)
+			-- 	if type(content) == "table" then
+			-- 		for i, line in ipairs(content) do
+			-- 			-- Remove HTML span tags but keep content
+			-- 			line = line:gsub('<span class="[^"]*">([^<]*)</span>', '`%1`')
+			-- 			-- Convert HTML tables to markdown
+			-- 			line = line:gsub('<table[^>]*>', '')
+			-- 			line = line:gsub('</table>', '')
+			-- 			line = line:gsub('<tr[^>]*>', '')
+			-- 			line = line:gsub('</tr>', '')
+			-- 			line = line:gsub('<td[^>]*>', '| ')
+			-- 			line = line:gsub('</td>', ' ')
+			-- 			-- Clean up other common HTML tags
+			-- 			line = line:gsub('<[^>]*>', '')
+			-- 			content[i] = line
+			-- 		end
+			-- 	end
+			-- 	return content
+			-- end
+
+			-- Custom hover handler with R documentation preprocessing
+			-- vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
+			-- 	config = config or {}
+			-- 	config.border = config.border or "rounded"
+			-- 	config.max_width = config.max_width or 120
+			-- 	config.max_height = config.max_height or 30
+			--
+			-- 	if not (result and result.contents) then
+			-- 		return
+			-- 	end
+			--
+			-- 	-- Check if this is from R language server and preprocess if needed
+			-- 	local client = vim.lsp.get_client_by_id(ctx.client_id)
+			-- 	if client and client.name == "r_language_server" then
+			-- 		local contents = result.contents
+			-- 		if contents and contents.value then
+			-- 			local lines = vim.split(contents.value, '\n')
+			-- 			lines = preprocess_r_documentation(lines)
+			-- 			contents.value = table.concat(lines, '\n')
+			-- 		end
+			-- 	end
+			--
+			-- 	return vim.lsp.handlers.hover(_, result, ctx, config)
+			-- end
+			--
+			-- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+			-- 	border = "rounded",
+			-- 	close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
+			-- })
+
 			for server, config in pairs(servers or {}) do
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				require("lspconfig")[server].setup(config)

@@ -1,9 +1,0 @@
-[[cable_channel]]
-name = "dots"
-source_command = 'fd -t f . $HOME/.local/share/chezmoi/dot_config'
-preview_command = 'bat -n --color=always {0}'
-
-[[cable_channel]]
-name = "brew"
-source_command = 'brew list --versions'
-preview_command = 'brew info {0}'

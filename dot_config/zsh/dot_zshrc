@@ -21,6 +21,9 @@ else
     compinit
 fi
 
+# Add neovim binary to path
+export PATH="$HOME/neovim/bin:$PATH"
+
 launchctl setenv PATH $PATH
 . "$HOME/.cargo/env"
 # Source ancillary files

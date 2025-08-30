@@ -2,15 +2,35 @@
     "profiles": [
         {
             "complex_modifications": {
+                "parameters": { "basic.to_if_held_down_threshold_milliseconds": 100 },
                 "rules": [
                     {
-                        "description": "Map Left Command plus h/j/k/l to Arrows",
+                        "description": "Map Tab to Hyper when held",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "tab",
+                                    "modifiers": { "optional": ["any"] }
+                                },
+                                "to_if_alone": [{ "key_code": "tab" }],
+                                "to_if_held_down": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_command", "left_control", "left_option"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Map Right Command plus h/j/k/l to Arrows",
                         "manipulators": [
                             {
                                 "from": {
                                     "key_code": "h",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["right_command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -21,7 +41,7 @@
                                 "from": {
                                     "key_code": "j",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["right_command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -32,7 +52,7 @@
                                 "from": {
                                     "key_code": "k",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["right_command"],
                                         "optional": ["any"]
                                     }
                                 },
@@ -43,7 +63,7 @@
                                 "from": {
                                     "key_code": "l",
                                     "modifiers": {
-                                        "mandatory": ["left_command"],
+                                        "mandatory": ["right_command"],
                                         "optional": ["any"]
                                     }
                                 },

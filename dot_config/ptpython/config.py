@@ -36,7 +36,7 @@ def configure(repl):
     repl.completion_menu_scroll_offset = 0
 
     # Show line numbers (when the input contains multiple lines.)
-    repl.show_line_numbers = False
+    repl.show_line_numbers = True
 
     # Show status bar.
     repl.show_status_bar = True
@@ -45,7 +45,7 @@ def configure(repl):
     repl.show_sidebar_help = True
 
     # Swap light/dark colors on or off
-    repl.swap_light_and_dark = False
+    repl.swap_light_and_dark = True
 
     # Highlight matching parentheses.
     repl.highlight_matching_parenthesis = True
@@ -61,11 +61,11 @@ def configure(repl):
     repl.complete_while_typing = True
 
     # Fuzzy and dictionary completion.
-    repl.enable_fuzzy_completion = False
+    repl.enable_fuzzy_completion = True
     repl.enable_dictionary_completion = False
 
     # Vi mode.
-    repl.vi_mode = False
+    repl.vi_mode = True
 
     # Enable the modal cursor (when using Vi mode). Other options are 'Block', 'Underline',  'Beam',  'Blink under', 'Blink block', and 'Blink beam'
     repl.cursor_shape_config = 'Modal (vi)'
@@ -89,7 +89,7 @@ def configure(repl):
 
     # Enable auto suggestions. (Pressing right arrow will complete the input,
     # based on the history.)
-    repl.enable_auto_suggest = False
+    repl.enable_auto_suggest = True
 
     # Enable open-in-editor. Pressing C-x C-e in emacs mode or 'v' in
     # Vi navigation mode will open the input in the current editor.
@@ -113,18 +113,18 @@ def configure(repl):
     # https://pygments.org/demo/
     # repl.use_code_colorscheme("default")
     # A colorscheme that looks good on dark backgrounds is 'native':
-    repl.use_code_colorscheme('native')
+    repl.use_code_colorscheme('coffee')
 
     # Set color depth (keep in mind that not all terminals support true color).
 
     # repl.color_depth = "DEPTH_1_BIT"  # Monochrome.
     # repl.color_depth = "DEPTH_4_BIT"  # ANSI colors only.
     repl.color_depth = 'DEPTH_8_BIT'  # The default, 256 colors.
-    # repl.color_depth = "DEPTH_24_BIT"  # True color.
+    # repl.color_depth = 'DEPTH_24_BIT'  # True color.
 
     # Min/max brightness
-    repl.min_brightness = 0.0  # Increase for dark terminal backgrounds.
-    repl.max_brightness = 1.0  # Decrease for light terminal backgrounds.
+    repl.min_brightness = 0.35  # Increase for dark terminal backgrounds.
+    repl.max_brightness = 0.65  # Decrease for light terminal backgrounds.
 
     # Syntax.
     repl.enable_syntax_highlighting = True
@@ -202,4 +202,71 @@ _custom_ui_colorscheme = {
     # Make the status toolbar red.
     'status-toolbar': 'bg:#ff0000 #000000',
 }
-
+# _a_bretter_ui_style = {
+#     'control-character': 'ansiblue',
+#     # Classic prompt.
+#     'prompt': 'bold',
+#     'prompt.dots': 'noinherit',
+#     # (IPython <5.0) Prompt: "In [1]:"
+#     'in': 'bold #008800',
+#     'in.number': '',
+#     # Return value.
+#     'out': '#ff0000',
+#     'out.number': '#ff0000',
+#     # Completions.
+#     'completion.builtin': '',
+#     'completion.param': '#006666 italic',
+#     'completion.keyword': 'fg:#008800',
+#     'completion.keyword fuzzymatch.inside': 'fg:#008800',
+#     'completion.keyword fuzzymatch.outside': 'fg:#44aa44',
+#     # Separator between windows. (Used above docstring.)
+#     'separator': '#bbbbbb',
+#     # System toolbar
+#     'system-toolbar': '#22aaaa noinherit',
+#     # "arg" toolbar.
+#     'arg-toolbar': '#22aaaa noinherit',
+#     'arg-toolbar.text': 'noinherit',
+#     # Signature toolbar.
+#     'signature-toolbar': 'bg:#44bbbb #000000',
+#     'signature-toolbar current-name': 'bg:#008888 #ffffff bold',
+#     'signature-toolbar operator': '#000000 bold',
+#     'docstring': '#888888',
+#     # Validation toolbar.
+#     'validation-toolbar': 'bg:#440000 #aaaaaa',
+#     # Status toolbar.
+#     'status-toolbar': 'bg:#222222 #aaaaaa',
+#     'status-toolbar.title': 'underline',
+#     'status-toolbar.inputmode': 'bg:#222222 #ffffaa',
+#     'status-toolbar.key': 'bg:#000000 #888888',
+#     'status-toolbar key': 'bg:#000000 #888888',
+#     'status-toolbar.pastemodeon': 'bg:#aa4444 #ffffff',
+#     'status-toolbar.pythonversion': 'bg:#222222 #ffffff bold',
+#     'status-toolbar paste-mode-on': 'bg:#aa4444 #ffffff',
+#     'record': 'bg:#884444 white',
+#     'status-toolbar more': '#ffff44',
+#     'status-toolbar.input-mode': '#ffff44',
+#     # The options sidebar.
+#     'sidebar': 'bg:#bbbbbb #000000',
+#     'sidebar.title': 'bg:#668866 #ffffff',
+#     'sidebar.label': 'bg:#bbbbbb #222222',
+#     'sidebar.status': 'bg:#dddddd #000011',
+#     'sidebar.label selected': 'bg:#222222 #eeeeee',
+#     'sidebar.status selected': 'bg:#444444 #ffffff bold',
+#     'sidebar.separator': 'underline',
+#     'sidebar.key': 'bg:#bbddbb #000000 bold',
+#     'sidebar.key.description': 'bg:#bbbbbb #000000',
+#     'sidebar.helptext': 'bg:#fdf6e3 #000011',
+#     #        # Styling for the history layout.
+#     #        history.line:                          '',
+#     #        history.line.selected:                 'bg:#008800  #000000',
+#     #        history.line.current:                  'bg:#ffffff #000000',
+#     #        history.line.selected.current:         'bg:#88ff88 #000000',
+#     #        history.existinginput:                  '#888888',
+#     # Help Window.
+#     'window-border': '#aaaaaa',
+#     'window-title': 'bg:#bbbbbb #000000',
+#     # Meta-enter message.
+#     'accept-message': 'bg:#ffff88 #444444',
+#     # Exit confirmation.
+#     'exit-confirmation': 'bg:#884444 #ffffff',
+# }

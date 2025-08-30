@@ -1,7 +1,7 @@
 local M = {
 	base46 = {
 		theme = "amber",
-		theme_toggle = { "amber", "everforest_light" },
+		theme_toggle = { "amber", "blossom_light" },
 		transparency = false,
 		integrations = {
 			"avante",
@@ -21,7 +21,9 @@ local M = {
 		tabufline = {
 			enabled = true,
 			lazyload = true,
-			order = { "buffers", "tabs" },
+			order = { "treeOffset", "buffers", "tabs", "btns" },
+			modules = nil,
+			bufwidth = 21,
 		},
 		statusline = {
 			theme = "vscode_colored",
@@ -32,7 +34,7 @@ local M = {
 	nvdash = { load_on_startup = false },
 	lsp = { signature = false },
 	mason = { cmd = true, pkgs = {} },
-	colorify = { enabled = true, mode = "virtual" },
+	colorify = { enabled = false, mode = "virtual" },
 }
 
 return M
