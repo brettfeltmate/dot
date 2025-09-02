@@ -22,3 +22,9 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 		vim.diagnostic.enable(false, { bufnr = 0 })
 	end,
 })
+
+vim.api.nvim_create_autocmd("UIEnter", {
+	callback = function()
+		require("base46").load_all_highlights()
+	end,
+})

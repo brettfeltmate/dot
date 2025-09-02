@@ -1,17 +1,9 @@
 return {
 	"saghen/blink.cmp",
-	event = "BufReadPre",
+	event = "InsertEnter",
 	version = "v0.*",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
-	dependencies = {
-		-- { "saghen/blink.compat" },
-		-- {
-		-- 	"folke/lazydev.nvim",
-		-- 	ft = "lua",
-		-- 	opts = { library = { path = "luvit-meta/library", words = { "vim%.uv" } } },
-		-- },
-		-- { "bilal2453/luvit-meta" },
-	},
+	dependencies = {},
 	opts = function(_, opts)
 		opts.completion = {
 			menu = {
@@ -43,28 +35,20 @@ return {
 					enabled = true,
 					module = "blink.cmp.sources.lsp",
 					fallbacks = { "buffer" },
-					score_offset = 90,
+					score_offset = 30,
 				},
-				-- lazydev = {
-				-- 	name = "LazyDev",
-				-- 	module = "lazydev.integrations.blink",
-				-- 	score_offset = 80,
-				-- 	enabled = true,
-				-- 	max_items = 3,
-				-- 	min_keyword_length = 4,
-				-- },
 				buffer = {
 					name = "Buffer",
 					enabled = true,
 					max_items = 3,
 					module = "blink.cmp.sources.buffer",
 					min_keyword_length = 2,
-					score_offset = 60,
+					score_offset = 20,
 				},
 				path = {
 					name = "Path",
 					module = "blink.cmp.sources.path",
-					score_offset = 50,
+					score_offset = 10,
 					fallbacks = { "buffer" },
 					opts = {
 						trailing_slash = false,

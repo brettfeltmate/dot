@@ -11,7 +11,7 @@ vim.opt.showmode = false
 vim.opt.laststatus = 3
 vim.opt.pumheight = 6
 vim.opt.splitright = true
-vim.opt.splitbelow = true
+vim.opt.splitbelow = false
 vim.opt.scrolloff = 20
 vim.opt.virtualedit = "block"
 vim.opt.hlsearch = true
@@ -26,12 +26,12 @@ vim.opt.signcolumn = "auto:2"
 vim.opt.guicursor = ""
 vim.opt.shortmess:append("WIcC")
 vim.opt.wrap = false
--- if vim.version().minor >= 12 then
--- 	require("vim._extui").enable({
--- 		enable = true,
--- 		msg = { target = "cmd" },
--- 	})
--- end
+if vim.version().minor >= 12 then
+	require("vim._extui").enable({
+		enable = true,
+		msg = { target = "cmd" },
+	})
+end
 
 -- Behavior
 vim.opt.backup = false

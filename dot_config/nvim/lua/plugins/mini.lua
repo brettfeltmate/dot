@@ -32,6 +32,13 @@ return {
 			},
 		})
 
+		require("mini.diff").setup({
+			view = {
+				style = "sign",
+				signs = { add = "+", change = "~", delete = "-" },
+			},
+		})
+
 		MiniIcons.mock_nvim_web_devicons()
 
 		require("mini.move").setup({
