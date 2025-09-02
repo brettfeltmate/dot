@@ -7,6 +7,8 @@ key-mapping.preset = 'qwerty'
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
+# Disable hide app
+automatically-unhide-macos-hidden-apps = true
 # Keep cursor in focused monitor
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
@@ -76,6 +78,14 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
+# alt-leftSquareBracket = [
+#     '/bin/bash', '-c', 'list-workspaces --monitor focused --empty no | aerospace workspace prev'
+# ]
+# alt-rightSquareBracket = [
+#     '/bin/bash', '-c', 'list-workspaces --monitor focused --empty no | aerospace workspace next'
+# ]
+alt-leftSquareBracket = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev'
+alt-rightSquareBracket = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around next'
 
 # Pass to
 alt-shift-0 = 'move-node-to-workspace 0'
