@@ -2,19 +2,19 @@
 vim.cmd("runtime! ftplugin/r.lua")
 vim.cmd("runtime! ftplugin/markdown.lua")
 
+vim.cmd("setlocal nowrap")
+
 vim.keymap.set("n", "<CR>", "<Plug>SlimeSendCell", { buffer = 0, noremap = true, desc = "Send cell" })
 vim.keymap.set("n", "+", function()
-    local pos = vim.api.nvim_win_get_cursor(0)
-    local block = {
-        "```{r}",
-        "",
-        "```"
-    }
-    vim.api.nvim_buf_set_lines(0, pos[1] - 1, pos[1] - 1, false, block)
-    vim.api.nvim_win_set_cursor(0, { pos[1] + 1, 0 })
-end,
-    { buffer = 0, noremap = true, desc = "Insert R code block" }
-)
+	local pos = vim.api.nvim_win_get_cursor(0)
+	local block = {
+		"```{r}",
+		"",
+		"```",
+	}
+	vim.api.nvim_buf_set_lines(0, pos[1] - 1, pos[1] - 1, false, block)
+	vim.api.nvim_win_set_cursor(0, { pos[1] + 1, 0 })
+end, { buffer = 0, noremap = true, desc = "Insert R code block" })
 
 -- Jump to previous/next cell block
 vim.keymap.set("n", "[[", function()

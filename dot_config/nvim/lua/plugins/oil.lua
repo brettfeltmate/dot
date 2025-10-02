@@ -24,12 +24,13 @@ return {
 			constrain_cursor = "name",
 			watch_for_changes = true,
 			float = {
-				max_width = 0.8,
-				max_height = 0.8,
+				padding = 2,
+				max_width = 0.75,
+				max_height = 0.75,
 			},
-			-- preview_win = {
-			-- 	preview_method = "load",
-			-- },
+			preview_win = {
+				preview_method = "load",
+			},
 		}
 		return opts
 	end,

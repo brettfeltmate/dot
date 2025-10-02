@@ -5,11 +5,11 @@ return {
 	---@type Flash.Config
 	---@diagnostic disable: missing-fields
 	opts = {
-		search = {
-			mode = function(str)
-				return "\\<" .. str
-			end,
-		},
+		-- search = {
+		-- 	mode = function(str)
+		-- 		return "\\<" .. str
+		-- 	end,
+		-- },
 		label = {
 			uppercase = false,
 			current = false,
@@ -20,7 +20,7 @@ return {
 		modes = {
 			search = { enabled = false },
 			char = {
-				jump_labels = true,
+				jump_labels = false,
 				char_actions = function(motion)
 					return {
 						-- clever-f style

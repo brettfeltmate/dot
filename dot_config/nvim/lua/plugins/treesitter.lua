@@ -1,3 +1,22 @@
+vim.api.nvim_create_autocmd("User", {
+	pattern = "TSUpdate",
+	callback = function()
+		require("nvim-treesitter.parsers").kitty = {
+			install_info = {
+				url = "https://github.com/OXY2DEV/tree-sitter-kitty",
+			},
+		}
+		require("nvim-treesitter.parsers").stan = {
+			install_info = {
+				url = "https://github.com/kingcol13/tree-sitter-stan.git",
+				files = { "src/parser.c" },
+				branch = "dev",
+				generate_requires_npm = false,
+				requires_generate_from_grammar = false,
+			},
+		}
+	end,
+})
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -38,7 +57,7 @@ return {
 			vim.treesitter.language.register("markdown", "rmd")
 			vim.treesitter.language.register("r", "R")
 			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			---@diagnostic disable-next-line: inject-field
+			-- ---@diagnostic disable-next-line: inject-field
 			parser_config.stan = {
 				-- NOTE: This will fail when installing treesitter. Reload nvim and run :TSInstall stan
 				install_info = {
@@ -47,6 +66,13 @@ return {
 					branch = "dev",
 					generate_requires_npm = false,
 					requires_generate_from_grammar = false,
+				},
+			}
+			parser_config.kitty = {
+				install_info = {
+					url = "https://github.com/OXY2DEV/tree-sitter-kitty",
+					files = { "src/parser.c" },
+					branch = "main",
 				},
 			}
 		end,

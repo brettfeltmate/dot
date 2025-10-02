@@ -6,19 +6,13 @@ return {
 		wk.add({
 			{ "<leader>c", icon = "  " },
 			{ "<leader>d", icon = "󰗩  " },
-			{ "<leader>e", icon = "  " },
-			{ "<leader>s", icon = "󰥨  " },
+			{ "<leader>f", icon = "󰍉  " },
 			{ "<leader>g", icon = "󰺯  " },
-			{ "<leader>h", icon = "  " },
-			{ "<leader>j", icon = "  " },
 			{ "<leader>m", icon = "󱧌  " },
 			{ "<leader>o", icon = "  " },
 			{ "<leader>w", icon = "  " },
-			{ "<leader>r", icon = "󰑕  " },
 			{ "<leader>q", icon = "󰅗  " },
 			{ "<leader>x", icon = "󰜎  " },
-			{ "<leader>y", icon = "  " },
-			{ "<leader>z", icon = "  " },
 			{ "gd", group = "Debug", icon = "  " },
 		})
 		local o = {

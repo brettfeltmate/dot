@@ -163,3 +163,5 @@ export LESS='-R'  # interpret color characters
 export PATH="$HOME/go/bin:$PATH"
 export DISABLE_AUTO_TITLE="true"
 export LESSOPEN="|lesspipe.sh %s"
+export GNUPGHOME="$HOME/.gnupg"
+export GPG_TTY=$(tty)

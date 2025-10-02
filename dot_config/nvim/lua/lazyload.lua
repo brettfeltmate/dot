@@ -12,9 +12,11 @@ vim.g.base46_cache = vim.fn.stdpath("data") .. "/base46_cache/"
 require("lazy").setup({
 	stats = { real_cputime = true },
 	profiling = { loader = true, require = true },
-	spec = { { import = "plugins" } },
+	spec = {
+		{ import = "plugins" },
+	},
 	ui = {
-		size = { width = 0.95, height = 0.90 },
+		size = { width = 0.8, height = 0.8 },
 		border = "rounded",
 	},
 })
@@ -22,4 +24,6 @@ require("lazy").setup({
 for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
 	dofile(vim.g.base46_cache .. v)
 end
+
+vim.lsp.inline_completion.enable()
 -- vim: ts=2 sts=2 sw=2 et

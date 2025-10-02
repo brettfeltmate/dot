@@ -31,6 +31,7 @@ alias addmoi="chezmoi add"
 alias raddmoi="chezmoi re-add"
 alias applymoi="chezmoi apply"
 alias cdmoi="chezmoi cd"
+alias moi="chezmoi cd"
 alias delmoi="chezmoi destroy"
 
 alias pt="papis-tui -c ~/.config/papis/papistui.yaml"
@@ -39,3 +40,4 @@ alias scihubdown="~/Documents/cloned_repos/scihub-cli-downloader/download_from_s
 
 alias bat="nvimpager -c"
 alias mactop="sudo mactop"
+alias wthr="rustormy"

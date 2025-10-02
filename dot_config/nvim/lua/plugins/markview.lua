@@ -22,7 +22,7 @@ return {
 				horizontal_rules = presets.horizontal_rules.double,
 				tables = presets.tables.rounded,
 				code_blocks = {
-					min_width = 70,
+					min_width = 90,
 					pad_amount = 0,
 					label_direction = "left",
 				},

@@ -296,6 +296,10 @@ run = ['move-node-to-workspace 6']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 6']
 
+[[on-window-detected]]
+if.window-title-regex-substring = 'Quartz'
+run = ['layout floating']
+
 ### Ignore otherwise
 [[on-window-detected]]
 run = ['layout floating']

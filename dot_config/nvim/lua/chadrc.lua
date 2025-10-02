@@ -34,7 +34,7 @@ local M = {
 	nvdash = { load_on_startup = false },
 	lsp = { signature = false },
 	mason = { cmd = true, pkgs = {} },
-	colorify = { enabled = false, mode = "virtual" },
+	colorify = { enabled = true, mode = "virtual" },
 }
 
 return M

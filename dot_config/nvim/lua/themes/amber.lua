@@ -6,9 +6,9 @@ local mix = require("base46.colors").mix
 local M = {}
 local base16 = {
 	base00 = "#100e10",
-	base01 = "#151213",
-	base02 = "#181515",
-	base03 = "#1b1515",
+	base01 = "#0f0900",
+	base02 = "#100f12",
+	base03 = "#161111",
 	base04 = "#5f514a",
 	base05 = "#b6aaa4",
 	base06 = "#8b6b6f",
@@ -71,7 +71,8 @@ local polish_hl = {
 		PmenuSbar = { bg = base30.pmenu_bg },
 		PmenuSel = { bg = shade(base16.base06, -30), fg = shade(base30.orange, 20), bold = true },
 		PmenuThumb = { bg = base30.grey },
-		FloatBorder = { fg = base30.red, bg = base30.black2 },
+		-- FloatBorder = { fg = base30.red, bg = base30.black2 },
+		FloatBorder = { fg = base16.base04, bg = base30.black2 },
 		FloatTitle = { fg = base30.red, bg = base30.black2 },
 		NormalFloat = { bg = base30.black2 },
 		Title = { fg = base16.base0D, sp = "none" },
@@ -79,11 +80,11 @@ local polish_hl = {
 
 		QuickFixLine = { bg = base16.base01, sp = "none" },
 		Question = { fg = base16.base0D },
-		Search = { fg = base16.base01, bg = base16.base08 },
+		Search = { fg = base16.base00, bg = base16.base06 },
 		Substitute = { fg = base16.base01, bg = base16.base07, bold = true, sp = "none" },
 		IncSearch = {
 			bg = base30.orange,
-			fg = shade(base16.base07, -50),
+			fg = base16.base00,
 			bold = true,
 			italic = true,
 		},
@@ -119,7 +120,7 @@ local polish_hl = {
 		LineNr = { fg = base16.base04 },
 		FoldColumn = { bg = "none" },
 		Folded = { fg = base30.light_grey, bg = base30.black2 },
-		CurSearch = { fg = base30.black2, bg = base30.sun, bold = true },
+		CurSearch = { fg = base16.base00, bg = base30.sun, bold = true },
 
 		Error = { fg = base30.red, bg = base30.statusline_bg },
 		ErrorMsg = { fg = base30.red, bg = base30.statusline_bg },
@@ -406,7 +407,8 @@ local polish_hl = {
 		WhichKeyDesc = { fg = base16.base0B },
 		WhichKeyGroup = { fg = base16.base07 },
 		WhichKeyValue = { fg = base16.base0A },
-		["@WhichKeyBorder"] = { fg = shade(base16.base09, -20), bg = base30.one_bg },
+		-- ["@WhichKeyBorder"] = { fg = shade(base16.base09, -20), bg = base30.one_bg },
+		["@WhichKeyBorder"] = { link = "FloatBorder" },
 		["@WhichKeyTitle"] = { fg = base16.base07 },
 	},
 	syntax = {
@@ -449,8 +451,6 @@ M = require("base46").override_theme(M, "amber")
 
 local hl = vim.api.nvim_set_hl
 
--- hl(0, "AvanteSidebarNormal", { bg = base30.one_bg })
--- hl(0, "AvantePromptInputBorder", { fg = base16.base07, bg = base30.black2 })
 hl(0, "BlinkCmpMenu", { bg = base30.black2 })
 hl(0, "BlinkCmpMenuBorder", { bg = base30.black2, fg = base16.base07 })
 hl(0, "BlinkCmpDoc", { bg = base30.black2 })
@@ -460,24 +460,14 @@ hl(0, "BlinkCmpSignatureHelp", { bg = base30.black2 })
 hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = base16.base07 })
 hl(0, "BlinkCmpSignatureHelpActiveParameter", { fg = base16.base07, bold = true })
 hl(0, "FlashMatch", { fg = shade(base16.base07, -10) })
-hl(0, "FzfLuaFzfMatch", { bg = base16.base04, fg = shade(base16.base09, 20), bold = true, italic = true })
-hl(0, "FzfLuaFzfMarker", { bg = base16.base04, fg = shade(base16.base09, 20), bold = true, italic = true })
-hl(0, "FzfLuaSearch", { bg = base16.base04, fg = shade(base16.base09, 20), bold = true, italic = true })
-hl(0, "FzfLuaBorder", { link = "FloatBorder" })
--- hl(0, "LeapBackdrop", { bg = shade(base16.base03, -5), fg = base16.base04 })
--- hl(0, "LeapLabelDimmed", { bg = shade(base16.base03, -5), fg = base16.base09 })
 hl(0, "MarkviewCheckboxUnchecked", { fg = base16.base07 })
 hl(0, "MarkviewCode", { bg = base30.black2 })
--- hl(0, "MultiCursorCursor", { link = "Cursor" })
--- hl(0, "MultiCursorVisual", { link = "Visual" })
 hl(0, "SnacksIndent", { fg = base16.base04 })
 hl(0, "SnacksIndentScope", { fg = base30.line })
 hl(0, "SnacksDashboardKey", { fg = base16.base04, bold = true })
 hl(0, "SnacksDashboardHeader", { fg = shade(base16.base04, 10) })
 hl(0, "SnacksDashboardDir", { fg = shade(base16.base04, -10) })
--- hl(0, "TreesitterContext", { bg = base30.one_bg })
--- hl(0, "TreesitterContextSeparator", { fg = shade(base16.base03, 20), bg = base30.one_bg })
-hl(0, "WhichKeyBorder", { fg = shade(base16.base09, -20), bg = base30.one_bg })
 hl(0, "WhichKeyTitle", { fg = base16.base07 })
+hl(0, "FylerNormal", { link = "NormalFloat" })
 
 return M

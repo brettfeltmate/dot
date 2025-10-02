@@ -21,7 +21,9 @@ if (interactive()) {
     require(httpgd, quietly = TRUE)
 
     if (require(plotcli, quietly = TRUE)) {
-      plotcli_options(plot_width = 40, plot_height = 12, braille = FALSE)
+      plotcli_options(plot_width = 40, plot_height = 10, braille = FALSE)
+      h <- plotcli::pclih
+      d <- plotcli::pclid
     }
 
     if (require("colorout", quietly = TRUE)) {

@@ -2,8 +2,10 @@ vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
+vim.o.winborder = "single"
+
 -- UI
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
@@ -34,6 +36,7 @@ if vim.version().minor >= 12 then
 end
 
 -- Behavior
+vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 vim.opt.undofile = true
@@ -56,5 +59,5 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldexpr = "v:lua.require('utils').markerOrTreeFold()"
+
