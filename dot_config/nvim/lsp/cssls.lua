@@ -1,0 +1,21 @@
+---@brief
+---
+--- https://github.com/microsoft/vscode-css-languageservice
+---
+--- CSS language server.
+---
+--- `css-languageserver` can be installed via `npm`:
+--- ```sh
+--- npm i -g vscode-langservers-extracted
+--- ```
+
+---@type vim.lsp.Config
+return {
+    cmd = { 'vscode-css-language-server', '--stdio' },
+    filetypes = { 'css', 'scss', 'less' },
+    root_markers = {
+        'package.json',
+        '.git',
+    },
+    single_file_support = true,
+}

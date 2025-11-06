@@ -40,6 +40,7 @@ test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2
 eval "$(atuin init zsh --disable-up-arrow)"
 eval "$(pyenv init -)"
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
@@ -54,6 +55,8 @@ fi
 
 eval "$(starship init zsh)"
 
+# # Keep prompt at bottom of terminal; works but kinda janky
+#
 # autoload -Uz add-zsh-hook
 #
 # zle-line-init() {

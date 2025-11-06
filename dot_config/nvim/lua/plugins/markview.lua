@@ -2,6 +2,7 @@
 return {
 	"OXY2DEV/markview.nvim",
 	ft = { "markdown", "rmd", "quarto", "copilot-*", "avante" },
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	dependencies = {
 		"nvim-treesitter/nvim-treesitter",
 		"echasnovski/mini.icons",

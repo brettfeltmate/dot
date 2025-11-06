@@ -12,8 +12,15 @@ local function append_checkbox()
 	end
 end
 
-vim.keymap.set({ "n", "i" }, "<C-c>a", append_checkbox, { desc = "Add" })
-vim.keymap.set({ "n", "x" }, "<C-c>c", ":Checkbox toggle<CR>", { desc = "In-progress" })
-vim.keymap.set({ "n", "x" }, "<C-c>i", ":Checkbox interactive<CR>", { desc = "Manual" })
-vim.keymap.set({ "n", "x" }, "<C-c>y", ":Checkbox change 0 6<CR>", { desc = "Yay" })
-vim.keymap.set({ "n", "x" }, "<C-c>n", ":Checkbox change 1 6<CR>", { desc = "Nay" })
+local function map(mode, lhs, rhs, opts)
+	vim.keymap.set(mode, lhs, rhs, opts or {})
+end
+-- Slime bindings
+map("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
+map("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
+
+map({ "n", "i" }, "<C-c>a", append_checkbox, { desc = "Add" })
+map({ "n", "x" }, "<C-c>c", ":Checkbox toggle<CR>", { desc = "In-progress" })
+map({ "n", "x" }, "<C-c>i", ":Checkbox interactive<CR>", { desc = "Manual" })
+map({ "n", "x" }, "<C-c>y", ":Checkbox change 0 6<CR>", { desc = "Yay" })
+map({ "n", "x" }, "<C-c>n", ":Checkbox change 1 6<CR>", { desc = "Nay" })

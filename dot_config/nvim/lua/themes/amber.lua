@@ -2,12 +2,27 @@
 local shade = require("base46.colors").change_hex_lightness
 ---@type fun(color1: string, color2: string, weight: number): string
 local mix = require("base46.colors").mix
-
+-- base00 - Default Background
+-- base01 - Lighter Background (Used for status bars, line number and folding marks)
+-- base02 - Selection Background
+-- base03 - Comments, Invisibles, Line Highlighting
+-- base04 - Dark Foreground (Used for status bars)
+-- base05 - Default Foreground, Caret, Delimiters, Operators
+-- base06 - Light Foreground (Not often used)
+-- base07 - Light Background (Not often used)
+-- base08 - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+-- base09 - Integers, Boolean, Constants, XML Attributes, Markup Link Url
+-- base0A - Classes, Markup Bold, Search Text Background
+-- base0B - Strings, Inherited Class, Markup Code, Diff Inserted
+-- base0C - Support, Regular Expressions, Escape Characters, Markup Quotes
+-- base0D - Functions, Methods, Attribute IDs, Headings
+-- base0E - Keywords, Storage, Selector, Markup Italic, Diff Changed
+-- base0F - Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
 local M = {}
 local base16 = {
 	base00 = "#100e10",
-	base01 = "#0f0900",
-	base02 = "#100f12",
+	base01 = "#100f12",
+	base02 = "#101015",
 	base03 = "#161111",
 	base04 = "#5f514a",
 	base05 = "#b6aaa4",
@@ -29,30 +44,30 @@ local base30 = {
 	darker_black = base16.base01,
 	black2 = base16.base02,
 	one_bg = base16.base01,
-	one_bg2 = shade(base16.base01, 5),
-	one_bg3 = shade(base16.base01, 8),
-	grey = mix(base16.base02, base16.base03, 20),
-	grey_fg = mix(base16.base02, base16.base09, 5),
-	grey_fg2 = mix(base16.base02, base16.base03, 10),
-	light_grey = mix(base16.base03, base16.base05, 30),
+	one_bg2 = base16.base02,
+	one_bg3 = base16.base03,
+	grey = base16.base02,
+	grey_fg = base16.base05,
+	grey_fg2 = base16.base04,
+	light_grey = mix(base16.base02, base16.base05, 30),
 	red = base16.base0C,
-	baby_pink = shade(base16.base0A, 5),
-	pink = base16.base0A,
-	line = base16.base08,
+	baby_pink = shade(base16.base0A, 15),
+	pink = shade(base16.base0A, 5),
+	line = base16.base0B,
 	green = base16.base07,
-	vibrant_green = "#60b48a",
+	vibrant_green = shade(base16.base07, 10),
 	nord_blue = base16.base09,
-	blue = shade(base16.base09, 5),
-	seablue = shade(base16.base09, 10),
-	yellow = base16.base0B,
-	sun = mix(base16.base08, base16.base0A, 65),
+	blue = mix(base16.base09, base16.base0D, 65),
+	seablue = mix(base16.base09, base16.base0D, 45),
+	yellow = shade(base16.base0E, 10),
+	sun = mix(base16.base0E, base16.base0A, 65),
 	purple = base16.base0F,
-	dark_purple = mix(base16.base0F, base16.base02, 10),
-	teal = mix(base16.base0D, base16.base09, 10),
-	orange = mix(base16.base0B, base16.base0A, 65),
-	cyan = mix(base16.base09, base16.base0D, 10),
+	dark_purple = mix(base16.base0F, base16.base02, 20),
+	teal = mix(base16.base0D, base16.base09, 65),
+	cyan = mix(base16.base09, base16.base0D, 65),
+	orange = mix(base16.base0C, base16.base0E, 40),
 	statusline_bg = base16.base02,
-	lightbg = base16.base02,
+	lightbg = base16.base05,
 	pmenu_bg = base16.base03,
 	folder_bg = base16.base02,
 }

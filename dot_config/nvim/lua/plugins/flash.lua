@@ -2,14 +2,12 @@ return {
 	"folke/flash.nvim",
 	lazy = true,
 	event = "BufRead",
-	---@type Flash.Config
-	---@diagnostic disable: missing-fields
 	opts = {
-		-- search = {
-		-- 	mode = function(str)
-		-- 		return "\\<" .. str
-		-- 	end,
-		-- },
+		search = {
+			mode = function(str)
+				return "\\<" .. str
+			end,
+		},
 		label = {
 			uppercase = false,
 			current = false,

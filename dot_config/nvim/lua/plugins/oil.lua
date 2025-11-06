@@ -27,6 +27,7 @@ return {
 				padding = 2,
 				max_width = 0.75,
 				max_height = 0.75,
+				border = "single",
 			},
 			preview_win = {
 				preview_method = "load",

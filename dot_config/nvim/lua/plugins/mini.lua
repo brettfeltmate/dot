@@ -1,13 +1,21 @@
 return {
 	"echasnovski/mini.nvim",
-	event = "BufReadPre",
+	dependencies = { "simifalaye/minibuffer.nvim" },
+	event = "VeryLazy",
 	config = function()
 		-- Core functionality modules
-		require("mini.ai").setup()        -- Enhanced text objects
-		require("mini.basics").setup()    -- Sensible defaults
-		require("mini.comment").setup()   -- Smart commenting
-		require("mini.pairs").setup()     -- Auto-pairs
-		require("mini.move").setup({      -- Move lines/selections
+		require("mini.ai").setup() -- Enhanced text objects
+		require("mini.basics").setup() -- Sensible defaults
+		require("mini.comment").setup() -- Smart commenting
+		require("mini.extra").setup()
+		require("mini.pick").setup() -- Fuzzy picker
+		local pick_mb = require("minibuffer.integrations.mini-pick")
+		local pick = require("mini.pick")
+		pick.is_picker_active = pick_mb.is_picker_active
+		pick.set_picker_items = pick_mb.set_picker_items
+		pick.start = pick_mb.start
+		require("mini.pairs").setup() -- Auto-pairs
+		require("mini.move").setup({ -- Move lines/selections
 			mappings = {
 				-- Move selection (visual mode)
 				left = "<M-C-h>",
@@ -45,7 +53,7 @@ return {
 			},
 		})
 
-		require("mini.diff").setup({     -- Git diff in sign column
+		require("mini.diff").setup({ -- Git diff in sign column
 			view = {
 				style = "sign",
 				signs = { add = "+", change = "~", delete = "-" },

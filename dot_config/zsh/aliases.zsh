@@ -1,43 +1,29 @@
+# eza
 alias ls="eza --group-directories-first --icons --dereference"
 alias la="ls --all --no-user --git"
 alias ll="la --long --grid"
 alias lt="ls --tree --level 1"
 
+# Quick navbacks
 alias ..="cd '..' "
 alias ...="cd '../..'"
-alias - -="cd -"
 
+# Tools
 alias nv="nvim"
-alias v="nvim"
-alias vn="nvim"
-alias n="nvim"
-alias fzv='nvim $(fzf --multi --preview "bat --color=always --style=numbers --line-range :500 {}")'
-alias td='nv ~/Documents/Personal/Notes/todo.md'
 alias r="radian"
-
-alias icat="kitten icat"
-alias pic="icat --align=center --use-window-size 1,1,2250,2250"
-alias gg="pic ./scratch.png"
-
-alias fc="fancy-cat"
-
-alias dev="pyenv activate dev"
-
-alias xv="xan view -p -R --theme rounded"
-alias xvs="xan view -p -R --theme rounded scratch.csv"
-
-alias editmoi="chezmoi edit"
-alias addmoi="chezmoi add"
-alias raddmoi="chezmoi re-add"
-alias applymoi="chezmoi apply"
-alias cdmoi="chezmoi cd"
+alias cat="bat"
 alias moi="chezmoi cd"
-alias delmoi="chezmoi destroy"
+alias fc="fancy-cat"
+alias bp="bpython"
+alias icat="kitten icat"
+alias gg="icat --use-window-size 1,1,1500,1500 ./scratch.png"
+alias xv="xan view -p -R --theme rounded"
 
-alias pt="papis-tui -c ~/.config/papis/papistui.yaml"
+# qol aliases when switching between archs
+# alias arch86="/usr/bin/arch -x86_64 /usr/bin/env /bin/zsh --login; arch"
+# alias arch64="/usr/bin/arch -arm64 /usr/bin/env /bin/zsh --login; arch"
+# alias rig86="rig switch 4.4-x86_64"  # toggling global R version
+# alias rig64="rig switch 4.4-arm64"
 
-alias scihubdown="~/Documents/cloned_repos/scihub-cli-downloader/download_from_scihub.sh"
-
-alias bat="nvimpager -c"
-alias mactop="sudo mactop"
-alias wthr="rustormy"
+# alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"
+# alias moshmini="brosh CogMotors-Mac-mini.local"

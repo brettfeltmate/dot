@@ -22,12 +22,4 @@ return {
 		}
 		return o
 	end,
-	-- keys = {
-	-- 	{
-	-- 		"<localleader>",
-	-- 		function()
-	-- 			require("which-key").show({ global = false })
-	-- 		end,
-	-- 	},
-	-- },
 }

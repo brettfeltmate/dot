@@ -3,46 +3,39 @@ return {
 	event = "BufRead",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = function()
-		local counter = 0
-
-		local counter_func = function()
-			counter = counter + 1
-			return "[" .. tostring(counter) .. "]"
-		end
-
 		local opts = {
 			keymaps = {
 				normal = {
-					plain_below = "gdp",
-					plain_above = "gdP",
-					variable_below = "gdv",
-					variable_above = "gdV",
+					plain_above = "gdpa",
+					plain_below = "gdpb",
+					surround_plain = "gdps",
+					variable_above = "gdva",
+					variable_below = "gdvb",
+					surround_variable = "gdvs",
 					variable_below_alwaysprompt = "",
 					variable_above_alwaysprompt = "",
-					surround_plain = "gdsp",
-					surround_variable = "gdsv",
 					surround_variable_alwaysprompt = "",
-					textobj_below = "gdo",
-					textobj_above = "gdO",
-					textobj_surround = "gdso",
-					toggle_comment_debug_prints = "",
-					delete_debug_prints = "",
+					textobj_above = "gdoa",
+					textobj_below = "gdob",
+					textobj_surround = "gdos",
+					toggle_comment_debug_prints = "gdC",
+					delete_debug_prints = "gdD",
 				},
 				insert = {
 					plain = "<C-G>p",
 					variable = "<C-G>v",
 				},
 				visual = {
-					variable_below = "gdv",
-					variable_above = "gdV",
+					variable_above = "gdva",
+					variable_below = "gdvb",
 				},
 			},
 			commands = {
-				toggle_comment_debug_prints = "ToggleCommentDebugPrints",
-				delete_debug_prints = "DeleteDebugPrints",
-				reset_debug_prints_counter = "ResetDebugPrintsCounter",
+				toggle_comment_debug_prints = "CommentDebugs",
+				delete_debug_prints = "DeleteDebugs",
+				reset_debug_prints_counter = "ResetDebugs",
 			},
-			display_counter = counter_func,
+			print_tag = "DEBUG",
 		}
 		return opts
 	end,

@@ -2,6 +2,7 @@ return {
 	"mangelozzi/rgflow.nvim",
 	dependencies = { "stevearc/quicker.nvim", "kevinhwang91/nvim-bqf" },
 	lazy = true,
+	-- event = "UIEnter",
 	opts = {
 		-- Set the default rip grep flags and options for when running a search via
 		-- RgFlow. Once changed via the UI, the previous search flags are used for

@@ -1,7 +1,6 @@
 return {
 	"hat0uma/csvview.nvim",
-	---@module "csvview"
-	---@type CsvView.Options
+	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = {
 		parser = { comments = { "#", "//" } },
 		keymaps = {

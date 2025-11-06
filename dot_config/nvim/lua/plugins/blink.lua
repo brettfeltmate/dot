@@ -3,12 +3,12 @@ return {
 	event = "InsertEnter",
 	version = "v0.*",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
-	dependencies = {},
+	dependencies = { "Kaiser-Yang/blink-cmp-dictionary" },
 	opts = function(_, opts)
 		opts.completion = {
 			menu = {
 				auto_show = true,
-				border = "rounded",
+				border = "single",
 				draw = {
 					treesitter = { "lsp" },
 					columns = {
@@ -19,31 +19,30 @@ return {
 			},
 			accept = { auto_brackets = { enabled = true } },
 			ghost_text = { enabled = false },
-			documentation = { auto_show = false, window = { border = "rounded" } },
+			documentation = { auto_show = false, window = { border = "single" } },
 		}
 
 		opts.signature = {
 			enabled = true,
-			window = { border = "rounded" },
+			window = { border = "single" },
 		}
 
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lsp", "buffer", "path" },
+			default = { "lsp", "buffer", "path", "dictionary" },
 			providers = {
 				lsp = {
 					name = "lsp",
-					enabled = true,
 					module = "blink.cmp.sources.lsp",
 					fallbacks = { "buffer" },
+					max_items = 5,
 					score_offset = 30,
 				},
 				buffer = {
 					name = "Buffer",
-					enabled = true,
-					max_items = 3,
 					module = "blink.cmp.sources.buffer",
+					max_items = 5,
 					min_keyword_length = 2,
-					score_offset = 20,
+					score_offset = 25,
 				},
 				path = {
 					name = "Path",
@@ -57,6 +56,22 @@ return {
 							return vim.fn.expand(("#%d:p:h"):format(context.bufnr))
 						end,
 						show_hidden_files_by_default = true,
+					},
+				},
+				dictionary = {
+					module = "blink-cmp-dictionary",
+					name = "Dict",
+					score_offset = 20,
+					enabled = true,
+					max_items = 10,
+					min_keyword_length = 3,
+					opts = {
+						dictionary_directories = { vim.fn.expand("~/.config/dictionaries") },
+						-- Below adds any user defined/added words to the dictionary
+						dictionary_files = {
+							vim.fn.expand("~/.config/nvim/spell/en.utf-8.add"),
+							vim.fn.expand("~/.config/nvim/spell/en.utf-8.add.spl"),
+						},
 					},
 				},
 			},
@@ -82,12 +97,18 @@ return {
 		}
 		opts.keymap = {
 			preset = "none",
-			["<C-h>"] = { "show", "show_documentation", "hide_documentation" },
-			["<C-l>"] = { "accept", "fallback" },
-			["<C-j>"] = { "select_next", "fallback" },
-			["<C-k>"] = { "select_prev", "fallback" },
-			["<C-b>"] = { "scroll_documentation_up", "fallback" },
-			["<C-f>"] = { "scroll_documentation_down", "fallback" },
+			["<C-k>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-y>"] = { "accept", "fallback" },
+			["<C-n>"] = { "select_next", "fallback" },
+			["<C-p>"] = { "select_prev", "fallback" },
+			["<C-u>"] = { "scroll_documentation_up", "fallback" },
+			["<C-d>"] = { "scroll_documentation_down", "fallback" },
+			["<Tab>"] = {
+				function()
+					return vim.lsp.inline_completion.get()
+				end,
+				"fallback",
+			},
 		}
 		return opts
 	end,
