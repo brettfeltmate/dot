@@ -2,7 +2,6 @@ return {
 	"folke/snacks.nvim",
 	dependencies = { "echasnovski/mini.icons" },
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
-	priority = 1000,
 	opts = {
 		scratch = {
 			win = {
