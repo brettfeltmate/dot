@@ -30,10 +30,10 @@ launchctl setenv PATH $PATH
 source <(fzf --zsh)
 source "${ZDOTDIR}/aliases.zsh"
 source "${ZDOTDIR}/functions.zsh"
-# source "${ZDOTDIR}/keys.zsh"
+source "${ZDOTDIR}/keys.zsh"
 # source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
-# source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
-# source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
 # test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
 
 # init CLI tools
@@ -46,7 +46,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh   
 # make forgit a subcommand of git
-PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
+# PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
 
 if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
       "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
