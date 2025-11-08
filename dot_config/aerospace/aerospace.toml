@@ -218,6 +218,10 @@ if.app-name-regex-substring = 'Paper'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
+if.app-name-regex-substring = 'Raindrop.io'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
 if.app-name-regex-substring = 'Sioyek'
 run = ['move-node-to-workspace 2']
 
@@ -277,11 +281,6 @@ run = ['move-node-to-workspace 3']
 if.app-name-regex-substring = 'ChatGPT'
 if.window-title-regex-substring = 'ChatGPT'
 run = ['move-node-to-workspace 4']
-
-# Otherwise, if 'mini' app, leave it be
-[[on-window-detected]]
-if.app-name-regex-substring = 'ChatGPT'
-run = ['layout floating']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'UltiMaker Cura'
