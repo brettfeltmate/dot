@@ -67,18 +67,14 @@ return {
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			-- Configure LSP hover window with borders
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-				vim.lsp.handlers.hover, {
-					border = "rounded",
-				}
-			)
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+				border = "rounded",
+			})
 
 			-- Optionally also configure signature help with borders
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-				vim.lsp.handlers.signature_help, {
-					border = "rounded",
-				}
-			)
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+				border = "rounded",
+			})
 
 			-- Enable LSP servers (configs are auto-discovered from lsp/ directory)
 			local servers = {
@@ -133,10 +129,7 @@ return {
 			},
 			format_on_save = { timeout_ms = 5000 },
 			injected = {
-				-- Set the options field
 				options = {
-					-- Set to true to ignore errors
-					ignore_errors = false,
 					-- Map of treesitter language to file extension
 					-- A temporary file name with this extension will be generated during formatting
 					-- because some formatters care about the filename.
@@ -149,9 +142,6 @@ return {
 						python = "py",
 						r = "r",
 					},
-					-- Map of treesitter language to formatters to use
-					-- (defaults to the value from formatters_by_ft)
-					lang_to_formatters = {},
 				},
 			},
 		},
