@@ -3,7 +3,8 @@ return {
 		"stevearc/quicker.nvim",
 		ft = "qf",
 		opts = {
-			highlight = { reload_buffers = true },
+			highlight = { load_buffers = true },
+			follow = { enabled = true },
 		},
 	},
 	{

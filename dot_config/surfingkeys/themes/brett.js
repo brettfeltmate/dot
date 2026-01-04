@@ -1,3 +1,111 @@
+// First, create the leaf mappings (the actual bookmark actions)
+// mapkey("'mo", "#10Open Outlook mail", function () {
+//   tabOpenLink("https://outlook.office.com/mail/");
+// });
+//
+// mapkey("'mp", "#10Open Proton mail", function () {
+//   tabOpenLink("https://mail.proton.me/");
+// });
+//
+// // You can add more nested mappings
+// mapkey("'mg", "#10Open Gmail", function () {
+//   tabOpenLink("https://mail.google.com/");
+// });
+
+let markStructure = {
+  m: {
+    name: "Mail",
+    o: {
+      name: "Outlook",
+      action: function () {
+        api.tabOpenLink("https://outlook.office.com/mail/");
+      },
+    },
+    p: {
+      name: "Proton Mail",
+      action: function () {
+        api.tabOpenLink("https://mail.proton.me/");
+      },
+    },
+    g: {
+      name: "Gmail",
+      action: function () {
+        api.tabOpenLink("https://mail.google.com/");
+      },
+    },
+  },
+  d: {
+    name: "Drive",
+    g: {
+      name: "Google Drive",
+      action: function () {
+        api.tabOpenLink("https://drive.google.com/drive/my-drive");
+      },
+    },
+    o: {
+      name: "OneDrive",
+      action: function () {
+        api.tabOpenLink("https://onedrive.live.com/about/en-us/signin/");
+      },
+    },
+    p: {
+      name: "Proton Drive",
+      action: function () {
+        api.tabOpenLink("https://drive.proton.me/");
+      },
+    },
+  },
+  s: {
+    name: "Social",
+    t: {
+      name: "Twitter",
+      action: function () {
+        api.tabOpenLink("https://twitter.com/home");
+      },
+    },
+    f: {
+      name: "Facebook",
+      action: function () {
+        tabOpenLink("https://www.facebook.com/");
+      },
+    },
+    i: {
+      name: "Instagram",
+      action: function () {
+        api.tabOpenLink("https://www.instagram.com/");
+      },
+    },
+    r: {
+      name: "Reddit",
+      action: function () {
+        api.tabOpenLink("https://www.reddit.com/");
+      },
+    },
+  },
+};
+
+for (let firstLevelKey in markStructure) {
+  let firstLevel = markStructure[firstLevelKey];
+  if (firstLevel.action) {
+    // api.createMark()
+    api.mapkey(
+      "'" + firstLevelKey,
+      "#10Open " + firstLevel.name,
+      firstLevel.action,
+    );
+  } else {
+    for (let secondLevelKey in firstLevel) {
+      if (secondLevelKey === "name") continue;
+      let secondLevel = firstLevel[secondLevelKey];
+      api.mapkey(
+        "'" + firstLevelKey + secondLevelKey,
+        "#10Open " + secondLevel.name,
+        secondLevel.action,
+      );
+    }
+  }
+}
+
 api.map("<Ctrl-f>", "f", /outlook.office.com|mail.google.com|mail.proton.me/);
 
 api.unmapAllExcept(

@@ -3,7 +3,19 @@ return {
 	event = "InsertEnter",
 	version = "v0.*",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
-	dependencies = { "Kaiser-Yang/blink-cmp-dictionary" },
+	dependencies = {
+		{
+			"folke/lazydev.nvim",
+			ft = "lua", -- only load on lua files
+			opts = {
+				library = {
+					-- See the configuration section for more details
+					-- Load luvit types when the `vim.uv` word is found
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		},
+	},
 	opts = function(_, opts)
 		opts.completion = {
 			menu = {
@@ -28,8 +40,14 @@ return {
 		}
 
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lsp", "buffer", "path", "dictionary" },
+			default = { "lazydev", "lsp", "buffer", "path" },
 			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					-- make lazydev completions top priority (see `:h blink.cmp`)
+					score_offset = 100,
+				},
 				lsp = {
 					name = "lsp",
 					module = "blink.cmp.sources.lsp",
@@ -58,22 +76,6 @@ return {
 						show_hidden_files_by_default = true,
 					},
 				},
-				dictionary = {
-					module = "blink-cmp-dictionary",
-					name = "Dict",
-					score_offset = 20,
-					enabled = true,
-					max_items = 10,
-					min_keyword_length = 3,
-					opts = {
-						dictionary_directories = { vim.fn.expand("~/.config/dictionaries") },
-						-- Below adds any user defined/added words to the dictionary
-						dictionary_files = {
-							vim.fn.expand("~/.config/nvim/spell/en.utf-8.add"),
-							vim.fn.expand("~/.config/nvim/spell/en.utf-8.add.spl"),
-						},
-					},
-				},
 			},
 		})
 
@@ -98,7 +100,7 @@ return {
 		opts.keymap = {
 			preset = "none",
 			["<C-k>"] = { "show", "show_documentation", "hide_documentation" },
-			["<C-y>"] = { "accept", "fallback" },
+			["<C-l>"] = { "accept", "fallback" },
 			["<C-n>"] = { "select_next", "fallback" },
 			["<C-p>"] = { "select_prev", "fallback" },
 			["<C-u>"] = { "scroll_documentation_up", "fallback" },

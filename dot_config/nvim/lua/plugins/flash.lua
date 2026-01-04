@@ -1,7 +1,8 @@
 return {
 	"folke/flash.nvim",
 	lazy = true,
-	event = "BufRead",
+	-- event = "BufRead",
+	enabled = false,
 	opts = {
 		search = {
 			mode = function(str)

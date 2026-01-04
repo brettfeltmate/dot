@@ -146,8 +146,8 @@ Comment        xxx cterm=bold,italic gui=bold,italic guifg=#5f514a
 @module        xxx guifg=#b0a19b
 @module.builtin xxx links to Special
 @label         xxx links to Label
-@string        xxx guifg=#a8a194
-String         xxx guifg=#b6aaa4
+@string        xxx cterm=italic gui=italic guifg=#a8a194
+String         xxx cterm=italic gui=italic guifg=#b6aaa4
 @string.regexp xxx links to @string.special
 @string.special xxx links to SpecialChar
 @string.escape xxx guifg=#a57370

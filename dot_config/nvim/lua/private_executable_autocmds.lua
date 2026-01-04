@@ -1,11 +1,3 @@
--- Center view when entering insert mode
-vim.api.nvim_create_autocmd("InsertEnter", {
-	desc = "Center cursor on insert",
-	callback = function()
-		vim.cmd("norm! zz")
-	end,
-})
-
 -- Chezmoi integration for dotfile management
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 	desc = "Enable chezmoi watch for dotfiles",
@@ -23,6 +15,7 @@ vim.api.nvim_create_autocmd("UIEnter", {
 	desc = "Load base46 highlights",
 	callback = function()
 		require("base46").load_all_highlights()
+		vim.lsp.inline_completion.enable()
 	end,
 })
 
@@ -36,5 +29,17 @@ vim.api.nvim_create_autocmd("FileType", {
 			desc = "Close buffer",
 		})
 		vim.bo[ev.buf].buflisted = false
+	end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+	pattern = "OpencodeEvent",
+	callback = function(args)
+		-- See the available event types and their properties
+		vim.notify(vim.inspect(args.data.event))
+		-- Do something useful
+		if args.data.event.type == "session.idle" then
+			vim.notify("`opencode` finished responding")
+		end
 	end,
 })

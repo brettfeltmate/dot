@@ -1,10 +1,8 @@
 return {
 	"gbprod/substitute.nvim",
-	dependencies = { "rachartier/tiny-glimmer.nvim" },
 	event = "BufRead",
 	opts = function()
 		local o = {
-			on_substitute = require("tiny-glimmer.support.substitute").substitute_cb,
 			yank_substituted_text = false,
 			preserve_cursor_position = false,
 			modifiers = nil,

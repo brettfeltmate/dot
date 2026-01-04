@@ -4,21 +4,32 @@ return {
 	opts = function()
 		local wk = require("which-key")
 		wk.add({
-			{ "<leader>c", icon = "  " },
+			-- AI
+			{ "<leader>a", group = "AI", icon = "󱜸  " },
 			{ "<leader>d", icon = "󰗩  " },
-			{ "<leader>f", icon = "󰍉  " },
-			{ "<leader>g", icon = "󰺯  " },
-			{ "<leader>m", icon = "󱧌  " },
-			{ "<leader>o", icon = "  " },
+			{ "<leader>g", group = "Git", icon = "  " },
+			{ "<leader>gh", group = "Hunk", icon = "󰦨  " },
+			{ "<leader>gb", group = "Buffer", icon = "  " },
+			{ "<leader>ga", group = "Accept", icon = "  " },
+			{ "<leader>gd", icon = "  " },
+
+			{ "<leader>r", icon = "󰺯  " },
+			{ "<leader>o", icon = "  " },
+			{ "<leader>p", icon = "  " },
+			{ "<leader>s", icon = "  " },
 			{ "<leader>w", icon = "  " },
-			{ "<leader>q", icon = "󰅗  " },
-			{ "<leader>x", icon = "󰜎  " },
 			{ "gd", group = "Debug", icon = "  " },
 		})
 		local o = {
-			preset = "helix",
-			win = { padding = { 0, 1 }, wo = { winblend = 0 } },
-			icons = { separator = "", group = "" },
+			preset = "classic",
+			sort = { "alphanum" },
+			win = {
+				padding = { 0, 4 },
+				height = { min = 2, max = 10 },
+				border = "rounded",
+				wo = { winblend = 0 },
+			},
+			icons = { separator = "|", group = "" },
 		}
 		return o
 	end,

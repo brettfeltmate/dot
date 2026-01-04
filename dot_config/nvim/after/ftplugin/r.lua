@@ -5,7 +5,7 @@ end
 map("i", "<M-a>", " <- ", { buffer = 0 })
 
 -- Slime bindings
-map("n", "<CR>", "<Plug>SlimeParagraphSend}j", { buffer = 0, noremap = true, desc = "Send block" })
+map("n", "<CR>", "<Plug>SlimeParagraphSend", { buffer = 0, noremap = true, desc = "Send block" })
 map("x", "<CR>", "<Plug>SlimeRegionSend", { buffer = 0, noremap = true, desc = "Send region" })
 
 map(
@@ -62,10 +62,140 @@ for key, cmd in pairs(popup_cmds) do
 	end, { buffer = 0, noremap = true, desc = cmd })
 end
 
-vim.keymap.set("n", "<localleader>v", "<cmd>SlimeSend1 print(.Last.value)<cr>", {
+-- Writes environment summary to ~/.local/cache/r_env_overview.md
+vim.keymap.set("n", "<localleader>e", "<cmd>SlimeSend1 eo()<cr>", {
 	buffer = 0,
 	noremap = true,
-	desc = "Print last value",
+	desc = "Write env",
+})
+
+vim.keymap.set("n", "<localleader>E", "<cmd>tabnew | e ~/.local/cache/r_env_overview.md<cr>", {
+	buffer = 0,
+	noremap = true,
+	desc = "View env",
+})
+
+-- R Object Preview
+-- Uses treesitter to grab object under cursor and display preview in split
+local function r_object_preview()
+	-- Get the R object name under cursor using treesitter
+	local ts = vim.treesitter
+	local node = ts.get_node()
+
+	if not node then
+		vim.notify("No treesitter node found under cursor", vim.log.levels.WARN)
+		return
+	end
+
+	-- Traverse up to find the base identifier (handles df$col -> df)
+	local obj_name = nil
+	local current = node
+
+	while current do
+		local node_type = current:type()
+
+		-- If we hit a subset operation ($ or [), get the parent's first child (the base object)
+		if node_type == "extract_operator" or node_type == "subset" or node_type == "subset2" then
+			local parent = current:parent()
+			if parent then
+				for child in parent:iter_children() do
+					if child:type() == "identifier" then
+						obj_name = ts.get_node_text(child, 0)
+						break
+					end
+				end
+			end
+			break
+		end
+
+		-- If we're on a simple identifier, use it
+		if node_type == "identifier" then
+			-- Check if parent is namespace_operator (pkg::func) - skip those
+			local parent = current:parent()
+			if parent and parent:type() == "namespace_operator" then
+				vim.notify("Cannot preview package functions", vim.log.levels.INFO)
+				return
+			end
+			obj_name = ts.get_node_text(current, 0)
+			break
+		end
+
+		current = current:parent()
+	end
+
+	if not obj_name or obj_name == "" then
+		vim.notify("Could not identify R object under cursor", vim.log.levels.WARN)
+		return
+	end
+
+	-- Call R preview function (defined in ~/.config/R/utilities.r)
+	-- Function is loaded automatically when R starts via .Rprofile
+	local r_preview_func = string.format('obj_preview("%s")', obj_name)
+
+	-- Send R code to terminal via vim-slime
+	vim.fn["slime#send"](r_preview_func)
+
+	-- Wait briefly for R to write the file, then open in split
+	local cache_file = vim.fn.expand("~/.local/cache/r_obj_preview.md")
+
+	vim.defer_fn(function()
+		-- Check if file exists and has content
+		local file = io.open(cache_file, "r")
+		if not file then
+			vim.notify(string.format("Object '%s' not found in R environment", obj_name), vim.log.levels.ERROR)
+			return
+		end
+
+		local content = file:read("*all")
+		file:close()
+
+		-- Check for error message in content
+		if content:match("^Error:") then
+			vim.notify(content:match("^Error: (.+)"), vim.log.levels.ERROR)
+			return
+		end
+
+		-- Create ephemeral split buffer with fixed height
+		vim.cmd("split")
+		vim.cmd("resize 15")
+
+		-- Create scratch buffer
+		local buf = vim.api.nvim_create_buf(false, true)
+		vim.api.nvim_win_set_buf(0, buf)
+
+		-- Set buffer name first
+		vim.api.nvim_buf_set_name(buf, string.format("[R Preview: %s]", obj_name))
+
+		-- Set buffer options for ephemeral behavior
+		vim.bo[buf].buftype = "nofile"
+		vim.bo[buf].bufhidden = "wipe"
+		vim.bo[buf].buflisted = false
+		vim.bo[buf].swapfile = false
+		vim.bo[buf].filetype = "markdown"
+		vim.bo[buf].modifiable = true
+
+		-- Read file content and load into buffer
+		local lines = vim.fn.readfile(cache_file)
+		vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+		-- Make buffer read-only after loading content
+		vim.bo[buf].modifiable = false
+		vim.bo[buf].readonly = true
+
+		-- Add quick-close keymap
+		vim.keymap.set("n", "q", "<cmd>close<cr>", {
+			buffer = buf,
+			nowait = true,
+			desc = "Close preview",
+		})
+	end, 250) -- 250ms delay to allow R to write file
+end
+
+-- Preview R object under cursor
+vim.keymap.set("n", "<localleader>o", r_object_preview, {
+	buffer = 0,
+	noremap = true,
+	desc = "Preview obj",
 })
 
 -- Auto-correct
@@ -140,4 +270,5 @@ wk.add({
 	{ "<localleader>h", mode = "n" },
 	{ "<localleader>p", mode = "n" },
 	{ "<localleader>b", mode = "n" },
+	{ "<localleader>o", mode = "n" },
 })

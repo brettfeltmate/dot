@@ -16,30 +16,33 @@ end
 map({ "n" }, "grn", C("lua require 'nvchad.lsp.renamer'()"), "rename")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
-map({ "n" }, "\\v", C(":ASToggle<CR>"), "Toggle 'Auto-Save'")
 map({ "n" }, "gdq", C("Debugprint qflist"), "To qflist")
 map({ "n" }, "\\m", C("lua require('base46').toggle_theme()"), "Toggle 'dark/light'")
-map({ "n" }, "\\e", C("Sidekick nes toggle"), "Toggle 'edit suggestions'")
 
 -- Diagnostics
 map({ "n" }, "<C-w>e", C("lua vim.diagnostic.open_float()"), "Diagnostics float")
 map({ "n" }, "<C-w>d", C("lua vim.diagnostic.setqflist()"), "Diagnostics to qflist")
+
 map({ "n" }, "<C-w>q", C("copen"), "Open quickfix")
 
--- Jump
-map({ "n", "x", "o" }, "<C-s>", C("lua require('flash').jump()"), "Flash")
+-- Prompts for number, diffs the current file against that ancestor using fugitive in a new tab
+map({ "n" }, "<C-w>D", function()
+	local ancestor = vim.fn.input("Ancestor level: ")
+	if ancestor ~= "" then
+		-- open current file in a new tab
+		vim.cmd("tabnew %")
+		-- run Gvdiffsplit against the ancestor
+		vim.cmd("Gvdiffsplit @~" .. ancestor .. ":%")
+	end
+end, "Git diff against ancestor")
 
---  Substitute
-map({ "n" }, "s", C("lua require('substitute').operator()"), "Sub [motion]", { noremap = true })
-map({ "n" }, "ss", C("lua require('substitute').line()"), "Sub [line]", { noremap = true })
-map({ "n" }, "S", C("lua require('substitute').eol()"), "Sub [eol]", { noremap = true })
-map({ "x" }, "s", C("lua require('substitute').visual()"), "Sub [visual]", { noremap = true })
+-- Switch tabs
+map({ "n" }, "]t", C("tabnext"), "Next tab")
+map({ "n" }, "[t", C("tabprevious"), "Prev tab")
 
---  Exchange
-map({ "n" }, "sx", C("lua require('substitute.exchange').operator()"), "Exch [motion]", { noremap = true })
-map({ "n" }, "sxx", C("lua require('substitute.exchange').line()"), "Exch [line]", { noremap = true })
-map({ "x" }, "X", C("lua require('substitute.exchange').visual()"), "Exch [visual]", { noremap = true })
-map({ "n" }, "sxc", C("lua require('substitute.exchange').cancel()"), "Exch [cancel]", { noremap = true })
+--  Substitute/Exchange
+map({ "n" }, "zs", C("lua require('substitute').operator()"), "Sub [motion]", { noremap = true })
+map({ "n" }, "zx", C("lua require('substitute.exchange').operator()"), "Exch [motion]", { noremap = true })
 
 --  Focus
 map({ "n" }, "<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
@@ -60,70 +63,38 @@ map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()")
 -- Cycle
 map({ "n" }, "<S-h>", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
 map({ "n" }, "<S-l>", C("lua require('nvchad.tabufline').next()"), "Next buff")
-map({ "n" }, "<S-tab>", C("tabnext"), "Next tab")
 
---  Go to next/prev non-empty line that is not a comment
-map({ "n", "x" }, "<C-j>", function()
-	local line = vim.fn.line(".")
-	local last_line = vim.fn.line("$")
+--  Go to beginning of next/prev block
+map({ "n" }, "<C-j>", "}j", "Jump next block")
+map({ "n" }, "<C-k>", "{{j", "Jump prev block")
 
-	while line < last_line do
-		line = line + 1
-		local text = vim.fn.getline(line)
-		-- Skip empty lines and comment lines
-		if text:match("^%s*$") == nil and text:match("^%s*[-/#]") == nil then
-			vim.fn.cursor(line, 1)
-			break
-		end
-	end
-end, "Next line")
+-- Go to next/prev hunk
+map({ "n" }, "<M-j>", C("VGit hunk_down"), "Next hunk")
+map({ "n" }, "<M-k>", C("VGit hunk_up"), "Prev hunk")
 
-map({ "n", "x" }, "<C-k>", function()
-	local line = vim.fn.line(".")
-
-	while line > 1 do
-		line = line - 1
-		local text = vim.fn.getline(line)
-		-- Skip empty lines and comment lines
-		if text:match("^%s*$") == nil and text:match("^%s*[-/#]") == nil then
-			vim.fn.cursor(line, 1)
-			break
-		end
-	end
-end, "Prev line")
--- Leader
-map({ "n" }, L("c"), C("lua require('rgflow').open_cword_path()"), "Cword")
+-- Leader mappings
 map({ "n" }, L("d"), C("lua require('nvchad.tabufline').close_buffer()"), "Delete")
-map({ "n" }, L("f"), C("FFFFind"), "Files")
-map({ "n" }, L("g"), C("tab Git"), "Git")
-map({ "n" }, L("m"), C("messages"), "Messages")
-map({ "n" }, L("o"), C("lua require('oil').open_float()"), "Oil")
-map({ "n" }, L("q"), C("quit"), "Quit")
-map({ "n" }, L("r"), C("lua require('rgflow').open()"), "Ripgrep")
-map({ "v" }, L("r"), C("lua require('rgflow').open_visual()"), "Ripgrep [vis]")
+map({ "n" }, L("f"), C("lua require('snacks').picker.files()"), "Find")
+map({ "n" }, L("r"), C("lua require('rgflow').open()"), "RipGrep")
+map({ "n" }, L("o"), C("Oil"), "Open")
+map({ "n" }, L("p"), C("lua require('snacks').picker.pickers()"), "Pick")
+map({ "n" }, L("q"), C("q"), "Quit")
 map({ "n" }, L("s"), C("lua require('snacks').scratch()"), "Scratch")
-map({ "n" }, L("t"), C("Fyler"), "Tree")
-map({ "n" }, L("w"), C("write"), "Write")
-map({ "n" }, L("x"), C("wqa"), "Exit")
-map({ "n" }, L("p"), C("lua require('snacks').picker.pickers()"), "Pickers")
+map({ "n" }, L("u"), C("lua Snacks.picker.undo()"), "Undo")
+map({ "n" }, L("w"), C("w"), "Write")
 
--- vim.keymap.set("n", "<leader>.", require("minibuffer.examples.files"))
--- vim.keymap.set("n", "<leader>,", require("minibuffer.examples.buffers"))
--- vim.keymap.set("n", "<leader>/", require("minibuffer.examples.live-grep"))
--- vim.keymap.set("n", "<leader>%", function()
--- 	require("minibuffer.examples.oldfiles")({ cwd = vim.fn.getcwd() })
--- end)
--- vim.keymap.set("n", "<leader>*", require("minibuffer.examples.oldfiles"))
+-- -- VGit
+map({ "n" }, L("ghs"), C("VGit buffer_hunk_stage"), "Stage")
+map({ "n" }, L("ghu"), C("VGit buffer_hunk_unstage"), "Unstage")
+map({ "n" }, L("ghp"), C("VGit buffer_hunk_preview"), "Preview")
 
--- Inline completion
-map({ "i" }, "<M-y>", function()
-	vim.lsp.inline_completion.get()
-end, "Accept inline completion")
+map({ "n" }, L("gbs"), C("VGit buffer_stage"), "Stage")
+map({ "n" }, L("gbu"), C("VGit buffer_unstage"), "Unstage")
+map({ "n" }, L("gbd"), C("VGit buffer_diff_preview"), "Diff")
+map({ "n" }, L("gbh"), C("VGit buffer_history_preview"), "History")
 
-map({ "i" }, "<M-n>", function()
-	vim.lsp.inline_completion.select({ count = 1, wrap = true })
-end, "Next inline completion")
+map({ "n" }, L("gab"), C("VGit buffer_conflict_accept_both"), "Both")
+map({ "n" }, L("gac"), C("VGit buffer_conflict_accept_current"), "Current")
+map({ "n" }, L("gai"), C("VGit buffer_conflict_accept_incoming"), "Incoming")
 
-map({ "i" }, "<M-p>", function()
-	vim.lsp.inline_completion.select({ count = -1, wrap = true })
-end, "Prev inline completion")
+map({ "n" }, L("gd"), C("VGit project_diff_preview"), "Diff project")

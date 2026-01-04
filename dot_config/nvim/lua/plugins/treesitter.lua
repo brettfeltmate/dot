@@ -20,61 +20,86 @@ vim.api.nvim_create_autocmd("User", {
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		branch = "main",
 		build = ":TSUpdate",
 		lazy = true,
 		event = "BufReadPre",
 		config = function(_)
-			require("nvim-treesitter.install").prefer_git = true
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"bash",
-					"css",
-					"cpp",
-					"diff",
-					"html",
-					"javascript",
-					"json",
-					"latex",
-					"lua",
-					"luadoc",
-					"markdown",
-					"markdown_inline",
-					"python",
-					"r",
-					"rnoweb",
-					"regex",
-					"rst",
-					"stan",
-					"typescript",
-					"vim",
-					"vimdoc",
-				},
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
+			local ts = require("nvim-treesitter")
+
+			-- Install core parsers at startup
+			ts.install({
+				"bash",
+				"comment",
+				"css",
+				"diff",
+				"fish",
+				"git_config",
+				"git_rebase",
+				"gitcommit",
+				"gitignore",
+				"html",
+				"javascript",
+				"json",
+				"latex",
+				"lua",
+				"luadoc",
+				"make",
+				"markdown",
+				"markdown_inline",
+				"norg",
+				"python",
+				"query",
+				"r",
+				"rnoweb",
+				"regex",
+				"scss",
+				"svelte",
+				"toml",
+				"tsx",
+				"typescript",
+				"typst",
+				"vim",
+				"vimdoc",
+				"vue",
+				"xml",
+			})
+
+			local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+
+			local ignore_filetypes = {
+				"checkhealth",
+				"lazy",
+				"mason",
+				"snacks_dashboard",
+				"snacks_notif",
+				"snacks_win",
+			}
+
+			-- Auto-install parsers and enable highlighting on FileType
+			vim.api.nvim_create_autocmd("FileType", {
+				group = group,
+				desc = "Enable treesitter highlighting and indentation",
+				callback = function(event)
+					if vim.tbl_contains(ignore_filetypes, event.match) then
+						return
+					end
+
+					local lang = vim.treesitter.language.get_lang(event.match) or event.match
+					local buf = event.buf
+
+					-- Start highlighting immediately (works if parser exists)
+					pcall(vim.treesitter.start, buf, lang)
+
+					-- Enable treesitter indentation
+					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+					-- Install missing parsers (async, no-op if already installed)
+					ts.install({ lang })
+				end,
 			})
 			vim.treesitter.language.register("markdown", "rmd")
 			vim.treesitter.language.register("r", "R")
-			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-			-- ---@diagnostic disable-next-line: inject-field
-			parser_config.stan = {
-				-- NOTE: This will fail when installing treesitter. Reload nvim and run :TSInstall stan
-				install_info = {
-					url = "https://github.com/kingcol13/tree-sitter-stan.git",
-					files = { "src/parser.c" },
-					branch = "dev",
-					generate_requires_npm = false,
-					requires_generate_from_grammar = false,
-				},
-			}
-			parser_config.kitty = {
-				install_info = {
-					url = "https://github.com/OXY2DEV/tree-sitter-kitty",
-					files = { "src/parser.c" },
-					branch = "main",
-				},
-			}
 		end,
 	},
 }

@@ -64,4 +64,7 @@ if (interactive()) {
       )
     }
   }
+
+  # Source utility functions
+  suppressMessages(source("~/.config/R/utilities.r"))
 }

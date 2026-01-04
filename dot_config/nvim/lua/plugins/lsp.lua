@@ -102,11 +102,12 @@ return {
 		opts = {
 			notify_on_error = true,
 			formatters = {
-				rprettify = {
-					inherit = false,
+				my_styler = {
+					command = "R",
+					-- A list of strings, or a function that returns a list of strings
+					-- Return a single string instead of a list to run the command in a shell
+					args = { "-s", "-e", "styler::style_file(commandArgs(TRUE)[1])", "--args", "$FILENAME" },
 					stdin = false,
-					command = vim.fn.expand("~/.config/R/rprettify"),
-					args = { "$FILENAME" },
 				},
 			},
 			formatters_by_ft = {
@@ -121,10 +122,9 @@ return {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				python = { "ruff", "blue" },
-				r = { "air", "rprettify" },
-				R = { "air", "rprettify" },
-				rmd = { "rprettify", "markdownlint" },
-				rprofile = { "air", "rprettify" },
+				r = { "air", "my_styler" },
+				rmd = { "markdownlint" },
+				rprofile = { "air", "my_styler" },
 				markdown = { "markdownlint" },
 			},
 			format_on_save = { timeout_ms = 5000 },

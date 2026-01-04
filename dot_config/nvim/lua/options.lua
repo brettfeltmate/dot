@@ -2,7 +2,9 @@ vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
--- vim.o.winborder = "single"
+-- vim.o.winborder = "bold"
+
+vim.cmd([[let g:sneak#label = 1]])
 
 -- UI
 vim.opt.cmdheight = 1
@@ -13,7 +15,7 @@ vim.opt.showmode = false
 vim.opt.laststatus = 3
 vim.opt.pumheight = 10
 vim.opt.splitright = true
-vim.opt.splitbelow = false
+vim.opt.splitbelow = true
 vim.opt.scrolloff = 20
 vim.opt.virtualedit = "block"
 vim.opt.hlsearch = true
@@ -22,6 +24,7 @@ vim.opt.inccommand = "split"
 vim.opt.smoothscroll = true
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+vim.opt.cursorline = true
 vim.opt.conceallevel = 3
 vim.opt.signcolumn = "auto:2"
 vim.opt.guicursor = ""
@@ -41,19 +44,19 @@ end
 
 if vim.fn.has("nvim-0.12") == 1 then
 	vim.opt.pummaxwidth = 100
-	vim.opt.completefuzzycollect = "keyword,files,whole_line"
+	-- vim.opt.completefuzzycollect = "keyword,files,whole_line"
 
-	require("vim._extui").enable({ enable = true, msg = { target = "msg" } })
+	require("vim._extui").enable({ enable = true, msg = { target = "cmd" } })
 
-	vim.cmd([[autocmd CmdlineChanged [:/\?@] call wildtrigger()]])
-	vim.opt.wildmode = "noselect:lastused"
-	vim.opt.wildoptions = "pum,fuzzy"
-	vim.keymap.set("c", "<Up>", "<C-u><Up>")
-	vim.keymap.set("c", "<Down>", "<C-u><Down>")
+	-- vim.cmd([[autocmd CmdlineChanged [:/\?@] call wildtrigger()]])
+	-- vim.opt.wildmode = "noselect:lastused"
+	-- vim.opt.wildoptions = "pum,fuzzy"
+	-- vim.keymap.set("c", "<Up>", "<C-u><Up>")
+	-- vim.keymap.set("c", "<Down>", "<C-u><Down>")
 end
 
 -- Behavior
-vim.opt.swapfile = false
+vim.opt.swapfile = true
 vim.opt.backup = false
 vim.opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus" -- Sync with system clipboard
 vim.opt.undofile = true
@@ -76,4 +79,4 @@ vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.require('utils').markerOrTreeFold()"
+vim.opt.foldexpr = "v:lua.require('user.commands').marker_or_tree_fold()"

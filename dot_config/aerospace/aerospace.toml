@@ -1,27 +1,29 @@
-# Aerospace config #
-start-at-login = true
+# -----------------------------------------------------------------
+# General Settings
+# -----------------------------------------------------------------
 
+start-at-login = true
 key-mapping.preset = 'qwerty'
 
-# No clue about these
+# Defaults; don't know what they actually do
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-# Disable hide app
-automatically-unhide-macos-hidden-apps = true
-# Keep cursor in focused monitor
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-
-# Layout properties #
-
-# Overlay windows by default
-default-root-container-layout = 'accordion'
-
-# Default to splitting along longest axis
+# Split along primary axis
 default-root-container-orientation = 'auto'
 
-# Bleeding margins when overlayed
+automatically-unhide-macos-hidden-apps = true
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+
+# Default to overlayed windows
+default-root-container-layout = 'accordion'
+# Margin bleed
 accordion-padding = 5
+
+# -----------------------------------------------------------------
+# Environment Variables
+# -----------------------------------------------------------------
 
 [exec]
 inherit-env-vars = true
@@ -29,8 +31,11 @@ inherit-env-vars = true
 [exec.env-vars]
 PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 
+# -----------------------------------------------------------------
+# padding
+# -----------------------------------------------------------------
+
 [gaps]
-# Pixel margin between windows
 inner.horizontal = 2
 inner.vertical = 2
 outer.top = 2
@@ -38,36 +43,28 @@ outer.bottom = 4
 outer.left = 6
 outer.right = 6
 
-# modal keybindings #
+# -----------------------------------------------------------------
+# Keybindings
+# -----------------------------------------------------------------
 
-# e.g., default behaviour
+# default mode
 [mode.main.binding]
 
-# Shift focus within workspace
 alt-left = 'focus left'
 alt-down = 'focus down'
 alt-up = 'focus up'
 alt-right = 'focus right'
 
-# Toggle whether window is managed
 alt-comma = 'layout tiling floating'
-
-# Toggle whether overlayed or faceted
 alt-period = 'layout accordion tiles'
-
-# Toggle split axis
 alt-slash = 'layout horizontal vertical'
 
 alt-enter = 'macos-native-fullscreen'
 
-# Toggle current/previous workspace
 alt-tab = 'workspace-back-and-forth'
-
-# Pass current workspace between monitors
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-
-# Focus on
+# go to
 alt-0 = 'workspace 0'
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
@@ -78,16 +75,12 @@ alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
-# alt-leftSquareBracket = [
-#     '/bin/bash', '-c', 'list-workspaces --monitor focused --empty no | aerospace workspace prev'
-# ]
-# alt-rightSquareBracket = [
-#     '/bin/bash', '-c', 'list-workspaces --monitor focused --empty no | aerospace workspace next'
-# ]
+
+# next/prev workspace
 alt-leftSquareBracket = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev'
 alt-rightSquareBracket = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around next'
 
-# Pass to
+# dispatch
 alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
@@ -102,56 +95,51 @@ alt-shift-9 = 'move-node-to-workspace 9'
 # Enter service mode
 alt-semicolon = 'mode service'
 
-# e.g., utility stuff
+# Define service mode
 [mode.service.binding]
 
-# escape to main (default) mode
+# escape service mode
 esc = ['mode main']
 
-# re-apply config
+# reload config
 r = ['reload-config', 'mode main']
 
 # NOTE: Following cmds preserve service mode
 # as they tend to be repeated and/or combined
 
-# Focus
+# Focus container
 left = ['focus left', 'mode service']
 down = ['focus down', 'mode service']
 up = ['focus up', 'mode service']
 right = ['focus right', 'mode service']
 
-# Reposition
+# Reposition container
 alt-left = ['move left', 'mode service']
 alt-down = ['move down', 'mode service']
 alt-up = ['move up', 'mode service']
 alt-right = ['move right', 'mode service']
 
-# Nest
+# Nest container
 alt-shift-left = ['join-with left', 'mode service']
 alt-shift-down = ['join-with down', 'mode service']
 alt-shift-up = ['join-with up', 'mode service']
 alt-shift-right = ['join-with right', 'mode service']
 
-# Unnest
+# Flatten container
 f = ['flatten-workspace-tree', 'mode service']
 
-# Rezise
+# Rezise container
 minus = ['resize smart -50', 'mode service']
 equal = ['resize smart +50', 'mode service']
 
-# Window management rules by application #
-### 0: Terminal
-[[on-window-detected]]
-if.window-title-regex-substring = 'iTerm-Toggle'
-run = ['layout floating']
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'iTerm2'
-run = ['layout tiling', 'move-node-to-workspace 0']
+# -----------------------------------------------------------------
+# Application rules
+# -----------------------------------------------------------------
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'wezterm'
-run = ['layout tiling', 'move-node-to-workspace 0']
+#
+# 0: Terminal
+#
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'terminal'
@@ -165,28 +153,9 @@ run = ['layout tiling', 'move-node-to-workspace 0']
 if.app-name-regex-substring = 'console'
 run = ['layout tiling', 'move-node-to-workspace 0']
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'ghostty'
-run = ['layout tiling', 'move-node-to-workspace 0']
-
-# [[on-window-detected]]
-# if.window-title-regex-substring = 'Quartz 2'
-# run = ['layout tiling', 'move-node-to-workspace 0']
-
-### 1: Browser
-[[on-window-detected]]
-if.app-name-regex-substring = 'firefox'
-run = ['layout tiling', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'arc'
-run = ['layout tiling', 'move-node-to-workspace 1']
-
-[[on-window-detected]]
-# First check if PIP, leave as floating if so
-if.app-name-regex-substring = 'zen'
-if.window-title-regex-substring = 'Picture-in-Picture'
-run = ['layout floating']
+#
+# 1: Browser
+#
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'zen'
@@ -196,97 +165,67 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 if.app-name-regex-substring = 'safari'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'chrome'
-run = ['layout tiling', 'move-node-to-workspace 1']
+#
+# 2: Email
+#
 
-### 2: Reading & Writing
 [[on-window-detected]]
-if.app-name-regex-substring = 'Ulysses'
+if.app-name-regex-substring = 'Mail'
 run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Outlook'
+run = ['move-node-to-workspace 2']
+
+#
+# 3: Writing
+#
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'iA Writer'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Obsidian'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Paper'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Raindrop.io'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Sioyek'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Zotero'
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Word'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Keynote'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'PowerPoint'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Numbers'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Excel'
-run = ['move-node-to-workspace 2']
-
-## 3: Chat
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Texts'
 run = ['move-node-to-workspace 3']
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'Messages'
-run = ['move-node-to-workspace 3']
+#
+# 4: Reference
+#
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'Beeper'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Teams'
-run = ['move-node-to-workspace 3']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Zoom'
-run = ['move-node-to-workspace 3']
-
-### 4: GPT
-# 'full' app is given a window title if so, send to 3
 [[on-window-detected]]
 if.app-name-regex-substring = 'ChatGPT'
 if.window-title-regex-substring = 'ChatGPT'
 run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'UltiMaker Cura'
-run = ['move-node-to-workspace 8']
+if.app-name-regex-substring = 'Zotero'
+run = ['move-node-to-workspace 4']
 
-### 9: Entertainment
+#
+# 5: Chat
+#
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Messages'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Signal'
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Beeper'
+run = ['move-node-to-workspace 5']
+
+#
+# 9: Entertainment
+#
+
 [[on-window-detected]]
 if.app-name-regex-substring = 'Spotify'
 run = ['move-node-to-workspace 9']
@@ -295,6 +234,12 @@ run = ['move-node-to-workspace 9']
 if.app-name-regex-substring = 'stremio'
 run = ['move-node-to-workspace 9']
 
-### Ignore otherwise
+[[on-window-detected]]
+if.app-name-regex-substring = 'Boosteroid'
+run = ['move-node-to-workspace 9']
+
+#
+# Ignore otherwise
+#
 [[on-window-detected]]
 run = ['layout floating']

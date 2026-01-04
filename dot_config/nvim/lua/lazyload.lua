@@ -21,11 +21,11 @@ require("lazy").setup({
 	},
 })
 
-for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
-	dofile(vim.g.base46_cache .. "/" .. v)
-end
+-- for _, v in ipairs(vim.fn.readdir(vim.g.base46_cache)) do
+-- 	dofile(vim.g.base46_cache .. "/" .. v)
+-- end
 
-vim.lsp.inline_completion.enable()
+-- vim.lsp.inline_completion.enable()
 
 -- vim.cmd("packadd nvim.undotree")
 vim.cmd("packadd nvim.difftool")
