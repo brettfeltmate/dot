@@ -26,15 +26,15 @@ export PATH="$HOME/neovim/bin:$PATH"
 
 launchctl setenv PATH $PATH
 . "$HOME/.cargo/env"
-# Source ancillary files
+
 source <(fzf --zsh)
+# Manually generated completion sources
 source "${ZDOTDIR}/aliases.zsh"
 source "${ZDOTDIR}/functions.zsh"
 source "${ZDOTDIR}/keys.zsh"
-# source "${ZDOTDIR}/cmp-sources/cmp-glow.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-fzf.zsh"
 source "${ZDOTDIR}/cmp-sources/cmp-chez.zsh"
-# test -e "${ZDOTDIR}/.iterm2_shell_integration.zsh" && source "${ZDOTDIR}/.iterm2_shell_integration.zsh"
+source "${ZDOTDIR}/cmp-sources/cmp-opencode.zsh"
 
 # init CLI tools
 eval "$(atuin init zsh --disable-up-arrow)"
@@ -44,10 +44,7 @@ eval "$(direnv hook zsh)"
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# [ -f $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh ] && source $HOMEBREW_PREFIX/share/forgit/forgit.plugin.zsh   
-# make forgit a subcommand of git
-# PATH="$PATH:$FORGIT_INSTALL_DIR/bin"
-
+# Wish I commented on what this actually does...
 if [[ "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select" || \
       "${widgets[zle-keymap-select]#user:}" == "starship_zle-keymap-select-wrapped" ]]; then
     zle -N zle-keymap-select "";
@@ -125,7 +122,6 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' menu no
 
 zstyle ':fzf-tab:*' fzf-command fzf
-# zstyle ':fzf-tab:*' fzf-flags '--preview-window=down,30%'
 zstyle ':fzf-tab:*' switch-group '<' '>'
 zstyle ':fzf-tab:*' popup-min-size 80 80
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
@@ -141,16 +137,6 @@ fi
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 
 export PATH="$HOME/Library/Python/3.13/bin:$PATH"
-
-# >>> juliaup initialize >>>
-
-# !! Contents within this block are managed by juliaup !!
-
-# path=('/Users/brettfeltmate/.juliaup/bin' $path)
-# export PATH
-
-# <<< juliaup initialize <<<
-
 
 # Environment variables
 export BAT_THEME="ansi"
@@ -168,3 +154,5 @@ export DISABLE_AUTO_TITLE="true"
 export LESSOPEN="|lesspipe.sh %s"
 export GNUPGHOME="$HOME/.gnupg"
 export GPG_TTY=$(tty)
+
+. "$HOME/.local/share/../bin/env"

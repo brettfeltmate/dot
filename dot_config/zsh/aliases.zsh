@@ -7,6 +7,7 @@ alias lt="ls --tree --level 1"
 # Quick navbacks
 alias ..="cd '..' "
 alias ...="cd '../..'"
+alias -- -="cd -"
 
 # Tools
 alias nv="nvim"
