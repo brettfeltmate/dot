@@ -428,6 +428,45 @@ local polish_hl = {
 		["@WhichKeyBorder"] = { link = "FloatBorder" },
 		["@WhichKeyTitle"] = { fg = base16.base07 },
 	},
+	bqf = {
+		BqfPreviewFloat = { bg = base30.one_bg },
+	},
+	vgit = {
+		-- VGit gutter sign highlights
+		GitSignsAdd = { fg = base30.green, bg = "NONE" },
+		GitSignsDelete = { fg = base30.red, bg = "NONE" },
+		GitSignsChange = { fg = base30.yellow, bg = "NONE" },
+
+		-- VGit line-level diff highlights
+		GitSignsAddLn = { fg = base30.green, bg = shade(base30.green, -35) },
+		GitSignsDeleteLn = { fg = base30.red, bg = shade(base30.red, -35) },
+
+		-- VGit word-level diff highlights
+		GitWordAdd = { fg = base30.green, bg = shade(base30.green, -35), bold = true },
+		GitWordDelete = { fg = base30.red, bg = shade(base30.red, -35), bold = true },
+
+		-- VGit conflict resolution highlights
+		GitConflictCurrentMark = { fg = base30.green, bg = shade(base30.green, -35) },
+		GitConflictCurrent = { fg = base30.green, bg = shade(base30.green, -35) },
+		GitConflictIncomingMark = { fg = base30.blue, bg = shade(base30.blue, -35) },
+		GitConflictIncoming = { fg = base30.blue, bg = shade(base30.blue, -35) },
+		GitConflictAncestorMark = { fg = base30.purple, bg = shade(base30.purple, -35) },
+		GitConflictAncestor = { fg = base30.purple, bg = shade(base30.purple, -35) },
+		GitConflictMiddle = { fg = base16.base04, bg = base30.one_bg2 },
+
+		-- VGit UI highlights
+		GitCount = { fg = base30.yellow, bold = true },
+		GitSymbol = { fg = base16.base04 },
+		GitTitle = { fg = base16.base0D, bold = true },
+		GitSelected = { fg = base30.orange, bg = base30.one_bg2, bold = true },
+		GitBackground = { fg = base16.base05, bg = base16.base02 },
+		GitAppBar = { fg = base16.base05, bg = base30.base02 },
+		GitHeader = { fg = base16.base08, bg = base30.base03 },
+		GitFooter = { fg = base16.base04, bg = base30.base03 },
+		GitBorder = { fg = base30.line, bg = base30.black2 },
+		GitLineNr = { fg = base16.base04, bg = "NONE" },
+		GitComment = { fg = base16.base04, italic = true },
+	},
 	syntax = {
 		Boolean = { fg = base16.base09 },
 		Character = { fg = base16.base08 },
@@ -486,5 +525,33 @@ hl(0, "SnacksDashboardHeader", { fg = shade(base16.base04, 10) })
 hl(0, "SnacksDashboardDir", { fg = shade(base16.base04, -10) })
 hl(0, "WhichKeyTitle", { fg = base16.base07 })
 hl(0, "FylerNormal", { link = "NormalFloat" })
+hl(0, "BqfPreviewFloat", { bg = base30.one_bg })
 
+-- VGit highlights
+-- hl(0, "GitSignsAdd", { fg = base30.green, bg = "NONE" })
+-- hl(0, "GitSignsDelete", { fg = base30.red, bg = "NONE" })
+-- hl(0, "GitSignsChange", { fg = base30.yellow, bg = "NONE" })
+-- hl(0, "GitSignsAddLn", { fg = base30.green, bg = shade(base30.green, -50) })
+-- hl(0, "GitSignsDeleteLn", { fg = base30.red, bg = shade(base30.red, -50) })
+-- hl(0, "GitWordAdd", { fg = base30.green, bg = shade(base30.green, -35), bold = true })
+-- hl(0, "GitWordDelete", { fg = base30.red, bg = shade(base30.red, -35), bold = true })
+-- hl(0, "GitConflictCurrentMark", { fg = base30.green, bg = shade(base30.green, -40) })
+-- hl(0, "GitConflictCurrent", { fg = base30.green, bg = shade(base30.green, -50) })
+-- hl(0, "GitConflictIncomingMark", { fg = base30.blue, bg = shade(base30.blue, -40) })
+-- hl(0, "GitConflictIncoming", { fg = base30.blue, bg = shade(base30.blue, -50) })
+-- hl(0, "GitConflictAncestorMark", { fg = base30.purple, bg = shade(base30.purple, -40) })
+-- hl(0, "GitConflictAncestor", { fg = base30.purple, bg = shade(base30.purple, -50) })
+-- hl(0, "GitConflictMiddle", { fg = base16.base04, bg = base30.one_bg2 })
+-- hl(0, "GitCount", { fg = base30.yellow, bold = true })
+-- hl(0, "GitSymbol", { fg = base16.base04 })
+-- hl(0, "GitTitle", { fg = base16.base0D, bold = true })
+-- hl(0, "GitSelected", { fg = base30.orange, bg = base30.one_bg2, bold = true })
+-- hl(0, "GitBackground", { fg = base16.base05, bg = base16.base01 })
+-- hl(0, "GitAppBar", { fg = base16.base05, bg = base30.statusline_bg })
+-- hl(0, "GitHeader", { fg = base16.base08, bg = base30.black2 })
+-- hl(0, "GitFooter", { fg = base16.base04, bg = base30.black2 })
+-- hl(0, "GitBorder", { fg = base30.line, bg = base30.black2 })
+-- hl(0, "GitLineNr", { fg = base16.base04, bg = "NONE" })
+-- hl(0, "GitComment", { fg = base16.base04, italic = true })
+--
 return M

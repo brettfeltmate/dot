@@ -36,11 +36,11 @@ if vim.fn.has("nvim-0.10") == 0 then
 end
 
 -- vim.opt.completeopt = "menu,menuone,preview,noselect"
-vim.opt.completeopt = "menuone,noselect"
+-- vim.opt.completeopt = "menuone,noselect"
 
-if vim.fn.has("nvim-0.11") == 1 then
-	vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
-end
+-- if vim.fn.has("nvim-0.11") == 1 then
+-- 	vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
+-- end
 
 if vim.fn.has("nvim-0.12") == 1 then
 	vim.opt.pummaxwidth = 100

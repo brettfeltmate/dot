@@ -4,16 +4,20 @@ vim.api.nvim_create_autocmd("User", {
 		require("nvim-treesitter.parsers").kitty = {
 			install_info = {
 				url = "https://github.com/OXY2DEV/tree-sitter-kitty",
+				revision = "HEAD",
 			},
+			tier = 3,
 		}
 		require("nvim-treesitter.parsers").stan = {
 			install_info = {
 				url = "https://github.com/kingcol13/tree-sitter-stan.git",
 				files = { "src/parser.c" },
 				branch = "dev",
+				revision = "HEAD",
 				generate_requires_npm = false,
 				requires_generate_from_grammar = false,
 			},
+			tier = 3,
 		}
 	end,
 })
@@ -47,57 +51,43 @@ return {
 				"make",
 				"markdown",
 				"markdown_inline",
-				"norg",
 				"python",
-				"query",
 				"r",
 				"rnoweb",
 				"regex",
 				"scss",
-				"svelte",
 				"toml",
-				"tsx",
-				"typescript",
-				"typst",
 				"vim",
 				"vimdoc",
-				"vue",
-				"xml",
 			})
-
-			local group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
-
-			local ignore_filetypes = {
-				"checkhealth",
-				"lazy",
-				"mason",
-				"snacks_dashboard",
-				"snacks_notif",
-				"snacks_win",
-			}
 
 			-- Auto-install parsers and enable highlighting on FileType
 			vim.api.nvim_create_autocmd("FileType", {
-				group = group,
-				desc = "Enable treesitter highlighting and indentation",
-				callback = function(event)
-					if vim.tbl_contains(ignore_filetypes, event.match) then
+				group = vim.api.nvim_create_augroup("EnableTreesitter", {}),
+				desc = "Install and enable treesitter filetype parsers",
+				callback = function(args)
+					local buf = args.buf
+					local ftype = args.match
+
+					-- Check if a parser even exists for this ft
+					local lang = vim.treesitter.language.get_lang(ftype) or ftype
+
+					if not vim.treesitter.language.add(lang) then
 						return
 					end
-
-					local lang = vim.treesitter.language.get_lang(event.match) or event.match
-					local buf = event.buf
 
 					-- Start highlighting immediately (works if parser exists)
 					pcall(vim.treesitter.start, buf, lang)
 
-					-- Enable treesitter indentation
+					-- Enable indents
 					vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
-					-- Install missing parsers (async, no-op if already installed)
-					ts.install({ lang })
+					-- Enable folds
+					vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 				end,
 			})
+
+			-- These used to be necessary, not sure if still the case but wtvr
 			vim.treesitter.language.register("markdown", "rmd")
 			vim.treesitter.language.register("r", "R")
 		end,

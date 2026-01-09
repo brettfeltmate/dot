@@ -31,11 +31,12 @@ return {
 			},
 			accept = { auto_brackets = { enabled = true } },
 			ghost_text = { enabled = false },
-			documentation = { auto_show = false, window = { border = "single" } },
+			documentation = { auto_show = false },
 		}
 
 		opts.signature = {
 			enabled = true,
+			trigger = { enabled = true },
 			window = { border = "single" },
 		}
 

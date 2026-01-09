@@ -1,4 +1,4 @@
-local excluded_filetypes = { "gitcommit", "dashboard", "oil", "Otree", "prompt" }
+local excluded_filetypes = { "gitcommit", "oil" }
 
 local excluded_filenames = { "do-not-autosave-me.lua" }
 
@@ -22,8 +22,7 @@ return {
 		enabled = true,
 		trigger_events = {
 			immediate_save = { "BufLeave", "FocusLost", "QuitPre", "VimSuspend" },
-			defer_save = { "InsertLeave", "TextChanged" },
-			cancel_deferred_save = { "InsertEnter" },
+			defer_save = nil,
 		},
 		condition = save_condition,
 		write_all_buffers = false,

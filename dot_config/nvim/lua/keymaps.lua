@@ -75,7 +75,9 @@ map({ "n" }, "<M-k>", C("VGit hunk_up"), "Prev hunk")
 -- Leader mappings
 map({ "n" }, L("d"), C("lua require('nvchad.tabufline').close_buffer()"), "Delete")
 map({ "n" }, L("f"), C("lua require('snacks').picker.files()"), "Find")
+map({ "n" }, L("c"), C("lua require('rgflow').open_cword_path()"), "RipGrep")
 map({ "n" }, L("r"), C("lua require('rgflow').open()"), "RipGrep")
+map({ "v" }, L("r"), C("lua require('rgflow').open_visual()"), "RipGrep Selection")
 map({ "n" }, L("o"), C("Oil"), "Open")
 map({ "n" }, L("p"), C("lua require('snacks').picker.pickers()"), "Pick")
 map({ "n" }, L("q"), C("q"), "Quit")
@@ -98,3 +100,38 @@ map({ "n" }, L("gac"), C("VGit buffer_conflict_accept_current"), "Current")
 map({ "n" }, L("gai"), C("VGit buffer_conflict_accept_incoming"), "Incoming")
 
 map({ "n" }, L("gd"), C("VGit project_diff_preview"), "Diff project")
+
+-- Treesitter incremental selection
+map({ "x" }, "K", function()
+	vim.treesitter.select_node({ parent = true })
+end, "Parent node")
+
+map({ "x" }, "J", function()
+	vim.treesitter.select_node({ child = true })
+end, "Child node")
+
+map({ "x" }, "H", function()
+	vim.treesitter.select_node({ sibling = "prev" })
+end, "Prev sibling node")
+
+map({ "x" }, "L", function()
+	vim.treesitter.select_node({ sibling = "next" })
+end, "Next sibling node")
+
+-- OpenCode AI Assistant
+map({ "n" }, L("aa"), C("lua require('opencode.api').toggle()"), "Toggle")
+map({ "n" }, L("ai"), C("lua require('opencode.api').open_input()"), "Input")
+map({ "n" }, L("an"), C("lua require('opencode.api').open_input_new_session()"), "New session")
+map({ "n" }, L("ao"), C("lua require('opencode.api').open_output()"), "Output")
+map({ "n" }, L("at"), C("lua require('opencode.api').timeline()"), "Timeline")
+map({ "n" }, L("as"), C("lua require('opencode.api').select_session()"), "Select session")
+map({ "n" }, L("ar"), C("lua require('opencode.api').rename_session()"), "Rename session")
+map({ "n" }, L("az"), C("lua require('opencode.api').toggle_zoom()"), "Zoom")
+map({ "n" }, L("ad"), C("lua require('opencode.api').diff_open()"), "Diff view")
+map({ "n" }, L("af"), C("lua require('opencode.api').toggle_focus()"), "Focus toggle")
+map({ "n", "x" }, L("ac"), C("lua require('opencode.api').quick_chat()"), "Quick chat")
+
+-- OpenCode shortcuts (non-leader)
+map({ "n" }, "<C-;>", C("lua require('opencode.api').toggle()"), "Toggle OpenCode")
+map({ "n" }, "<C-,>", C("lua require('opencode.api').toggle_focus()"), "Toggle focus")
+map({ "n", "x" }, "<C-.>", C("lua require('opencode.api').quick_chat()"), "Quick chat")

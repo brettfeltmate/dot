@@ -11,9 +11,9 @@ return {
 
 			-- Choose split direction based on which dimension is larger
 			if width > height then
-				require("oil.actions").select.callback({ vertical = true })
+				require("oil").open_preview({ vertical = true })
 			else
-				require("oil.actions").select.callback({ horizontal = true })
+				require("oil").open_preview({ vertical = false })
 			end
 		end
 
