@@ -7,11 +7,12 @@ return {
 			-- AI
 			{ "<leader>a", group = "AI", icon = "󱜸  " },
 			{ "<leader>d", icon = "󰗩  " },
-			{ "<leader>g", group = "Git", icon = "  " },
+			{ "<leader>g", group = "Git", icon = "󰊢  " },
 			{ "<leader>gh", group = "Hunk", icon = "󰦨  " },
-			{ "<leader>gb", group = "Buffer", icon = "  " },
+			{ "<leader>gb", group = "Buffer", icon = " " },
 			{ "<leader>ga", group = "Accept", icon = "  " },
 			{ "<leader>gd", icon = "  " },
+			{ "<leader>h", group = "Haunt", icon = "󱙝 " },
 
 			{ "<leader>r", icon = "󰺯  " },
 			{ "<leader>o", icon = "  " },

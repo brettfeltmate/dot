@@ -30,36 +30,40 @@ return {
 		event = "BufReadPre",
 		config = function(_)
 			local ts = require("nvim-treesitter")
-
-			-- Install core parsers at startup
-			ts.install({
-				"bash",
-				"comment",
-				"css",
-				"diff",
-				"fish",
-				"git_config",
-				"git_rebase",
-				"gitcommit",
-				"gitignore",
-				"html",
-				"javascript",
-				"json",
-				"latex",
-				"lua",
-				"luadoc",
-				"make",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"r",
-				"rnoweb",
-				"regex",
-				"scss",
-				"toml",
-				"vim",
-				"vimdoc",
-			})
+			ts.install_dir =
+				vim.fn.stdpath("data") .. "/site",
+				-- Install core parsers at startup
+				ts.install({
+					"bash",
+					"comment",
+					"css",
+					"diff",
+					"git_config",
+					"git_rebase",
+					"gitcommit",
+					"gitignore",
+					"html",
+					"javascript",
+					"json",
+					"latex",
+					"lua",
+					"luadoc",
+					"make",
+					"markdown",
+					"markdown_inline",
+					"python",
+					"r",
+					"rnoweb",
+					"regex",
+					"scss",
+					"svelte",
+					"tsx",
+					"toml",
+					"typst",
+					"vim",
+					"vimdoc",
+					"vue",
+				})
 
 			-- Auto-install parsers and enable highlighting on FileType
 			vim.api.nvim_create_autocmd("FileType", {

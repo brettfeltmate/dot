@@ -1,6 +1,6 @@
 return {
 	"mrjones2014/smart-splits.nvim",
-	event = "VeryLazy",
+	-- event = "VeryLazy",
 	build = "./kitty/install-kittens.bash",
 	opts = {},
 	config = function(_, opts)

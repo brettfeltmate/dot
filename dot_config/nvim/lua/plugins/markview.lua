@@ -13,6 +13,7 @@ return {
 		require("markview.extras.checkboxes").setup({ default = "/" })
 
 		require("markview").setup({
+			comments = { enable = true },
 			preview = {
 				filetypes = { "chat", "markdown", "md", "rmarkdown", "rmd", "quarto", "qmd", "codecompanion", "noice" },
 				modes = { "n", "no" },

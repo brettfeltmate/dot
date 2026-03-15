@@ -3,7 +3,7 @@ return {
 	lazy = true,
 	opts = {
 		preferred_picker = "snacks",
-		preferred_completion = "blink",
+		preferred_completion = "vim_complete",
 		default_global_keymaps = false,
 		default_mode = "plan",
 		keymap = {
