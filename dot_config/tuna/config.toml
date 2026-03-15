@@ -1,0 +1,448 @@
+schemaVersion = 1
+
+[hotkeys]
+custom = []
+
+    [hotkeys.app.activate]
+    carbonKeyCode = 111
+    carbonModifiers = 0
+
+    [hotkeys.app.leaderMode]
+    carbonKeyCode = 103
+    carbonModifiers = 0
+
+[[leaderMode.bindings]]
+key = 'z'
+label = 'Zen'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.Zen/Open'
+
+[[leaderMode.bindings]]
+key = 'k'
+label = 'Kitty'
+url = 'tuna://run/TunaCore.AllApplicationsCatalog.kitty/Open'
+
+[[leaderMode.bindings]]
+key = 'f'
+label = 'Finder'
+url = 'tuna://run/path.%252FSystem%252FLibrary%252FCoreServices%252FFinder.app/Open'
+
+[[leaderMode.bindings]]
+key = 'm'
+label = 'Messages'
+url = 'tuna://run/path.%252FSystem%252FApplications%252FMessages.app/Open'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '0'
+label = 'Space 0'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25200/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '1'
+label = 'Space 1'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25201/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '2'
+label = 'Space 2'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25202/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '3'
+label = 'Space 3'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25203/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '4'
+label = 'Space 4'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25204/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '5'
+label = 'Space 5'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25205/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '6'
+label = 'Space 6'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25206/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '7'
+label = 'Space 7'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25207/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '8'
+label = 'Space 8'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25208/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = '9'
+label = 'Space 9'
+url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25209/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'rectangle.grid.2x2'
+key = 'a'
+label = 'Aerospace'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '0'
+    label = 'Space 0'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25200/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '1'
+    label = 'Space 1'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25201/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '2'
+    label = 'Space 2'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25202/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '3'
+    label = 'Space 3'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25203/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '4'
+    label = 'Space 4'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25204/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '5'
+    label = 'Space 5'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25205/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '6'
+    label = 'Space 6'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25206/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '7'
+    label = 'Space 7'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25207/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '8'
+    label = 'Space 8'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25208/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'rectangle.grid.2x2'
+    key = '9'
+    label = 'Space 9'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520workspace%25209/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'R'
+    label = 'reload-config'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520reload-config/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'r'
+    label = 'mode resize'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520mode%2520resize%2520&&%2520sketchybar%2520--trigger%2520aerospace_mode_changed/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'f'
+    label = 'fullscreen'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520fullscreen%2520&&%2520sketchybar%2520--trigger%2520aerospace_mode_changed/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'F'
+    label = 'flatten-workspace-tree'
+    url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520flatten-workspace-tree%2520&&%2520sketchybar%2520--trigger%2520aerospace_mode_changed/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'j'
+    label = 'join-with'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'h'
+        label = 'left'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520join-with%2520left/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'j'
+        label = 'down'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520join-with%2520down/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'k'
+        label = 'up'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520join-with%2520up/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'l'
+        label = 'right'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520join-with%2520right/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'l'
+    label = 'layout'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'a'
+        label = 'accordion'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520layout%2520accordion%2520horizontal%2520vertical%2520&&%2520sketchybar%2520--trigger%2520aerospace_mode_changed/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'f'
+        label = 'floating'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520layout%2520floating%2520tiling%2520&&%2520sketchybar%2520--trigger%2520aerospace_mode_changed/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 't'
+        label = 'tiles'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520layout%2520tiles%2520vertical%2520horizontal%2520&&%2520sketchybar%2520--trigger%2520aerospace_mode_changed/Run%20Text%20as%20Shell%20Command'
+
+    [[leaderMode.bindings.children]]
+    key = 'm'
+    label = 'move'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '0'
+        label = 'Space 0'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25200/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '1'
+        label = 'Space 1'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25201/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '2'
+        label = 'Space 2'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25202/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '3'
+        label = 'Space 3'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25203/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '4'
+        label = 'Space 4'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25204/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '5'
+        label = 'Space 5'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25205/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '6'
+        label = 'Space 6'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25206/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '7'
+        label = 'Space 7'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25207/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '8'
+        label = 'Space 8'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25208/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        iconPath = 'rectangle.grid.2x2'
+        key = '9'
+        label = 'Space 9'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move-node-to-workspace%25209/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'h'
+        label = 'left'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520left/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'left'
+        label = 'left'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520left/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'j'
+        label = 'down'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520down/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'down'
+        label = 'down'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520down/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'k'
+        label = 'up'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520up/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'up'
+        label = 'up'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520up/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'l'
+        label = 'right'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520right/Run%20Text%20as%20Shell%20Command'
+
+        [[leaderMode.bindings.children.children]]
+        key = 'right'
+        label = 'right'
+        url = 'tuna://run/text.%252Fopt%252Fhomebrew%252Fbin%252Faerospace%2520move%2520right/Run%20Text%20as%20Shell%20Command'
+
+[[leaderMode.bindings]]
+iconPath = 'camera'
+key = 'c'
+label = 'Capture'
+
+    [[leaderMode.bindings.children]]
+    key = 'a'
+    label = 'Area'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Capture%20Area/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'f'
+    label = 'Fullscreen'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Capture%20Full%20Screen/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'w'
+    label = 'Window'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Capture%20Window/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'h'
+    label = 'History'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Open%20History/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'r'
+    label = 'Record'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Record%20Screen/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'p'
+    label = 'Previous'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Capture%20Previous%20Area/TunaCore.CommonActionsCatalog.Run'
+
+    [[leaderMode.bindings.children]]
+    key = 'e'
+    label = 'Edit'
+    url = 'tuna://run/TunaCleanShot.CleanShotActionsCatalog.Annotate%20from%20Clipboard/TunaCore.CommonActionsCatalog.Run'
+
+[[leaderMode.bindings]]
+iconPath = 'doc.on.clipboard'
+key = 'y'
+label = 'Yank'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'terminal'
+    key = 'p'
+    label = 'Path'
+    url = 'tuna://run/TunaAutomation.ShortcutsCatalog.Search/TunaCore.CommonActionsCatalog.Copy%20Paths%20to%20Clipboard'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'doc'
+    key = 'f'
+    label = 'File'
+    url = 'tuna://run/TunaAutomation.ShortcutsCatalog.Search/TunaCore.CommonActionsCatalog.Copy%20to%20Clipboard'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'terminal'
+    key = 'P'
+    label = 'PATH'
+    url = 'tuna://run/TunaAutomation.ShortcutsCatalog.Search/TunaCore.CommonActionsCatalog.Get%20Absolute%20(POSIX)%20Path'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'selection.pin.in.out'
+    key = 's'
+    label = 'Selection'
+    url = 'tuna://run/Tuna.CurrentSelectionCatalog.Current%20Selection/TunaCore.CommonActionsCatalog.Copy%20to%20Clipboard'
+
+    [[leaderMode.bindings.children]]
+    iconPath = 'selection.pin.in.out'
+    key = 't'
+    label = 'Text'
+    url = 'tuna://run/Tuna.CurrentSelectionCatalog.Current%20Text%20Selection/TunaCore.CommonActionsCatalog.Copy%20to%20Clipboard'
+
+[settings]
+leaderModeCheatsheetBehavior = 'never'
+leaderModeCheatsheetDelayMS = 1000
+leaderModeModifierConfiguration = 'optionGroupControlSticky'
+leaderModeThemeStyle = 'breadcrumb'
+shelfWindowAlwaysOnTop = false
+themeIdentifier = 'com.brnbw.tuna.themes.default'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'Bing'
+template = 'https://www.bing.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = true
+name = 'DuckDuckGo'
+template = 'https://duckduckgo.com/?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'GitHub'
+template = 'https://github.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'Google'
+template = 'https://www.google.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'Stack Overflow'
+template = 'https://stackoverflow.com/search?q={{input}}'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'Wikipedia'
+template = 'https://en.wikipedia.org/wiki/Special:Search?search={{input}}'
+
+[[smartLinks.entries]]
+enabled = false
+name = 'YouTube'
+template = 'https://www.youtube.com/results?search_query={{input}}'
+
+[[catalogSettings]]
+catalogIdentifier = 'com.brnbw.tuna.themes.default'
+
+    [catalogSettings.values]
+    ThemeTint = 'custom:533436'
