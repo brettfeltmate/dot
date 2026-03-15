@@ -19,22 +19,23 @@ map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 map({ "n" }, "gdq", C("Debugprint qflist"), "To qflist")
 map({ "n" }, "\\m", C("lua require('base46').toggle_theme()"), "Toggle 'dark/light'")
 
+-- Toggle inline suggestions
+map({ "n" }, "\\a", function()
+	current_status = vim.lsp.inline_completion.is_enabled()
+	vim.lsp.inline_completion.enable(not current_status)
+end, "Toggle inline suggestions")
+
+-- Jump to next split
+map({ "n" }, "<C-space>", C("wincmd w"), "Next win")
+
 -- Diagnostics
 map({ "n" }, "<C-w>e", C("lua vim.diagnostic.open_float()"), "Diagnostics float")
 map({ "n" }, "<C-w>d", C("lua vim.diagnostic.setqflist()"), "Diagnostics to qflist")
-
 map({ "n" }, "<C-w>q", C("copen"), "Open quickfix")
 
--- Prompts for number, diffs the current file against that ancestor using fugitive in a new tab
-map({ "n" }, "<C-w>D", function()
-	local ancestor = vim.fn.input("Ancestor level: ")
-	if ancestor ~= "" then
-		-- open current file in a new tab
-		vim.cmd("tabnew %")
-		-- run Gvdiffsplit against the ancestor
-		vim.cmd("Gvdiffsplit @~" .. ancestor .. ":%")
-	end
-end, "Git diff against ancestor")
+-- Remap qf jumps
+map({ "n" }, "]c", C("cnext"), "Next fix")
+map({ "n" }, "[c", C("cprev"), "Prev fix")
 
 -- Switch tabs
 map({ "n" }, "]t", C("tabnext"), "Next tab")
@@ -61,23 +62,34 @@ map({ "n", "t" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Res
 map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
 
 -- Cycle
-map({ "n" }, "<S-h>", C("lua require('nvchad.tabufline').prev()"), "Prev buff")
-map({ "n" }, "<S-l>", C("lua require('nvchad.tabufline').next()"), "Next buff")
+map({ "n" }, "<S-h>", C("bp"), "Prev buff")
+map({ "n" }, "<S-l>", C("bn"), "Next buff")
+
+-- Buffer switching by index (g1, g2, etc.) using NvChad's buffer system
+-- for i = 1, 9 do
+-- 	map("n", "g" .. i, function()
+-- 		if vim.t.bufs and vim.t.bufs[i] then
+-- 			vim.api.nvim_set_current_buf(vim.t.bufs[i])
+-- 		else
+-- 			vim.notify("No buffer at position " .. i, vim.log.levels.WARN)
+-- 		end
+-- 	end, "Go to buffer " .. i)
+-- end
 
 --  Go to beginning of next/prev block
-map({ "n" }, "<C-j>", "}j", "Jump next block")
-map({ "n" }, "<C-k>", "{{j", "Jump prev block")
+map({ "n" }, "<C-j>", "}j", "Next block")
+map({ "n" }, "<C-k>", "{{j", "Prev block")
 
 -- Go to next/prev hunk
 map({ "n" }, "<M-j>", C("VGit hunk_down"), "Next hunk")
 map({ "n" }, "<M-k>", C("VGit hunk_up"), "Prev hunk")
 
 -- Leader mappings
-map({ "n" }, L("d"), C("lua require('nvchad.tabufline').close_buffer()"), "Delete")
+map({ "n" }, L("d"), C("lua require('snacks').bufdelete()"), "Delete")
 map({ "n" }, L("f"), C("lua require('snacks').picker.files()"), "Find")
-map({ "n" }, L("c"), C("lua require('rgflow').open_cword_path()"), "RipGrep")
+map({ "n" }, L("c"), C("lua require('rgflow').open_cword_path()"), "Cword")
 map({ "n" }, L("r"), C("lua require('rgflow').open()"), "RipGrep")
-map({ "v" }, L("r"), C("lua require('rgflow').open_visual()"), "RipGrep Selection")
+map({ "v" }, L("r"), C("lua require('rgflow').open_visual()"), "RipGrep")
 map({ "n" }, L("o"), C("Oil"), "Open")
 map({ "n" }, L("p"), C("lua require('snacks').picker.pickers()"), "Pick")
 map({ "n" }, L("q"), C("q"), "Quit")
@@ -94,6 +106,7 @@ map({ "n" }, L("gbs"), C("VGit buffer_stage"), "Stage")
 map({ "n" }, L("gbu"), C("VGit buffer_unstage"), "Unstage")
 map({ "n" }, L("gbd"), C("VGit buffer_diff_preview"), "Diff")
 map({ "n" }, L("gbh"), C("VGit buffer_history_preview"), "History")
+map({ "n" }, L("gbb"), C("VGit buffer_blame_preview"), "History")
 
 map({ "n" }, L("gab"), C("VGit buffer_conflict_accept_both"), "Both")
 map({ "n" }, L("gac"), C("VGit buffer_conflict_accept_current"), "Current")
@@ -119,13 +132,8 @@ map({ "x" }, "L", function()
 end, "Next sibling node")
 
 -- OpenCode AI Assistant
-map({ "n" }, L("aa"), C("lua require('opencode.api').toggle()"), "Toggle")
-map({ "n" }, L("ai"), C("lua require('opencode.api').open_input()"), "Input")
+map({ "n" }, L("a<space>"), C("lua require('opencode.api').toggle()"), "Toggle")
 map({ "n" }, L("an"), C("lua require('opencode.api').open_input_new_session()"), "New session")
-map({ "n" }, L("ao"), C("lua require('opencode.api').open_output()"), "Output")
-map({ "n" }, L("at"), C("lua require('opencode.api').timeline()"), "Timeline")
-map({ "n" }, L("as"), C("lua require('opencode.api').select_session()"), "Select session")
-map({ "n" }, L("ar"), C("lua require('opencode.api').rename_session()"), "Rename session")
 map({ "n" }, L("az"), C("lua require('opencode.api').toggle_zoom()"), "Zoom")
 map({ "n" }, L("ad"), C("lua require('opencode.api').diff_open()"), "Diff view")
 map({ "n" }, L("af"), C("lua require('opencode.api').toggle_focus()"), "Focus toggle")

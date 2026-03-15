@@ -20,7 +20,7 @@ return {
 		".Rproj.user",
 		".git",
 		".here",
-		"renv.lock",
+		".Rproj",
 	},
 	log_level = 2,
 	settings = {
@@ -32,4 +32,3 @@ return {
 		},
 	},
 }
-

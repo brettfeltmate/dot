@@ -2,8 +2,6 @@ vim.g.have_nerd_font = true
 vim.g.autoformat = true
 vim.g.root_spec = { "lsp", { ".git", "lua" }, "cwd" }
 
--- vim.o.winborder = "bold"
-
 vim.cmd([[let g:sneak#label = 1]])
 
 -- UI
@@ -12,7 +10,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.pumheight = 10
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -26,7 +24,7 @@ vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.cursorline = true
 vim.opt.conceallevel = 3
-vim.opt.signcolumn = "auto:2"
+vim.opt.signcolumn = "auto:1-2"
 vim.opt.guicursor = ""
 vim.opt.shortmess:append("WIcC")
 vim.opt.wrap = false
@@ -73,10 +71,12 @@ vim.opt.tabstop = 4
 vim.opt.jumpoptions = "stack"
 
 -- Folding
-vim.opt.fillchars = "eob: ,fold:-,foldopen:,foldsep:|,foldclose:"
+-- vim.opt.fillchars = "eob: ,fold:-,foldopen:,foldsep:|,foldclose:"
+-- use Neovim nightly branch
+vim.o.fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldinner: ,foldclose:"
 vim.opt.foldcolumn = "0"
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "v:lua.require('user.commands').marker_or_tree_fold()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "v:lua.require('user.commands').marker_or_tree_fold()"

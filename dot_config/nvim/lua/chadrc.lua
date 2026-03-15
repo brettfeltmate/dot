@@ -19,7 +19,7 @@ local M = {
 	},
 	ui = {
 		tabufline = {
-			enabled = true,
+			enabled = false,
 			lazyload = true,
 			order = { "treeOffset", "buffers", "tabs", "btns" },
 			modules = nil,
@@ -27,8 +27,19 @@ local M = {
 		},
 		statusline = {
 			theme = "vscode_colored",
-			-- separator_style = "round",
-			-- order = { "mode", "diagnostics", "git" },
+			order = {
+				"mode",
+				"file",
+				"git",
+				-- "cursor",
+				-- "git_enhanced",
+				"%=",
+				"lsp_msg",
+				"%=",
+				"diagnostics",
+				-- "lsp",
+				"cwd",
+			},
 		},
 	},
 	nvdash = { load_on_startup = false },

@@ -43,3 +43,23 @@ vim.api.nvim_create_autocmd("User", {
 		end
 	end,
 })
+
+-- Enhanced git statusline cache management
+vim.api.nvim_create_autocmd({ "User" }, {
+	desc = "Clear git statusline cache on git operations",
+	pattern = { "GitSignsUpdate", "FugitiveChanged" },
+	callback = function()
+		-- Clear git statusline cache to ensure fresh data after git operations
+		vim.g.git_statusline_cache = {}
+		vim.cmd("redrawstatus")
+	end,
+})
+
+-- Additional cache invalidation for VGit operations
+vim.api.nvim_create_autocmd({ "BufWritePost", "FocusGained", "TermClose" }, {
+	desc = "Clear git cache on file operations that might change git status",
+	callback = function()
+		-- Clear cache when files are saved or terminal operations complete
+		vim.g.git_statusline_cache = {}
+	end,
+})
