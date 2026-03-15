@@ -76,10 +76,6 @@ alt-7 = 'workspace 7'
 alt-8 = 'workspace 8'
 alt-9 = 'workspace 9'
 
-# next/prev workspace
-alt-leftSquareBracket = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around prev'
-alt-rightSquareBracket = 'exec-and-forget aerospace list-workspaces --monitor focused --empty no | aerospace workspace --wrap-around next'
-
 # dispatch
 alt-shift-0 = 'move-node-to-workspace 0'
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -133,6 +129,7 @@ minus = ['resize smart -50', 'mode service']
 equal = ['resize smart +50', 'mode service']
 
 
+
 # -----------------------------------------------------------------
 # Application rules
 # -----------------------------------------------------------------
@@ -144,6 +141,10 @@ equal = ['resize smart +50', 'mode service']
 [[on-window-detected]]
 if.app-name-regex-substring = 'terminal'
 run = ['layout tiling', 'move-node-to-workspace 0']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'kitty-quick-access'
+run =  ['layout floating']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'kitty'
@@ -165,62 +166,63 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 if.app-name-regex-substring = 'safari'
 run = ['layout tiling', 'move-node-to-workspace 1']
 
-#
-# 2: Email
-#
-
 [[on-window-detected]]
-if.app-name-regex-substring = 'Mail'
-run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-name-regex-substring = 'Outlook'
-run = ['move-node-to-workspace 2']
+if.app-name-regex-substring = 'chrome'
+run = ['layout tiling', 'move-node-to-workspace 1']
 
 #
-# 3: Writing
+# 2: Writing
 #
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'iA Writer'
-run = ['move-node-to-workspace 3']
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
-run = ['move-node-to-workspace 3']
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Word'
-run = ['move-node-to-workspace 3']
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'iA Presenter'
+run = ['move-node-to-workspace 2']
 
 #
-# 4: Reference
+# 3: Reference
 #
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'ChatGPT'
 if.window-title-regex-substring = 'ChatGPT'
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 3']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Zotero'
-run = ['move-node-to-workspace 4']
+run = ['move-node-to-workspace 3']
 
 #
-# 5: Chat
+# 4: Chat
 #
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Messages'
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Signal'
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Beeper'
-run = ['move-node-to-workspace 5']
+run = ['move-node-to-workspace 4']
+
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'rstudio'
+run = ['layout tiling', 'move-node-to-workspace 5']
 
 #
 # 9: Entertainment
