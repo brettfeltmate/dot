@@ -8,17 +8,23 @@ options(
   menu.graphics = FALSE,
   show.signif.stars = FALSE,
   repos = c(CRAN = "https://cran.rstudio.org"),
-  lintr.linter_file = "~/.config/R/lintr",
-  styler.addins_style_transformer = "grkstyle::grk_style_transformer()",
+  # lintr.linter_file = "~/.config/R/lintr",
+  # styler.addins_style_transformer = "grkstyle::grk_style_transformer()",
   rsthemes.theme_light = "Textmate (default)",
-  rsthemes.theme_dark = "base16 Ashes {rsthemes}",
-  rsthemes.theme_favorite = c("Textmate (default)", "base16 Ashes {rsthemes}")
+  rsthemes.theme_dark = "Everforest Dark Hard {rsthemes}",
+  rsthemes.theme_favorite = c(
+    "Textmate (default)",
+    "Everforest Dark Hard {rsthemes}"
+  )
 )
 
 if (interactive()) {
   if (Sys.getenv("RSTUDIO") == "") {
     require(data.table, quietly = TRUE)
     require(httpgd, quietly = TRUE)
+
+    # Source utility functions
+    suppressMessages(source("~/.config/R/utilities.r"))
 
     if (require(plotcli, quietly = TRUE)) {
       plotcli_options(plot_width = 40, plot_height = 10, braille = FALSE)
@@ -45,6 +51,7 @@ if (interactive()) {
       )
     }
   } else {
+    require(rsthemes, quietly = TRUE)
     if (require("colorout", quietly = TRUE)) {
       colorout::setOutputColors(
         index = 249,
@@ -64,7 +71,4 @@ if (interactive()) {
       )
     }
   }
-
-  # Source utility functions
-  suppressMessages(source("~/.config/R/utilities.r"))
 }
