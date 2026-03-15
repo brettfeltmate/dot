@@ -28,3 +28,4 @@ alias xv="xan view -p -R --theme rounded"
 
 # alias brosh="mosh --server=/opt/homebrew/bin/mosh-server"
 # alias moshmini="brosh CogMotors-Mac-mini.local"
+alias met="~/.local/bin/met"
