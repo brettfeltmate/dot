@@ -23,6 +23,7 @@ vim.opt.smoothscroll = true
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
 vim.opt.conceallevel = 3
 vim.opt.signcolumn = "auto:1-2"
 vim.opt.guicursor = ""

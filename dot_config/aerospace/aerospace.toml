@@ -176,19 +176,19 @@ run = ['layout tiling', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'iA Writer'
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 2', 'layout tiling']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Pages'
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 2', 'layout tiling']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Word'
-run = ['move-node-to-workspace 2']
+run = ['move-node-to-workspace 2', 'layout tiling']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'iA Presenter'
-run = ['move-node-to-workspace 2']
+run = ['layout floating',  'move-node-to-workspace 2']
 
 #
 # 3: Reference
