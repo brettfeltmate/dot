@@ -1,4 +1,4 @@
--- [[ Helper methods ]] --
+-- Shorthands
 local map = function(mode, lhs, rhs, desc, opts)
 	opts = opts or {}
 	opts.desc = desc
@@ -12,28 +12,61 @@ end
 local C = function(cmd)
 	return "<Cmd>" .. cmd .. "<CR>"
 end
+
 --  Misc
-map({ "n" }, "grn", C("lua require 'nvchad.lsp.renamer'()"), "rename")
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 map({ "n" }, "gdq", C("Debugprint qflist"), "To qflist")
 map({ "n" }, "\\m", C("lua require('base46').toggle_theme()"), "Toggle 'dark/light'")
 
--- Toggle inline suggestions
-map({ "n" }, "\\a", function()
-	current_status = vim.lsp.inline_completion.is_enabled()
-	vim.lsp.inline_completion.enable(not current_status)
+--  Substitute/Exchange
+map({ "n" }, "zs", C("lua require('substitute').operator()"), "Sub [motion]", { noremap = true })
+map({ "n" }, "zx", C("lua require('substitute.exchange').operator()"), "Exch [motion]", { noremap = true })
+
+-- Marks, but with commentary
+map({ "n" }, "\\a", C("HauntToggle"), "Toggle Annotations")
+map({ "n" }, "ma", C("HauntAnnotate"), "Annotate")
+map({ "n" }, "md", C("HauntDelete"), "De-annotate")
+map({ "n" }, "mn", C("HauntNext"), "Next annotation")
+map({ "n" }, "mp", C("HauntPrev"), "Prev annotation")
+map({ "n" }, "mq", C("HauntQfAll"), "List")
+
+-- Inline suggestions
+map({ "n" }, "\\i", function()
+	vim.lsp.inline_completion.enable(not vim.lsp.inline_completion.is_enabled())
 end, "Toggle inline suggestions")
 
--- Jump to next split
-map({ "n" }, "<C-space>", C("wincmd w"), "Next win")
+map({ "i" }, "<M-l>", function()
+	if not vim.lsp.inline_completion.get() then
+		return "<M-l>"
+	end
+end, "Confirm inline suggestion", { expr = true })
+
+map({ "i" }, "<M-n>", function()
+	local enabled = vim.lsp.inline_completion.is_enabled()
+	if enabled then
+		vim.lsp.inline_completion.select({ count = 1 })
+	end
+end, "Next inline suggestion")
+
+map({ "i" }, "<M-p>", function()
+	local enabled = vim.lsp.inline_completion.is_enabled()
+	if enabled then
+		vim.lsp.inline_completion.select({ count = -1 })
+	end
+end, "Prev inline suggestion")
 
 -- Diagnostics
 map({ "n" }, "<C-w>e", C("lua vim.diagnostic.open_float()"), "Diagnostics float")
-map({ "n" }, "<C-w>d", C("lua vim.diagnostic.setqflist()"), "Diagnostics to qflist")
+map(
+	{ "n" },
+	"<C-w>d",
+	C("lua vim.diagnostic.setqflist({severity={min = vim.diagnostic.severity.ERROR}})"),
+	"Diagnostics to qflist"
+)
 map({ "n" }, "<C-w>q", C("copen"), "Open quickfix")
 
--- Remap qf jumps
+-- QF jumps
 map({ "n" }, "]c", C("cnext"), "Next fix")
 map({ "n" }, "[c", C("cprev"), "Prev fix")
 
@@ -41,11 +74,14 @@ map({ "n" }, "[c", C("cprev"), "Prev fix")
 map({ "n" }, "]t", C("tabnext"), "Next tab")
 map({ "n" }, "[t", C("tabprevious"), "Prev tab")
 
---  Substitute/Exchange
-map({ "n" }, "zs", C("lua require('substitute').operator()"), "Sub [motion]", { noremap = true })
-map({ "n" }, "zx", C("lua require('substitute.exchange').operator()"), "Exch [motion]", { noremap = true })
+-- Switch buffers
+map({ "n" }, "<S-h>", C("bp"), "Prev buff")
+map({ "n" }, "<S-l>", C("bn"), "Next buff")
 
---  Focus
+-- Jump splits
+map({ "n" }, "<C-space>", C("wincmd w"), "Next win")
+
+--  Focus splits
 map({ "n" }, "<C-Left>", C("lua require('smart-splits').move_cursor_left()"), "Left")
 map({ "n" }, "<C-Down>", C("lua require('smart-splits').move_cursor_down()"), "Down")
 map({ "n" }, "<C-Up>", C("lua require('smart-splits').move_cursor_up()"), "Up")
@@ -55,91 +91,61 @@ map({ "t" }, "<C-Down>", "<C-\\><C-n><C-Down>", "Down", { nowait = true })
 map({ "t" }, "<C-Up>", "<C-\\><C-n><C-Up>", "Up", { nowait = true })
 map({ "t" }, "<C-Right>", "<C-\\><C-n><C-Right>", "Right", { nowait = true })
 
---  Resize
+--  Resize splits
 map({ "n", "t" }, "<C-S-Left>", C("lua require('smart-splits').resize_left()"), "Resize left")
 map({ "n", "t" }, "<C-S-Down>", C("lua require('smart-splits').resize_down()"), "Resize down")
 map({ "n", "t" }, "<C-S-Up>", C("lua require('smart-splits').resize_up()"), "Resize up")
 map({ "n", "t" }, "<C-S-Right>", C("lua require('smart-splits').resize_right()"), "Resize right")
 
--- Cycle
-map({ "n" }, "<S-h>", C("bp"), "Prev buff")
-map({ "n" }, "<S-l>", C("bn"), "Next buff")
-
--- Buffer switching by index (g1, g2, etc.) using NvChad's buffer system
--- for i = 1, 9 do
--- 	map("n", "g" .. i, function()
--- 		if vim.t.bufs and vim.t.bufs[i] then
--- 			vim.api.nvim_set_current_buf(vim.t.bufs[i])
--- 		else
--- 			vim.notify("No buffer at position " .. i, vim.log.levels.WARN)
--- 		end
--- 	end, "Go to buffer " .. i)
--- end
-
---  Go to beginning of next/prev block
-map({ "n" }, "<C-j>", "}j", "Next block")
-map({ "n" }, "<C-k>", "{{j", "Prev block")
+--  Next/prev unempty para
+map({ "n" }, "<C-j>", "}j", "Next para")
+map({ "n" }, "<C-k>", "{{j", "Prev para")
 
 -- Go to next/prev hunk
 map({ "n" }, "<M-j>", C("VGit hunk_down"), "Next hunk")
 map({ "n" }, "<M-k>", C("VGit hunk_up"), "Prev hunk")
 
+-- Treesitter/lsp selection
+map(
+	{ "n", "x", "o" },
+	"<M-i>",
+	C("lua require('vim.treesitter._select').select_child(vim.v.count1)"),
+	"Child tree node or inner lsp selection"
+)
+map(
+	{ "n", "x", "o" },
+	"<M-o>",
+	C("lua require('vim.treesitter._select').select_parent(vim.v.count1)"),
+	"Parent tree node or outer lsp selection"
+)
+
 -- Leader mappings
+map({ "n" }, L("c"), C("lua require('rgflow').open_cword_path()"), "Cword")
 map({ "n" }, L("d"), C("lua require('snacks').bufdelete()"), "Delete")
 map({ "n" }, L("f"), C("lua require('snacks').picker.files()"), "Find")
-map({ "n" }, L("c"), C("lua require('rgflow').open_cword_path()"), "Cword")
-map({ "n" }, L("r"), C("lua require('rgflow').open()"), "RipGrep")
-map({ "v" }, L("r"), C("lua require('rgflow').open_visual()"), "RipGrep")
 map({ "n" }, L("o"), C("Oil"), "Open")
 map({ "n" }, L("p"), C("lua require('snacks').picker.pickers()"), "Pick")
 map({ "n" }, L("q"), C("q"), "Quit")
+map({ "n" }, L("r"), C("lua require('rgflow').open()"), "RipGrep")
+map({ "v" }, L("r"), C("lua require('rgflow').open_visual()"), "RipGrep")
 map({ "n" }, L("s"), C("lua require('snacks').scratch()"), "Scratch")
 map({ "n" }, L("u"), C("lua Snacks.picker.undo()"), "Undo")
 map({ "n" }, L("w"), C("w"), "Write")
+map({ "n" }, L("y"), C("lua Snacks.picker.lsp_symbols()"), "LSP symbols")
 
--- -- VGit
-map({ "n" }, L("ghs"), C("VGit buffer_hunk_stage"), "Stage")
-map({ "n" }, L("ghu"), C("VGit buffer_hunk_unstage"), "Unstage")
-map({ "n" }, L("ghp"), C("VGit buffer_hunk_preview"), "Preview")
-
-map({ "n" }, L("gbs"), C("VGit buffer_stage"), "Stage")
-map({ "n" }, L("gbu"), C("VGit buffer_unstage"), "Unstage")
-map({ "n" }, L("gbd"), C("VGit buffer_diff_preview"), "Diff")
-map({ "n" }, L("gbh"), C("VGit buffer_history_preview"), "History")
-map({ "n" }, L("gbb"), C("VGit buffer_blame_preview"), "History")
-
+-- VGit
 map({ "n" }, L("gab"), C("VGit buffer_conflict_accept_both"), "Both")
 map({ "n" }, L("gac"), C("VGit buffer_conflict_accept_current"), "Current")
 map({ "n" }, L("gai"), C("VGit buffer_conflict_accept_incoming"), "Incoming")
 
+map({ "n" }, L("gbb"), C("VGit buffer_blame_preview"), "History")
+map({ "n" }, L("gbd"), C("VGit buffer_diff_preview"), "Diff")
+map({ "n" }, L("gbh"), C("VGit buffer_history_preview"), "History")
+map({ "n" }, L("gbs"), C("VGit buffer_stage"), "Stage")
+map({ "n" }, L("gbu"), C("VGit buffer_unstage"), "Unstage")
+
 map({ "n" }, L("gd"), C("VGit project_diff_preview"), "Diff project")
 
--- Treesitter incremental selection
-map({ "x" }, "K", function()
-	vim.treesitter.select_node({ parent = true })
-end, "Parent node")
-
-map({ "x" }, "J", function()
-	vim.treesitter.select_node({ child = true })
-end, "Child node")
-
-map({ "x" }, "H", function()
-	vim.treesitter.select_node({ sibling = "prev" })
-end, "Prev sibling node")
-
-map({ "x" }, "L", function()
-	vim.treesitter.select_node({ sibling = "next" })
-end, "Next sibling node")
-
--- OpenCode AI Assistant
-map({ "n" }, L("a<space>"), C("lua require('opencode.api').toggle()"), "Toggle")
-map({ "n" }, L("an"), C("lua require('opencode.api').open_input_new_session()"), "New session")
-map({ "n" }, L("az"), C("lua require('opencode.api').toggle_zoom()"), "Zoom")
-map({ "n" }, L("ad"), C("lua require('opencode.api').diff_open()"), "Diff view")
-map({ "n" }, L("af"), C("lua require('opencode.api').toggle_focus()"), "Focus toggle")
-map({ "n", "x" }, L("ac"), C("lua require('opencode.api').quick_chat()"), "Quick chat")
-
--- OpenCode shortcuts (non-leader)
-map({ "n" }, "<C-;>", C("lua require('opencode.api').toggle()"), "Toggle OpenCode")
-map({ "n" }, "<C-,>", C("lua require('opencode.api').toggle_focus()"), "Toggle focus")
-map({ "n", "x" }, "<C-.>", C("lua require('opencode.api').quick_chat()"), "Quick chat")
+map({ "n" }, L("ghp"), C("VGit buffer_hunk_preview"), "Preview")
+map({ "n" }, L("ghs"), C("VGit buffer_hunk_stage"), "Stage")
+map({ "n" }, L("ghu"), C("VGit buffer_hunk_unstage"), "Unstage")

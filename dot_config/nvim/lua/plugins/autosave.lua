@@ -15,8 +15,7 @@ end
 return {
 	"okuuva/auto-save.nvim",
 	version = "^1.0.0",
-	lazy = true,
-	event = { "BufReadPre" },
+	event = "BufReadPre",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = {
 		enabled = true,

@@ -3,19 +3,19 @@ return {
 	event = "InsertEnter",
 	version = "v0.*",
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
-	dependencies = {
-		{
-			"folke/lazydev.nvim",
-			ft = "lua", -- only load on lua files
-			opts = {
-				library = {
-					-- See the configuration section for more details
-					-- Load luvit types when the `vim.uv` word is found
-					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-				},
-			},
-		},
-	},
+	-- dependencies = {
+	-- 	{
+	-- 		"folke/lazydev.nvim",
+	-- 		ft = "lua", -- only load on lua files
+	-- 		opts = {
+	-- 			library = {
+	-- 				-- See the configuration section for more details
+	-- 				-- Load luvit types when the `vim.uv` word is found
+	-- 				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
 	opts = function(_, opts)
 		opts.completion = {
 			menu = {
@@ -41,14 +41,15 @@ return {
 		}
 
 		opts.sources = vim.tbl_deep_extend("force", opts.sources or {}, {
-			default = { "lazydev", "lsp", "buffer", "path" },
+			-- default = { "lazydev", "lsp", "buffer", "path" },
+			default = { "lsp", "buffer", "path" },
 			providers = {
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					-- make lazydev completions top priority (see `:h blink.cmp`)
-					score_offset = 100,
-				},
+				-- lazydev = {
+				-- 	name = "LazyDev",
+				-- 	module = "lazydev.integrations.blink",
+				-- 	-- make lazydev completions top priority (see `:h blink.cmp`)
+				-- 	score_offset = 100,
+				-- },
 				lsp = {
 					name = "lsp",
 					module = "blink.cmp.sources.lsp",
@@ -57,14 +58,14 @@ return {
 					score_offset = 30,
 				},
 				buffer = {
-					name = "Buffer",
+					name = "buffer",
 					module = "blink.cmp.sources.buffer",
 					max_items = 5,
 					min_keyword_length = 2,
 					score_offset = 25,
 				},
 				path = {
-					name = "Path",
+					name = "path",
 					module = "blink.cmp.sources.path",
 					score_offset = 10,
 					fallbacks = { "buffer" },
@@ -89,7 +90,7 @@ return {
 					return { "buffer" }
 				end
 				if type == ":" then
-					return { "cmdline" }
+					return { "cmdline", "buffer" }
 				end
 				return {}
 			end,
@@ -100,18 +101,18 @@ return {
 		}
 		opts.keymap = {
 			preset = "none",
-			["<C-k>"] = { "show", "show_documentation", "hide_documentation" },
+			["<C-h>"] = { "show", "show_documentation", "hide_documentation" },
 			["<C-l>"] = { "accept", "fallback" },
 			["<C-n>"] = { "select_next", "fallback" },
 			["<C-p>"] = { "select_prev", "fallback" },
 			["<C-u>"] = { "scroll_documentation_up", "fallback" },
 			["<C-d>"] = { "scroll_documentation_down", "fallback" },
-			["<Tab>"] = {
-				function()
-					return vim.lsp.inline_completion.get()
-				end,
-				"fallback",
-			},
+			-- ["<Tab>"] = {
+			-- 	function()
+			-- 		return vim.lsp.inline_completion.get()
+			-- 	end,
+			-- 	"fallback",
+			-- },
 		}
 		return opts
 	end,

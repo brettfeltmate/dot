@@ -1,7 +1,7 @@
 return {
 	"tanvirtin/vgit.nvim",
 	dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
-	event = "VeryLazy",
+	event = "BufReadPre",
 	opts = {
 		live_blame = { enabled = false },
 	},

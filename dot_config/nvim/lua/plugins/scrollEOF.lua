@@ -1,5 +1,6 @@
 return {
 	"Aasim-A/scrollEOF.nvim",
 	lazy = true,
-	event = "BufReadPost",
+	event = "BufReadPre",
+	enabled = false,
 }

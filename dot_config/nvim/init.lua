@@ -9,6 +9,8 @@ require("keymaps")
 
 require("autocmds")
 
+-- vim.cmd("colorscheme amber")
+
 -- require('user.commands').setup()
 
 -- require("after")

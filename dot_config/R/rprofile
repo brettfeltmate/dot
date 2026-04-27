@@ -21,7 +21,15 @@ options(
 if (interactive()) {
   if (Sys.getenv("RSTUDIO") == "") {
     require(data.table, quietly = TRUE)
-    require(httpgd, quietly = TRUE)
+    # require(httpgd, quietly = TRUE)
+    if (requireNamespace("terminalgraphics", quietly = TRUE) && terminalgraphics::has_tgp_support()) {
+      options(
+        device = terminalgraphics::tgp,
+        term_col = terminalgraphics::is_kitty(),
+        term_width = terminalgraphics::term_width(),
+        term_height = terminalgraphics::term_height() * 0.5
+      )
+    }
 
     # Source utility functions
     suppressMessages(source("~/.config/R/utilities.r"))

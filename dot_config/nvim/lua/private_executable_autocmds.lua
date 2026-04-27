@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 
 -- Load UI highlights on startup
 vim.api.nvim_create_autocmd("UIEnter", {
-	desc = "Load base46 highlights",
+	desc = "Load colorscheme",
 	callback = function()
 		require("base46").load_all_highlights()
 		vim.lsp.inline_completion.enable()

@@ -1,7 +1,7 @@
 local M = {
 	base46 = {
-		theme = "amber",
-		theme_toggle = { "amber", "blossom_light" },
+		theme = "rich",
+		theme_toggle = { "rich", "penumbra_light" },
 		transparency = false,
 		integrations = {
 			"avante",
@@ -19,7 +19,7 @@ local M = {
 	},
 	ui = {
 		tabufline = {
-			enabled = false,
+			enabled = true,
 			lazyload = true,
 			order = { "treeOffset", "buffers", "tabs", "btns" },
 			modules = nil,
@@ -30,15 +30,14 @@ local M = {
 			order = {
 				"mode",
 				"file",
-				"git",
-				-- "cursor",
-				-- "git_enhanced",
-				"%=",
-				"lsp_msg",
-				"%=",
 				"diagnostics",
-				-- "lsp",
+				"lsp_msg",
+				-- "cursor",
+				"%=",
+				"%=",
+				"git",
 				"cwd",
+				-- "lsp",
 			},
 		},
 	},

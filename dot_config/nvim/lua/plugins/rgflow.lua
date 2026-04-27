@@ -1,6 +1,6 @@
 return {
 	"mangelozzi/rgflow.nvim",
-	dependencies = { "stevearc/quicker.nvim" },
+	dependencies = { "stevearc/quicker.nvim", "junegunn/fzf.vim", "junegunn/fzf" },
 	lazy = true,
 	opts = { default_trigger_mappings = false },
 	config = function(_, opts)

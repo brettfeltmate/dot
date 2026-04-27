@@ -1,7 +1,8 @@
 return {
 	"stevearc/oil.nvim",
-	lazy = true,
-	cmd = { "Oil" },
+	dependencies = { "echasnovski/mini.icons" },
+	-- lazy = true,
+	-- cmd = { "Oil" },
 	enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
 	opts = function()
 		-- Custom function to open preview with dynamic split direction

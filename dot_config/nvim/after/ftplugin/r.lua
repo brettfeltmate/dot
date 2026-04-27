@@ -258,17 +258,22 @@ vim.bo.comments = [[:#',:###,:##,:#]]
 
 local wk = require("which-key")
 wk.add({
-	{ "<localleader>", icon = "󰟔  ", group = "R..." },
-	{ "<localleader>G", mode = "n" },
-	{ "<localleader>v", mode = "n" },
-	{ "<localleader>w", mode = "n" },
-	{ "<localleader>s", mode = "n" },
-	{ "<localleader>l", mode = "n" },
-	{ "<localleader>k", mode = "n" },
-	{ "<localleader>u", mode = "n" },
-	{ "<localleader>y", mode = "n" },
-	{ "<localleader>h", mode = "n" },
-	{ "<localleader>p", mode = "n" },
-	{ "<localleader>b", mode = "n" },
-	{ "<localleader>o", mode = "n" },
+	{ "<localleader>", group = "R", icon = "󰟔" },
+	{ "<localleader>G", icon = "󰊢" },  -- Git/Go to definition 
+	{ "<localleader>v", icon = "󰈈" },  -- View
+	{ "<localleader>w", icon = "󰆓" },  -- Write  
+	{ "<localleader>s", icon = "󰨭" },  -- str()
+	{ "<localleader>l", icon = "󰎔" },  -- library()
+	{ "<localleader>k", icon = "󰆧" },  -- skimr::skim()
+	{ "<localleader>u", icon = "󰕌" },  -- unique()
+	{ "<localleader>y", icon = "󰃖" },  -- summary()
+	{ "<localleader>h", icon = "󰋖" },  -- pclih()
+	{ "<localleader>p", icon = "󰐩" },  -- print related
+	{ "<localleader>b", icon = "󰖟" },  -- browser
+	{ "<localleader>o", icon = "󰈈" },  -- object preview
+	{ "<localleader>e", icon = "󰇯" },  -- environment
+	{ "<localleader>E", icon = "󰇯" },  -- Environment (capital)
+	{ "<localleader>c", icon = "󰐩" },  -- print/console
+	{ "<localleader>i", icon = "󰏓" },  -- install (pak::pak)
+	{ "<localleader>x", icon = "󰅖" },  -- pclibx()
 })

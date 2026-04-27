@@ -1,5 +1,4 @@
 return {
-	{ "nvim-lua/plenary.nvim" },
 	{
 		"nvchad/ui",
 		config = function()

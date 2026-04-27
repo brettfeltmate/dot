@@ -2,14 +2,15 @@
 return {
 	{
 		vim.diagnostic.config({
-			virtual_text = {
-				-- current_line = true,
-				spacing = 4,
-				source = "if_many",
-				prefix = "●",
-				virt_text_pos = "eol_right_align",
-				severity = { min = vim.diagnostic.severity.WARN },
-			},
+			virtual_text = false,
+			-- virtual_text = {
+			-- 	-- current_line = true,
+			-- 	spacing = 4,
+			-- 	source = "if_many",
+			-- 	prefix = "●",
+			-- 	virt_text_pos = "eol_right_align",
+			-- 	severity = { min = vim.diagnostic.severity.ERROR },
+			-- },
 			signs = {
 				text = {
 					[vim.diagnostic.severity.ERROR] = "✘",
@@ -33,7 +34,6 @@ return {
 		},
 		config = function()
 			local ensure_installed = {
-				"air",
 				"bash-language-server",
 				"beautysh",
 				"blue",
@@ -65,16 +65,6 @@ return {
 			})
 
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
-
-			-- Configure LSP hover window with borders
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
-
-			-- Optionally also configure signature help with borders
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
-			})
 
 			-- Enable LSP servers (configs are auto-discovered from lsp/ directory)
 			local servers = {
@@ -122,9 +112,9 @@ return {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				python = { "ruff", "blue" },
-				r = { "air" },
-				rmd = { "markdownlint" },
-				rprofile = { "air" },
+				r = { "styler" },
+				rmd = { "styler" },
+				rprofile = { "styler" },
 				markdown = { "markdownlint" },
 			},
 			format_on_save = { timeout_ms = 5000 },

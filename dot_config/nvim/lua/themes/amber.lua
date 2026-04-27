@@ -21,21 +21,21 @@ local mix = require("base46.colors").mix
 local M = {}
 local base16 = {
 	base00 = "#100e10",
-	base01 = "#100f12",
-	base02 = "#17151a",
-	base03 = "#161111",
-	base04 = "#5f514a",
-	base05 = "#788070",
+	base01 = "#121212",
+	base02 = "#281c22",
+	base03 = "#322c2c",
+	base04 = "#4c3f30",
+	base05 = "#7f8872",
 	base06 = "#775056",
-	base07 = "#7b8875",
+	base07 = "#7d8773",
 	base08 = "#989183",
-	base09 = "#a38da7",
-	base0A = "#a7787e",
-	base0B = "#8f909c",
+	base09 = "#9b7c91",
+	base0A = "#ab767d",
+	base0B = "#8d919c",
 	base0C = "#a57370",
 	base0D = "#b49398",
 	base0E = "#aca398",
-	base0F = "#9b7c91",
+	base0F = "#a78ca2",
 }
 -- UI
 local base30 = {
@@ -51,22 +51,22 @@ local base30 = {
 	grey_fg2 = base16.base04,
 	light_grey = mix(base16.base02, base16.base05, 30),
 	red = base16.base0C,
-	baby_pink = shade(base16.base0A, 15),
-	pink = shade(base16.base0A, 5),
+	baby_pink = shade(base16.base0D, 10),
+	pink = base16.base0D,
 	line = base16.base06,
 	green = base16.base07,
 	vibrant_green = shade(base16.base07, 10),
 	nord_blue = base16.base09,
 	blue = mix(base16.base09, base16.base0D, 65),
 	seablue = mix(base16.base09, base16.base0D, 45),
-	yellow = shade(base16.base0E, 10),
+	yellow = base16.base0E,
 	sun = mix(base16.base0E, base16.base0A, 65),
 	purple = base16.base0F,
 	dark_purple = mix(base16.base0F, base16.base02, 20),
 	teal = mix(base16.base0D, base16.base09, 65),
 	cyan = mix(base16.base09, base16.base0D, 65),
 	orange = mix(base16.base0C, base16.base0E, 40),
-	statusline_bg = base16.base02,
+	statusline_bg = shade(base16.base06, -32),
 	lightbg = base16.base05,
 	pmenu_bg = base16.base03,
 	folder_bg = base16.base02,
@@ -74,13 +74,12 @@ local base30 = {
 
 local polish_hl = {
 	defaults = {
+		-- Comment = { fg = mix(base16.base04, base16.base0B, 20), italic = true, bold = true },
 		Comment = { fg = base16.base04, italic = true, bold = true },
-		Added = { fg = base30.yellow },
-		Removed = { fg = base30.baby_pink },
-		Changed = { fg = base30.purple },
+		Added = { fg = base30.green },
+		Removed = { fg = base30.pink },
+		Changed = { fg = base30.yellow },
 
-		WinBar = { bg = shade(base16.base03, -18) },
-		WinBarNC = { bg = shade(base16.base03, -18) },
 		WinSeparator = { fg = base30.line },
 		Pmenu = { bg = base30.pmenu_bg, fg = base16.base04 },
 		PmenuSbar = { bg = base30.pmenu_bg },
@@ -96,13 +95,13 @@ local polish_hl = {
 		QuickFixLine = { bg = base16.base04, bold = true },
 		QuickFixText = { bg = base30.one_bg2 },
 		Question = { fg = base16.base0D },
-		Search = { fg = base16.base00, bg = base16.base06 },
+		-- Search = { fg = base16.base00, bg = base16.base06 },
+		Search = { link = "Visual" },
 		Substitute = { fg = base16.base01, bg = base16.base07, bold = true, sp = "none" },
 		IncSearch = {
-			bg = base30.orange,
+			bg = base16.base08,
 			fg = base16.base00,
 			bold = true,
-			italic = true,
 		},
 		MatchWord = { link = "IncSearch" },
 		MatchParen = { link = "MatchWord" },
@@ -118,19 +117,14 @@ local polish_hl = {
 
 		ModeMsg = { fg = base16.base0B },
 		MoreMsg = { fg = base16.base0B },
-		Visual = {
-			bg = shade(base30.nord_blue, -30),
-			fg = base30.orange,
-			italic = true,
-			bold = true,
-		},
+		-- Visual = { link = "CursorLine" },
+		Visual = { bg = shade(base16.base08, -25), italic = true },
 		VisualNOS = { fg = base16.base09 },
 		Macro = { fg = base16.base08 },
 
 		Cursor = { fg = base16.base00, bg = base16.base05, bold = true },
-		CursorColumn = { bg = base16.base01, sp = "none" },
-		CursorLine = { bg = base30.one_bg },
-		-- CursorLine = { bg = shade(base16.base06, -34) },
+		CursorLine = { bg = shade(base16.base06, -30) },
+		CursorColumn = { link = "CursorLine" },
 		CursorLineNr = { fg = base16.base05 },
 		SignColumn = { fg = base16.base03, sp = "NONE" },
 		ColorColumn = { bg = base30.black2 },
@@ -138,8 +132,8 @@ local polish_hl = {
 		FoldColumn = { bg = "none" },
 		-- Folded = { fg = base30.light_grey, bg = shade(base30.one_bg2, -4) },
 		Folded = { fg = base30.light_grey, bg = shade(base30.one_bg3, 2) },
-		-- CurSearch = { fg = shade(base16.base0B, 10), bg = shade(base30.sun, -50), bold = true },
-		CurSearch = { fg = shade(base16.base06, 10), bg = base16.base03, bold = true },
+		-- CurSearch = { fg = shade(base16.base06, 10), bg = base16.base03, bold = true },
+		CurSearch = { link = "IncSearch" },
 
 		Error = { fg = base30.red, bg = base30.statusline_bg },
 		ErrorMsg = { fg = base30.red, bg = base30.statusline_bg },
@@ -287,7 +281,7 @@ local polish_hl = {
 		["@markup.heading.4.markdown"] = { fg = shade(base16.base06, 10) },
 		["@markup.heading.5.markdown"] = { fg = shade(base16.base0E, -20) },
 		["@markup.heading.6.markdown"] = { fg = shade(base16.base0E, -10) },
-		["@MarkviewCode"] = { bg = base30.one_bg },
+		["@MarkviewCode"] = { bg = shade(base30.one_bg2, -10) },
 		["@markviewCheckboxUnchecked"] = { fg = base16.base07 },
 	},
 	treesitter = {
@@ -306,7 +300,8 @@ local polish_hl = {
 		["@constant.builtin"] = { fg = base16.base06 },
 		["@constant.macro"] = { fg = base16.base08 },
 
-		["@string"] = { fg = base16.base05, italic = true },
+		["@string"] = { fg = base16.base05 },
+		["@string.documentation"] = { fg = mix(base16.base02, base16.base08, 65) },
 		["@string.regex"] = { fg = base16.base06, bold = true },
 		["@string.escape"] = { fg = base16.base06, bold = true },
 		["@string.csv"] = { fg = base16.base04 },
@@ -371,7 +366,7 @@ local polish_hl = {
 		["@markup.italic"] = { italic = true },
 		["@markup.strikethrough"] = { strikethrough = true },
 		["@markup.quote"] = { bg = base30.black2 },
-		["@comment"] = { fg = base16.base04 },
+		["@comment"] = { fg = mix(base16.base02, base16.base0B, 20) },
 		["@comment.todo"] = { fg = base30.grey, bg = base30.white },
 		["@comment.warning"] = { fg = base30.black2, bg = base16.base09 },
 		["@comment.note"] = { fg = base30.black, bg = base30.blue },
@@ -397,6 +392,9 @@ local polish_hl = {
 		["@SnacksDashboardKey"] = { fg = base16.base04, bold = true },
 		["@SnacksDashboardHeader"] = { fg = shade(base16.base04, 10) },
 		["@SnacksDashboardDir"] = { fg = shade(base16.base04, -10) },
+		-- ["@SnacksPickerCursorLine"] = { bg = shade(base16.base06, -30) },
+		-- ["@SnacksPickerListCursorLine"] = { bg = shade(base16.base06, -30) },
+		-- ["@SnacksPickerPreviewCursorLine"] = { bg = shade(base16.base06, -30) },
 	},
 	blinkcmp = {
 		["@BlinkCmpDoc"] = { link = "pmenu" },
@@ -525,7 +523,7 @@ hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = base16.base07 })
 hl(0, "BlinkCmpSignatureHelpActiveParameter", { fg = base16.base07, bold = true })
 hl(0, "FlashMatch", { fg = shade(base16.base07, -10) })
 hl(0, "MarkviewCheckboxUnchecked", { fg = base16.base07 })
-hl(0, "MarkviewCode", { bg = base30.black2 })
+hl(0, "MarkviewCode", { bg = shade(base30.one_bg2, -3) })
 hl(0, "SnacksIndent", { fg = base16.base04 })
 hl(0, "SnacksIndentScope", { fg = base30.line })
 hl(0, "SnacksDashboardKey", { fg = base16.base04, bold = true })
@@ -534,34 +532,12 @@ hl(0, "SnacksDashboardDir", { fg = shade(base16.base04, -10) })
 hl(0, "WhichKeyTitle", { fg = base16.base07 })
 hl(0, "FylerNormal", { link = "NormalFloat" })
 hl(0, "BqfPreviewFloat", { bg = base30.one_bg })
-hl(0, "UfoFoldedBg", { bg = shade(base30.one_bg2, -3) })
+hl(0, "UfoFoldedBg", { bg = shade(base30.one_bg2, -10) })
 hl(0, "BentoNormal", { link = "CurSearch" })
+hl(0, "HauntAnnotation", { link = "Visual" })
+hl(0, "HauntSign", { link = "DiagnosticInfo" })
+hl(0, "GitSignsAdd", { fg = base30.green, bg = "NONE" })
+hl(0, "GitSignsDelete", { fg = base30.pink, bg = "NONE" })
+hl(0, "GitSignsChange", { fg = base30.yellow, bg = "NONE" })
 
--- VGit highlights
--- hl(0, "GitSignsAdd", { fg = base30.green, bg = "NONE" })
--- hl(0, "GitSignsDelete", { fg = base30.red, bg = "NONE" })
--- hl(0, "GitSignsChange", { fg = base30.yellow, bg = "NONE" })
--- hl(0, "GitSignsAddLn", { fg = base30.green, bg = shade(base30.green, -50) })
--- hl(0, "GitSignsDeleteLn", { fg = base30.red, bg = shade(base30.red, -50) })
--- hl(0, "GitWordAdd", { fg = base30.green, bg = shade(base30.green, -35), bold = true })
--- hl(0, "GitWordDelete", { fg = base30.red, bg = shade(base30.red, -35), bold = true })
--- hl(0, "GitConflictCurrentMark", { fg = base30.green, bg = shade(base30.green, -40) })
--- hl(0, "GitConflictCurrent", { fg = base30.green, bg = shade(base30.green, -50) })
--- hl(0, "GitConflictIncomingMark", { fg = base30.blue, bg = shade(base30.blue, -40) })
--- hl(0, "GitConflictIncoming", { fg = base30.blue, bg = shade(base30.blue, -50) })
--- hl(0, "GitConflictAncestorMark", { fg = base30.purple, bg = shade(base30.purple, -40) })
--- hl(0, "GitConflictAncestor", { fg = base30.purple, bg = shade(base30.purple, -50) })
--- hl(0, "GitConflictMiddle", { fg = base16.base04, bg = base30.one_bg2 })
--- hl(0, "GitCount", { fg = base30.yellow, bold = true })
--- hl(0, "GitSymbol", { fg = base16.base04 })
--- hl(0, "GitTitle", { fg = base16.base0D, bold = true })
--- hl(0, "GitSelected", { fg = base30.orange, bg = base30.one_bg2, bold = true })
--- hl(0, "GitBackground", { fg = base16.base05, bg = base16.base01 })
--- hl(0, "GitAppBar", { fg = base16.base05, bg = base30.statusline_bg })
--- hl(0, "GitHeader", { fg = base16.base08, bg = base30.black2 })
--- hl(0, "GitFooter", { fg = base16.base04, bg = base30.black2 })
--- hl(0, "GitBorder", { fg = base30.line, bg = base30.black2 })
--- hl(0, "GitLineNr", { fg = base16.base04, bg = "NONE" })
--- hl(0, "GitComment", { fg = base16.base04, italic = true })
---
 return M

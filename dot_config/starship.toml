@@ -73,7 +73,7 @@ disabled = false
 format = "[$symbol$percentage]($style) "
 
 [[battery.display]]
-threshold = 10
+threshold = 30
 style = "red bold"
 
 [buf]
@@ -214,7 +214,7 @@ fish_style_pwd_dir_length = 0
 use_logical_path = true
 format = "[$path]($style)[$read_only]($read_only_style) "
 repo_root_format = "[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
-style = "4"
+style = "3"
 disabled = false
 read_only = ""
 read_only_style = "red"
@@ -837,7 +837,7 @@ version_format = "v${raw}"
 style = "blue bold"
 symbol = "  "
 disabled = false
-detect_extensions = ["R", "Rd", "Rmd", "Rproj", "Rsx", "here"]
+detect_extensions = ["R", "r", "Rd", "rd", "Rmd","rmd", "Rproj","rproj", "Rsx","rsx", "here"]
 detect_files = ["DESCRIPTION"]
 detect_folders = [".Rproj.user"]
 

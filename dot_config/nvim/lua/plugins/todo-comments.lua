@@ -3,7 +3,8 @@ return {
 	{
 		"folke/todo-comments.nvim",
 		event = "BufReadPost",
-		enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
+		-- enabled = vim.env.KITTY_SCROLLBACK_NVIM ~= "true",
+		enabled = false,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
 			signs = true,

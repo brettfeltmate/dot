@@ -1,8 +1,11 @@
 # eza
-alias ls="eza --group-directories-first --icons --dereference"
-alias la="ls --all --no-user --git"
-alias ll="la --long --grid"
+alias ls="eza --group-directories-first --icons --git"
+alias la="ls --all --no-user --across"
+alias ll="la --long --grid --follow-symlinks"
 alias lt="ls --tree --level 1"
+alias lt2="ls --tree --level 2"
+alias lt3="ls --tree --level 3"
+alias lta="ls --tree"
 
 # Quick navbacks
 alias ..="cd '..' "

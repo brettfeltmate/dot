@@ -1,21 +1,13 @@
 return {
 	"echasnovski/mini.nvim",
-	-- dependencies = { "simifalaye/minibuffer.nvim" },
-	event = "VeryLazy",
+	event = "BufReadPre",
 	config = function()
-		-- Core functionality modules
-		require("mini.ai").setup() -- Enhanced text objects
-		require("mini.basics").setup() -- Sensible defaults
-		require("mini.comment").setup() -- Smart commenting
+		require("mini.ai").setup()
+		require("mini.basics").setup()
+		require("mini.comment").setup()
 		require("mini.extra").setup()
-		-- require("mini.pick").setup() -- Fuzzy picker
-		-- local pick_mb = require("minibuffer.integrations.mini-pick")
-		-- local pick = require("mini.pick")
-		-- pick.is_picker_active = pick_mb.is_picker_active
-		-- pick.set_picker_items = pick_mb.set_picker_items
-		-- pick.start = pick_mb.start
-		require("mini.pairs").setup() -- Auto-pairs
-		require("mini.move").setup({ -- Move lines/selections
+		require("mini.pairs").setup()
+		require("mini.move").setup({
 			mappings = {
 				-- Move selection (visual mode)
 				left = "<M-C-h>",
@@ -29,8 +21,6 @@ return {
 				line_up = "<M-C-k>",
 			},
 		})
-
-		-- UI enhancement modules
 		require("mini.icons").setup({
 			file = {
 				[".here"] = { glyph = "󰍎", hl = "MiniIconsPurple" },
@@ -52,23 +42,7 @@ return {
 				out = { glyph = "󱞊", hl = "MiniIconsGrey" },
 			},
 		})
-
-		-- require("mini.diff").setup({ -- Git diff in sign column
-		-- 	view = {
-		-- 		style = "sign",
-		-- 		signs = { add = "+", change = "~", delete = "-" },
-		-- 	},
-		-- })
-
 		-- Replace nvim-web-devicons with mini.icons
 		MiniIcons.mock_nvim_web_devicons()
-
-		-- Commented out modules (consider enabling if needed):
-		-- require("mini.bracketed").setup({  -- Navigate with ]f, ]q, etc.
-		-- 	file = { suffix = "" },
-		-- 	quickfix = { suffix = "f" },
-		-- })
-		-- require("mini.tabline").setup({ tabpage_section = "right" })
-		-- require("mini.statusline").setup()  -- Using nvchad statusline instead
 	end,
 }

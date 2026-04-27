@@ -5,6 +5,8 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 export ZDOTDIR=$HOME/.config/zsh
 
+export PATH="$HOME/.local/nvim/bin:$PATH"
+
 export EDITOR="nvim"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 export PATH="/$HOME/.cargo/bin:/$HOME/.local/bin:/opt/homebrew/bin/brew:/opt/homebrew/sbin:$PATH"

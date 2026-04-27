@@ -1,6 +1,7 @@
 return {
 	"sudo-tee/opencode.nvim",
 	lazy = true,
+	enabled = false,
 	opts = {
 		preferred_picker = "snacks",
 		preferred_completion = "vim_complete",

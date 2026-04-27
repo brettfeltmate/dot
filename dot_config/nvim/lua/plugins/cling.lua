@@ -1,5 +1,6 @@
 return {
 	"juniorsundar/cling.nvim",
+	enabled = false,
 	event = "BufRead",
 	config = function()
 		require("cling").setup({

@@ -19,7 +19,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Default to overlayed windows
 default-root-container-layout = 'accordion'
 # Margin bleed
-accordion-padding = 5
+accordion-padding = 10
 
 # -----------------------------------------------------------------
 # Environment Variables
@@ -36,12 +36,12 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # -----------------------------------------------------------------
 
 [gaps]
-inner.horizontal = 2
-inner.vertical = 2
-outer.top = 2
+inner.horizontal = 4
+inner.vertical = 4
+outer.top = 4
 outer.bottom = 4
-outer.left = 6
-outer.right = 6
+outer.left = 4
+outer.right = 4
 
 # -----------------------------------------------------------------
 # Keybindings
@@ -50,10 +50,10 @@ outer.right = 6
 # default mode
 [mode.main.binding]
 
-alt-left = 'focus left'
-alt-down = 'focus down'
-alt-up = 'focus up'
-alt-right = 'focus right'
+alt-left = ['focus left', 'move-mouse window-lazy-center']
+alt-down = ['focus down', 'move-mouse window-lazy-center']
+alt-up = ['focus up', 'move-mouse window-lazy-center']
+alt-right = ['focus right', 'move-mouse window-lazy-center']
 
 alt-comma = 'layout tiling floating'
 alt-period = 'layout accordion tiles'
@@ -61,6 +61,7 @@ alt-slash = 'layout horizontal vertical'
 
 alt-enter = 'macos-native-fullscreen'
 
+alt-quote = ['focus dfs-next --boundaries workspace --boundaries-action wrap-around-the-workspace', 'move-mouse window-lazy-center']
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
