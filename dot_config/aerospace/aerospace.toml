@@ -129,8 +129,6 @@ f = ['flatten-workspace-tree', 'mode service']
 minus = ['resize smart -50', 'mode service']
 equal = ['resize smart +50', 'mode service']
 
-
-
 # -----------------------------------------------------------------
 # Application rules
 # -----------------------------------------------------------------
@@ -189,7 +187,7 @@ run = ['move-node-to-workspace 2', 'layout tiling']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'iA Presenter'
-run = ['layout floating',  'move-node-to-workspace 2']
+run = ['move-node-to-workspace 2',  'layout tiling']
 
 #
 # 3: Reference

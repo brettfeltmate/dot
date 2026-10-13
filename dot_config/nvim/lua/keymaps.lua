@@ -17,7 +17,9 @@ end
 map({ "t" }, "<Esc><Esc>", "<C-\\><C-n>", "Exit terminal mode", { nowait = true })
 map({ "n" }, "<Esc>", C("nohl"), "Clear highlights")
 map({ "n" }, "gdq", C("Debugprint qflist"), "To qflist")
-map({ "n" }, "\\m", C("lua require('base46').toggle_theme()"), "Toggle 'dark/light'")
+map({ "n" }, "\\m", C("lua require('base46').toggle_theme()"), "Toggle dark/light mode")
+map({ "n" }, "\\g", C("lua MiniDiff.toggle_overlay()"), "Toggle git diff")
+map({ "n" }, "<C-w>g", C("lua vim.fn.setqflist(MiniDiff.export('qf'))"), "Hunks to qf")
 
 --  Substitute/Exchange
 map({ "n" }, "zs", C("lua require('substitute').operator()"), "Sub [motion]", { noremap = true })
@@ -138,7 +140,6 @@ map({ "n" }, L("gab"), C("VGit buffer_conflict_accept_both"), "Both")
 map({ "n" }, L("gac"), C("VGit buffer_conflict_accept_current"), "Current")
 map({ "n" }, L("gai"), C("VGit buffer_conflict_accept_incoming"), "Incoming")
 
-map({ "n" }, L("gbb"), C("VGit buffer_blame_preview"), "History")
 map({ "n" }, L("gbd"), C("VGit buffer_diff_preview"), "Diff")
 map({ "n" }, L("gbh"), C("VGit buffer_history_preview"), "History")
 map({ "n" }, L("gbs"), C("VGit buffer_stage"), "Stage")
@@ -146,6 +147,6 @@ map({ "n" }, L("gbu"), C("VGit buffer_unstage"), "Unstage")
 
 map({ "n" }, L("gd"), C("VGit project_diff_preview"), "Diff project")
 
-map({ "n" }, L("ghp"), C("VGit buffer_hunk_preview"), "Preview")
-map({ "n" }, L("ghs"), C("VGit buffer_hunk_stage"), "Stage")
-map({ "n" }, L("ghu"), C("VGit buffer_hunk_unstage"), "Unstage")
+map({ "n", "x" }, "ghp", C("VGit buffer_hunk_preview"), "Preview")
+map({ "n", "x" }, "ghs", C("VGit buffer_hunk_stage"), "Stage")
+map({ "n", "x" }, "ghu", C("VGit buffer_hunk_unstage"), "Unstage")

@@ -1,12 +1,17 @@
 return {
 	"tanvirtin/vgit.nvim",
-	dependencies = { "nvim-lua/plenary.nvim", "echasnovski/mini.icons" },
 	event = "BufReadPre",
 	opts = {
-		live_blame = { enabled = false },
+		settings = {
+			live_blame = { enabled = false },
+			live_gutter = { edge_navigation = false },
+			signs = {
+				definitions = {
+					GitSignsAdd = { text = "" },
+					GitSignsDelete = { text = "" },
+					GitSignsChange = { text = "" },
+				},
+			},
+		},
 	},
-	config = function(_, opts)
-		require("vgit").setup(opts)
-		-- VGit highlights are now defined in lua/themes/amber.lua
-	end,
 }

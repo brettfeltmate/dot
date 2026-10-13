@@ -63,3 +63,14 @@ vim.api.nvim_create_autocmd({ "BufWritePost", "FocusGained", "TermClose" }, {
 		vim.g.git_statusline_cache = {}
 	end,
 })
+
+-- SCSS auto-compilation on save
+vim.api.nvim_create_autocmd("BufWritePost", {
+	pattern = "*.scss",
+	callback = function()
+		local file = vim.fn.expand("%:p")
+		local output = vim.fn.expand("%:p:r") .. ".css"
+		vim.fn.system(string.format("sass %s %s", file, output))
+		vim.notify("SCSS compiled to CSS", vim.log.levels.INFO)
+	end,
+})

@@ -68,7 +68,6 @@ return {
 			triggers = {
 				{ "<auto>", mode = "nixsotc" },
 				{ "m", mode = { "n", "v" } },
-				{ "<localleader>", mode = { "n", "v" } },
 			},
 		}
 		return o

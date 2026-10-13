@@ -3,14 +3,6 @@ return {
 	{
 		vim.diagnostic.config({
 			virtual_text = false,
-			-- virtual_text = {
-			-- 	-- current_line = true,
-			-- 	spacing = 4,
-			-- 	source = "if_many",
-			-- 	prefix = "●",
-			-- 	virt_text_pos = "eol_right_align",
-			-- 	severity = { min = vim.diagnostic.severity.ERROR },
-			-- },
 			signs = {
 				text = {
 					[vim.diagnostic.severity.ERROR] = "✘",
@@ -34,9 +26,11 @@ return {
 		},
 		config = function()
 			local ensure_installed = {
+				"alejandra",
 				"bash-language-server",
 				"beautysh",
 				"blue",
+				"css-lsp",
 				"clangd",
 				"copilot-language-server",
 				"debugpy",
@@ -46,6 +40,7 @@ return {
 				"prettier",
 				"pyright",
 				"r-languageserver",
+				"rnix-lsp",
 				"ruff",
 				"stylua",
 				"vtsls",
@@ -77,6 +72,7 @@ return {
 				"marksman",
 				"pyright",
 				"r_language_server",
+				"rnix-lsp",
 				"taplo",
 				"vtsls",
 			}
@@ -101,21 +97,23 @@ return {
 				},
 			},
 			formatters_by_ft = {
-				sh = { "beautysh" },
 				bash = { "beautysh" },
 				css = { "prettier" },
 				html = { "prettier" },
-				scss = { "prettier" },
-				zsh = { "beautysh" },
-				lua = { "stylua" },
-				json = { "prettier" },
 				javascript = { "prettier" },
-				typescript = { "prettier" },
+				json = { "prettier" },
+				less = { "prettier" },
+				lua = { "stylua" },
+				markdown = { "markdownlint" },
+				nix = { "alejandra" },
 				python = { "ruff", "blue" },
 				r = { "styler" },
-				rmd = { "styler" },
 				rprofile = { "styler" },
-				markdown = { "markdownlint" },
+				rmd = { "styler" },
+				scss = { "prettier" },
+				sh = { "beautysh" },
+				typescript = { "prettier" },
+				zsh = { "beautysh" },
 			},
 			format_on_save = { timeout_ms = 5000 },
 			injected = {
@@ -131,6 +129,7 @@ return {
 						markdown = "md",
 						python = "py",
 						r = "r",
+						less = "less",
 					},
 				},
 			},

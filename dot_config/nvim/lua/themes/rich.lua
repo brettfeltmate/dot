@@ -29,13 +29,13 @@ local base16 = {
 	base06 = "#7e4c54",
 	base07 = "#81876c",
 	base08 = "#a09782",
-	base09 = "#b48d95",
-	base0A = "#cb9484",
-	base0B = "#689081",
+	base09 = "#a79397",
+	base0A = "#bb8575",
+	base0B = "#389a7c",
 	base0C = "#9d7774",
-	base0D = "#ca9178",
+	base0D = "#b67f66",
 	base0E = "#b19b7f",
-	base0F = "#a37d79",
+	base0F = "#9a817e",
 }
 -- UI
 local base30 = {
@@ -74,6 +74,12 @@ local base30 = {
 
 local polish_hl = {
 	defaults = {
+		-- St_NormalMode = { bg = base16.base0D },
+		-- St_VisualMode = { bg = base16.base0B },
+		-- St_SelectMode = { bg = base16.base0B },
+		-- St_InsertMode = { bg = base16.base06 },
+		-- St_CommandMode = { bg = base16.base05 },
+		-- St_ReplaceMode = { bg = base16.base0E },
 		Added = { fg = base30.green },
 		Removed = { fg = base30.pink },
 		Changed = { fg = base30.yellow },
@@ -180,6 +186,10 @@ local polish_hl = {
 		["@markviewCheckboxUnchecked"] = { fg = base16.base07 },
 	},
 	treesitter = {
+		["kittyOption"] = { fg = base16.base0A },
+		["kittyOptionKey"] = { fg = base16.base0A },
+		["kittyOptionName"] = { fg = base16.base0A },
+		["kittyNumber"] = { fg = base16.base0B },
 		["@variable"] = { fg = base16.base08 },
 		["@variable.member.r"] = { fg = base16.base0E },
 		["@variable.builtin"] = { fg = shade(base16.base0F, 10) },
@@ -188,7 +198,7 @@ local polish_hl = {
 		["@variable.member"] = { fg = base16.base08 },
 		["@variable.member.key"] = { fg = base16.base08 },
 		["@module"] = { fg = base16.base08 },
-		["@constant"] = { fg = base16.base06, bold = true, italic = true },
+		["@constant"] = { fg = base16.base06, bold = true },
 		["@constant.builtin"] = { fg = base16.base06 },
 		["@constant.macro"] = { fg = base16.base08 },
 		["@string"] = { fg = base16.base05, italic = true },
@@ -202,15 +212,15 @@ local polish_hl = {
 		["@annotation"] = { fg = base16.base0F },
 		["@attribute"] = { fg = base16.base0A },
 		["@error"] = { fg = base16.base08 },
-		["@keyword.exception"] = { fg = base16.base08 },
-		["@keyword"] = { fg = base16.base0B },
-		["@keyword.function"] = { fg = base16.base0B },
-		["@keyword.return"] = { fg = base16.base0B },
-		["@keyword.operator"] = { fg = base16.base0B },
+		["@keyword"] = { fg = base16.base0B, bold = true },
+		["@keyword.function"] = { link = "@keyword" },
+		["@keyword.return"] = { link = "@keyword" },
+		["@keyword.exception"] = { link = "@keyword" },
+		["@keyword.operator"] = { link = "@keyword" },
 		["@keyword.import"] = { link = "Include" },
-		["@keyword.conditional"] = { fg = base16.base0B },
-		["@keyword.conditional.ternary"] = { fg = base16.base0B },
-		["@keyword.repeat"] = { fg = base16.base0B },
+		["@keyword.conditional"] = { link = "@keyword" },
+		["@keyword.conditional.ternary"] = { link = "@keyword" },
+		["@keyword.repeat"] = { link = "@keyword" },
 		["@keyword.storage"] = { fg = base16.base0B },
 		["@keyword.directive.define"] = { fg = base16.base0B },
 		["@keyword.directive"] = { fg = base16.base0B },
@@ -218,11 +228,11 @@ local polish_hl = {
 		["@function.builtin"] = { fg = base16.base0D },
 		["@function.macro"] = { fg = base16.base08 },
 		["@function.call"] = { fg = base16.base0D },
-		["@function.method"] = { fg = base16.base0D },
+		["@function.method"] = { fg = base16.base0A },
 		["@function.method.call"] = { fg = base16.base0D },
 		["@constructor"] = { fg = base16.base09 },
 		["@constructor.lua"] = { fg = base16.base0F },
-		["@operator"] = { fg = base16.base06 },
+		["@operator"] = { fg = base16.base06, bold = true },
 		["@reference"] = { fg = base16.base05 },
 		["@punctuation.bracket"] = { fg = base16.base06, bold = true },
 		["@punctuation.delimiter"] = { fg = base16.base06, bold = true },
@@ -342,31 +352,5 @@ M.polish_hl = polish_hl
 M.type = "dark"
 
 M = require("base46").override_theme(M, "rich")
-
-local hl = vim.api.nvim_set_hl
-
-hl(0, "BlinkCmpMenu", { bg = base30.black2 })
-hl(0, "BlinkCmpMenuBorder", { bg = base30.black2, fg = base16.base07 })
-hl(0, "BlinkCmpDoc", { bg = base30.black2 })
-hl(0, "BlinkCmpDocBorder", { bg = base30.black2, fg = base16.base07 })
-hl(0, "BlinkCmpGhostText", { fg = base16.base04 })
-hl(0, "BlinkCmpSignatureHelp", { bg = base30.black2 })
-hl(0, "BlinkCmpSignatureHelpBorder", { bg = "none", fg = base16.base07 })
-hl(0, "BlinkCmpSignatureHelpActiveParameter", { fg = base16.base07, bold = true })
-hl(0, "MarkviewCheckboxUnchecked", { fg = base16.base07 })
-hl(0, "MarkviewCode", { bg = base30.one_bg })
-hl(0, "SnacksIndent", { fg = base16.base04 })
-hl(0, "SnacksIndentScope", { fg = base30.line })
-hl(0, "SnacksDashboardKey", { fg = base16.base04, bold = true })
-hl(0, "SnacksDashboardHeader", { fg = shade(base16.base04, 10) })
-hl(0, "SnacksDashboardDir", { fg = shade(base16.base04, -10) })
-hl(0, "WhichKeyTitle", { fg = base16.base07 })
-hl(0, "BqfPreviewFloat", { bg = base30.one_bg })
-hl(0, "UfoFoldedBg", { bg = shade(base30.one_bg2, -5) })
-hl(0, "HauntAnnotation", { link = "Cursor", bold = true })
-hl(0, "HauntSign", { link = "DiagnosticWarn" })
-hl(0, "GitSignsAdd", { fg = base30.green, bg = "NONE" })
-hl(0, "GitSignsDelete", { fg = base30.pink, bg = "NONE" })
-hl(0, "GitSignsChange", { fg = base30.yellow, bg = "NONE" })
 
 return M

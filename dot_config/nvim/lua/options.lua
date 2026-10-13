@@ -25,7 +25,7 @@ vim.opt.background = "dark"
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = false
 vim.opt.conceallevel = 3
-vim.opt.signcolumn = "auto:1-2"
+vim.opt.signcolumn = "yes:1"
 vim.opt.guicursor = ""
 vim.opt.shortmess:append("WcC")
 vim.opt.wrap = false

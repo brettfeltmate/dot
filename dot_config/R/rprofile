@@ -48,7 +48,7 @@ if (interactive()) {
         true = 14,
         negnum = 9,
         false = 1,
-        string = 5,
+        string = 7,
         const = 8,
         stderror = 4,
         warn = c(0, 13),
